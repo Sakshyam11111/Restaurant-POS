@@ -11,7 +11,7 @@ const JoinUs = () => {
         {/* Close Button */}
         <button
           onClick={() => navigate('/')}
-          className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors"
+          className="absolute top-4 right-4 text-red-400 hover:text-red-600 transition-colors"
           aria-label="Close"
         >
           <X className="w-6 h-6" />
