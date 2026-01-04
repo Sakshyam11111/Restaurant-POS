@@ -1,22 +1,19 @@
 import { Upload, X, Edit2, Trash2, Plus } from 'lucide-react';
 import React, { useState } from 'react';
 
-// Separate Variant Modal Component
-const VariantModal = ({ 
-  showVariantModal, 
-  resetVariantForm, 
-  variantsList, 
-  setVariantsList, 
-  handleVariantChange, 
-  addVariantRow, 
-  removeVariantRow, 
-  handleSaveVariant 
+const VariantModal = ({
+  showVariantModal,
+  resetVariantForm,
+  variantsList,
+  handleVariantChange,
+  addVariantRow,
+  removeVariantRow,
+  handleSaveVariant
 }) => {
   return (
     showVariantModal && (
       <div className="fixed inset-0 bg-black/30 backdrop-blur-none flex items-center justify-center z-50 p-4">
         <div className="bg-white rounded-xl shadow-2xl w-full max-w-4xl border border-gray-200 overflow-hidden">
-          {/* Header */}
           <div className="flex items-center justify-between px-6 py-4 border-b border-gray-200">
             <h2 className="text-xl font-semibold text-gray-900">Default Price</h2>
             <button
@@ -28,15 +25,12 @@ const VariantModal = ({
             </button>
           </div>
 
-          {/* Body */}
           <div className="px-6 py-6 space-y-5">
-            {/* Render each variant row */}
             {variantsList.map((variant, index) => (
               <div key={variant.id} className="space-y-3">
-                {/* Name and Price on the same line with delete button */}
                 <div className="flex gap-4">
                   <div className="flex-1">
-                    <label className="block text-sm font-medium text-gray-700 mb-1.5">Name</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-1.5">Variant Name</label>
                     <input
                       type="text"
                       name="name"
@@ -49,7 +43,7 @@ const VariantModal = ({
 
                   <div className="flex-1">
                     <label className="block text-sm font-medium text-gray-700 mb-1.5">
-                      Price <span className="text-red-500">*</span>
+                      Variant Price <span className="text-red-500">*</span>
                     </label>
                     <input
                       type="number"
@@ -74,7 +68,6 @@ const VariantModal = ({
                   )}
                 </div>
 
-                {/* Listed Price, COGS, Gross Profit, and Checkbox on the same line */}
                 <div className="flex items-center justify-between gap-4 text-sm p-4 bg-gray-50 rounded-lg">
                   <div className="flex flex-col">
                     <span className="text-gray-600">Listed Price: <span className="font-medium text-gray-900">Rs {variant.listedPrice}</span></span>
@@ -92,8 +85,7 @@ const VariantModal = ({
                         className="w-28 px-3 py-1.5 text-right border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
                         placeholder="0.00"
                       />
-                    </span>
-                    </span>
+                    </span></span>
                   </div>
 
                   <div className="flex flex-col">
@@ -118,7 +110,6 @@ const VariantModal = ({
               </div>
             ))}
 
-            {/* Add Variant button */}
             <div className="flex justify-center mt-4">
               <button
                 type="button"
@@ -131,7 +122,6 @@ const VariantModal = ({
             </div>
           </div>
 
-          {/* Footer */}
           <div className="px-6 py-4 border-t border-gray-200 flex justify-end gap-3 bg-gray-50">
             <button
               type="button"
@@ -155,82 +145,43 @@ const VariantModal = ({
   );
 };
 
-// Menu Items Table Component
 const MenuItemsTable = ({ menuItems, handleDeleteItem }) => {
   return (
     <div className="bg-white rounded-xl shadow-sm border border-gray-200">
       <div className="px-6 sm:px-8 lg:px-10 pt-8 pb-10">
-        <h3 className="text-lg font-medium text-gray-900 mb-4">Menu Items</h3>
         <div className="overflow-x-auto">
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-gray-50">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  SN
-                </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Name
-                </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Price
-                </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Category
-                </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Variants Name
-                </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Variants Price
-                </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Status
-                </th>
-                <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Actions
-                </th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">SN</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Price</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Category</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Variants Name</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Variants Price</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-200">
               {menuItems.map((item) => (
                 <tr key={item.id}>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{item.sn}</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                    {item.name}
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                    Rs {item.price}
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                    {item.category}
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                    {item.variants && item.variants.length > 0 ? (
-                      <div className="space-y-1">
-                        {item.variants.map((variant, index) => (
-                          <div key={index} className="text-xs">
-                            <span className="font-medium">{variant.name}:</span> Rs {variant.price}
-                          </div>
-                        ))}
-                      </div>
-                    ) : (
-                      <span className="text-gray-400">No variants</span>
-                    )}
-                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{item.name}</td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Rs {item.price}</td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{item.category}</td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{item.variantname || '—'}</td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{item.variantprice || '—'}</td>
                   <td className="px-6 py-4 whitespace-nowrap">
                     <span
-                      className={`px-2 py-1 text-xs font-semibold rounded-full ${item.status === 'Active'
-                        ? 'bg-green-100 text-green-800'
-                        : 'bg-red-100 text-red-800'
-                        }`}
+                      className={`px-2 py-1 text-xs font-semibold rounded-full ${
+                        item.status === 'Active' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
+                      }`}
                     >
-                      {item.status}
+                      {item.status || '—'}
                     </span>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                    <button type="button" className="text-blue-600 hover:text-blue-800 mr-3">
-                      <Edit2 size={16} />
-                    </button>
                     <button
                       type="button"
                       onClick={() => handleDeleteItem(item.id)}
@@ -252,7 +203,6 @@ const MenuItemsTable = ({ menuItems, handleDeleteItem }) => {
 const MenuItems = () => {
   const [showForm, setShowForm] = useState(false);
   const [showVariantModal, setShowVariantModal] = useState(false);
-  // Remove pre-populated data
   const [menuItems, setMenuItems] = useState([]);
 
   const [formData, setFormData] = useState({
@@ -268,7 +218,6 @@ const MenuItems = () => {
     variants: [],
   });
 
-  // Change to handle multiple variants in the modal
   const [variantsList, setVariantsList] = useState([
     { id: 1, name: '', price: '', listedPrice: '0.00', cogs: '0.00', grossProfit: '0.00', setupStockConsumption: false }
   ]);
@@ -306,7 +255,6 @@ const MenuItems = () => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  // Handle changes for each variant in the list
   const handleVariantChange = (id, e) => {
     const { name, value, type, checked } = e.target;
 
@@ -317,7 +265,6 @@ const MenuItems = () => {
             const price = parseFloat(value) || 0;
             const cogs = parseFloat(variant.cogs) || 0;
             const grossProfit = price - cogs;
-
             return {
               ...variant,
               [name]: value,
@@ -328,7 +275,6 @@ const MenuItems = () => {
             const cogs = parseFloat(value) || 0;
             const price = parseFloat(variant.price) || 0;
             const grossProfit = price - cogs;
-
             return {
               ...variant,
               [name]: value,
@@ -374,7 +320,6 @@ const MenuItems = () => {
     setShowVariantModal(true);
   };
 
-  // Add a new variant row
   const addVariantRow = () => {
     const newId = Math.max(...variantsList.map(v => v.id), 0) + 1;
     setVariantsList([...variantsList, {
@@ -388,7 +333,6 @@ const MenuItems = () => {
     }]);
   };
 
-  // Remove a variant row
   const removeVariantRow = (id) => {
     if (variantsList.length > 1) {
       setVariantsList(variantsList.filter(variant => variant.id !== id));
@@ -396,21 +340,19 @@ const MenuItems = () => {
   };
 
   const handleSaveVariant = () => {
-    // Validate all variants
     const isValid = variantsList.every(variant => variant.name && variant.price);
-    if (!isValid) return;
+    if (!isValid || !formData.itemName) return;
 
-    // Create a new menu item for each variant
-    variantsList.forEach(variant => {
+    variantsList.forEach((variant, index) => {
       const newItem = {
-        id: menuItems.length + 1,
-        sn: menuItems.length + 1,
-        name: variant.name, // Use variant name as the main name
-        price: variant.price, // Use variant price as the main price
-        category: 'Vegetarian', // Default category for variant items
-        status: 'Active', // Default status for variant items
-        variants: [], // No nested variants for variant items
-        source: 'variant', // Mark as coming from variant modal
+        id: Date.now() + index,
+        sn: menuItems.length + index + 1,
+        name: formData.itemName,
+        price: formData.price || variant.price,
+        category: formData.category || 'Vegetarian',
+        status: formData.status || 'Active',
+        variantname: variant.name,
+        variantprice: variant.price,
         menuGroup: formData.menuGroup,
         menuSubGroup: formData.menuSubGroup,
         itemCode: formData.itemCode,
@@ -424,26 +366,19 @@ const MenuItems = () => {
     resetVariantForm();
   };
 
-  const handleRemoveVariant = (index) => {
-    setFormData((prev) => ({
-      ...prev,
-      variants: prev.variants.filter((_, i) => i !== index),
-    }));
-  };
-
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!formData.itemName) return;
 
     const newItem = {
-      id: menuItems.length + 1,
+      id: Date.now(),
       sn: menuItems.length + 1,
-      name: formData.itemName, // Use form item name
+      name: formData.itemName,
       price: formData.variants.length > 0 ? formData.variants[0].price : Number(formData.price),
-      category: formData.category, // Use form category
-      status: formData.status, // Use form status
-      variants: formData.variants,
-      source: 'form', // Mark as coming from form
+      category: formData.category,
+      status: formData.status || 'Active',
+      variantname: '',
+      variantprice: '',
       menuGroup: formData.menuGroup,
       menuSubGroup: formData.menuSubGroup,
       itemCode: formData.itemCode,
@@ -482,11 +417,8 @@ const MenuItems = () => {
       {showForm ? (
         <form onSubmit={handleSubmit} className="space-y-6">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-            {/* Left - Main Form */}
             <div className="lg:col-span-2 bg-white rounded-xl shadow-sm border border-gray-200">
               <div className="px-6 sm:px-8 lg:px-10 pt-8 pb-10">
-                <h2 className="text-xl font-semibold text-gray-900 mb-6">Add New Menu</h2>
-
                 <div className="space-y-6">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
@@ -569,9 +501,7 @@ const MenuItems = () => {
                     </div>
 
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1.5">
-                        Price {formData.variants.length > 0 && "(Default from first variant)"}
-                      </label>
+                      <label className="block text-sm font-medium text-gray-700 mb-1.5">Price</label>
                       <input
                         type="number"
                         name="price"
@@ -579,10 +509,9 @@ const MenuItems = () => {
                         onChange={handleChange}
                         step="0.01"
                         min="0"
-                        placeholder='0.00'
-                        disabled={formData.variants.length > 0}
-                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none disabled:bg-gray-100"
-                        required={formData.variants.length === 0}
+                        placeholder="0.00"
+                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
+                        required
                       />
                     </div>
 
@@ -599,40 +528,11 @@ const MenuItems = () => {
                       </select>
                     </div>
                   </div>
-
-                  {/* Display added variants */}
-                  {formData.variants.length > 0 && (
-                    <div className="mt-6">
-                      <h3 className="text-md font-medium text-gray-900 mb-3">Variants</h3>
-                      <div className="space-y-2">
-                        {formData.variants.map((variant, index) => (
-                          <div
-                            key={index}
-                            className="flex items-center justify-between p-3 bg-gray-50 rounded-lg"
-                          >
-                            <div>
-                              <span className="font-medium">{variant.name}</span>
-                              <span className="ml-3 text-gray-600">Rs {variant.price}</span>
-                            </div>
-                            <button
-                              type="button"
-                              onClick={() => handleRemoveVariant(index)}
-                              className="text-red-600 hover:text-red-800"
-                            >
-                              <Trash2 size={16} />
-                            </button>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  )}
                 </div>
               </div>
             </div>
 
-            {/* Right column */}
             <div className="lg:col-span-1 space-y-6">
-              {/* Image Upload */}
               <div className="bg-white rounded-xl shadow-sm border border-gray-200">
                 <div className="px-6 sm:px-8 lg:px-10 pt-8 pb-10">
                   <div
@@ -677,7 +577,6 @@ const MenuItems = () => {
                 </div>
               </div>
 
-              {/* Variants trigger */}
               <div className="bg-white rounded-xl shadow-sm border border-gray-200">
                 <button
                   type="button"
@@ -690,7 +589,6 @@ const MenuItems = () => {
             </div>
           </div>
 
-          {/* Current Menu Items Table */}
           <MenuItemsTable menuItems={menuItems} handleDeleteItem={handleDeleteItem} />
 
           <div className="flex justify-end gap-4">
@@ -730,20 +628,17 @@ const MenuItems = () => {
 
           <button
             onClick={() => setShowForm(true)}
-            className="inline-flex items-center gap-2 px-8 py-3 bg-gray-50 text-black font-medium rounded-lg border border-gray-300 hover:bg-gray-100 transition"
+            className="inline-flex items-center gap-2 px-8 py-3.5 bg-white text-gray-900 font-medium rounded-lg border border-gray-300 hover:bg-gray-50 transition shadow-sm text-lg"
           >
-            <Plus size={20} className="font-bold" />
             Create Menu Item
           </button>
         </div>
       )}
 
-      {/* Variant Modal Component with props */}
       <VariantModal
         showVariantModal={showVariantModal}
         resetVariantForm={resetVariantForm}
         variantsList={variantsList}
-        setVariantsList={setVariantsList}
         handleVariantChange={handleVariantChange}
         addVariantRow={addVariantRow}
         removeVariantRow={removeVariantRow}

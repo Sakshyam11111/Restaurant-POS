@@ -220,7 +220,6 @@ const UnitMeasure = () => {
             onClick={handleShowForm}
             className="inline-flex items-center gap-2 px-8 py-3.5 bg-white text-gray-900 font-medium rounded-lg border border-gray-300 hover:bg-gray-50 transition shadow-sm text-lg"
           >
-            <span className="text-2xl font-bold">+</span>
             Add Measurement
           </button>
         </div>

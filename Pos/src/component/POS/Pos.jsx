@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import toast, { Toaster } from 'react-hot-toast';
 import {
   Home,
   Package,
@@ -7,7 +9,7 @@ import {
   LogOut,
   Menu,
   ChevronDown,
-  Settings as SettingsIcon, // Rename the icon import to avoid conflict
+  Settings as SettingsIcon,
 } from 'lucide-react';
 import { Tooltip } from 'react-tooltip';
 import Logo from '../../assets/Logo.webp';
@@ -22,8 +24,16 @@ import Table from './master/Table';
 import MenuItems from './master/MenuItems';
 import Employee from './master/Employee';
 import Settings from './contents/Settings';
+import Department from './master/Department';
+import Designation from './master/Designation';
+import Employeeshifts from './master/Employeeshifts';
+import Employeeshiftsrotation from './master/Employeeshiftsrotation';
+import Printtype from './master/Printtype';
+import PrintSetting from './master/PrintSetting';
+import TableContent from './contents/TableContent';
 
 export default function Pos() {
+  const navigate = useNavigate();
   const [isExpanded, setIsExpanded] = useState(true);
   const [isMasterOpen, setIsMasterOpen] = useState(true);
   const [activeStep, setActiveStep] = useState(1);
@@ -31,25 +41,41 @@ export default function Pos() {
   const steps = {
     1: { id: 'home', component: HomeContent },
     2: { id: 'pos', component: POSContent },
-    3: { id: 'reports', component: ReportsContent },
-    4: { id: 'unit-master', component: UnitMaster },
-    5: { id: 'unit-measure', component: UnitMeasure },
-    6: { id: 'zone', component: Zone },
-    7: { id: 'table', component: Table },
+    3: { id: 'tablecomponent', component: TableContent },
+    4: { id: 'reports', component: ReportsContent },
+    5: { id: 'unit-master', component: UnitMaster },
+    6: { id: 'unit-measure', component: UnitMeasure },
+    7: { id: 'zone', component: Zone },
+    8: { id: 'table', component: Table },
     9: { id: 'menu-items', component: MenuItems },
     10: { id: 'employee', component: Employee },
-    11: { id: 'settings', component: Settings },
+    11: { id: 'department', component: Department },
+    12: { id: 'designation', component: Designation },
+    13: { id: 'employeeshifts', component: Employeeshifts },
+    14: { id: 'employeeshiftsrotation', component: Employeeshiftsrotation },
+    15: { id: 'printtype', component: Printtype },
+    16: { id: 'printsetting', component: PrintSetting },
+    17: { id: 'settings', component: Settings },
   };
 
   const handleMenuClick = (id) => {
     if (id === 'master') {
-      setIsMasterOpen(prev => !prev);
+      setIsMasterOpen((prev) => !prev);
       return;
     }
 
     if (id === 'logout') {
-      console.log('Logging out...');
-      alert('Logged out!');
+      // Show toast instead of alert
+      toast.success('Logged out successfully', {
+        duration: 3000,
+        position: 'top-center',
+      });
+
+      // Simulate logout delay then redirect
+      setTimeout(() => {
+        navigate('/', { replace: true });
+      }, 800);
+
       return;
     }
 
@@ -66,7 +92,7 @@ export default function Pos() {
     { id: 'home', icon: Home, label: 'Home' },
     { id: 'pos', icon: Package, label: 'POS' },
     { id: 'reports', icon: BarChart3, label: 'Reports' },
-    { id: 'settings', icon: SettingsIcon, label: 'Settings' }, // Use the renamed icon here
+    { id: 'settings', icon: SettingsIcon, label: 'Settings' },
     { id: 'logout', icon: LogOut, label: 'Logout' },
   ];
 
@@ -87,19 +113,14 @@ export default function Pos() {
         { id: 'employee', label: 'Employee' },
         { id: 'department', label: 'Department' },
         { id: 'designation', label: 'Designation' },
-        { id: 'employee-shifts', label: 'Employee Shifts' },
-        { id: 'employee-shifts-rotation', label: 'Employee Shifts Rotation' },
-        { id: 'print-type', label: 'Print Type' },
-        { id: 'print-setting', label: 'Print Setting' },
-        { id: 'location', label: 'Location' },
-        { id: 'combo-offer', label: 'Combo Offer' },
-        { id: 'combo-set', label: 'Combo Set' },
-        { id: 'happy-hour-setup', label: 'Happy Hour Setup' },
-        { id: 'menu-items-ingredients', label: 'Menu Items Ingredients' },
+        { id: 'employeeshifts', label: 'Employee Shifts' },
+        { id: 'employeeshiftsrotation', label: 'Employee Shifts Rotation' },
+        { id: 'printtype', label: 'Print Type' },
+        { id: 'printsetting', label: 'Print Setting' },
       ],
     },
     { id: 'reports', icon: BarChart3, label: 'Reports' },
-    { id: 'settings', icon: SettingsIcon, label: 'Settings' }, // Use the renamed icon here
+    { id: 'settings', icon: SettingsIcon, label: 'Settings' },
   ];
 
   const SelectedContent = steps[activeStep]?.component || (() => (
@@ -110,6 +131,9 @@ export default function Pos() {
 
   return (
     <div className="flex h-screen bg-gray-50 overflow-hidden">
+      {/* Add Toaster here (or in root App.jsx) */}
+      <Toaster />
+
       {/* Collapsed Sidebar */}
       {!isExpanded && (
         <div className="w-20 bg-white border-r border-gray-200 flex flex-col items-center py-6 space-y-8">
@@ -127,7 +151,7 @@ export default function Pos() {
             <Menu size={24} strokeWidth={2} />
           </button>
 
-          {collapsedMenuItems.map(item => {
+          {collapsedMenuItems.map((item) => {
             const Icon = item.icon;
             const isActive = activeId === item.id;
 
@@ -167,7 +191,7 @@ export default function Pos() {
           </div>
 
           <nav className="flex-1 px-3 py-6 overflow-y-auto">
-            {expandedMenuItems.map(item => {
+            {expandedMenuItems.map((item) => {
               const Icon = item.icon;
               const isActive = activeId === item.id;
 
@@ -197,7 +221,7 @@ export default function Pos() {
 
                   {item.hasSubmenu && isMasterOpen && (
                     <div className="ml-9 space-y-1 mt-1 mb-3">
-                      {item.submenu.map(sub => (
+                      {item.submenu.map((sub) => (
                         <button
                           key={sub.id}
                           onClick={() => handleMenuClick(sub.id)}
@@ -239,7 +263,6 @@ export default function Pos() {
         <SelectedContent />
       </div>
 
-      {/* Tooltip component*/}
       <Tooltip
         id="sidebar-tooltip"
         place="right"

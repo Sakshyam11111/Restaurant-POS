@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import TableContent from './TableContent';
+
 
 const POSContent = () => {
   const [activeTab, setActiveTab] = useState('Table');
@@ -39,17 +41,20 @@ const POSContent = () => {
     'Delivery', 'Split Table', 'Table Transfer'
   ];
 
+  if (activeTab === 'Order') {
+    return <TableContent />;
+  }
+
   return (
     <div className="min-h-screen bg-white flex flex-col">
-      {/* Top bar */}
-      <div className="bg-gray-50 px-6 py-4 flex items-center justify-between">
+      <div className="bg-gray-50 px-6 py-2 flex items-center justify-between">
         <div className="inline-flex bg-gray-100 rounded-lg p-1">
           <button
             onClick={() => setActiveTab('Order')}
             className={`px-8 py-2.5 rounded-md font-medium transition-all ${
               activeTab === 'Order'
                 ? 'bg-white text-gray-900 shadow-sm'
-                : 'text-gray-600 hover:text-gray-900'
+                : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
             }`}
           >
             Order
@@ -59,7 +64,7 @@ const POSContent = () => {
             className={`px-8 py-2.5 rounded-md font-medium transition-all ${
               activeTab === 'Table'
                 ? 'bg-white text-gray-900 shadow-sm'
-                : 'text-gray-600 hover:text-gray-900'
+                : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
             }`}
           >
             Table
@@ -69,16 +74,14 @@ const POSContent = () => {
             className={`px-8 py-2.5 rounded-md font-medium transition-all ${
               activeTab === 'KOT'
                 ? 'bg-white text-gray-900 shadow-sm'
-                : 'text-gray-600 hover:text-gray-900'
+                : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
             }`}
           >
             KOT
           </button>
         </div>
-        <button className="text-3xl text-red-500 hover:text-red-600 px-2">×</button>
       </div>
 
-      {/* Filters & Floor selector */}
       <div className="bg-white px-6 py-4 flex flex-wrap items-center justify-between gap-4">
         <div className="flex flex-wrap gap-3">
           {filters.map((filter) => (
@@ -127,7 +130,6 @@ const POSContent = () => {
         </div>
       </div>
 
-      {/* Legend */}
       <div className="px-6 py-4 flex flex-wrap gap-x-8 gap-y-2 text-sm text-gray-600">
         <div className="flex items-center gap-2">
           <div className="w-3 h-3 rounded-full bg-blue-400" />
@@ -151,7 +153,6 @@ const POSContent = () => {
         </div>
       </div>
 
-      {/* Tables grid */}
       <div className="flex-1 p-8 overflow-auto">
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7 gap-8 max-w-7xl mx-auto">
           {tables.map((table) => (

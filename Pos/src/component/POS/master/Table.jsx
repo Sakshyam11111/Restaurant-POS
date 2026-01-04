@@ -267,9 +267,8 @@ const Table = () => {
 
           <button
             onClick={handleShowForm}
-            className="text-xl inline-flex items-center gap-2 px-8 py-3 bg-gray-50 text-black font-medium rounded-lg border border-gray-300 hover:bg-gray-100 transition"
+            className="inline-flex items-center gap-2 px-8 py-3.5 bg-white text-gray-900 font-medium rounded-lg border border-gray-300 hover:bg-gray-50 transition shadow-sm text-lg"
           >
-            <span className="text-2xl font-bold">+</span>
             Create Table
           </button>
         </div>

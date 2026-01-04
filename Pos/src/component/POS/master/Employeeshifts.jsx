@@ -1,11 +1,11 @@
-// Zone.jsx
 import React, { useState } from 'react';
 
-const Zone = () => {
+const Employeeshifts = () => {
   const [showForm, setShowForm] = useState(false);
   const [formData, setFormData] = useState({
-    zoneName: '',
-    shortCode: '',
+    shiftName: '',
+    startTime: '',
+    endTime: '',
     status: 'Active',
   });
 
@@ -14,8 +14,9 @@ const Zone = () => {
   const handleHideForm = () => {
     setShowForm(false);
     setFormData({
-      zoneName: '',
-      shortCode: '',
+      shiftName: '',
+      startTime: '',
+      endTime: '',
       status: 'Active',
     });
   };
@@ -27,80 +28,87 @@ const Zone = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('New zone saved:', formData);
+    console.log('New shift saved:', formData);
     handleHideForm();
   };
 
-  const hasZones = false; 
+  const hasShifts = false;
 
   return (
-    <div className="min-h-screen bg-gray-50 px-6 py-6">
-      {/* Header */}
+    <div className="min-h-screen bg-gray-50 px-6 py-6 font-sans">
       <div className="flex justify-between items-center mb-8">
-        <h1 className="text-2xl font-semibold text-gray-900">Zone</h1>
+        <h1 className="text-2xl font-semibold text-gray-900">Employee Shift</h1>
         <div className="flex gap-3">
           {!showForm && (
             <button
               onClick={handleShowForm}
-              className="inline-flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-[#487AA4] to-[#386184] text-white text-sm font-medium rounded-lg hover:brightness-105 transition shadow-sm"
+              className="inline-flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-[#487AA4] to-[#386184] text-white text-sm font-medium rounded-lg hover:brightness-105 transition"
             >
               <span className="text-lg font-bold">+</span>
-              Add Zone
+              Add Employee Shift
             </button>
           )}
-          <button className="inline-flex items-center gap-2 px-5 py-2.5 bg-white text-gray-700 text-sm font-medium rounded-lg border border-gray-300 hover:bg-gray-50 transition-colors shadow-sm">
+          <button className="inline-flex items-center gap-2 px-5 py-2.5 bg-white text-gray-700 text-sm font-medium rounded-lg border border-gray-300 hover:bg-gray-50 transition-colors">
             <span className="text-lg">↓</span>
             Generate Excel
           </button>
         </div>
       </div>
 
-      {/* Form or Empty State */}
       {showForm ? (
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200">
-          <div className="px-6 sm:px-10 lg:px-16 pt-8 pb-10">
+        <div className="bg-white rounded-xl shadow-sm">
+          <div className="px-6 sm:px-8 lg:px-10 pt-8 pb-10">
             <h2 className="text-2xl font-semibold text-gray-900 mb-8">
-              Add New Zone
+              Add Employee Shift
             </h2>
 
-            <form onSubmit={handleSubmit} className="space-y-7 w-full">
-              {/* Zone Name */}
-              <div>
+            <form onSubmit={handleSubmit} className="space-y-6 w-full">
+              <div className="w-full">
                 <label className="block text-sm font-medium text-gray-700 mb-1.5">
-                  Zone Name
+                  Shift Name
                 </label>
                 <input
                   type="text"
-                  name="zoneName"
-                  value={formData.zoneName}
+                  name="shiftName"
+                  value={formData.shiftName}
                   onChange={handleChange}
-                  placeholder="e.g., North Region, Warehouse A, Downtown Area"
-                  className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition shadow-sm"
-                  required
-                />
-                <p className="mt-1.5 text-xs text-gray-500">
-                  Enter zone name
-                </p>
-              </div>
-
-              {/* Description (was labeled Short Code) */}
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1.5">
-                  Description
-                </label>
-                <input
-                  type="text"
-                  name="shortCode"
-                  value={formData.shortCode}
-                  onChange={handleChange}
-                  placeholder="Enter zone description..."
-                  className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition shadow-sm"
+                  placeholder="Morning"
+                  className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none text-base"
                   required
                 />
               </div>
 
-              {/* Status */}
-              <div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="w-full">
+                  <label className="block text-sm font-medium text-gray-700 mb-1.5">
+                    Shift Start Time
+                  </label>
+                  <input
+                    type="time"
+                    name="startTime"
+                    value={formData.startTime}
+                    onChange={handleChange}
+                    className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none text-base"
+                    required
+                  />
+                </div>
+
+                <div className="w-full">
+                  <label className="block text-sm font-medium text-gray-700 mb-1.5">
+                    Shift End Time
+                  </label>
+                  <input
+                    type="time"
+                    name="endTime"
+                    value={formData.endTime}
+                    onChange={handleChange}
+                    className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none text-base"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div className="w-full">
                 <label className="block text-sm font-medium text-gray-700 mb-1.5">
                   Status
                 </label>
@@ -108,35 +116,33 @@ const Zone = () => {
                   name="status"
                   value={formData.status}
                   onChange={handleChange}
-                  className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none bg-white transition shadow-sm appearance-none"
+                  className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none bg-white text-base"
                 >
-                  <option value="Active">Active</option>
+                  <option value="Active">● Active</option>
                   <option value="Inactive">Inactive</option>
                 </select>
               </div>
 
-              {/* Buttons */}
-              <div className="flex justify-end gap-4 pt-8">
+              <div className="flex justify-end gap-4 pt-6">
                 <button
                   type="button"
                   onClick={handleHideForm}
-                  className="px-8 py-2.5 bg-gray-100 text-gray-700 font-medium rounded-lg hover:bg-gray-200 transition shadow-sm"
+                  className="px-8 py-2.5 bg-gray-100 text-gray-700 font-medium rounded-lg hover:bg-gray-200 transition"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
-                  className="px-8 py-2.5 bg-gradient-to-r from-[#487AA4] to-[#386184] text-white font-medium rounded-lg hover:brightness-105 transition shadow-md"
+                  className="px-10 py-2.5 bg-gradient-to-r from-[#487AA4] to-[#386184] text-white font-medium rounded-lg hover:brightness-105 transition"
                 >
-                  Save Zone
+                  Save
                 </button>
               </div>
             </form>
           </div>
         </div>
       ) : (
-        /* Empty State */
-        <div className="flex flex-col items-center justify-center mt-20 text-center px-4">
+        <div className="flex flex-col items-center justify-center mt-20 text-center">
           <div className="mb-8">
             <div className="w-24 h-24 flex items-center justify-center bg-gray-50 rounded-full border border-gray-200">
               <svg
@@ -156,19 +162,19 @@ const Zone = () => {
           </div>
 
           <h2 className="text-3xl font-semibold text-gray-900 mb-4">
-            No Zones Created Yet
+            Ooops! No Employee Shift created yet...
           </h2>
 
           <p className="text-gray-600 text-lg leading-relaxed mb-10 max-w-md">
-            You haven't added any zones yet.<br />
-            Create your first zone to start organizing locations.
+            There's nothing to view right now. Please create a new<br />
+            employee shift to get started.
           </p>
 
           <button
             onClick={handleShowForm}
             className="inline-flex items-center gap-2 px-8 py-3.5 bg-white text-gray-900 font-medium rounded-lg border border-gray-300 hover:bg-gray-50 transition shadow-sm text-lg"
           >
-            Add New Zone
+            Create Employee Shift
           </button>
         </div>
       )}
@@ -176,4 +182,4 @@ const Zone = () => {
   );
 };
 
-export default Zone;
+export default Employeeshifts;
