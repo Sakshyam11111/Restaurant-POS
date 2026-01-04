@@ -7,6 +7,7 @@ import {
   LogOut,
   Menu,
   ChevronDown,
+  Settings as SettingsIcon, // Rename the icon import to avoid conflict
 } from 'lucide-react';
 import { Tooltip } from 'react-tooltip';
 import Logo from '../../assets/Logo.webp';
@@ -20,6 +21,7 @@ import Zone from './master/Zone';
 import Table from './master/Table';
 import MenuItems from './master/MenuItems';
 import Employee from './master/Employee';
+import Settings from './contents/Settings';
 
 export default function Pos() {
   const [isExpanded, setIsExpanded] = useState(true);
@@ -27,15 +29,16 @@ export default function Pos() {
   const [activeStep, setActiveStep] = useState(1);
 
   const steps = {
-    1:  { id: 'home',                  component: HomeContent },
-    2:  { id: 'pos',                   component: POSContent },
-    3:  { id: 'reports',               component: ReportsContent },
-    4:  { id: 'unit-master',           component: UnitMaster },
-    5:  { id: 'unit-measure',          component: UnitMeasure },
-    6:  { id: 'zone',                  component: Zone },
-    7:  { id: 'table',                 component: Table },
-    9:  { id: 'menu-items',            component: MenuItems },
-    10: { id: 'employee',              component: Employee },
+    1: { id: 'home', component: HomeContent },
+    2: { id: 'pos', component: POSContent },
+    3: { id: 'reports', component: ReportsContent },
+    4: { id: 'unit-master', component: UnitMaster },
+    5: { id: 'unit-measure', component: UnitMeasure },
+    6: { id: 'zone', component: Zone },
+    7: { id: 'table', component: Table },
+    9: { id: 'menu-items', component: MenuItems },
+    10: { id: 'employee', component: Employee },
+    11: { id: 'settings', component: Settings },
   };
 
   const handleMenuClick = (id) => {
@@ -60,41 +63,43 @@ export default function Pos() {
   const activeId = steps[activeStep]?.id || 'home';
 
   const collapsedMenuItems = [
-    { id: 'home',    icon: Home,       label: 'Home' },
-    { id: 'pos',     icon: Package,    label: 'POS' },
-    { id: 'reports', icon: BarChart3,  label: 'Reports' },
-    { id: 'logout',  icon: LogOut,     label: 'Logout' },
+    { id: 'home', icon: Home, label: 'Home' },
+    { id: 'pos', icon: Package, label: 'POS' },
+    { id: 'reports', icon: BarChart3, label: 'Reports' },
+    { id: 'settings', icon: SettingsIcon, label: 'Settings' }, // Use the renamed icon here
+    { id: 'logout', icon: LogOut, label: 'Logout' },
   ];
 
   const expandedMenuItems = [
-    { id: 'home',    icon: Home,       label: 'Home' },
-    { id: 'pos',     icon: Package,    label: 'POS' },
+    { id: 'home', icon: Home, label: 'Home' },
+    { id: 'pos', icon: Package, label: 'POS' },
     {
       id: 'master',
       icon: FolderOpen,
       label: 'Master',
       hasSubmenu: true,
       submenu: [
-        { id: 'unit-master',           label: 'Unit Master' },
-        { id: 'unit-measure',          label: 'Unit Measure' },
-        { id: 'zone',                  label: 'Zone' },
-        { id: 'table',                 label: 'Table' },
-        { id: 'menu-items',            label: 'Menu Items' },
-        { id: 'employee',              label: 'Employee' },
-        { id: 'department',            label: 'Department' },
-        { id: 'designation',           label: 'Designation' },
-        { id: 'employee-shifts',       label: 'Employee Shifts' },
+        { id: 'unit-master', label: 'Unit Master' },
+        { id: 'unit-measure', label: 'Unit Measure' },
+        { id: 'zone', label: 'Zone' },
+        { id: 'table', label: 'Table' },
+        { id: 'menu-items', label: 'Menu Items' },
+        { id: 'employee', label: 'Employee' },
+        { id: 'department', label: 'Department' },
+        { id: 'designation', label: 'Designation' },
+        { id: 'employee-shifts', label: 'Employee Shifts' },
         { id: 'employee-shifts-rotation', label: 'Employee Shifts Rotation' },
-        { id: 'print-type',            label: 'Print Type' },
-        { id: 'print-setting',         label: 'Print Setting' },
-        { id: 'location',              label: 'Location' },
-        { id: 'combo-offer',           label: 'Combo Offer' },
-        { id: 'combo-set',             label: 'Combo Set' },
-        { id: 'happy-hour-setup',      label: 'Happy Hour Setup' },
-        { id: 'menu-items-ingredients',label: 'Menu Items Ingredients' },
+        { id: 'print-type', label: 'Print Type' },
+        { id: 'print-setting', label: 'Print Setting' },
+        { id: 'location', label: 'Location' },
+        { id: 'combo-offer', label: 'Combo Offer' },
+        { id: 'combo-set', label: 'Combo Set' },
+        { id: 'happy-hour-setup', label: 'Happy Hour Setup' },
+        { id: 'menu-items-ingredients', label: 'Menu Items Ingredients' },
       ],
     },
-    { id: 'reports', icon: BarChart3,  label: 'Reports' },
+    { id: 'reports', icon: BarChart3, label: 'Reports' },
+    { id: 'settings', icon: SettingsIcon, label: 'Settings' }, // Use the renamed icon here
   ];
 
   const SelectedContent = steps[activeStep]?.component || (() => (
@@ -130,11 +135,10 @@ export default function Pos() {
               <button
                 key={item.id}
                 onClick={() => handleMenuClick(item.id)}
-                className={`p-3 rounded-xl transition-all duration-200 ${
-                  isActive && item.id !== 'logout'
-                    ? 'bg-blue-50 text-blue-600 shadow-sm'
-                    : 'text-gray-500 hover:text-gray-700 hover:bg-gray-100'
-                } ${item.id === 'logout' ? 'mt-auto' : ''}`}
+                className={`p-3 rounded-xl transition-all duration-200 ${isActive && item.id !== 'logout'
+                  ? 'bg-blue-50 text-blue-600 shadow-sm'
+                  : 'text-gray-500 hover:text-gray-700 hover:bg-gray-100'
+                  } ${item.id === 'logout' ? 'mt-auto' : ''}`}
                 data-tooltip-id="sidebar-tooltip"
                 data-tooltip-content={item.label}
                 data-tooltip-place="right"
@@ -171,11 +175,10 @@ export default function Pos() {
                 <div key={item.id}>
                   <button
                     onClick={() => handleMenuClick(item.id)}
-                    className={`w-full flex items-center justify-between px-4 py-3 rounded-xl mb-1 transition-colors ${
-                      isActive && !item.hasSubmenu
-                        ? 'bg-blue-50 text-blue-700 font-semibold'
-                        : 'text-gray-700 hover:bg-gray-100'
-                    }`}
+                    className={`w-full flex items-center justify-between px-4 py-3 rounded-xl mb-1 transition-colors ${isActive && !item.hasSubmenu
+                      ? 'bg-blue-50 text-blue-700 font-semibold'
+                      : 'text-gray-700 hover:bg-gray-100'
+                      }`}
                     data-tooltip-id="sidebar-tooltip"
                     data-tooltip-content={item.label}
                     data-tooltip-place="right"
@@ -198,11 +201,10 @@ export default function Pos() {
                         <button
                           key={sub.id}
                           onClick={() => handleMenuClick(sub.id)}
-                          className={`w-full text-left px-4 py-2.5 rounded-lg text-sm transition-colors ${
-                            activeId === sub.id
-                              ? 'bg-blue-50 text-blue-700 font-medium'
-                              : 'text-gray-600 hover:bg-gray-50'
-                          }`}
+                          className={`w-full text-left px-4 py-2.5 rounded-lg text-sm transition-colors ${activeId === sub.id
+                            ? 'bg-blue-50 text-blue-700 font-medium'
+                            : 'text-gray-600 hover:bg-gray-50'
+                            }`}
                           data-tooltip-id="sidebar-tooltip"
                           data-tooltip-content={sub.label}
                           data-tooltip-place="right"
