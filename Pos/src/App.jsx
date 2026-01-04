@@ -5,16 +5,21 @@ import JoinUs from './component/mainpage/JoinUs';
 import RestaurantLogin from './component/mainpage/RestaurantLogin';
 import RestaurantSignup from './component/mainpage/RestaurantSignup';
 import Pos from './component/POS/Pos';
+import CustomerLogin from './component/mainpage/CustomerLogin';
+import CustomerSignup from './component/mainpage/CustomerSignup';
 
 const App = () => {
   return (
     <>
       <Router>
         <Routes>
-          <Route path="/" element={<LandingPage />} />
+          <Route path="/" 
+          element={<LandingPage />} />
           <Route path="/joinus" element={<JoinUs />} />
           <Route path="/stafflogin" element={<RestaurantLogin />} />
           <Route path="/staffsignup" element={<RestaurantSignup />} />
+          <Route path="/customerlogin" element={<CustomerLogin />} />
+          <Route path="/customersignup" element={<CustomerSignup />} />
           <Route path="/pos" element={<Pos />} />
         </Routes>
       </Router>
@@ -22,4 +27,4 @@ const App = () => {
   )
 }
 
-export default App
+export default App;
