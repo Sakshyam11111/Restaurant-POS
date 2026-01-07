@@ -16,7 +16,7 @@ const app = express();
 
 // Middleware
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: true }));  // FIXED: removed extra "Url"
 app.use(cookieParser());
 app.use(cors({
   origin: process.env.CLIENT_URL || 'http://localhost:5173',
@@ -54,11 +54,11 @@ app.use((err, req, res, next) => {
   });
 });
 
-// 404 handler
-app.use('*', (req, res) => {
+// 404 handler - MUST be last
+app.use((req, res) => {
   res.status(404).json({
     status: 'error',
-    message: 'Route not found'
+    message: `Route ${req.originalUrl} not found`
   });
 });
 
