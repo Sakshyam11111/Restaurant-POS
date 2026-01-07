@@ -140,7 +140,7 @@ export default function CustomerSignup() {
                         </div>
 
                         {/* Signup button */}
-                        <Link to="/pos">
+                        <Link to="/customerdashboard">
                             <button
                                 className="w-full text-white py-2.5 rounded-lg font-medium hover:opacity-90 transition"
                                 style={{ background: 'linear-gradient(135deg, #487AA4 0%, #386184 100%)' }}

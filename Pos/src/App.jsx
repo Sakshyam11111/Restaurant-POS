@@ -8,6 +8,7 @@ import Pos from './component/POS/Pos';
 import CustomerLogin from './component/mainpage/CustomerLogin';
 import CustomerSignup from './component/mainpage/CustomerSignup';
 import OrderDetailPage from './component/POS/contents/order/OrderDetailPage';
+import Customerdashboard from './component/customerside/Customerdashboard';
 
 const App = () => {
   return (
@@ -23,6 +24,7 @@ const App = () => {
           <Route path="/customersignup" element={<CustomerSignup />} />
           <Route path="/pos" element={<Pos />} />
           <Route path="/order/:id" element={<OrderDetailPage />} />
+          <Route path="/customerdashboard" element={<Customerdashboard />} />
         </Routes>
       </Router>
     </>
