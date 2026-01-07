@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { Eye, EyeOff, X } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
+import toast, { Toaster } from 'react-hot-toast';
+import { authAPI } from '../../services/api';
+import { useAuth } from '../../context/AuthContext';
 import Image1 from "../../assets/Login.png";
 import Logo from "../../assets/Logo.webp";
 
@@ -9,15 +12,44 @@ export default function CustomerLogin() {
     const [rememberMe, setRememberMe] = useState(false);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [loading, setLoading] = useState(false);
 
     const navigate = useNavigate();
+    const { login } = useAuth();
 
     const handleClose = () => {
         navigate('/joinus');
     };
 
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setLoading(true);
+
+        try {
+            const response = await authAPI.customerLogin({ email, password });
+            
+            toast.success(response.message || 'Login successful!');
+            
+            // Use the auth context to set user data
+            login(response.data.user, response.data.token, 'customer');
+            
+            // Navigate to customer dashboard after short delay
+            setTimeout(() => {
+                navigate('/customerdashboard');
+            }, 500);
+        } catch (error) {
+            console.error('Login error:', error);
+            const errorMessage = error.response?.data?.message || 'Login failed. Please try again.';
+            toast.error(errorMessage);
+        } finally {
+            setLoading(false);
+        }
+    };
+
     return (
         <div className="flex min-h-screen">
+            <Toaster position="top-center" />
+            
             {/* Left side - Food images */}
             <div className="hidden lg:block lg:w-1/2 relative">
                 <img
@@ -52,7 +84,7 @@ export default function CustomerLogin() {
                     <p className="text-gray-600 mb-6">Log in to access your customer dashboard.</p>
 
                     {/* Form */}
-                    <div className="space-y-4">
+                    <form onSubmit={handleSubmit} className="space-y-4">
                         {/* Email field */}
                         <div>
                             <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1.5">
@@ -68,6 +100,8 @@ export default function CustomerLogin() {
                                 style={{ '--tw-ring-color': '#487AA4' }}
                                 onFocus={(e) => (e.target.style.borderColor = '#487AA4')}
                                 onBlur={(e) => (e.target.style.borderColor = '#d1d5db')}
+                                required
+                                disabled={loading}
                             />
                         </div>
 
@@ -82,15 +116,18 @@ export default function CustomerLogin() {
                                     id="password"
                                     value={password}
                                     onChange={(e) => setPassword(e.target.value)}
-                                    placeholder="user@1234"
+                                    placeholder="Enter your password"
                                     className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:border-transparent outline-none transition pr-12"
                                     onFocus={(e) => (e.target.style.borderColor = '#487AA4')}
                                     onBlur={(e) => (e.target.style.borderColor = '#d1d5db')}
+                                    required
+                                    disabled={loading}
                                 />
                                 <button
                                     type="button"
                                     onClick={() => setShowPassword(!showPassword)}
                                     className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                                    disabled={loading}
                                 >
                                     {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
                                 </button>
@@ -105,23 +142,29 @@ export default function CustomerLogin() {
                                     checked={rememberMe}
                                     onChange={(e) => setRememberMe(e.target.checked)}
                                     className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+                                    disabled={loading}
                                 />
                                 <span className="ml-2 text-sm text-gray-700">Remember me</span>
                             </label>
-                            <button className="text-sm hover:opacity-80" style={{ color: '#487AA4' }}>
+                            <button 
+                                type="button"
+                                className="text-sm hover:opacity-80" 
+                                style={{ color: '#487AA4' }}
+                                disabled={loading}
+                            >
                                 Forgot password?
                             </button>
                         </div>
 
                         {/* Login button */}
-                        <Link to="/customerdashboard">
-                            <button
-                                className="w-full text-white py-2.5 rounded-lg font-medium hover:opacity-90 transition"
-                                style={{ background: 'linear-gradient(135deg, #487AA4 0%, #386184 100%)' }}
-                            >
-                                Login
-                            </button>
-                        </Link>
+                        <button
+                            type="submit"
+                            disabled={loading}
+                            className="w-full text-white py-2.5 rounded-lg font-medium hover:opacity-90 transition disabled:opacity-50 disabled:cursor-not-allowed"
+                            style={{ background: 'linear-gradient(135deg, #487AA4 0%, #386184 100%)' }}
+                        >
+                            {loading ? 'Logging in...' : 'Login'}
+                        </button>
 
                         {/* Social login divider */}
                         <div className="relative mt-6 mb-6">
@@ -135,7 +178,11 @@ export default function CustomerLogin() {
 
                         {/* Social login buttons */}
                         <div className="flex gap-4">
-                            <button className="flex-1 flex items-center justify-center gap-2 border border-gray-300 rounded-lg py-2.5 hover:bg-gray-50 transition">
+                            <button 
+                                type="button"
+                                className="flex-1 flex items-center justify-center gap-2 border border-gray-300 rounded-lg py-2.5 hover:bg-gray-50 transition"
+                                disabled={loading}
+                            >
                                 <svg className="w-5 h-5" viewBox="0 0 24 24">
                                     <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
                                     <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
@@ -144,7 +191,11 @@ export default function CustomerLogin() {
                                 </svg>
                                 <span className="text-gray-700 font-medium">Google</span>
                             </button>
-                            <button className="flex-1 flex items-center justify-center gap-2 border border-gray-300 rounded-lg py-2.5 hover:bg-gray-50 transition">
+                            <button 
+                                type="button"
+                                className="flex-1 flex items-center justify-center gap-2 border border-gray-300 rounded-lg py-2.5 hover:bg-gray-50 transition"
+                                disabled={loading}
+                            >
                                 <svg className="w-5 h-5" viewBox="0 0 24 24">
                                     <path fill="#1877F2" d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
                                 </svg>
@@ -163,7 +214,7 @@ export default function CustomerLogin() {
                                 Sign Up
                             </Link>
                         </p>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>

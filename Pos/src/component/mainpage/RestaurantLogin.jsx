@@ -1,6 +1,10 @@
+
 import React, { useState } from 'react';
 import { Eye, EyeOff, X } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
+import toast, { Toaster } from 'react-hot-toast';
+import { authAPI } from '../../services/api';
+import { useAuth } from '../../context/AuthContext';
 import Image1 from "../../assets/Login.png";
 import Logo from "../../assets/Logo.webp";
 
@@ -9,15 +13,44 @@ export default function RestaurantLogin() {
     const [rememberMe, setRememberMe] = useState(false);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [loading, setLoading] = useState(false);
 
     const navigate = useNavigate();
+    const { login } = useAuth();
 
     const handleClose = () => {
         navigate('/joinus');
     };
 
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setLoading(true);
+
+        try {
+            const response = await authAPI.staffLogin({ email, password });
+            
+            toast.success(response.message || 'Login successful!');
+            
+            // Use the auth context to set user data
+            login(response.data.user, response.data.token, 'staff');
+            
+            // Navigate to POS after short delay
+            setTimeout(() => {
+                navigate('/pos');
+            }, 500);
+        } catch (error) {
+            console.error('Login error:', error);
+            const errorMessage = error.response?.data?.message || 'Login failed. Please try again.';
+            toast.error(errorMessage);
+        } finally {
+            setLoading(false);
+        }
+    };
+
     return (
         <div className="flex min-h-screen">
+            <Toaster position="top-center" />
+            
             {/* Left side - Food images */}
             <div className="hidden lg:block lg:w-1/2 relative">
                 <img
@@ -52,7 +85,7 @@ export default function RestaurantLogin() {
                     <p className="text-gray-600 mb-6">Log in to access your restaurant dashboard.</p>
 
                     {/* Form */}
-                    <div className="space-y-5">
+                    <form onSubmit={handleSubmit} className="space-y-5">
                         {/* Email field */}
                         <div>
                             <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1.5">
@@ -68,6 +101,8 @@ export default function RestaurantLogin() {
                                 style={{ '--tw-ring-color': '#487AA4' }}
                                 onFocus={(e) => (e.target.style.borderColor = '#487AA4')}
                                 onBlur={(e) => (e.target.style.borderColor = '#d1d5db')}
+                                required
+                                disabled={loading}
                             />
                         </div>
 
@@ -82,15 +117,18 @@ export default function RestaurantLogin() {
                                     id="password"
                                     value={password}
                                     onChange={(e) => setPassword(e.target.value)}
-                                    placeholder="user@1234"
+                                    placeholder="Enter your password"
                                     className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:border-transparent outline-none transition pr-12"
                                     onFocus={(e) => (e.target.style.borderColor = '#487AA4')}
                                     onBlur={(e) => (e.target.style.borderColor = '#d1d5db')}
+                                    required
+                                    disabled={loading}
                                 />
                                 <button
                                     type="button"
                                     onClick={() => setShowPassword(!showPassword)}
                                     className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                                    disabled={loading}
                                 >
                                     {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
                                 </button>
@@ -105,23 +143,29 @@ export default function RestaurantLogin() {
                                     checked={rememberMe}
                                     onChange={(e) => setRememberMe(e.target.checked)}
                                     className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+                                    disabled={loading}
                                 />
                                 <span className="ml-2 text-sm text-gray-700">Remember me</span>
                             </label>
-                            <button className="text-sm hover:opacity-80" style={{ color: '#487AA4' }}>
+                            <button 
+                                type="button"
+                                className="text-sm hover:opacity-80" 
+                                style={{ color: '#487AA4' }}
+                                disabled={loading}
+                            >
                                 Forgot password?
                             </button>
                         </div>
 
-                        {/* Login button - no onClick handler */}
-                        <Link to="/pos">
-                            <button
-                                className="w-full text-white py-3 rounded-lg font-medium hover:opacity-90 transition"
-                                style={{ background: 'linear-gradient(135deg, #487AA4 0%, #386184 100%)' }}
-                            >
-                                Login
-                            </button>
-                        </Link>
+                        {/* Login button */}
+                        <button
+                            type="submit"
+                            disabled={loading}
+                            className="w-full text-white py-3 rounded-lg font-medium hover:opacity-90 transition disabled:opacity-50 disabled:cursor-not-allowed"
+                            style={{ background: 'linear-gradient(135deg, #487AA4 0%, #386184 100%)' }}
+                        >
+                            {loading ? 'Logging in...' : 'Login'}
+                        </button>
 
                         {/* Sign up link */}
                         <p className="text-center text-sm text-gray-600 mt-6">
@@ -134,7 +178,7 @@ export default function RestaurantLogin() {
                                 Sign Up
                             </Link>
                         </p>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
