@@ -30,8 +30,8 @@ import Employeeshifts from './master/Employeeshifts';
 import Employeeshiftsrotation from './master/Employeeshiftsrotation';
 import Printtype from './master/Printtype';
 import PrintSetting from './master/PrintSetting';
-import TableContent from './contents/TableContent';
-
+import TableContent from './contents/order/TableContent';
+import OrderDetailPage from './contents/order/OrderDetailPage';
 export default function Pos() {
   const navigate = useNavigate();
   const [isExpanded, setIsExpanded] = useState(true);
@@ -42,20 +42,21 @@ export default function Pos() {
     1: { id: 'home', component: HomeContent },
     2: { id: 'pos', component: POSContent },
     3: { id: 'tablecomponent', component: TableContent },
-    4: { id: 'reports', component: ReportsContent },
-    5: { id: 'unit-master', component: UnitMaster },
-    6: { id: 'unit-measure', component: UnitMeasure },
-    7: { id: 'zone', component: Zone },
-    8: { id: 'table', component: Table },
-    9: { id: 'menu-items', component: MenuItems },
-    10: { id: 'employee', component: Employee },
-    11: { id: 'department', component: Department },
-    12: { id: 'designation', component: Designation },
-    13: { id: 'employeeshifts', component: Employeeshifts },
-    14: { id: 'employeeshiftsrotation', component: Employeeshiftsrotation },
-    15: { id: 'printtype', component: Printtype },
-    16: { id: 'printsetting', component: PrintSetting },
-    17: { id: 'settings', component: Settings },
+    4: { id: 'orderdetail', component: OrderDetailPage },
+    5: { id: 'reports', component: ReportsContent },
+    6: { id: 'unit-master', component: UnitMaster },
+    7: { id: 'unit-measure', component: UnitMeasure },
+    8: { id: 'zone', component: Zone },
+    9: { id: 'table', component: Table },
+    10: { id: 'menu-items', component: MenuItems },
+    11: { id: 'employee', component: Employee },
+    12: { id: 'department', component: Department },
+    13: { id: 'designation', component: Designation },
+    14: { id: 'employeeshifts', component: Employeeshifts },
+    15: { id: 'employeeshiftsrotation', component: Employeeshiftsrotation },
+    16: { id: 'printtype', component: Printtype },
+    17: { id: 'printsetting', component: PrintSetting },
+    18: { id: 'settings', component: Settings },
   };
 
   const handleMenuClick = (id) => {

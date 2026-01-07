@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import TableContent from './TableContent';
+import TableContent from './order/TableContent';
+import KOTContent from './KOT/KOTContent';
 
 
 const POSContent = () => {
@@ -45,37 +46,37 @@ const POSContent = () => {
     return <TableContent />;
   }
 
+  if (activeTab === 'KOT') {
+    return <KOTContent />;
+  }
   return (
     <div className="min-h-screen bg-white flex flex-col">
       <div className="bg-gray-50 px-6 py-2 flex items-center justify-between">
         <div className="inline-flex bg-gray-100 rounded-lg p-1">
           <button
             onClick={() => setActiveTab('Order')}
-            className={`px-8 py-2.5 rounded-md font-medium transition-all ${
-              activeTab === 'Order'
-                ? 'bg-white text-gray-900 shadow-sm'
-                : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
-            }`}
+            className={`px-8 py-2.5 rounded-md font-medium transition-all ${activeTab === 'Order'
+              ? 'bg-white text-gray-900 shadow-sm'
+              : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
+              }`}
           >
             Order
           </button>
           <button
             onClick={() => setActiveTab('Table')}
-            className={`px-8 py-2.5 rounded-md font-medium transition-all ${
-              activeTab === 'Table'
-                ? 'bg-white text-gray-900 shadow-sm'
-                : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
-            }`}
+            className={`px-8 py-2.5 rounded-md font-medium transition-all ${activeTab === 'Table'
+              ? 'bg-white text-gray-900 shadow-sm'
+              : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
+              }`}
           >
             Table
           </button>
           <button
             onClick={() => setActiveTab('KOT')}
-            className={`px-8 py-2.5 rounded-md font-medium transition-all ${
-              activeTab === 'KOT'
-                ? 'bg-white text-gray-900 shadow-sm'
-                : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
-            }`}
+            className={`px-8 py-2.5 rounded-md font-medium transition-all ${activeTab === 'KOT'
+              ? 'bg-white text-gray-900 shadow-sm'
+              : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
+              }`}
           >
             KOT
           </button>

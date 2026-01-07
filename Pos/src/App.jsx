@@ -7,6 +7,7 @@ import RestaurantSignup from './component/mainpage/RestaurantSignup';
 import Pos from './component/POS/Pos';
 import CustomerLogin from './component/mainpage/CustomerLogin';
 import CustomerSignup from './component/mainpage/CustomerSignup';
+import OrderDetailPage from './component/POS/contents/order/OrderDetailPage';
 
 const App = () => {
   return (
@@ -21,6 +22,7 @@ const App = () => {
           <Route path="/customerlogin" element={<CustomerLogin />} />
           <Route path="/customersignup" element={<CustomerSignup />} />
           <Route path="/pos" element={<Pos />} />
+          <Route path="/order/:id" element={<OrderDetailPage />} />
         </Routes>
       </Router>
     </>
