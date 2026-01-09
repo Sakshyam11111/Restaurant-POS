@@ -13,7 +13,6 @@ export default function CustomerLogin() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [loading, setLoading] = useState(false);
-
     const navigate = useNavigate();
     const { login } = useAuth();
 
@@ -21,26 +20,64 @@ export default function CustomerLogin() {
         navigate('/joinus');
     };
 
+    // Simple email validation regex
+    const validateEmail = (email) => {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        // Client-side validation
+        if (!email.trim() || !password) {
+            toast.error('Please fill in both email and password.');
+            return;
+        }
+        if (!validateEmail(email)) {
+            toast.error('Please enter a valid email address.');
+            return;
+        }
+
         setLoading(true);
 
         try {
-            const response = await authAPI.customerLogin({ email, password });
-            
+            const response = await authAPI.customerLogin({
+                email: email.trim(),
+                password
+            });
+
             toast.success(response.message || 'Login successful!');
-            
-            // Use the auth context to set user data
+
+            // Save user and token via context
             login(response.data.user, response.data.token, 'customer');
-            
-            // Navigate to customer dashboard after short delay
+
+            // Remember me logic
+            if (rememberMe) {
+                localStorage.setItem('authToken', response.data.token);
+            }
+
+            // Navigate to dashboard only on success
             setTimeout(() => {
                 navigate('/customerdashboard');
             }, 500);
         } catch (error) {
             console.error('Login error:', error);
-            const errorMessage = error.response?.data?.message || 'Login failed. Please try again.';
+
+            let errorMessage = 'Login failed. Please try again.';
+            if (error.response?.data?.message) {
+                errorMessage = error.response.data.message;
+            } else if (error.response?.status === 401) {
+                errorMessage = 'Incorrect email or password.';
+            } else if (error.response?.status === 403) {
+                errorMessage = 'Account not verified. Please check your email.';
+            } else if (!error.response) {
+                errorMessage = 'Network error. Please check your connection.';
+            }
+
+            // Only show error toast — NO redirect at all on failure
             toast.error(errorMessage);
+
+            // User stays on the login page to try again
         } finally {
             setLoading(false);
         }
@@ -49,7 +86,7 @@ export default function CustomerLogin() {
     return (
         <div className="flex min-h-screen">
             <Toaster position="top-center" />
-            
+           
             {/* Left side - Food images */}
             <div className="hidden lg:block lg:w-1/2 relative">
                 <img
@@ -95,7 +132,7 @@ export default function CustomerLogin() {
                                 id="email"
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
-                                placeholder="user@gmail.com"
+                                placeholder="<user@gmail.com>"
                                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:border-transparent outline-none transition"
                                 style={{ '--tw-ring-color': '#487AA4' }}
                                 onFocus={(e) => (e.target.style.borderColor = '#487AA4')}
@@ -146,9 +183,9 @@ export default function CustomerLogin() {
                                 />
                                 <span className="ml-2 text-sm text-gray-700">Remember me</span>
                             </label>
-                            <button 
+                            <button
                                 type="button"
-                                className="text-sm hover:opacity-80" 
+                                className="text-sm hover:opacity-80"
                                 style={{ color: '#487AA4' }}
                                 disabled={loading}
                             >
@@ -178,11 +215,7 @@ export default function CustomerLogin() {
 
                         {/* Social login buttons */}
                         <div className="flex gap-4">
-                            <button 
-                                type="button"
-                                className="flex-1 flex items-center justify-center gap-2 border border-gray-300 rounded-lg py-2.5 hover:bg-gray-50 transition"
-                                disabled={loading}
-                            >
+                            <button type="button" className="flex-1 flex items-center justify-center gap-2 border border-gray-300 rounded-lg py-2.5 hover:bg-gray-50 transition" disabled={loading}>
                                 <svg className="w-5 h-5" viewBox="0 0 24 24">
                                     <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
                                     <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
@@ -191,11 +224,7 @@ export default function CustomerLogin() {
                                 </svg>
                                 <span className="text-gray-700 font-medium">Google</span>
                             </button>
-                            <button 
-                                type="button"
-                                className="flex-1 flex items-center justify-center gap-2 border border-gray-300 rounded-lg py-2.5 hover:bg-gray-50 transition"
-                                disabled={loading}
-                            >
+                            <button type="button" className="flex-1 flex items-center justify-center gap-2 border border-gray-300 rounded-lg py-2.5 hover:bg-gray-50 transition" disabled={loading}>
                                 <svg className="w-5 h-5" viewBox="0 0 24 24">
                                     <path fill="#1877F2" d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
                                 </svg>
