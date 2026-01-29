@@ -1,11 +1,9 @@
-// server.js
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const dotenv = require('dotenv');
 const cookieParser = require('cookie-parser');
 
-// Import routes
 const authRoutes = require('./routes/authRoutes');
 const staffRoutes = require('./routes/staffRoutes');
 const customerRoutes = require('./routes/customerRoutes');
@@ -14,57 +12,56 @@ dotenv.config();
 
 const app = express();
 
-// Middleware
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));  // FIXED: removed extra "Url"
+app.set('x-powered-by', false);
+app.set('etag', false);
+
+app.use(express.json({ limit: '10mb' }));
+app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 app.use(cookieParser());
 app.use(cors({
   origin: process.env.CLIENT_URL || 'http://localhost:5173',
-  credentials: true
+  credentials: true,
+  preflightContinue: false,
+  optionsSuccessStatus: 204
 }));
 
-// Database connection
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/restaurant-pos', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
+  serverSelectionTimeoutMS: 5000,
+  socketTimeoutMS: 45000,
+  maxPoolSize: 10,
+  minPoolSize: 2,
+  bufferCommands: false,
 })
-.then(() => console.log('✅ MongoDB Connected Successfully'))
-.catch((err) => console.error('❌ MongoDB Connection Error:', err));
+  .then(() => console.log('MongoDB Connected'))
+  .catch((err) => console.error('MongoDB Connection Error:', err));
 
-// Routes
+mongoose.set('bufferCommands', false);
+mongoose.set('bufferTimeoutMS', 0);
+
 app.use('/api/auth', authRoutes);
 app.use('/api/staff', staffRoutes);
 app.use('/api/customer', customerRoutes);
 
-// Health check route
 app.get('/api/health', (req, res) => {
-  res.status(200).json({ 
-    status: 'success', 
-    message: 'Server is running',
-    timestamp: new Date().toISOString()
-  });
+  res.status(200).json({ status: 'success' });
 });
 
-// Error handling middleware
 app.use((err, req, res, next) => {
   console.error(err.stack);
-  res.status(err.statusCode || 500).json({
-    status: 'error',
-    message: err.message || 'Internal Server Error'
-  });
+  res.status(err.statusCode || 500).json({ status: 'error', message: err.message || 'Internal Server Error' });
 });
 
-// 404 handler - MUST be last
 app.use((req, res) => {
-  res.status(404).json({
-    status: 'error',
-    message: `Route ${req.originalUrl} not found`
-  });
+  res.status(404).json({ status: 'error', message: 'Not Found' });
 });
 
 const PORT = process.env.PORT || 5000;
-
-app.listen(PORT, () => {
-  console.log(`🚀 Server is running on port ${PORT}`);
-  console.log(`📍 Environment: ${process.env.NODE_ENV || 'development'}`);
+const server = app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 });
+
+server.keepAliveTimeout = 65000;
+server.headersTimeout = 66000;
+server.timeout = 60000;
+
+module.exports = app;
