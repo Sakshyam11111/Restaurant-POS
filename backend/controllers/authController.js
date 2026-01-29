@@ -5,9 +5,13 @@ const Customer = require('../models/Customer');
 
 // Generate JWT Token
 const generateToken = (id, userType) => {
+  if (!process.env.JWT_SECRET) {
+    throw new Error('JWT_SECRET is not defined in environment variables');
+  }
+  
   return jwt.sign(
     { id, userType }, 
-    process.env.JWT_SECRET || 'your-secret-key-change-in-production',
+    process.env.JWT_SECRET,
     { expiresIn: process.env.JWT_EXPIRES_IN || '7d' }
   );
 };
@@ -74,6 +78,8 @@ exports.staffLogin = async (req, res) => {
   try {
     const { email, password } = req.body;
 
+    console.log('Login attempt for:', email);
+
     // Validation
     if (!email || !password) {
       return res.status(400).json({
@@ -85,15 +91,26 @@ exports.staffLogin = async (req, res) => {
     // Find staff and include password
     const staff = await Staff.findOne({ email }).select('+password');
     
-    if (!staff || !staff.isActive) {
+    console.log('Staff found:', staff ? 'Yes' : 'No');
+
+    if (!staff) {
       return res.status(401).json({
         status: 'error',
-        message: 'Invalid credentials or account is inactive'
+        message: 'Invalid credentials'
+      });
+    }
+
+    if (!staff.isActive) {
+      return res.status(401).json({
+        status: 'error',
+        message: 'Account is inactive. Please contact support.'
       });
     }
 
     // Check password
     const isPasswordCorrect = await staff.comparePassword(password);
+    console.log('Password correct:', isPasswordCorrect);
+
     if (!isPasswordCorrect) {
       return res.status(401).json({
         status: 'error',
@@ -123,7 +140,7 @@ exports.staffLogin = async (req, res) => {
     console.error('Staff Login Error:', error);
     res.status(500).json({
       status: 'error',
-      message: 'Login failed'
+      message: 'Login failed: ' + error.message
     });
   }
 };
@@ -190,6 +207,8 @@ exports.customerLogin = async (req, res) => {
   try {
     const { email, password } = req.body;
 
+    console.log('Customer login attempt for:', email);
+
     // Validation
     if (!email || !password) {
       return res.status(400).json({
@@ -201,15 +220,26 @@ exports.customerLogin = async (req, res) => {
     // Find customer and include password
     const customer = await Customer.findOne({ email }).select('+password');
     
-    if (!customer || !customer.isActive) {
+    console.log('Customer found:', customer ? 'Yes' : 'No');
+
+    if (!customer) {
       return res.status(401).json({
         status: 'error',
-        message: 'Invalid credentials or account is inactive'
+        message: 'Invalid credentials'
+      });
+    }
+
+    if (!customer.isActive) {
+      return res.status(401).json({
+        status: 'error',
+        message: 'Account is inactive. Please contact support.'
       });
     }
 
     // Check password
     const isPasswordCorrect = await customer.comparePassword(password);
+    console.log('Password correct:', isPasswordCorrect);
+
     if (!isPasswordCorrect) {
       return res.status(401).json({
         status: 'error',
@@ -239,7 +269,7 @@ exports.customerLogin = async (req, res) => {
     console.error('Customer Login Error:', error);
     res.status(500).json({
       status: 'error',
-      message: 'Login failed'
+      message: 'Login failed: ' + error.message
     });
   }
 };

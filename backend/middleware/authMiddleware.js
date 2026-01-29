@@ -20,8 +20,17 @@ exports.protect = async (req, res, next) => {
       });
     }
 
+    // Check if JWT_SECRET is defined
+    if (!process.env.JWT_SECRET) {
+      console.error('JWT_SECRET is not defined in environment variables');
+      return res.status(500).json({
+        status: 'error',
+        message: 'Server configuration error'
+      });
+    }
+
     // Verify token
-    const decoded = jwt.verify(token, process.env.JWT_SECRET || 'your-secret-key-change-in-production');
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
     // Check if user still exists
     let user;
@@ -73,7 +82,7 @@ exports.protect = async (req, res, next) => {
 
     res.status(401).json({
       status: 'error',
-      message: 'Authentication failed'
+      message: 'Authentication failed: ' + error.message
     });
   }
 };
