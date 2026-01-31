@@ -1,0 +1,280 @@
+{
+  "categories": [
+    {
+      "id": 1,
+      "name": "All Menu",
+      "icon": "grid"
+    },
+    {
+      "id": 2,
+      "name": "Momo",
+      "icon": "momo"
+    },
+    {
+      "id": 3,
+      "name": "Burger",
+      "icon": "burger"
+    },
+    {
+      "id": 4,
+      "name": "Chowmin",
+      "icon": "noodles"
+    },
+    {
+      "id": 5,
+      "name": "Thakali Set",
+      "icon": "plate"
+    },
+    {
+      "id": 6,
+      "name": "Newari Khaja Set",
+      "icon": "traditional"
+    },
+    {
+      "id": 7,
+      "name": "Fried Items",
+      "icon": "fried"
+    },
+    {
+      "id": 8,
+      "name": "Sizzlers",
+      "icon": "sizzler"
+    }
+  ],
+  "menuItems": [
+    {
+      "id": 1,
+      "name": "Chicken Momo",
+      "price": 200,
+      "currency": "Rs.",
+      "image": "https://i.pinimg.com/1200x/e8/35/ed/e835ed89023c2a6d2d1933321d59efc4.jpg",
+      "category": "Momo",
+      "description": "Steamed chicken dumplings"
+    },
+    {
+      "id": 2,
+      "name": "Coke",
+      "price": 80,
+      "currency": "Rs.",
+      "image": "https://images.unsplash.com/photo-1554866585-cd94860890b7?w=400&h=400&fit=crop",
+      "category": "Soft Drinks",
+      "description": "Chilled coca cola"
+    },
+    {
+      "id": 3,
+      "name": "Mint Hookah",
+      "price": 700,
+      "currency": "Rs.",
+      "image": "https://i.pinimg.com/1200x/e9/34/8a/e9348aa9b40cc5ad23438531cff58150.jpg",
+      "category": "Hookah",
+      "description": "Refreshing mint flavored hookah"
+    },
+    {
+      "id": 4,
+      "name": "Chocolate Brownie",
+      "price": 180,
+      "currency": "Rs.",
+      "image": "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=400&h=400&fit=crop",
+      "category": "Desserts",
+      "description": "Rich chocolate brownie"
+    },
+    {
+      "id": 5,
+      "name": "Cold Coffee",
+      "price": 150,
+      "currency": "Rs.",
+      "image": "https://images.unsplash.com/photo-1517487881594-2787fef5ebf7?w=400&h=400&fit=crop",
+      "category": "Cold Coffee / Shakes",
+      "description": "Iced coffee with cream"
+    },
+    {
+      "id": 6,
+      "name": "Paneer Chilli",
+      "price": 250,
+      "currency": "Rs.",
+      "image": "https://images.unsplash.com/photo-1631452180519-c014fe946bc7?w=400&h=400&fit=crop",
+      "category": "Fried Items",
+      "description": "Spicy paneer with vegetables"
+    },
+    {
+      "id": 7,
+      "name": "Marlboro Gold",
+      "price": 400,
+      "currency": "Rs.",
+      "image": "https://i.pinimg.com/736x/6b/b7/7d/6bb77da845fe7c50969d5c9a0e8fae79.jpg",
+      "category": "Cigarettes",
+      "description": "Premium cigarettes"
+    },
+    {
+      "id": 8,
+      "name": "Veg Lasagna",
+      "price": 300,
+      "currency": "Rs.",
+      "image": "https://images.unsplash.com/photo-1574894709920-11b28e7367e3?w=400&h=400&fit=crop",
+      "category": "Pasta",
+      "description": "Layered vegetable lasagna"
+    },
+    {
+      "id": 9,
+      "name": "Apple Hookah",
+      "price": 750,
+      "currency": "Rs.",
+      "image": "https://images.unsplash.com/photo-1583182332473-b31ba08929c8?w=400&h=400&fit=crop",
+      "category": "Hookah",
+      "description": "Apple flavored hookah"
+    },
+    {
+      "id": 10,
+      "name": "Vanilla Ice Cream",
+      "price": 120,
+      "currency": "Rs.",
+      "image": "https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=400&h=400&fit=crop",
+      "category": "Desserts",
+      "description": "Classic vanilla ice cream"
+    },
+    {
+      "id": 11,
+      "name": "Fish & Chips",
+      "price": 380,
+      "currency": "Rs.",
+      "image": "https://images.unsplash.com/photo-1579208575657-c595a05383b7?w=400&h=400&fit=crop",
+      "category": "Fried Items",
+      "description": "Crispy fried fish with chips"
+    },
+    {
+      "id": 12,
+      "name": "Fresh Lime Soda",
+      "price": 100,
+      "currency": "Rs.",
+      "image": "https://images.unsplash.com/photo-1546171753-97d7676e4602?w=400&h=400&fit=crop",
+      "category": "Fresh Juice",
+      "description": "Refreshing lime soda"
+    },
+    {
+      "id": 13,
+      "name": "Buff Momo",
+      "price": 180,
+      "currency": "Rs.",
+      "image": "https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?w=400&h=400&fit=crop",
+      "category": "Momo",
+      "description": "Steamed buffalo meat dumplings"
+    },
+    {
+      "id": 14,
+      "name": "Veg Momo",
+      "price": 150,
+      "currency": "Rs.",
+      "image": "https://i.pinimg.com/736x/fe/c3/b3/fec3b34d5edb094554ed761c0d6f9d17.jpg",
+      "category": "Momo",
+      "description": "Steamed vegetable dumplings"
+    },
+    {
+      "id": 15,
+      "name": "Chicken Burger",
+      "price": 220,
+      "currency": "Rs.",
+      "image": "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400&h=400&fit=crop",
+      "category": "Burger",
+      "description": "Grilled chicken burger with fries"
+    },
+    {
+      "id": 16,
+      "name": "Veg Burger",
+      "price": 180,
+      "currency": "Rs.",
+      "image": "https://images.unsplash.com/photo-1520072959219-c595dc870360?w=400&h=400&fit=crop",
+      "category": "Burger",
+      "description": "Vegetable patty burger"
+    },
+    {
+      "id": 17,
+      "name": "Chicken Chowmin",
+      "price": 200,
+      "currency": "Rs.",
+      "image": "https://images.unsplash.com/photo-1612929633738-8fe44f7ec841?w=400&h=400&fit=crop",
+      "category": "Chowmin",
+      "description": "Stir-fried noodles with chicken"
+    },
+    {
+      "id": 18,
+      "name": "Veg Chowmin",
+      "price": 160,
+      "currency": "Rs.",
+      "image": "https://images.unsplash.com/photo-1585032226651-759b368d7246?w=400&h=400&fit=crop",
+      "category": "Chowmin",
+      "description": "Stir-fried vegetable noodles"
+    },
+    {
+      "id": 19,
+      "name": "Thakali Khana Set",
+      "price": 450,
+      "currency": "Rs.",
+      "image": "https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=400&h=400&fit=crop",
+      "category": "Thakali Set",
+      "description": "Traditional Nepali thakali meal"
+    },
+    {
+      "id": 20,
+      "name": "Newari Khaja Set",
+      "price": 500,
+      "currency": "Rs.",
+      "image": "https://images.unsplash.com/photo-1601050690597-df0568f70950?w=400&h=400&fit=crop",
+      "category": "Newari Khaja Set",
+      "description": "Traditional Newari snack platter"
+    },
+    {
+      "id": 21,
+      "name": "Chicken Sizzler",
+      "price": 550,
+      "currency": "Rs.",
+      "image": "https://images.unsplash.com/photo-1603360946369-dc9bb6258143?w=400&h=400&fit=crop",
+      "category": "Sizzlers",
+      "description": "Sizzling chicken platter"
+    },
+    {
+      "id": 22,
+      "name": "Veg Sizzler",
+      "price": 450,
+      "currency": "Rs.",
+      "image": "https://images.unsplash.com/photo-1572802419224-296b0aeee0d9?w=400&h=400&fit=crop",
+      "category": "Sizzlers",
+      "description": "Sizzling vegetable platter"
+    }
+  ],
+  "waiters": [
+    {
+      "id": 1,
+      "name": "Ram Shahi"
+    },
+    {
+      "id": 2,
+      "name": "Sita Thapa"
+    },
+    {
+      "id": 3,
+      "name": "Krishna Adhikari"
+    }
+  ],
+  "tables": [
+    {
+      "id": "T1",
+      "name": "Table 1"
+    },
+    {
+      "id": "T2",
+      "name": "Table 2"
+    },
+    {
+      "id": "T3",
+      "name": "Table 3"
+    },
+    {
+      "id": "T4",
+      "name": "Table 4"
+    },
+    {
+      "id": "T5",
+      "name": "Table 5"
+    }
+  ]
+}

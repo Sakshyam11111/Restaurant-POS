@@ -33,6 +33,8 @@ const POSContent = () => {
     const [activeFloor, setActiveFloor] = useState('First Floor');
     const [activeFilter, setActiveFilter] = useState('All');
 
+    const [openTableMenu, setOpenTableMenu] = useState(null);
+
     const tables = [
         { id: 1, status: 'available' }, { id: 2, status: 'reserved' }, { id: 3, status: 'reserved' },
         { id: 4, status: 'on-dine' }, { id: 5, status: 'on-dine' }, { id: 6, status: 'reserved' },
@@ -42,17 +44,34 @@ const POSContent = () => {
     ];
 
     const getStatusColor = (status) => {
-        const colors = { available: 'bg-blue-400', reserved: 'bg-green-400', 'on-dine': 'bg-red-400', split: 'bg-orange-400', merge: 'bg-cyan-400' };
+        const colors = { 
+            available: 'bg-blue-400', 
+            reserved: 'bg-green-400', 
+            'on-dine': 'bg-red-400', 
+            split: 'bg-orange-400', 
+            merge: 'bg-cyan-400' 
+        };
         return colors[status] || 'bg-gray-400';
     };
 
     const filters = ['All', 'Reservation', 'On Dine', 'Takeaway', 'Delivery', 'Split Table', 'Table Transfer'];
 
+    const handleTableClick = (tableId) => {
+        setOpenTableMenu(prev => prev === tableId ? null : tableId);
+    };
+
+    const handleAction = (action, tableId) => {
+        setOpenTableMenu(null);
+
+        if (action === 'dine-in') {
+            navigate('/posmenu', { state: { tableId } });
+        }
+    };
+
     return (
         <div className="min-h-screen bg-gray-50 flex flex-col">
             <div className="bg-white border-b border-gray-200 px-4 sm:px-6 py-5 shadow-sm">
                 <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
-                    {/* Tabs */}
                     <div className="inline-flex bg-gray-100 rounded-xl p-1.5 shadow-inner">
                         {['Order', 'Table', 'KOT'].map((tab) => (
                             <button
@@ -99,16 +118,21 @@ const POSContent = () => {
                 </div>
             </div>
 
-            {/* Tab Content Area */}
             <div className="flex-1">
                 {activeTab === 'Order' && <TableContent orders={orders} onCardClick={handleCardClick} />}
 
                 {activeTab === 'Table' && (
-                    <div className="flex flex-col h-full">
+                    <div className="flex flex-col h-full relative">
                         <div className="bg-white px-6 py-4 flex flex-wrap items-center justify-between gap-4 border-b border-gray-200">
                             <div className="flex flex-wrap gap-3">
                                 {filters.map((filter) => (
-                                    <button key={filter} className={`px-5 py-2 text-sm font-medium rounded border ${activeFilter === filter ? 'bg-gradient-to-r from-[#487AA4] to-[#386184] border-[#487AA4] text-white' : 'bg-white text-gray-500 border-gray-300 hover:border-gray-400'}`} onClick={() => setActiveFilter(filter)}>{filter}</button>
+                                    <button 
+                                        key={filter} 
+                                        className={`px-5 py-2 text-sm font-medium rounded border ${activeFilter === filter ? 'bg-gradient-to-r from-[#487AA4] to-[#386184] border-[#487AA4] text-white' : 'bg-white text-gray-500 border-gray-300 hover:border-gray-400'}`} 
+                                        onClick={() => setActiveFilter(filter)}
+                                    >
+                                        {filter}
+                                    </button>
                                 ))}
                             </div>
                             <div className="flex items-center gap-3">
@@ -119,6 +143,7 @@ const POSContent = () => {
                                 </button>
                             </div>
                         </div>
+
                         <div className="px-6 py-4 flex flex-wrap gap-x-8 gap-y-2 text-sm text-gray-600 bg-gray-50">
                             <div className="flex items-center gap-2"><div className="w-3 h-3 rounded-full bg-blue-400" /><span>Available</span></div>
                             <div className="flex items-center gap-2"><div className="w-3 h-3 rounded-full bg-green-400" /><span>Reserved</span></div>
@@ -126,12 +151,56 @@ const POSContent = () => {
                             <div className="flex items-center gap-2"><div className="w-3 h-3 rounded-full bg-orange-400" /><span>Split</span></div>
                             <div className="flex items-center gap-2"><div className="w-3 h-3 rounded-full bg-cyan-400" /><span>Merge Table</span></div>
                         </div>
-                        <div className="flex-1 p-8 overflow-auto bg-white">
+
+                        <div className="flex-1 p-8 overflow-auto bg-white relative">
                             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7 gap-8 max-w-7xl mx-auto">
                                 {tables.map((table) => (
-                                    <button key={table.id} className={`relative w-36 h-36 rounded-full flex items-center justify-center text-white font-semibold text-base shadow-md hover:scale-105 hover:shadow-lg transition-all duration-200 ${getStatusColor(table.status)}`}>Table #{table.id}</button>
+                                    <div key={table.id} className="relative">
+                                        <button
+                                            onClick={() => handleTableClick(table.id)}
+                                            className={`relative w-36 h-36 rounded-full flex items-center justify-center text-white font-semibold text-base shadow-md hover:scale-105 hover:shadow-lg transition-all duration-200 ${getStatusColor(table.status)}`}
+                                        >
+                                            Table #{table.id}
+                                        </button>
+
+                                        {openTableMenu === table.id && (
+                                            <div className="absolute z-50 mt-2 w-48 bg-white rounded-lg shadow-xl border border-gray-200 py-1 text-sm font-medium text-gray-700">
+                                                <button
+                                                    onClick={() => handleAction('dine-in', table.id)}
+                                                    className="w-full text-left px-4 py-2.5 hover:bg-gray-50 flex items-center gap-2"
+                                                >
+                                                    <span>Dine In</span>
+                                                </button>
+                                                <button
+                                                    onClick={() => handleAction('reserve', table.id)}
+                                                    className="w-full text-left px-4 py-2.5 hover:bg-gray-50 flex items-center gap-2"
+                                                >
+                                                    <span>Reserve</span>
+                                                </button>
+                                                <button
+                                                    onClick={() => handleAction('split', table.id)}
+                                                    className="w-full text-left px-4 py-2.5 hover:bg-gray-50 flex items-center gap-2"
+                                                >
+                                                    <span>Split Table</span>
+                                                </button>
+                                                <button
+                                                    onClick={() => handleAction('merge', table.id)}
+                                                    className="w-full text-left px-4 py-2.5 hover:bg-gray-50 flex items-center gap-2"
+                                                >
+                                                    <span>Merge Table</span>
+                                                </button>
+                                            </div>
+                                        )}
+                                    </div>
                                 ))}
                             </div>
+
+                            {openTableMenu && (
+                                <div 
+                                    className="fixed inset-0 z-40" 
+                                    onClick={() => setOpenTableMenu(null)}
+                                />
+                            )}
                         </div>
                     </div>
                 )}

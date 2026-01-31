@@ -49,10 +49,8 @@ export default function RestaurantSignup() {
 
             toast.success(response.message || 'Account created successfully!');
 
-            // Use the auth context to set user data
             login(response.data.user, response.data.token, 'staff');
 
-            // Navigate to POS after short delay
             setTimeout(() => {
                 navigate('/pos');
             }, 500);
@@ -68,8 +66,6 @@ export default function RestaurantSignup() {
     return (
         <div className="flex min-h-screen">
             <Toaster position="top-center" />
-
-            {/* Left side - Sign Up form */}
             <div className="w-full lg:w-1/2 flex items-center justify-center bg-white p-8 relative">
                 <button
                     onClick={handleClose}

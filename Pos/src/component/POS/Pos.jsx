@@ -16,6 +16,7 @@ import Logo from '../../assets/Logo.webp';
 import HomeContent from './contents/HomeContent';
 import POSContent from './contents/POSContent';
 import ReportsContent from './contents/ReportsContent';
+import POSMenu from './contents/menu/POSMenu';
 
 import UnitMaster from './master/unitmaster';
 import UnitMeasure from './master/UnitMeasure';
@@ -56,7 +57,8 @@ export default function Pos() {
     15: { id: 'employeeshiftsrotation', component: Employeeshiftsrotation },
     16: { id: 'printtype', component: Printtype },
     17: { id: 'printsetting', component: PrintSetting },
-    18: { id: 'settings', component: Settings },
+    18: { id: 'settings', component: Settings },    
+    19: { id: 'posmenu', component: POSMenu },
   };
 
   const handleMenuClick = (id) => {
@@ -66,13 +68,10 @@ export default function Pos() {
     }
 
     if (id === 'logout') {
-      // Show toast instead of alert
       toast.success('Logged out successfully', {
         duration: 3000,
         position: 'top-center',
       });
-
-      // Simulate logout delay then redirect
       setTimeout(() => {
         navigate('/', { replace: true });
       }, 800);
@@ -132,10 +131,7 @@ export default function Pos() {
 
   return (
     <div className="flex h-screen bg-gray-50 overflow-hidden">
-      {/* Add Toaster here (or in root App.jsx) */}
       <Toaster />
-
-      {/* Collapsed Sidebar */}
       {!isExpanded && (
         <div className="w-20 bg-white border-r border-gray-200 flex flex-col items-center py-6 space-y-8">
           <div className="mb-4">
