@@ -157,7 +157,7 @@ export default function Pos() {
                 key={item.id}
                 onClick={() => handleMenuClick(item.id)}
                 className={`p-3 rounded-xl transition-all duration-200 ${isActive && item.id !== 'logout'
-                  ? 'bg-blue-50 text-blue-600 shadow-sm'
+                  ? 'bg-blue-50 text-[#386184] shadow-sm'
                   : 'text-gray-500 hover:text-gray-700 hover:bg-gray-100'
                   } ${item.id === 'logout' ? 'mt-auto' : ''}`}
                 data-tooltip-id="sidebar-tooltip"
@@ -171,7 +171,6 @@ export default function Pos() {
         </div>
       )}
 
-      {/* Expanded Sidebar */}
       {isExpanded && (
         <div className="w-72 bg-white border-r border-gray-200 flex flex-col">
           <div className="p-6 border-b border-gray-100 flex items-center justify-between">
@@ -197,7 +196,7 @@ export default function Pos() {
                   <button
                     onClick={() => handleMenuClick(item.id)}
                     className={`w-full flex items-center justify-between px-4 py-3 rounded-xl mb-1 transition-colors ${isActive && !item.hasSubmenu
-                      ? 'bg-blue-50 text-blue-700 font-semibold'
+                      ? 'bg-blue-50 text-[#386184] font-semibold'
                       : 'text-gray-700 hover:bg-gray-100'
                       }`}
                     data-tooltip-id="sidebar-tooltip"
@@ -223,7 +222,7 @@ export default function Pos() {
                           key={sub.id}
                           onClick={() => handleMenuClick(sub.id)}
                           className={`w-full text-left px-4 py-2.5 rounded-lg text-sm transition-colors ${activeId === sub.id
-                            ? 'bg-blue-50 text-blue-700 font-medium'
+                            ? 'bg-blue-50 text-[#386184] font-medium'
                             : 'text-gray-600 hover:bg-gray-50'
                             }`}
                           data-tooltip-id="sidebar-tooltip"
@@ -255,7 +254,6 @@ export default function Pos() {
         </div>
       )}
 
-      {/* Main Content */}
       <div className="flex-1 overflow-auto bg-gray-50">
         <SelectedContent />
       </div>

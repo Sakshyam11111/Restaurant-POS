@@ -1,9 +1,7 @@
-// src/services/api.js
 import axios from 'axios';
 
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
 
-// Create axios instance
 const api = axios.create({
   baseURL: API_URL,
   headers: {
@@ -12,7 +10,6 @@ const api = axios.create({
   withCredentials: true
 });
 
-// Request interceptor to add token
 api.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem('token');
@@ -26,12 +23,10 @@ api.interceptors.request.use(
   }
 );
 
-// Response interceptor to handle errors
 api.interceptors.response.use(
   (response) => response,
   (error) => {
     if (error.response?.status === 401) {
-      // Unauthorized - clear token and redirect to login
       localStorage.removeItem('token');
       localStorage.removeItem('user');
       window.location.href = '/joinus';
@@ -40,9 +35,7 @@ api.interceptors.response.use(
   }
 );
 
-// Auth API calls
 export const authAPI = {
-  // Staff Authentication
   staffSignup: async (data) => {
     const response = await api.post('/auth/staff/signup', data);
     return response.data;
@@ -58,7 +51,6 @@ export const authAPI = {
     return response.data;
   },
 
-  // Customer Authentication
   customerSignup: async (data) => {
     const response = await api.post('/auth/customer/signup', data);
     return response.data;
@@ -74,7 +66,6 @@ export const authAPI = {
     return response.data;
   },
 
-  // Common
   logout: async () => {
     const response = await api.post('/auth/logout');
     localStorage.removeItem('token');
@@ -89,7 +80,33 @@ export const authAPI = {
   }
 };
 
-// Staff API calls
+export const orderAPI = {
+  createOrder: async (data) => {
+    const response = await api.post('/orders', data);
+    return response.data;
+  },
+
+  getOrders: async (params = {}) => {
+    const response = await api.get('/orders', { params });
+    return response.data;
+  },
+
+  getOrderById: async (id) => {
+    const response = await api.get(`/orders/${id}`);
+    return response.data;
+  },
+
+  updateOrderStatus: async (id, data) => {
+    const response = await api.patch(`/orders/${id}`, data);
+    return response.data;
+  },
+
+  deleteOrder: async (id) => {
+    const response = await api.delete(`/orders/${id}`);
+    return response.data;
+  }
+};
+
 export const staffAPI = {
   getProfile: async () => {
     const response = await api.get('/staff/profile');
@@ -107,7 +124,6 @@ export const staffAPI = {
   }
 };
 
-// Customer API calls
 export const customerAPI = {
   getProfile: async () => {
     const response = await api.get('/customer/profile');

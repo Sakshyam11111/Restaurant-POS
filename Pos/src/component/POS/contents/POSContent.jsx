@@ -1,55 +1,29 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import toast from 'react-hot-toast';
 import TableContent from './order/TableContent';
 import KOTContent from './KOT/KOTContent';
+import { orderAPI } from '../../../services/api';
 
 const POSContent = () => {
-    const [activeTab, setActiveTab] = useState('Table'); 
+    const [activeTab, setActiveTab] = useState('Table');
     const navigate = useNavigate();
-
-    const today = new Date().toISOString().split('T')[0];
-    const [selectedDate, setSelectedDate] = useState(today);
-
-    const formatDisplayDate = (dateString) => {
-        if (!dateString) return '';
-        const [year, month, day] = dateString.split('-');
-        return `${year}/${month}/${day}`;
-    };
-
-    const orders = [
-        { id: 1, kot: '001', table: 'Table 1', type: 'Dine In', time: '2 min ago', items: ['Burger ×1', 'Coffee ×1', 'Pizza ×1'], total: 3 },
-        { id: 2, kot: '002', table: 'Table 2', type: 'Dine In', time: '4 min ago', items: ['Coffee ×2', 'Milk Tea ×2', 'Lemon Tea ×1', 'Black Tea ×1'], total: 6 },
-        { id: 3, kot: '003', table: 'Table 3', type: 'Dine In', time: '5 min ago', items: ['Burger ×1', 'Milk Tea ×1', 'Milk Coffee ×1', 'Black Tea ×1'], total: 4 },
-        { id: 4, kot: '004', table: 'Take away', type: 'Take Away', time: '7 min ago', items: ['Burger ×2', 'Coke ×2', 'Fanta ×2', 'Momo ×2'], total: 8 },
-        { id: 5, kot: '005', table: 'Take away', type: 'Take Away', time: '10 min ago', items: ['Coffee ×2', 'Milk Tea ×2', 'Lemon Tea ×1'], total: 5 },
-        { id: 6, kot: '006', table: 'Table 6', type: 'Dine In', time: '1 min ago', items: ['Milk Tea ×2', 'Lemon Tea ×1'], total: 3 },
-        { id: 7, kot: '007', table: 'Table 7', type: 'Dine In', time: '7 min ago', items: ['Momo ×1', 'Chicken Chilly ×1', 'Chicken Wings ×1', 'Chilly Momo ×1', 'Pork Momo ×1'], total: 5 },
-    ];
-
-    const handleCardClick = (order) => {
-        navigate(`/order/${order.id}`, { state: { order } });
-    };
 
     const [activeFloor, setActiveFloor] = useState('First Floor');
     const [activeFilter, setActiveFilter] = useState('All');
-
     const [openTableMenu, setOpenTableMenu] = useState(null);
 
-    const tables = [
-        { id: 1, status: 'available' }, { id: 2, status: 'reserved' }, { id: 3, status: 'reserved' },
-        { id: 4, status: 'on-dine' }, { id: 5, status: 'on-dine' }, { id: 6, status: 'reserved' },
-        { id: 7, status: 'available' }, { id: 8, status: 'on-dine' }, { id: 9, status: 'on-dine' },
-        { id: 10, status: 'on-dine' }, { id: 11, status: 'available' }, { id: 12, status: 'available' },
-        { id: 13, status: 'available' }, { id: 14, status: 'available' }, { id: 15, status: 'on-dine' },
-    ];
+    const [tables, setTables] = useState(() =>
+        Array.from({ length: 15 }, (_, i) => ({ id: i + 1, status: 'available' }))
+    );
 
     const getStatusColor = (status) => {
-        const colors = { 
-            available: 'bg-blue-400', 
-            reserved: 'bg-green-400', 
-            'on-dine': 'bg-red-400', 
-            split: 'bg-orange-400', 
-            merge: 'bg-cyan-400' 
+        const colors = {
+            available: 'bg-blue-400',
+            reserved: 'bg-green-400',
+            'on-dine': 'bg-red-400',
+            split: 'bg-orange-400',
+            merge: 'bg-cyan-400'
         };
         return colors[status] || 'bg-gray-400';
     };
@@ -60,12 +34,86 @@ const POSContent = () => {
         setOpenTableMenu(prev => prev === tableId ? null : tableId);
     };
 
+    const updateTableStatus = (tableId, newStatus) => {
+        setTables(prev =>
+            prev.map(t => t.id === tableId ? { ...t, status: newStatus } : t)
+        );
+    };
+
     const handleAction = (action, tableId) => {
         setOpenTableMenu(null);
 
-        if (action === 'dine-in') {
-            navigate('/posmenu', { state: { tableId } });
+        switch (action) {
+            case 'dine-in':
+                updateTableStatus(tableId, 'on-dine');
+                navigate('/posmenu', { state: { tableId } });
+                break;
+
+            case 'reserve':
+                updateTableStatus(tableId, 'reserved');
+                toast.success(`Table #${tableId} reserved.`);
+                break;
+
+            case 'cancel-dine-in':
+                updateTableStatus(tableId, 'available');
+                toast.success(`Dine In cancelled for Table #${tableId}.`);
+                break;
+
+            case 'cancel-reserve':
+                updateTableStatus(tableId, 'available');
+                toast.success(`Reservation cancelled for Table #${tableId}.`);
+                break;
+
+            case 'split':
+                updateTableStatus(tableId, 'split');
+                toast.success(`Table #${tableId} set to Split.`);
+                break;
+
+            case 'merge':
+                updateTableStatus(tableId, 'merge');
+                toast.success(`Table #${tableId} set to Merge.`);
+                break;
+
+            default:
+                break;
         }
+    };
+
+    const getMenuItemsForTable = (status) => {
+        switch (status) {
+            case 'available':
+                return [
+                    { action: 'dine-in',  label: 'Dine In' },
+                    { action: 'reserve',  label: 'Reserve' },
+                ];
+            case 'on-dine':
+                return [
+                    { action: 'cancel-dine-in', label: 'Cancel Dine In', danger: true },
+                    { action: 'split',          label: 'Split Table' },
+                    { action: 'merge',          label: 'Merge Table' },
+                ];
+            case 'reserved':
+                return [
+                    { action: 'cancel-reserve', label: 'Cancel Reservation', danger: true },
+                    { action: 'dine-in',        label: 'Dine In' },
+                ];
+            case 'split':
+                return [
+                    { action: 'cancel-dine-in', label: 'Cancel Dine In', danger: true },
+                    { action: 'merge',          label: 'Merge Table' },
+                ];
+            case 'merge':
+                return [
+                    { action: 'cancel-dine-in', label: 'Cancel Dine In', danger: true },
+                    { action: 'split',          label: 'Split Table' },
+                ];
+            default:
+                return [];
+        }
+    };
+
+    const handleAddNewOrder = () => {
+        navigate('/posmenu');
     };
 
     return (
@@ -94,20 +142,10 @@ const POSContent = () => {
                         </div>
 
                         <div className="flex items-center gap-3">
-                            <div className="relative">
-                                <input type="date" value={selectedDate} onChange={(e) => setSelectedDate(e.target.value)} className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10" style={{ colorScheme: 'light' }} />
-                                <div className="flex items-center gap-2.5 px-5 py-3.5 border border-gray-300 rounded-xl bg-white shadow-sm cursor-pointer hover:border-blue-500 transition-colors">
-                                    <svg className="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                                    </svg>
-                                    <span className="text-gray-800 font-semibold whitespace-nowrap">{formatDisplayDate(selectedDate)}</span>
-                                    <svg className="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                                    </svg>
-                                </div>
-                            </div>
-
-                            <button className="flex items-center gap-2.5 px-7 py-3.5 bg-gradient-to-r from-[#487AA4] to-[#386184] text-white rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all">
+                            <button
+                                onClick={handleAddNewOrder}
+                                className="flex items-center gap-2.5 px-7 py-3.5 bg-gradient-to-r from-[#487AA4] to-[#386184] text-white rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all"
+                            >
                                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
                                 </svg>
@@ -119,16 +157,21 @@ const POSContent = () => {
             </div>
 
             <div className="flex-1">
-                {activeTab === 'Order' && <TableContent orders={orders} onCardClick={handleCardClick} />}
+                {activeTab === 'Order' && (
+                    <div className="flex flex-col items-center justify-center h-full text-center text-gray-600">
+                        <p className="text-xl font-medium">Order list is currently disabled</p>
+                        <p className="mt-2">Use Table or KOT tabs to manage operations</p>
+                    </div>
+                )}
 
                 {activeTab === 'Table' && (
                     <div className="flex flex-col h-full relative">
                         <div className="bg-white px-6 py-4 flex flex-wrap items-center justify-between gap-4 border-b border-gray-200">
                             <div className="flex flex-wrap gap-3">
                                 {filters.map((filter) => (
-                                    <button 
-                                        key={filter} 
-                                        className={`px-5 py-2 text-sm font-medium rounded border ${activeFilter === filter ? 'bg-gradient-to-r from-[#487AA4] to-[#386184] border-[#487AA4] text-white' : 'bg-white text-gray-500 border-gray-300 hover:border-gray-400'}`} 
+                                    <button
+                                        key={filter}
+                                        className={`px-5 py-2 text-sm font-medium rounded border ${activeFilter === filter ? 'bg-gradient-to-r from-[#487AA4] to-[#386184] border-[#487AA4] text-white' : 'bg-white text-gray-500 border-gray-300 hover:border-gray-400'}`}
                                         onClick={() => setActiveFilter(filter)}
                                     >
                                         {filter}
@@ -154,52 +197,72 @@ const POSContent = () => {
 
                         <div className="flex-1 p-8 overflow-auto bg-white relative">
                             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7 gap-8 max-w-7xl mx-auto">
-                                {tables.map((table) => (
-                                    <div key={table.id} className="relative">
-                                        <button
-                                            onClick={() => handleTableClick(table.id)}
-                                            className={`relative w-36 h-36 rounded-full flex items-center justify-center text-white font-semibold text-base shadow-md hover:scale-105 hover:shadow-lg transition-all duration-200 ${getStatusColor(table.status)}`}
-                                        >
-                                            Table #{table.id}
-                                        </button>
+                                {tables.map((table) => {
+                                    const menuItems = getMenuItemsForTable(table.status);
 
-                                        {openTableMenu === table.id && (
-                                            <div className="absolute z-50 mt-2 w-48 bg-white rounded-lg shadow-xl border border-gray-200 py-1 text-sm font-medium text-gray-700">
-                                                <button
-                                                    onClick={() => handleAction('dine-in', table.id)}
-                                                    className="w-full text-left px-4 py-2.5 hover:bg-gray-50 flex items-center gap-2"
+                                    return (
+                                        <div key={table.id} className="relative flex flex-col items-center">
+                                            <button
+                                                onClick={() => handleTableClick(table.id)}
+                                                className={`relative w-36 h-36 rounded-full flex flex-col items-center justify-center text-white font-semibold text-base shadow-md hover:scale-105 hover:shadow-lg transition-all duration-200 ${getStatusColor(table.status)}`}
+                                            >
+                                                <span>Table #{table.id}</span>
+                                                <span className="text-xs font-normal opacity-80 mt-0.5 capitalize">
+                                                    {table.status === 'on-dine' ? 'On Dine' : table.status}
+                                                </span>
+                                            </button>
+
+                                            {openTableMenu === table.id && (
+                                                <div className="absolute z-50 mt-2 w-52 bg-white rounded-lg shadow-xl border border-gray-200 py-1 text-sm font-medium text-gray-700"
+                                                    style={{ top: '100%' }}
                                                 >
-                                                    <span>Dine In</span>
-                                                </button>
-                                                <button
-                                                    onClick={() => handleAction('reserve', table.id)}
-                                                    className="w-full text-left px-4 py-2.5 hover:bg-gray-50 flex items-center gap-2"
-                                                >
-                                                    <span>Reserve</span>
-                                                </button>
-                                                <button
-                                                    onClick={() => handleAction('split', table.id)}
-                                                    className="w-full text-left px-4 py-2.5 hover:bg-gray-50 flex items-center gap-2"
-                                                >
-                                                    <span>Split Table</span>
-                                                </button>
-                                                <button
-                                                    onClick={() => handleAction('merge', table.id)}
-                                                    className="w-full text-left px-4 py-2.5 hover:bg-gray-50 flex items-center gap-2"
-                                                >
-                                                    <span>Merge Table</span>
-                                                </button>
-                                            </div>
-                                        )}
-                                    </div>
-                                ))}
+                                                    {menuItems.map((item) => (
+                                                        <button
+                                                            key={item.action}
+                                                            onClick={() => handleAction(item.action, table.id)}
+                                                            className={`w-full text-left px-4 py-2.5 flex items-center gap-2 transition-colors
+                                                                ${item.danger
+                                                                    ? 'text-red-600 hover:bg-red-50'
+                                                                    : 'text-gray-700 hover:bg-gray-50'
+                                                                }`}
+                                                        >
+                                                            {item.action === 'dine-in' && (
+                                                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                                                                </svg>
+                                                            )}
+                                                            {item.action === 'reserve' && (
+                                                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                                                </svg>
+                                                            )}
+                                                            {(item.action === 'cancel-dine-in' || item.action === 'cancel-reserve') && (
+                                                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                                                                </svg>
+                                                            )}
+                                                            {item.action === 'split' && (
+                                                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7h12m0 0l-4-4m4 4l-4 4M4 17h12m0 0l-4-4m4 4l-4 4" />
+                                                                </svg>
+                                                            )}
+                                                            {item.action === 'merge' && (
+                                                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 7h16m0 0l-4 4m4-4l-4-4M20 17H4m0 0l4-4m-4 4l4 4" />
+                                                                </svg>
+                                                            )}
+                                                            <span>{item.label}</span>
+                                                        </button>
+                                                    ))}
+                                                </div>
+                                            )}
+                                        </div>
+                                    );
+                                })}
                             </div>
 
                             {openTableMenu && (
-                                <div 
-                                    className="fixed inset-0 z-40" 
-                                    onClick={() => setOpenTableMenu(null)}
-                                />
+                                <div className="fixed inset-0 z-40" onClick={() => setOpenTableMenu(null)} />
                             )}
                         </div>
                     </div>

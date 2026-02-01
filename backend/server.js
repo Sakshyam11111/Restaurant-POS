@@ -7,6 +7,7 @@ const cookieParser = require('cookie-parser');
 const authRoutes = require('./routes/authRoutes');
 const staffRoutes = require('./routes/staffRoutes');
 const customerRoutes = require('./routes/customerRoutes');
+const orderRoutes = require('./routes/orderRoutes');
 
 dotenv.config();
 
@@ -26,7 +27,6 @@ app.use(cors({
   optionsSuccessStatus: 204
 }));
 
-// MongoDB Connection with better error handling
 const connectDB = async () => {
   try {
     await mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/restaurant-pos', {
@@ -47,7 +47,6 @@ const connectDB = async () => {
 
 connectDB();
 
-// Connection event listeners
 mongoose.connection.on('disconnected', () => {
   console.warn('MongoDB disconnected');
 });
@@ -59,6 +58,7 @@ mongoose.connection.on('error', (err) => {
 app.use('/api/auth', authRoutes);
 app.use('/api/staff', staffRoutes);
 app.use('/api/customer', customerRoutes);
+app.use('/api/orders', orderRoutes);
 
 app.get('/api/health', (req, res) => {
   res.status(200).json({ status: 'success', database: mongoose.connection.readyState === 1 ? 'connected' : 'disconnected' });

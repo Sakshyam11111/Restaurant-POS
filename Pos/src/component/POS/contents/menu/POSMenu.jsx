@@ -8,6 +8,7 @@ import {
 
 import Menudata from '../menu/data/Menudata.json';
 import Sidebar from './Sidebar';
+import { orderAPI } from '../../../../services/api';
 
 const POSMenu = () => {
   const navigate = useNavigate();
@@ -23,6 +24,7 @@ const POSMenu = () => {
   const [selectedTable, setSelectedTable] = useState('F1');
   const [orderItems, setOrderItems] = useState([]);
   const [orderNumber, setOrderNumber] = useState('PR3004');
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
     setMenuData(Menudata);
@@ -79,6 +81,52 @@ const POSMenu = () => {
 
   const handleClearAll = () => setOrderItems([]);
 
+  // --- Place Order: POST to backend ---
+  const handlePlaceOrder = async () => {
+    if (orderItems.length === 0 || isSubmitting) return;
+
+    setIsSubmitting(true);
+
+    try {
+      // Map orderType label to backend enum value
+      const typeMap = {
+        'Dine in': 'Dine In',
+        'Takeaway': 'Take Away',
+        'Delivery': 'Delivery',
+      };
+
+      const payload = {
+        table: selectedTable,
+        type: typeMap[orderType] || 'Dine In',
+        items: orderItems.map((item) => ({
+          name: item.name,
+          quantity: item.quantity,
+          price: item.price,
+        })),
+        waiter: selectedWaiter,
+      };
+
+      await orderAPI.createOrder(payload);
+
+      toast.success('Order placed successfully!', {
+        duration: 2500,
+        position: 'top-center',
+      });
+
+      // Clear the order and go back to POS
+      setOrderItems([]);
+      setTimeout(() => {
+        navigate('/pos');
+      }, 1000);
+    } catch (err) {
+      console.error('Place order error:', err);
+      const msg = err.response?.data?.message || 'Failed to place order. Please try again.';
+      toast.error(msg, { duration: 3000, position: 'top-center' });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   const getFilteredItems = () => {
     if (!menuData) return [];
 
@@ -120,6 +168,7 @@ const POSMenu = () => {
       />
 
       <div className="flex-1 flex flex-col min-w-0 overflow-hidden">
+        {/* Category pills */}
         <div className="px-6 py-4 bg-gray-50 border-b border-gray-200 overflow-x-auto">
           <div className="flex gap-2 flex-wrap">
             {menuData.categories.map((cat) => (
@@ -142,6 +191,7 @@ const POSMenu = () => {
         </div>
 
         <div className="flex flex-1 overflow-hidden">
+          {/* Menu grid */}
           <div className="flex-1 overflow-y-auto bg-white">
             <div className="p-6 border-b border-gray-200">
               <div className="flex gap-3">
@@ -193,6 +243,7 @@ const POSMenu = () => {
             </div>
           </div>
 
+          {/* Order summary sidebar */}
           <div className="w-96 bg-white border-l border-gray-200 flex flex-col">
             <div className="p-6 border-b border-gray-200">
               <div className="flex items-center justify-between mb-6">
@@ -200,6 +251,7 @@ const POSMenu = () => {
                 <span className="text-lg font-semibold text-[#386890]">{orderNumber}</span>
               </div>
 
+              {/* Order type toggle */}
               <div className="flex gap-2 mb-6">
                 {['Dine in', 'Takeaway', 'Delivery'].map((type) => (
                   <button
@@ -216,6 +268,7 @@ const POSMenu = () => {
                 ))}
               </div>
 
+              {/* Waiter select */}
               <div className="mb-4">
                 <div className="flex items-center justify-between">
                   <span className="text-sm font-medium text-gray-700">Waiter</span>
@@ -225,14 +278,13 @@ const POSMenu = () => {
                     className="text-[#386890] font-medium text-sm border-0 focus:ring-0 cursor-pointer bg-transparent"
                   >
                     {menuData.waiters.map((waiter) => (
-                      <option key={waiter.id} value={waiter.name}>
-                        {waiter.name}
-                      </option>
+                      <option key={waiter.id} value={waiter.name}>{waiter.name}</option>
                     ))}
                   </select>
                 </div>
               </div>
 
+              {/* Table select */}
               <div>
                 <div className="flex items-center justify-between">
                   <span className="text-sm font-medium text-gray-700">Table</span>
@@ -242,23 +294,19 @@ const POSMenu = () => {
                     className="text-[#386890] font-medium text-sm border-0 focus:ring-0 cursor-pointer bg-transparent"
                   >
                     {menuData.tables.map((table) => (
-                      <option key={table.id} value={table.id}>
-                        {table.id}
-                      </option>
+                      <option key={table.id} value={table.id}>{table.id}</option>
                     ))}
                   </select>
                 </div>
               </div>
             </div>
 
+            {/* Order items list */}
             <div className="flex-1 p-6 overflow-y-auto">
               <div className="flex items-center justify-between mb-4">
                 <h3 className="font-semibold text-gray-900 text-base">Order Items</h3>
                 {orderItems.length > 0 && (
-                  <button
-                    onClick={handleClearAll}
-                    className="text-sm text-[#386890] hover:text-blue-700 font-medium"
-                  >
+                  <button onClick={handleClearAll} className="text-sm text-[#386890] hover:text-blue-700 font-medium">
                     Clear All Items
                   </button>
                 )}
@@ -288,6 +336,7 @@ const POSMenu = () => {
               )}
             </div>
 
+            {/* Total + Place Order button */}
             {orderItems.length > 0 && (
               <div className="p-6 border-t border-gray-200 bg-white">
                 <div className="flex items-center justify-between mb-4">
@@ -296,8 +345,12 @@ const POSMenu = () => {
                     Rs. {orderItems.reduce((sum, item) => sum + item.price * item.quantity, 0)}
                   </span>
                 </div>
-                <button className="w-full py-3.5 bg-[#386890] text-white rounded-lg font-semibold">
-                  Place Order
+                <button
+                  onClick={handlePlaceOrder}
+                  disabled={isSubmitting}
+                  className="w-full py-3.5 bg-[#386890] text-white rounded-lg font-semibold disabled:opacity-50 disabled:cursor-not-allowed hover:bg-[#2d5a7a] transition-colors"
+                >
+                  {isSubmitting ? 'Placing Order...' : 'Place Order'}
                 </button>
               </div>
             )}

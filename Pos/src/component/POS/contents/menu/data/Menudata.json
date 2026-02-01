@@ -49,7 +49,8 @@
       "currency": "Rs.",
       "image": "https://i.pinimg.com/1200x/e8/35/ed/e835ed89023c2a6d2d1933321d59efc4.jpg",
       "category": "Momo",
-      "description": "Steamed chicken dumplings"
+      "description": "Steamed chicken dumplings",
+      "availableFor": ["Dine in", "Takeaway", "Delivery"]
     },
     {
       "id": 2,
@@ -58,7 +59,8 @@
       "currency": "Rs.",
       "image": "https://images.unsplash.com/photo-1554866585-cd94860890b7?w=400&h=400&fit=crop",
       "category": "Soft Drinks",
-      "description": "Chilled coca cola"
+      "description": "Chilled coca cola",
+      "availableFor": ["Dine in", "Takeaway", "Delivery"]
     },
     {
       "id": 3,
@@ -67,7 +69,8 @@
       "currency": "Rs.",
       "image": "https://i.pinimg.com/1200x/e9/34/8a/e9348aa9b40cc5ad23438531cff58150.jpg",
       "category": "Hookah",
-      "description": "Refreshing mint flavored hookah"
+      "description": "Refreshing mint flavored hookah",
+      "availableFor": ["Dine in", "Takeaway", "Delivery"]
     },
     {
       "id": 4,
@@ -76,7 +79,8 @@
       "currency": "Rs.",
       "image": "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=400&h=400&fit=crop",
       "category": "Desserts",
-      "description": "Rich chocolate brownie"
+      "description": "Rich chocolate brownie",
+      "availableFor": ["Dine in", "Takeaway", "Delivery"]
     },
     {
       "id": 5,
@@ -85,7 +89,8 @@
       "currency": "Rs.",
       "image": "https://images.unsplash.com/photo-1517487881594-2787fef5ebf7?w=400&h=400&fit=crop",
       "category": "Cold Coffee / Shakes",
-      "description": "Iced coffee with cream"
+      "description": "Iced coffee with cream",
+      "availableFor": ["Dine in", "Takeaway", "Delivery"]
     },
     {
       "id": 6,
@@ -94,7 +99,8 @@
       "currency": "Rs.",
       "image": "https://images.unsplash.com/photo-1631452180519-c014fe946bc7?w=400&h=400&fit=crop",
       "category": "Fried Items",
-      "description": "Spicy paneer with vegetables"
+      "description": "Spicy paneer with vegetables",
+      "availableFor": ["Dine in", "Takeaway", "Delivery"]
     },
     {
       "id": 7,
@@ -103,7 +109,8 @@
       "currency": "Rs.",
       "image": "https://i.pinimg.com/736x/6b/b7/7d/6bb77da845fe7c50969d5c9a0e8fae79.jpg",
       "category": "Cigarettes",
-      "description": "Premium cigarettes"
+      "description": "Premium cigarettes",
+      "availableFor": ["Dine in", "Takeaway", "Delivery"]
     },
     {
       "id": 8,
@@ -112,7 +119,8 @@
       "currency": "Rs.",
       "image": "https://images.unsplash.com/photo-1574894709920-11b28e7367e3?w=400&h=400&fit=crop",
       "category": "Pasta",
-      "description": "Layered vegetable lasagna"
+      "description": "Layered vegetable lasagna",
+      "availableFor": ["Dine in", "Takeaway", "Delivery"]
     },
     {
       "id": 9,
@@ -121,7 +129,8 @@
       "currency": "Rs.",
       "image": "https://images.unsplash.com/photo-1583182332473-b31ba08929c8?w=400&h=400&fit=crop",
       "category": "Hookah",
-      "description": "Apple flavored hookah"
+      "description": "Apple flavored hookah",
+      "availableFor": ["Dine in", "Takeaway", "Delivery"]
     },
     {
       "id": 10,
@@ -130,7 +139,8 @@
       "currency": "Rs.",
       "image": "https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=400&h=400&fit=crop",
       "category": "Desserts",
-      "description": "Classic vanilla ice cream"
+      "description": "Classic vanilla ice cream",
+      "availableFor": ["Dine in", "Takeaway", "Delivery"]
     },
     {
       "id": 11,
@@ -139,7 +149,8 @@
       "currency": "Rs.",
       "image": "https://i.pinimg.com/736x/39/99/53/399953a7c4ccf06cfc578a959f0fb097.jpg",
       "category": "Fried Items",
-      "description": "Crispy fried fish with chips"
+      "description": "Crispy fried fish with chips",
+      "availableFor": ["Dine in", "Takeaway", "Delivery"]
     },
     {
       "id": 12,
@@ -148,7 +159,8 @@
       "currency": "Rs.",
       "image": "https://images.unsplash.com/photo-1546171753-97d7676e4602?w=400&h=400&fit=crop",
       "category": "Fresh Juice",
-      "description": "Refreshing lime soda"
+      "description": "Refreshing lime soda",
+      "availableFor": ["Dine in", "Takeaway", "Delivery"]
     },
     {
       "id": 13,
@@ -157,7 +169,8 @@
       "currency": "Rs.",
       "image": "https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?w=400&h=400&fit=crop",
       "category": "Momo",
-      "description": "Steamed buffalo meat dumplings"
+      "description": "Steamed buffalo meat dumplings",
+      "availableFor": ["Dine in", "Takeaway", "Delivery"]
     },
     {
       "id": 14,
@@ -166,7 +179,8 @@
       "currency": "Rs.",
       "image": "https://i.pinimg.com/736x/fe/c3/b3/fec3b34d5edb094554ed761c0d6f9d17.jpg",
       "category": "Momo",
-      "description": "Steamed vegetable dumplings"
+      "description": "Steamed vegetable dumplings",
+      "availableFor": ["Dine in", "Takeaway", "Delivery"]
     },
     {
       "id": 15,
@@ -175,7 +189,8 @@
       "currency": "Rs.",
       "image": "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400&h=400&fit=crop",
       "category": "Burger",
-      "description": "Grilled chicken burger with fries"
+      "description": "Grilled chicken burger with fries",
+      "availableFor": ["Dine in", "Takeaway", "Delivery"]
     },
     {
       "id": 16,
@@ -184,7 +199,8 @@
       "currency": "Rs.",
       "image": "https://images.unsplash.com/photo-1520072959219-c595dc870360?w=400&h=400&fit=crop",
       "category": "Burger",
-      "description": "Vegetable patty burger"
+      "description": "Vegetable patty burger",
+      "availableFor": ["Dine in", "Takeaway", "Delivery"]
     },
     {
       "id": 17,
@@ -193,7 +209,8 @@
       "currency": "Rs.",
       "image": "https://images.unsplash.com/photo-1612929633738-8fe44f7ec841?w=400&h=400&fit=crop",
       "category": "Chowmin",
-      "description": "Stir-fried noodles with chicken"
+      "description": "Stir-fried noodles with chicken",
+      "availableFor": ["Dine in", "Takeaway", "Delivery"]
     },
     {
       "id": 18,
@@ -202,7 +219,8 @@
       "currency": "Rs.",
       "image": "https://images.unsplash.com/photo-1585032226651-759b368d7246?w=400&h=400&fit=crop",
       "category": "Chowmin",
-      "description": "Stir-fried vegetable noodles"
+      "description": "Stir-fried vegetable noodles",
+      "availableFor": ["Dine in", "Takeaway", "Delivery"]
     },
     {
       "id": 19,
@@ -211,7 +229,8 @@
       "currency": "Rs.",
       "image": "https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=400&h=400&fit=crop",
       "category": "Thakali Set",
-      "description": "Traditional Nepali thakali meal"
+      "description": "Traditional Nepali thakali meal",
+      "availableFor": ["Dine in", "Takeaway", "Delivery"]
     },
     {
       "id": 20,
@@ -220,7 +239,8 @@
       "currency": "Rs.",
       "image": "https://images.unsplash.com/photo-1601050690597-df0568f70950?w=400&h=400&fit=crop",
       "category": "Newari Khaja Set",
-      "description": "Traditional Newari snack platter"
+      "description": "Traditional Newari snack platter",
+      "availableFor": ["Dine in", "Takeaway", "Delivery"]
     },
     {
       "id": 21,
@@ -229,7 +249,8 @@
       "currency": "Rs.",
       "image": "https://images.unsplash.com/photo-1603360946369-dc9bb6258143?w=400&h=400&fit=crop",
       "category": "Sizzlers",
-      "description": "Sizzling chicken platter"
+      "description": "Sizzling chicken platter",
+      "availableFor": ["Dine in", "Takeaway", "Delivery"]
     },
     {
       "id": 22,
@@ -238,7 +259,8 @@
       "currency": "Rs.",
       "image": "https://images.unsplash.com/photo-1572802419224-296b0aeee0d9?w=400&h=400&fit=crop",
       "category": "Sizzlers",
-      "description": "Sizzling vegetable platter"
+      "description": "Sizzling vegetable platter",
+      "availableFor": ["Dine in", "Takeaway", "Delivery"]
     }
   ],
   "waiters": [

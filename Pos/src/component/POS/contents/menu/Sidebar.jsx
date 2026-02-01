@@ -9,6 +9,7 @@ import {
   ChevronDown,
   Settings as SettingsIcon,
 } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import Logo from '../../../../assets/Logo.webp';
 
 const Sidebar = ({
@@ -16,41 +17,107 @@ const Sidebar = ({
   setIsExpanded,
   isMasterOpen,
   setIsMasterOpen,
-  handleMenuClick,
 }) => {
+  const navigate = useNavigate();
+
+  const handleMenuClick = (id) => {
+    if (id === 'master') {
+      setIsMasterOpen((prev) => !prev);
+      return;
+    }
+
+    if (id === 'logout') {
+      setTimeout(() => navigate('/', { replace: true }), 300);
+      return;
+    }
+
+    switch (id) {
+      case 'home':
+        navigate('/pos');
+        break;
+      case 'pos':
+        navigate('/pos');
+        break;
+      case 'reports':
+        navigate('/pos');
+        break;
+      case 'settings':
+        navigate('/pos');
+        break;
+      case 'unit-master':
+        navigate('/pos');
+        break;
+      case 'unit-measure':
+        navigate('/pos');
+        break;
+      case 'zone':
+        navigate('/pos');
+        break;
+      case 'table':
+        navigate('/pos');
+        break;
+      case 'menu-items':
+        navigate('/pos');
+        break;
+      case 'employee':
+        navigate('/pos');
+        break;
+      case 'department':
+        navigate('/pos');
+        break;
+      case 'designation':
+        navigate('/pos');
+        break;
+      case 'employeeshifts':
+        navigate('/pos');
+        break;
+      case 'employeeshiftsrotation':
+        navigate('/pos');
+        break;
+      case 'printtype':
+        navigate('/pos');
+        break;
+      case 'printsetting':
+        navigate('/pos');
+        break;
+      default:
+        console.warn(`No route defined for menu id: ${id}`);
+    }
+  };
+
   const collapsedMenuItems = [
-    { id: 'home', icon: Home, label: 'Home' },
-    { id: 'pos', icon: Package, label: 'POS' },
-    { id: 'reports', icon: BarChart3, label: 'Reports' },
-    { id: 'settings', icon: SettingsIcon, label: 'Settings' },
-    { id: 'logout', icon: LogOut, label: 'Logout' },
+    { id: 'home',    icon: Home,        label: 'Home' },
+    { id: 'pos',     icon: Package,     label: 'POS' },
+    { id: 'reports', icon: BarChart3,   label: 'Reports' },
+    { id: 'settings',icon: SettingsIcon,label: 'Settings' },
+    { id: 'logout',  icon: LogOut,      label: 'Logout' },
   ];
 
   const expandedMenuItems = [
-    { id: 'home', icon: Home, label: 'Home' },
-    { id: 'pos', icon: Package, label: 'POS' },
+    { id: 'home',    icon: Home,        label: 'Home' },
+    { id: 'pos',     icon: Package,     label: 'POS' },
     {
       id: 'master',
       icon: FolderOpen,
       label: 'Master',
       hasSubmenu: true,
       submenu: [
-        { id: 'unit-master', label: 'Unit Master' },
-        { id: 'unit-measure', label: 'Unit Measure' },
-        { id: 'zone', label: 'Zone' },
-        { id: 'table', label: 'Table' },
-        { id: 'menu-items', label: 'Menu Items' },
-        { id: 'employee', label: 'Employee' },
-        { id: 'department', label: 'Department' },
-        { id: 'designation', label: 'Designation' },
-        { id: 'employeeshifts', label: 'Employee Shifts' },
-        { id: 'employeeshiftsrotation', label: 'Employee Shifts Rotation' },
-        { id: 'printtype', label: 'Print Type' },
-        { id: 'printsetting', label: 'Print Setting' },
+        { id: 'unit-master',              label: 'Unit Master' },
+        { id: 'unit-measure',             label: 'Unit Measure' },
+        { id: 'zone',                     label: 'Zone' },
+        { id: 'table',                    label: 'Table' },
+        { id: 'menu-items',               label: 'Menu Items' },
+        { id: 'employee',                 label: 'Employee' },
+        { id: 'department',               label: 'Department' },
+        { id: 'designation',              label: 'Designation' },
+        { id: 'employeeshifts',           label: 'Employee Shifts' },
+        { id: 'employeeshiftsrotation',   label: 'Employee Shifts Rotation' },
+        { id: 'printtype',                label: 'Print Type' },
+        { id: 'printsetting',             label: 'Print Setting' },
       ],
     },
-    { id: 'reports', icon: BarChart3, label: 'Reports' },
-    { id: 'settings', icon: SettingsIcon, label: 'Settings' },
+    { id: 'reports',  icon: BarChart3,   label: 'Reports' },
+    { id: 'settings', icon: SettingsIcon,label: 'Settings' },
   ];
 
   return (
