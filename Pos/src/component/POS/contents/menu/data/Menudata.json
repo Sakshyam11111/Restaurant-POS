@@ -137,7 +137,7 @@
       "name": "Fish & Chips",
       "price": 380,
       "currency": "Rs.",
-      "image": "https://images.unsplash.com/photo-1579208575657-c595a05383b7?w=400&h=400&fit=crop",
+      "image": "https://i.pinimg.com/736x/39/99/53/399953a7c4ccf06cfc578a959f0fb097.jpg",
       "category": "Fried Items",
       "description": "Crispy fried fish with chips"
     },
@@ -252,7 +252,7 @@
     },
     {
       "id": 3,
-      "name": "Krishna Adhikari"
+      "name": "Sakshyam Shrestha"
     }
   ],
   "tables": [

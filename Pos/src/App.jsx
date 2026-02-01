@@ -7,8 +7,10 @@ import RestaurantLogin from './component/mainpage/RestaurantLogin';
 import RestaurantSignup from './component/mainpage/RestaurantSignup';
 import Pos from './component/POS/Pos';
 import OrderDetailPage from './component/POS/contents/order/OrderDetailPage';
-import Customerdashboard from './component/customerside/Customerdashboard';
 import POSMenu from './component/POS/contents/menu/POSMenu';
+import HomeContent from './component/POS/contents/HomeContent';
+import UnitMaster from './component/POS/master/unitmaster';
+import POSContent from './component/POS/contents/POSContent';
 
 const App = () => {
   return (
@@ -21,8 +23,12 @@ const App = () => {
           <Route path="/staffsignup" element={<RestaurantSignup />} />
           <Route path="/pos" element={<Pos />} />
           <Route path="/order/:id" element={<OrderDetailPage />} />
-          <Route path="/customerdashboard" element={<Customerdashboard />} />
           <Route path="/posmenu" element={<POSMenu />} />
+
+
+          <Route path="/homecontent" element={<HomeContent  />} />
+          <Route path="/poscontent" element={<POSContent  />} />
+          <Route path="/unitmaster" element={<UnitMaster  />} />
         </Routes>
       </Router>
     </AuthProvider>

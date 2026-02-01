@@ -93,7 +93,6 @@ const OrderDetailPage = () => {
       >
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-4">
-            {/* Changed button to Link for navigation to /pos */}
             <Link to="/pos">
               <motion.button
                 whileHover={{ scale: 1.02 }}
