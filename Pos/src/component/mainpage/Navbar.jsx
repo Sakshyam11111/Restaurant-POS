@@ -1,10 +1,17 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Navbar = ({ isMenuOpen, setIsMenuOpen, scrollYProgress, goToJoinUs }) => {
   const navigate = useNavigate();
+
+  const handleHomeClick = () => {
+    navigate('/');
+    if (isMenuOpen) {
+      setIsMenuOpen(false);
+    }
+  };
 
   return (
     <>
@@ -20,7 +27,11 @@ const Navbar = ({ isMenuOpen, setIsMenuOpen, scrollYProgress, goToJoinUs }) => {
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
-            <motion.div whileHover={{ scale: 1.05 }} className="flex items-center gap-2">
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              className="flex items-center gap-2 cursor-pointer"
+              onClick={() => navigate('/')}
+            >
               <img
                 src="./Logo.webp"
                 className="h-20 w-auto"
@@ -30,35 +41,48 @@ const Navbar = ({ isMenuOpen, setIsMenuOpen, scrollYProgress, goToJoinUs }) => {
 
             <div className="hidden md:flex items-center gap-8">
               {['Home', 'Solutions', 'Features', 'Testimonials'].map((item) => (
-                <motion.a
+                <motion.div
                   key={item}
-                  href={`#${item.toLowerCase().replace(' ', '-')}`}
-                  className="text-black hover:text-[#3673B4] font-medium text-[18px] transition"
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  {item}
-                </motion.a>
+                  {item === 'Home' ? (
+                    <button
+                      onClick={handleHomeClick}
+                      className="text-black hover:text-[#3673B4] font-medium text-[18px] transition bg-transparent border-none cursor-pointer"
+                    >
+                      {item}
+                    </button>
+                  ) : (
+                    <button
+                      onClick={() => scrollToSection(sectionId)}
+                      className="text-black hover:text-[#3673B4] font-medium text-[18px] transition bg-transparent border-none cursor-pointer"
+                    >
+                      {item}
+                    </button>
+                  )}
+                </motion.div>
               ))}
             </div>
 
             <div className="flex items-center gap-4">
-              <motion.button
-                onClick={() => navigate('/stafflogin')}
-                className="hidden sm:flex items-center gap-2 text-[#3673B4] text-[18px] font-semibold hover:text-[#2a5a94] transition"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                Login
-              </motion.button>
+              <Link to="/login">
+                <motion.button
+                  className="hidden sm:flex items-center gap-2 text-[#3673B4] text-[18px] font-medium hover:text-[#2a5a94] transition"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  Login
+                </motion.button>
+              </Link>
 
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={goToJoinUs}
-                className="bg-[#3673B4] text-white px-6 py-2 rounded-lg font-semibold text-[18px] hover:bg-[#2a5a94] transition"
+                className="bg-[#386890] text-white px-6 py-2 rounded-lg font-regular text-[18px]"
               >
-                Start for Free
+                Start for Free 
               </motion.button>
 
               <button
@@ -79,26 +103,35 @@ const Navbar = ({ isMenuOpen, setIsMenuOpen, scrollYProgress, goToJoinUs }) => {
             transition={{ duration: 0.3 }}
             className="md:hidden bg-white border-t overflow-hidden"
           >
-            {['Home', 'About Us', 'Shop', 'Blog', 'Contact Us'].map((item) => (
-              <a
-                key={item}
-                href={`#${item.toLowerCase().replace(' ', '-')}`}
-                className="block px-4 py-3 text-gray-700 hover:bg-gray-50 transition"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                {item}
-              </a>
+            {['Home', 'Solutions', 'Features', 'Testimonials'].map((item) => (
+              <div key={item}>
+                {item === 'Home' ? (
+                  <button
+                    onClick={handleHomeClick}
+                    className="block w-full text-left px-4 py-3 text-gray-700 hover:bg-gray-50 transition bg-transparent border-none cursor-pointer"
+                  >
+                    {item}
+                  </button>
+                ) : (
+                  <a
+                    href={`#${item.toLowerCase().replace(' ', '-')}`}
+                    className="block px-4 py-3 text-gray-700 hover:bg-gray-50 transition"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    {item}
+                  </a>
+                )}
+              </div>
             ))}
 
-            <button
-              onClick={() => {
-                navigate('/stafflogin');
-                setIsMenuOpen(false);
-              }}
-              className="block w-full text-left px-4 py-3 text-[#3673B4] font-medium hover:bg-gray-50 transition"
-            >
-              Login
-            </button>
+            <Link to="/login">
+              <button
+                onClick={() => setIsMenuOpen(false)}
+                className="block w-full text-left px-4 py-3 text-[#3673B4] font-medium hover:bg-gray-50 transition"
+              >
+                Login
+              </button>
+            </Link>
           </motion.div>
         )}
       </motion.nav>

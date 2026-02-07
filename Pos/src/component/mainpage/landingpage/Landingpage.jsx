@@ -1,5 +1,5 @@
-import React from 'react';
-import { ArrowRight } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { ArrowRight, ArrowUp } from 'lucide-react';
 import Navbar from '../Navbar';
 import Footer from '../Footer';
 import TrustedBySection from './TrustedBySection';
@@ -9,10 +9,33 @@ import UnlockProfit from './UnlockProfit';
 import StaffProfile from './StaffProfile';
 import FeatureCards from './FeatureCards';
 import TestimonialCarousel from './TestimonialCarousel';
+import FAQ from './FAQ';
 
 const Landingpage = () => {
+  const [showScrollTop, setShowScrollTop] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 300) {
+        setShowScrollTop(true);
+      } else {
+        setShowScrollTop(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  };
+
   return (
-    <div className="min-h-screen bg-[#F8FAFC]">
+    <div className="min-h-screen bg-[#F8FAFC] relative">
       <Navbar />
 
       <section className="relative min-h-screen flex items-center overflow-hidden">
@@ -68,30 +91,36 @@ const Landingpage = () => {
         <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-gray-900 to-transparent z-10" />
       </section>
 
-      <style jsx>{`
-        @keyframes fade-in-up {
-          from {
-            opacity: 0;
-            transform: translateY(30px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-        .animate-fade-in-up {
-          animation: fade-in-up 0.8s ease-out forwards;
-        }
-      `}</style>
+      <TrustedBySection />
+      <Dashoardimg />
+      <MagicSection />
 
-      <TrustedBySection/>
-      <Dashoardimg/>
-      <MagicSection/>
-      <UnlockProfit/>
-      <StaffProfile/>
-      <FeatureCards />
-      <TestimonialCarousel />
+      <div id="solutions">
+        <UnlockProfit />
+      </div>
+
+      <StaffProfile />
+
+      <div id="features">
+        <FeatureCards />
+      </div>
+
+      <div id="testimonials">
+        <TestimonialCarousel />
+      </div>
+
+      <FAQ />
       <Footer />
+
+      {showScrollTop && (
+        <button
+          onClick={scrollToTop}
+          className="fixed bottom-6 right-6 z-50 bg-[#386890] text-white p-4 rounded-full shadow-lg hover:bg-[#2f5a7a] transition-all duration-300 transform hover:scale-110 focus:outline-none focus:ring-2 focus:ring-[#386890] focus:ring-offset-2"
+          aria-label="Scroll to top"
+        >
+          <ArrowUp size={24} />
+        </button>
+      )}
     </div>
   );
 };
