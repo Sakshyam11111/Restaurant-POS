@@ -76,6 +76,7 @@ const Navbar = ({ isMenuOpen, setIsMenuOpen, scrollYProgress, goToJoinUs }) => {
                 </motion.button>
               </Link>
 
+              <Link to="/signup">
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -84,6 +85,7 @@ const Navbar = ({ isMenuOpen, setIsMenuOpen, scrollYProgress, goToJoinUs }) => {
               >
                 Start for Free 
               </motion.button>
+              </Link>
 
               <button
                 onClick={() => setIsMenuOpen(!isMenuOpen)}

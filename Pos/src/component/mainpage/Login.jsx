@@ -152,6 +152,20 @@ const Login = () => {
               >
                 Login
               </motion.button>
+
+              <motion.div
+                className="text-center mt-6 text-[16px]"
+                variants={itemVariants}
+              >
+                <span className="text-gray-600">Don't have an account? </span>
+                <button
+                  type="button"
+                  onClick={() => navigate('/signup')}
+                  className="text-[#386890] font-medium hover:underline transition-colors "
+                >
+                  Sign Up
+                </button>
+              </motion.div>
             </motion.form>
           </motion.div>
         </div>
