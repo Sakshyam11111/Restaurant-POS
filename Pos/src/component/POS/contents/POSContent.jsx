@@ -2,8 +2,10 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import KOTContent from './KOT/KOTContent';
+import OrderContent from './order/OrderContent';
 import { tableAPI } from '../../../services/api';
 import ReservationModal from './tableform/ReservationModal';
+import { User, Users, Clock, Utensils } from 'lucide-react';
 
 const POSContent = () => {
   const [activeTab, setActiveTab] = useState('Table');
@@ -27,10 +29,16 @@ const POSContent = () => {
   useEffect(() => {
     loadTables();
     
+    // Set up auto-refresh every 30 seconds
+    const interval = setInterval(() => {
+      loadTables();
+    }, 30000);
+    
     return () => {
       if (abortControllerRef.current) {
         abortControllerRef.current.abort();
       }
+      clearInterval(interval);
     };
   }, [activeFloor]);
 
@@ -56,16 +64,12 @@ const POSContent = () => {
         signal: abortControllerRef.current.signal
       });
 
+      console.log('Tables loaded:', response.data.tables);
+
       if (response.data.tables.length === 0) {
-        const checkResponse = await tableAPI.getAllTables(activeFloor, {
+        await tableAPI.initializeTables({
           signal: abortControllerRef.current.signal
         });
-        
-        if (checkResponse.data.tables.length === 0) {
-          await tableAPI.initializeTables(activeFloor, {
-            signal: abortControllerRef.current.signal
-          });
-        }
         
         const finalResponse = await tableAPI.getAllTables(activeFloor, {
           signal: abortControllerRef.current.signal
@@ -85,7 +89,8 @@ const POSContent = () => {
       
       const fallbackTables = Array.from({ length: 15 }, (_, i) => ({
         tableId: i + 1,
-        status: 'available'
+        status: 'available',
+        floor: activeFloor
       }));
       setTables(fallbackTables);
     } finally {
@@ -95,13 +100,24 @@ const POSContent = () => {
 
   const getStatusColor = (status) => {
     const colors = {
-      available: 'bg-blue-400',
-      reserved: 'bg-green-400',
-      'on-dine': 'bg-red-400',
-      split: 'bg-orange-400',
-      merge: 'bg-cyan-400'
+      available: 'bg-blue-400 hover:bg-blue-500',
+      reserved: 'bg-green-400 hover:bg-green-500',
+      'on-dine': 'bg-red-400 hover:bg-red-500',
+      split: 'bg-orange-400 hover:bg-orange-500',
+      merge: 'bg-cyan-400 hover:bg-cyan-500'
     };
-    return colors[status] || 'bg-gray-400';
+    return colors[status] || 'bg-gray-400 hover:bg-gray-500';
+  };
+
+  const getStatusBorderColor = (status) => {
+    const colors = {
+      available: 'border-blue-500',
+      reserved: 'border-green-500',
+      'on-dine': 'border-red-500',
+      split: 'border-orange-500',
+      merge: 'border-cyan-500'
+    };
+    return colors[status] || 'border-gray-500';
   };
 
   const filters = ['All', 'Reservation', 'On Dine', 'Takeaway', 'Delivery', 'Split Table', 'Table Transfer'];
@@ -118,7 +134,15 @@ const POSContent = () => {
           await tableAPI.startDining(tableId);
           toast.success(`Dine In started for Table #${tableId}`);
           await loadTables();
-          navigate('/posmenu', { state: { tableId } });
+          // Navigate to menu with table context
+          navigate('/posmenu', { 
+            state: { 
+              tableId,
+              tableNumber: `Table #${tableId}`,
+              orderType: 'Dine in',
+              floor: activeFloor
+            } 
+          });
           break;
         case 'reserve':
           setSelectedTableForReservation(tableId);
@@ -135,12 +159,12 @@ const POSContent = () => {
           await loadTables();
           break;
         case 'split':
-          await tableAPI.updateTableStatus(tableId, 'split');
+          await tableAPI.updateTableStatus(tableId, { status: 'split' });
           toast.success(`Table #${tableId} set to Split`);
           await loadTables();
           break;
         case 'merge':
-          await tableAPI.updateTableStatus(tableId, 'merge');
+          await tableAPI.updateTableStatus(tableId, { status: 'merge' });
           toast.success(`Table #${tableId} set to Merge`);
           await loadTables();
           break;
@@ -155,9 +179,40 @@ const POSContent = () => {
 
   const handleReservationSubmit = async (e) => {
     e.preventDefault();
+    
+    // Validate required fields
+    if (!reservationData.guestName || !reservationData.guestPhone) {
+      toast.error('Please fill in all required fields');
+      return;
+    }
+
+    // Validate phone number
+    const phoneRegex = /^[0-9]{10}$/;
+    const cleanPhone = reservationData.guestPhone.replace(/\s/g, '');
+    if (!phoneRegex.test(cleanPhone)) {
+      toast.error('Please enter a valid 10-digit phone number');
+      return;
+    }
+
     try {
-      await tableAPI.reserveTable(selectedTableForReservation, reservationData);
-      toast.success(`Table #${selectedTableForReservation} reserved successfully`);
+      const reservationPayload = {
+        guestName: reservationData.guestName.trim(),
+        guestPhone: cleanPhone,
+        partySize: parseInt(reservationData.partySize) || 1,
+        reservationTime: reservationData.reservationTime 
+          ? new Date(reservationData.reservationTime).toISOString()
+          : new Date().toISOString()
+      };
+
+      console.log('Submitting reservation:', reservationPayload);
+      
+      await tableAPI.reserveTable(selectedTableForReservation, reservationPayload);
+      
+      toast.success(
+        `Table #${selectedTableForReservation} reserved for ${reservationData.guestName}`,
+        { duration: 3000 }
+      );
+      
       setShowReservationModal(false);
       setReservationData({
         guestName: '',
@@ -165,6 +220,7 @@ const POSContent = () => {
         partySize: 1,
         reservationTime: '',
       });
+      setSelectedTableForReservation(null);
       await loadTables();
     } catch (error) {
       console.error('Error reserving table:', error);
@@ -180,6 +236,7 @@ const POSContent = () => {
       partySize: 1,
       reservationTime: '',
     });
+    setSelectedTableForReservation(null);
   };
 
   const getMenuItemsForTable = (status) => {
@@ -198,7 +255,7 @@ const POSContent = () => {
       case 'reserved':
         return [
           { action: 'cancel-reserve', label: 'Cancel Reservation', danger: true },
-          { action: 'dine-in', label: 'Dine In' },
+          { action: 'dine-in', label: 'Start Dining' },
         ];
       case 'split':
         return [
@@ -216,8 +273,28 @@ const POSContent = () => {
   };
 
   const handleAddNewOrder = () => {
-    navigate('/posmenu');
+    navigate('/posmenu', {
+      state: {
+        orderType: 'Takeaway'
+      }
+    });
   };
+
+  const getFilteredTables = () => {
+    if (activeFilter === 'All') return tables;
+    
+    const filterMap = {
+      'Reservation': 'reserved',
+      'On Dine': 'on-dine',
+      'Split Table': 'split',
+      'Table Transfer': 'merge'
+    };
+    
+    const statusFilter = filterMap[activeFilter];
+    return statusFilter ? tables.filter(t => t.status === statusFilter) : tables;
+  };
+
+  const filteredTables = getFilteredTables();
 
   if (loading) {
     return (
@@ -269,12 +346,7 @@ const POSContent = () => {
       </div>
 
       <div className="flex-1">
-        {activeTab === 'Order' && (
-          <div className="flex flex-col items-center justify-center h-full text-center text-gray-600">
-            <p className="text-xl font-medium">Order list is currently disabled</p>
-            <p className="mt-2">Use Table or KOT tabs to manage operations</p>
-          </div>
-        )}
+        {activeTab === 'Order' && <OrderContent />}
 
         {activeTab === 'Table' && (
           <div className="flex flex-col h-full relative">
@@ -293,8 +365,14 @@ const POSContent = () => {
               <div className="flex items-center gap-3">
                 <button className={`px-5 py-2 text-sm font-medium rounded border ${activeFloor === 'First Floor' ? 'bg-gradient-to-r from-[#487AA4] to-[#386184] text-white' : 'bg-white text-gray-600 border-gray-300 hover:border-gray-400'}`} onClick={() => setActiveFloor('First Floor')}>First Floor</button>
                 <button className={`px-5 py-2 text-sm font-medium rounded border ${activeFloor === 'Second Floor' ? 'bg-gradient-to-r from-[#487AA4] to-[#386184] text-white' : 'bg-white text-gray-600 border-gray-300 hover:border-gray-400'}`} onClick={() => setActiveFloor('Second Floor')}>Second Floor</button>
-                <button className="p-2 bg-white border border-gray-300 rounded hover:border-gray-400">
-                  <svg className="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" /></svg>
+                <button 
+                  onClick={loadTables}
+                  className="p-2 bg-white border border-gray-300 rounded hover:border-gray-400"
+                  title="Refresh tables"
+                >
+                  <svg className="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                  </svg>
                 </button>
               </div>
             </div>
@@ -309,19 +387,69 @@ const POSContent = () => {
 
             <div className="flex-1 p-8 overflow-auto bg-white relative">
               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7 gap-8 max-w-7xl mx-auto">
-                {tables.map((table) => {
+                {filteredTables.map((table) => {
                   const menuItems = getMenuItemsForTable(table.status);
+                  const isReserved = table.status === 'reserved';
+                  const isOnDine = table.status === 'on-dine';
+                  
                   return (
                     <div key={table.tableId} className="relative flex flex-col items-center">
                       <button
                         onClick={() => handleTableClick(table.tableId)}
-                        className={`relative w-36 h-36 rounded-full flex flex-col items-center justify-center text-white font-semibold text-base shadow-md hover:scale-105 hover:shadow-lg transition-all duration-200 ${getStatusColor(table.status)}`}
+                        className={`relative w-36 h-36 rounded-full flex flex-col items-center justify-center text-white font-semibold text-base shadow-md transition-all duration-200 border-4 ${getStatusColor(table.status)} ${getStatusBorderColor(table.status)}`}
                       >
-                        <span>Table #{table.tableId}</span>
-                        <span className="text-xs font-normal opacity-80 mt-0.5 capitalize">
+                        {/* Table Number */}
+                        <span className="text-lg">Table #{table.tableId}</span>
+                        
+                        {/* Status Text */}
+                        <span className="text-xs font-normal opacity-90 mt-1 capitalize">
                           {table.status === 'on-dine' ? 'On Dine' : table.status}
                         </span>
+                        
+                        {/* Reserved Info */}
+                        {isReserved && table.reservedBy && (
+                          <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 bg-white text-green-700 px-3 py-1 rounded-full text-xs font-semibold shadow-md border border-green-300 flex items-center gap-1">
+                            <User className="w-3 h-3" />
+                            {table.reservedBy.guestName}
+                          </div>
+                        )}
+                        
+                        {/* On Dine Indicator */}
+                        {isOnDine && (
+                          <div className="absolute -top-2 -right-2 bg-white text-red-700 p-2 rounded-full shadow-lg border-2 border-red-400 animate-pulse">
+                            <Utensils className="w-4 h-4" />
+                          </div>
+                        )}
                       </button>
+                      
+                      {/* Reservation Details Tooltip */}
+                      {isReserved && table.reservedBy && (
+                        <div className="mt-3 bg-white rounded-lg shadow-sm border border-gray-200 p-3 text-xs w-40">
+                          <div className="flex items-center gap-2 mb-1">
+                            <User className="w-3 h-3 text-gray-500" />
+                            <span className="font-semibold text-gray-700">{table.reservedBy.guestName}</span>
+                          </div>
+                          <div className="flex items-center gap-2 mb-1 text-gray-600">
+                            <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                            </svg>
+                            <span>{table.reservedBy.guestPhone}</span>
+                          </div>
+                          {table.reservedBy.partySize && (
+                            <div className="flex items-center gap-2 mb-1 text-gray-600">
+                              <Users className="w-3 h-3" />
+                              <span>{table.reservedBy.partySize} guests</span>
+                            </div>
+                          )}
+                          {table.reservedBy.reservationTime && (
+                            <div className="flex items-center gap-2 text-gray-600">
+                              <Clock className="w-3 h-3" />
+                              <span>{new Date(table.reservedBy.reservationTime).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' })}</span>
+                            </div>
+                          )}
+                        </div>
+                      )}
+                      
                       {openTableMenu === table.tableId && (
                         <div className="absolute z-50 mt-2 w-52 bg-white rounded-lg shadow-xl border border-gray-200 py-1 text-sm font-medium text-gray-700" style={{ top: '100%' }}>
                           {menuItems.map((item) => (
