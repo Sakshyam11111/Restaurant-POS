@@ -51,21 +51,6 @@ export const authAPI = {
     return response.data;
   },
 
-  customerSignup: async (data) => {
-    const response = await api.post('/auth/customer/signup', data);
-    return response.data;
-  },
-
-  customerLogin: async (data) => {
-    const response = await api.post('/auth/customer/login', data);
-    if (response.data.data.token) {
-      localStorage.setItem('token', response.data.data.token);
-      localStorage.setItem('user', JSON.stringify(response.data.data.user));
-      localStorage.setItem('userType', 'customer');
-    }
-    return response.data;
-  },
-
   logout: async () => {
     const response = await api.post('/auth/logout');
     localStorage.removeItem('token');
@@ -107,6 +92,51 @@ export const orderAPI = {
   }
 };
 
+export const tableAPI = {
+  // Initialize tables (one-time setup)
+  initializeTables: async () => {
+    const response = await api.post('/tables/initialize');
+    return response.data;
+  },
+
+  // Get all tables
+  getAllTables: async (floor) => {
+    const params = floor ? { floor } : {};
+    const response = await api.get('/tables', { params });
+    return response.data;
+  },
+
+  // Update table status
+  updateTableStatus: async (tableId, status) => {
+    const response = await api.patch(`/tables/${tableId}/status`, { status });
+    return response.data;
+  },
+
+  // Reserve a table
+  reserveTable: async (tableId, reservationData) => {
+    const response = await api.post(`/tables/${tableId}/reserve`, reservationData);
+    return response.data;
+  },
+
+  // Cancel reservation
+  cancelReservation: async (tableId) => {
+    const response = await api.post(`/tables/${tableId}/cancel-reservation`);
+    return response.data;
+  },
+
+  // Start dining
+  startDining: async (tableId) => {
+    const response = await api.post(`/tables/${tableId}/start-dining`);
+    return response.data;
+  },
+
+  // End dining
+  endDining: async (tableId) => {
+    const response = await api.post(`/tables/${tableId}/end-dining`);
+    return response.data;
+  }
+};
+
 export const staffAPI = {
   getProfile: async () => {
     const response = await api.get('/staff/profile');
@@ -120,23 +150,6 @@ export const staffAPI = {
 
   getAllStaff: async () => {
     const response = await api.get('/staff/all');
-    return response.data;
-  }
-};
-
-export const customerAPI = {
-  getProfile: async () => {
-    const response = await api.get('/customer/profile');
-    return response.data;
-  },
-
-  updateProfile: async (data) => {
-    const response = await api.patch('/customer/profile', data);
-    return response.data;
-  },
-
-  getLoyaltyPoints: async () => {
-    const response = await api.get('/customer/loyalty-points');
     return response.data;
   }
 };

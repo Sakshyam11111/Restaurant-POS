@@ -1,186 +1,113 @@
+import React from 'react';
+import { motion } from 'framer-motion';
+import { Menu, X } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
-import React, { useState } from 'react';
-import { Eye, EyeOff, X } from 'lucide-react';
-import { Link, useNavigate } from 'react-router-dom';
-import toast, { Toaster } from 'react-hot-toast';
-import { authAPI } from '../../services/api';
-import { useAuth } from '../../context/AuthContext';
-import Image1 from "../../assets/Login.png";
-import Logo from "../../assets/Logo.webp";
+const Navbar = ({ isMenuOpen, setIsMenuOpen, scrollYProgress, goToJoinUs }) => {
+  const navigate = useNavigate();
 
-export default function RestaurantLogin() {
-    const [showPassword, setShowPassword] = useState(false);
-    const [rememberMe, setRememberMe] = useState(false);
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [loading, setLoading] = useState(false);
+  const handleLoginClick = () => {
+    navigate('/stafflogin');
+  };
 
-    const navigate = useNavigate();
-    const { login } = useAuth();
+  return (
+    <>
+      <motion.div
+        className="fixed top-0 left-0 right-0 h-1 bg-[#3673B4] z-50 origin-left"
+        style={{ scaleX: scrollYProgress }}
+      />
 
-    const handleClose = () => {
-        navigate('/joinus');
-    };
+      <motion.nav
+        initial={{ y: -100 }}
+        animate={{ y: 0 }}
+        className="fixed top-0 w-full bg-white/95 backdrop-blur-md shadow-md z-40"
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center h-16">
+            <motion.div whileHover={{ scale: 1.05 }} className="flex items-center gap-2">
+              <img
+                src="./Logo.webp"
+                className="h-20 w-auto"
+                alt="Logo"
+              />
+            </motion.div>
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        setLoading(true);
-
-        try {
-            const response = await authAPI.staffLogin({ email, password });
-            
-            toast.success(response.message || 'Login successful!');
-            
-            // Use the auth context to set user data
-            login(response.data.user, response.data.token, 'staff');
-            
-            // Navigate to POS after short delay
-            setTimeout(() => {
-                navigate('/pos');
-            }, 500);
-        } catch (error) {
-            console.error('Login error:', error);
-            const errorMessage = error.response?.data?.message || 'Login failed. Please try again.';
-            toast.error(errorMessage);
-        } finally {
-            setLoading(false);
-        }
-    };
-
-    return (
-        <div className="flex min-h-screen">
-            <Toaster position="top-center" />
-            
-            {/* Left side - Food images */}
-            <div className="hidden lg:block lg:w-1/2 relative">
-                <img
-                    src={Image1}
-                    alt="Restaurant dishes"
-                    className="absolute inset-0 w-full h-full object-cover"
-                />
-            </div>
-
-            {/* Right side - Login form */}
-            <div className="w-full lg:w-1/2 flex items-center justify-center bg-white p-8 relative">
-                <button
-                    onClick={handleClose}
-                    className="absolute top-6 right-6 text-red-400 hover:text-red-600 transition-colors duration-200"
-                    aria-label="Close and return to Join Us page"
+            <div className="hidden md:flex items-center gap-8">
+              {['Home', 'Solutions', 'Features', 'Testimonials'].map((item) => (
+                <motion.a
+                  key={item}
+                  href={`#${item.toLowerCase().replace(' ', '-')}`}
+                  className="text-black hover:text-[#3673B4] font-medium text-[18px] transition"
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.95 }}
                 >
-                    <X size={40} />
-                </button>
-
-                <div className="w-full max-w-md">
-                    {/* Logo */}
-                    <div className="flex justify-center">
-                        <img
-                            src={Logo}
-                            alt="Restaurant Logo"
-                            className="h-36 w-auto"
-                        />
-                    </div>
-
-                    {/* Heading */}
-                    <h1 className="text-3xl font-semibold text-gray-900 mb-1.5">Log In</h1>
-                    <p className="text-gray-600 mb-6">Log in to access your restaurant dashboard.</p>
-
-                    {/* Form */}
-                    <form onSubmit={handleSubmit} className="space-y-5">
-                        {/* Email field */}
-                        <div>
-                            <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1.5">
-                                Email
-                            </label>
-                            <input
-                                type="email"
-                                id="email"
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
-                                placeholder="user@gmail.com"
-                                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:border-transparent outline-none transition"
-                                style={{ '--tw-ring-color': '#487AA4' }}
-                                onFocus={(e) => (e.target.style.borderColor = '#487AA4')}
-                                onBlur={(e) => (e.target.style.borderColor = '#d1d5db')}
-                                required
-                                disabled={loading}
-                            />
-                        </div>
-
-                        {/* Password field */}
-                        <div>
-                            <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1.5">
-                                Password
-                            </label>
-                            <div className="relative">
-                                <input
-                                    type={showPassword ? 'text' : 'password'}
-                                    id="password"
-                                    value={password}
-                                    onChange={(e) => setPassword(e.target.value)}
-                                    placeholder="Enter your password"
-                                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:border-transparent outline-none transition pr-12"
-                                    onFocus={(e) => (e.target.style.borderColor = '#487AA4')}
-                                    onBlur={(e) => (e.target.style.borderColor = '#d1d5db')}
-                                    required
-                                    disabled={loading}
-                                />
-                                <button
-                                    type="button"
-                                    onClick={() => setShowPassword(!showPassword)}
-                                    className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
-                                    disabled={loading}
-                                >
-                                    {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
-                                </button>
-                            </div>
-                        </div>
-
-                        {/* Remember me & Forgot password */}
-                        <div className="flex items-center justify-between">
-                            <label className="flex items-center cursor-pointer">
-                                <input
-                                    type="checkbox"
-                                    checked={rememberMe}
-                                    onChange={(e) => setRememberMe(e.target.checked)}
-                                    className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
-                                    disabled={loading}
-                                />
-                                <span className="ml-2 text-sm text-gray-700">Remember me</span>
-                            </label>
-                            <button 
-                                type="button"
-                                className="text-sm hover:opacity-80" 
-                                style={{ color: '#487AA4' }}
-                                disabled={loading}
-                            >
-                                Forgot password?
-                            </button>
-                        </div>
-
-                        {/* Login button */}
-                        <button
-                            type="submit"
-                            disabled={loading}
-                            className="w-full text-white py-3 rounded-lg font-medium hover:opacity-90 transition disabled:opacity-50 disabled:cursor-not-allowed"
-                            style={{ background: 'linear-gradient(135deg, #487AA4 0%, #386184 100%)' }}
-                        >
-                            {loading ? 'Logging in...' : 'Login'}
-                        </button>
-
-                        {/* Sign up link */}
-                        <p className="text-center text-sm text-gray-600 mt-6">
-                            Don't have an account?{' '}
-                            <Link
-                                to="/staffsignup"
-                                className="font-medium hover:opacity-80"
-                                style={{ color: '#487AA4' }}
-                            >
-                                Sign Up
-                            </Link>
-                        </p>
-                    </form>
-                </div>
+                  {item}
+                </motion.a>
+              ))}
             </div>
+
+            <div className="flex items-center gap-4">
+              <motion.button
+                onClick={handleLoginClick}
+                className="hidden sm:flex items-center gap-2 text-[#3673B4] text-[18px] font-semibold hover:text-[#2a5a94] transition"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                Login
+              </motion.button>
+
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={goToJoinUs}
+                className="bg-[#3673B4] text-white px-6 py-2 rounded-lg font-semibold text-[18px] hover:bg-[#2a5a94] transition"
+              >
+                Start for Free
+              </motion.button>
+
+              <button
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                className="md:hidden text-gray-700"
+              >
+                {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
+              </button>
+            </div>
+          </div>
         </div>
-    );
-}
+
+        {isMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.3 }}
+            className="md:hidden bg-white border-t overflow-hidden"
+          >
+            {['Home', 'About Us', 'Shop', 'Blog', 'Contact Us'].map((item) => (
+              <a
+                key={item}
+                href={`#${item.toLowerCase().replace(' ', '-')}`}
+                className="block px-4 py-3 text-gray-700 hover:bg-gray-50 transition"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                {item}
+              </a>
+            ))}
+
+            <button
+              onClick={() => {
+                handleLoginClick();
+                setIsMenuOpen(false);
+              }}
+              className="block w-full text-left px-4 py-3 text-[#3673B4] font-medium hover:bg-gray-50 transition"
+            >
+              Login
+            </button>
+          </motion.div>
+        )}
+      </motion.nav>
+    </>
+  );
+};
+
+export default Navbar;

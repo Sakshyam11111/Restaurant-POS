@@ -1,11 +1,10 @@
-// Footer.js
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ShoppingBag, MapPin, Phone, Mail, Facebook, Twitter, Instagram } from 'lucide-react';
+import { ArrowRight, Facebook, Instagram, Linkedin } from 'lucide-react';
 
 const Footer = () => {
   const fadeInUp = {
-    hidden: { opacity: 0, y: 60 },
+    hidden: { opacity: 0, y: 40 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
   };
 
@@ -13,69 +12,151 @@ const Footer = () => {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: { staggerChildren: 0.2, delayChildren: 0.1 }
+      transition: { staggerChildren: 0.15, delayChildren: 0.1 }
     }
   };
 
   return (
-    <footer className="bg-gray-900 text-white py-12 px-4 sm:px-6 lg:px-8">
+    <footer className="bg-gradient-to-br from-[#386890] to-[#386890] text-white py-16 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
+        {/* Main Content Section */}
         <motion.div
           variants={staggerContainer}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="grid sm:grid-cols-2 md:grid-cols-4 gap-8 mb-8"
+          className="mb-12"
         >
-          <motion.div variants={fadeInUp}>
-            <div className="flex items-center gap-2 mb-4">
-              <div className="w-10 h-10 bg-[#3673B4] rounded-lg flex items-center justify-center">
-                <ShoppingBag className="w-6 h-6 text-white" />
-              </div>
-              <span className="text-xl font-bold">RMS</span>
+          {/* Hero Section */}
+          <motion.div
+            variants={fadeInUp}
+            className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-8 mb-16"
+          >
+            <div className="max-w-2xl">
+              <h2 className="text-4xl md:text-5xl font-light mb-2 leading-tight">
+                See how your business
+              </h2>
+              <h2 className="text-4xl md:text-5xl font-light leading-tight">
+                can succeed with Bollore
+              </h2>
             </div>
-            <p className="text-gray-400 text-sm">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+
+            <div className="flex flex-col sm:flex-row gap-4">
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="px-8 py-3 border-2 border-white rounded-lg font-medium hover:bg-white hover:text-[#4A7BA7] transition-all duration-300 flex items-center justify-center gap-2"
+              >
+                Get Started
+                <ArrowRight className="w-5 h-5" />
+              </motion.button>
+
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="px-8 py-3 bg-white text-[#4A7BA7] rounded-lg font-medium hover:bg-opacity-90 transition-all duration-300 flex items-center justify-center gap-2"
+              >
+                Start a 7-days Free Trial
+                <ArrowRight className="w-5 h-5" />
+              </motion.button>
+            </div>
           </motion.div>
 
-          {['OUR LINKS', 'OTHER LINKS', 'CONTACT'].map((title, i) => (
-            <motion.div key={i} variants={fadeInUp}>
-              <h4 className="font-bold mb-4">{title}</h4>
-              {title === 'CONTACT' ? (
-                <ul className="space-y-3 text-gray-400 text-sm">
-                  <li className="flex items-start gap-2"><MapPin className="w-5 h-5 mt-0.5" />123 Kathmandu, Nepal</li>
-                  <li className="flex items-center gap-2"><Phone className="w-5 h-5" />+977 98 xxxx xxxx</li>
-                  <li className="flex items-center gap-2"><Mail className="w-5 h-5" />info@RMS.com</li>
-                </ul>
-              ) : (
-                <ul className="space-y-2 text-gray-400 text-sm">
-                  {['Home', 'About Us', 'Services', 'Team', 'Blog'].map((link) => (
-                    <li key={link}><a href="#" className="hover:text-white transition">{link}</a></li>
-                  ))}
-                </ul>
-              )}
-              {title === 'CONTACT' && (
-                <div className="flex gap-3 mt-4">
-                  {[Facebook, Twitter, Instagram].map((Icon, idx) => (
-                    <motion.button
+          {/* Divider */}
+          <motion.div
+            variants={fadeInUp}
+            className="border-t border-white/30 mb-12"
+          />
+
+          {/* Footer Content Grid */}
+          <motion.div
+            variants={staggerContainer}
+            className="grid md:grid-cols-2 gap-12 lg:gap-24"
+          >
+            {/* Left Column - Brand & Description */}
+            <motion.div variants={fadeInUp}>
+              <div className="mb-6">
+                <div className="flex items-center gap-3 mb-6">
+                  <motion.div whileHover={{ scale: 1.05 }} className="flex items-center gap-2">
+                    <img
+                      src="./logowhite.png"
+                      className='w-full h-44'
+                    />
+                  </motion.div>
+                </div>
+
+                <p className="text-white/90 text-base mb-8 max-w-md">
+                  Bollore provides restaurant management and POS software solutions
+                </p>
+
+                {/* Social Media Icons */}
+                <div className="flex gap-4">
+                  {[
+                    { Icon: Facebook, label: 'Facebook' },
+                    { Icon: Instagram, label: 'Instagram' },
+                    {
+                      Icon: () => (
+                        <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                          <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                        </svg>
+                      ), label: 'X'
+                    },
+                    { Icon: Linkedin, label: 'LinkedIn' }
+                  ].map(({ Icon, label }, idx) => (
+                    <motion.a
                       key={idx}
-                      whileHover={{ scale: 1.2, backgroundColor: '#3673B4' }}
-                      className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center transition"
+                      href="#"
+                      whileHover={{ scale: 1.15, backgroundColor: 'rgba(255,255,255,0.2)' }}
+                      whileTap={{ scale: 0.95 }}
+                      className="w-11 h-11 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition-all duration-300"
+                      aria-label={label}
                     >
                       <Icon className="w-5 h-5" />
-                    </motion.button>
+                    </motion.a>
                   ))}
                 </div>
-              )}
+              </div>
             </motion.div>
-          ))}
+
+            {/* Right Column - Help Center Card */}
+            <motion.div variants={fadeInUp}>
+              <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20 hover:bg-white/15 transition-all duration-300">
+                <h3 className="text-2xl font-semibold mb-3">Help Center</h3>
+                <p className="text-white/80 text-sm mb-1">24/7 resources</p>
+
+                <p className="text-white/90 text-sm leading-relaxed mb-6 mt-4">
+                  Place get in touch if you need one-to-one assistance getting started with new products or have questions for our sales team.
+                </p>
+
+                <motion.a
+                  href="#"
+                  whileHover={{ x: 5 }}
+                  className="inline-flex items-center gap-2 text-white font-medium hover:underline underline-offset-4"
+                >
+                  Help Center
+                  <ArrowRight className="w-5 h-5" />
+                </motion.a>
+              </div>
+            </motion.div>
+          </motion.div>
         </motion.div>
 
+        {/* Divider */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
-          className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-400"
+          viewport={{ once: true }}
+          className="border-t border-white/30 mb-8"
+        />
+
+        {/* Copyright */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          className="text-center text-white/70 text-sm"
         >
-          <p>Copyright 2026 All right reserved.</p>
+          <p>© 2026 Bollore. All Rights Reserved.</p>
         </motion.div>
       </div>
     </footer>

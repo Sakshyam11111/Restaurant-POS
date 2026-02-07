@@ -1,14 +1,10 @@
-// middleware/authMiddleware.js
 const jwt = require('jsonwebtoken');
 const Staff = require('../models/Staff');
-const Customer = require('../models/Customer');
 
-// Verify JWT Token
 exports.protect = async (req, res, next) => {
   try {
     let token;
 
-    // Check if token exists in Authorization header
     if (req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
       token = req.headers.authorization.split(' ')[1];
     }
@@ -20,7 +16,6 @@ exports.protect = async (req, res, next) => {
       });
     }
 
-    // Check if JWT_SECRET is defined
     if (!process.env.JWT_SECRET) {
       console.error('JWT_SECRET is not defined in environment variables');
       return res.status(500).json({
@@ -29,16 +24,16 @@ exports.protect = async (req, res, next) => {
       });
     }
 
-    // Verify token
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
-    // Check if user still exists
-    let user;
-    if (decoded.userType === 'staff') {
-      user = await Staff.findById(decoded.id);
-    } else if (decoded.userType === 'customer') {
-      user = await Customer.findById(decoded.id);
+    if (decoded.userType !== 'staff') {
+      return res.status(401).json({
+        status: 'error',
+        message: 'Invalid user type'
+      });
     }
+
+    const user = await Staff.findById(decoded.id);
 
     if (!user) {
       return res.status(401).json({
@@ -54,12 +49,11 @@ exports.protect = async (req, res, next) => {
       });
     }
 
-    // Grant access to protected route
     req.user = {
       userId: user._id,
       email: user.email,
-      userType: decoded.userType,
-      role: user.role || null
+      userType: 'staff',
+      role: user.role
     };
 
     next();
@@ -87,7 +81,6 @@ exports.protect = async (req, res, next) => {
   }
 };
 
-// Restrict to specific user types
 exports.restrictTo = (...userTypes) => {
   return (req, res, next) => {
     if (!userTypes.includes(req.user.userType)) {
@@ -100,7 +93,6 @@ exports.restrictTo = (...userTypes) => {
   };
 };
 
-// Restrict to specific staff roles
 exports.restrictToRole = (...roles) => {
   return (req, res, next) => {
     if (req.user.userType !== 'staff') {

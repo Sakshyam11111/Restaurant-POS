@@ -1,7 +1,7 @@
 import React from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
-import LandingPage from './component/mainpage/Landingpage';
+import LandingPage from './component/mainpage/landingpage/Landingpage';
 import JoinUs from './component/mainpage/JoinUs';
 import RestaurantLogin from './component/mainpage/RestaurantLogin';
 import RestaurantSignup from './component/mainpage/RestaurantSignup';
@@ -26,9 +26,9 @@ const App = () => {
           <Route path="/posmenu" element={<POSMenu />} />
 
 
-          <Route path="/homecontent" element={<HomeContent  />} />
-          <Route path="/poscontent" element={<POSContent  />} />
-          <Route path="/unitmaster" element={<UnitMaster  />} />
+          <Route path="/homecontent" element={<HomeContent />} />
+          <Route path="/poscontent" element={<POSContent />} />
+          <Route path="/unitmaster" element={<UnitMaster />} />
         </Routes>
       </Router>
     </AuthProvider>
