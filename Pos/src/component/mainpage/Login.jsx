@@ -1,22 +1,68 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import toast, { Toaster } from 'react-hot-toast';
 import Navbar from './Navbar';
+import { authAPI } from '../../services/api';
+import { useAuth } from '../../context/AuthContext';
 
 const Login = () => {
   const navigate = useNavigate();
-
+  const { login } = useAuth();
+  
   const [showPassword, setShowPassword] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState({
     email: '',
     password: ''
   });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Login attempt:', formData);
-    navigate('/pos');
+    
+    if (!formData.email || !formData.password) {
+      toast.error('Please fill in all fields');
+      return;
+    }
+
+    setIsLoading(true);
+
+    try {
+      const response = await authAPI.staffLogin(formData);
+      
+      if (response.status === 'success') {
+        // Store auth data using context
+        login(
+          response.data.user,
+          response.data.token,
+          'staff',
+          response.data.isAdmin || false
+        );
+
+        toast.success('Login successful!', {
+          duration: 2000,
+          position: 'top-center',
+        });
+
+        // Navigate to POS after short delay
+        setTimeout(() => {
+          navigate('/pos', { replace: true });
+        }, 1000);
+      }
+    } catch (error) {
+      console.error('Login error:', error);
+      
+      const errorMessage = error.response?.data?.message || 
+                          'Login failed. Please check your credentials.';
+      
+      toast.error(errorMessage, {
+        duration: 3000,
+        position: 'top-center',
+      });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const containerVariants = {
@@ -50,6 +96,7 @@ const Login = () => {
 
   return (
     <>
+      <Toaster />
       <Navbar />
       <div className="flex min-h-screen w-full">
         <motion.div
@@ -92,6 +139,7 @@ const Login = () => {
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#386890] focus:border-[#386890] outline-none transition-colors text-sm"
                   required
+                  disabled={isLoading}
                 />
               </motion.div>
 
@@ -100,16 +148,18 @@ const Login = () => {
                 <div className="relative">
                   <input
                     type={showPassword ? 'text' : 'password'}
-                    placeholder="user@1234"
+                    placeholder="Enter your password"
                     value={formData.password}
                     onChange={(e) => setFormData({ ...formData, password: e.target.value })}
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#386890] focus:border-[#386890] outline-none transition-colors text-sm pr-12"
                     required
+                    disabled={isLoading}
                   />
                   <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
                     className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                    disabled={isLoading}
                   >
                     {showPassword ? (
                       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -135,6 +185,7 @@ const Login = () => {
                     checked={rememberMe}
                     onChange={(e) => setRememberMe(e.target.checked)}
                     className="w-4 h-4 text-[#386890] border-gray-300 rounded focus:ring-[#386890]"
+                    disabled={isLoading}
                   />
                   <span className="ml-2 text-sm text-gray-600">Remember me</span>
                 </label>
@@ -145,12 +196,23 @@ const Login = () => {
 
               <motion.button
                 type="submit"
-                className="w-full bg-[#386890] text-white font-semibold py-3 px-4 rounded-lg transition-colors duration-200 hover:bg-[#2f5a7a]"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
+                className="w-full bg-[#386890] text-white font-semibold py-3 px-4 rounded-lg transition-colors duration-200 hover:bg-[#2f5a7a] disabled:bg-gray-400 disabled:cursor-not-allowed flex items-center justify-center"
+                whileHover={{ scale: isLoading ? 1 : 1.02 }}
+                whileTap={{ scale: isLoading ? 1 : 0.98 }}
                 variants={itemVariants}
+                disabled={isLoading}
               >
-                Login
+                {isLoading ? (
+                  <>
+                    <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    Logging in...
+                  </>
+                ) : (
+                  'Login'
+                )}
               </motion.button>
 
               <motion.div
@@ -161,7 +223,8 @@ const Login = () => {
                 <button
                   type="button"
                   onClick={() => navigate('/signup')}
-                  className="text-[#386890] font-medium hover:underline transition-colors "
+                  className="text-[#386890] font-medium hover:underline transition-colors"
+                  disabled={isLoading}
                 >
                   Sign Up
                 </button>

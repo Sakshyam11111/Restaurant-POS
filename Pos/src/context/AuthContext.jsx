@@ -1,4 +1,3 @@
-// src/context/AuthContext.jsx
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { authAPI } from '../services/api';
 
@@ -15,6 +14,7 @@ export const useAuth = () => {
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [userType, setUserType] = useState(null);
+  const [isAdmin, setIsAdmin] = useState(false);
   const [loading, setLoading] = useState(true);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
@@ -24,6 +24,7 @@ export const AuthProvider = ({ children }) => {
       const token = localStorage.getItem('token');
       const storedUser = localStorage.getItem('user');
       const storedUserType = localStorage.getItem('userType');
+      const storedIsAdmin = localStorage.getItem('isAdmin') === 'true';
 
       if (token && storedUser) {
         try {
@@ -31,14 +32,17 @@ export const AuthProvider = ({ children }) => {
           const response = await authAPI.getCurrentUser();
           setUser(response.data.user);
           setUserType(storedUserType);
+          setIsAdmin(storedIsAdmin || response.data.user.isAdmin || false);
           setIsAuthenticated(true);
         } catch (error) {
           // Token is invalid, clear storage
           localStorage.removeItem('token');
           localStorage.removeItem('user');
           localStorage.removeItem('userType');
+          localStorage.removeItem('isAdmin');
           setUser(null);
           setUserType(null);
+          setIsAdmin(false);
           setIsAuthenticated(false);
         }
       }
@@ -48,13 +52,15 @@ export const AuthProvider = ({ children }) => {
     checkAuth();
   }, []);
 
-  const login = (userData, token, type) => {
+  const login = (userData, token, type, adminFlag = false) => {
     setUser(userData);
     setUserType(type);
+    setIsAdmin(adminFlag);
     setIsAuthenticated(true);
     localStorage.setItem('token', token);
     localStorage.setItem('user', JSON.stringify(userData));
     localStorage.setItem('userType', type);
+    localStorage.setItem('isAdmin', adminFlag.toString());
   };
 
   const logout = async () => {
@@ -65,16 +71,19 @@ export const AuthProvider = ({ children }) => {
     } finally {
       setUser(null);
       setUserType(null);
+      setIsAdmin(false);
       setIsAuthenticated(false);
       localStorage.removeItem('token');
       localStorage.removeItem('user');
       localStorage.removeItem('userType');
+      localStorage.removeItem('isAdmin');
     }
   };
 
   const value = {
     user,
     userType,
+    isAdmin,
     loading,
     isAuthenticated,
     login,

@@ -15,6 +15,69 @@ const generateToken = (id, userType) => {
   );
 };
 
+// Admin Login (hardcoded credentials)
+exports.adminLogin = async (req, res) => {
+  try {
+    const { email, password } = req.body;
+
+    console.log('Admin login attempt for:', email);
+
+    // Validation
+    if (!email || !password) {
+      return res.status(400).json({
+        status: 'error',
+        message: 'Email and password are required'
+      });
+    }
+
+    // Hardcoded admin credentials
+    const adminCredentials = [
+      { email: 'sakshyamshrestha111@gmail.com', password: 'sakshyam@112', name: 'Sakshyam Shrestha' },
+      { email: 'aaa@gmail.com', password: '123456', name: 'Admin User' },
+      { email: 'admin123@gmail.com', password: '123456', name: 'System Admin' }
+    ];
+
+    // Find matching admin
+    const admin = adminCredentials.find(
+      cred => cred.email === email && cred.password === password
+    );
+
+    if (!admin) {
+      return res.status(401).json({
+        status: 'error',
+        message: 'Invalid admin credentials'
+      });
+    }
+
+    // Create admin user object
+    const adminUser = {
+      email: admin.email,
+      fullName: admin.name,
+      role: 'admin',
+      isAdmin: true
+    };
+
+    // Generate token with admin flag
+    const token = generateToken('admin_' + admin.email, 'admin');
+
+    res.status(200).json({
+      status: 'success',
+      message: 'Admin login successful',
+      data: {
+        user: adminUser,
+        token,
+        isAdmin: true
+      }
+    });
+  } catch (error) {
+    console.error('Admin Login Error:', error);
+    res.status(500).json({
+      status: 'error',
+      message: 'Login failed: ' + error.message
+    });
+  }
+};
+
 // Staff Signup
 exports.staffSignup = async (req, res) => {
   try {
@@ -60,7 +123,8 @@ exports.staffSignup = async (req, res) => {
       message: 'Staff account created successfully',
       data: {
         user: staff,
-        token
+        token,
+        isAdmin: false
       }
     });
   } catch (error) {
@@ -77,7 +141,7 @@ exports.staffLogin = async (req, res) => {
   try {
     const { email, password } = req.body;
 
-    console.log('Login attempt for:', email);
+    console.log('Staff login attempt for:', email);
 
     // Validation
     if (!email || !password) {
@@ -132,7 +196,8 @@ exports.staffLogin = async (req, res) => {
       message: 'Login successful',
       data: {
         user: staff,
-        token
+        token,
+        isAdmin: false
       }
     });
   } catch (error) {
@@ -163,6 +228,21 @@ exports.logout = async (req, res) => {
 exports.getCurrentUser = async (req, res) => {
   try {
     const { userType, userId } = req.user;
+    
+    // Handle admin users
+    if (userType === 'admin') {
+      return res.status(200).json({
+        status: 'success',
+        data: {
+          user: {
+            email: userId.replace('admin_', ''),
+            role: 'admin',
+            isAdmin: true,
+            fullName: 'Admin User'
+          }
+        }
+      });
+    }
     
     if (userType !== 'staff') {
       return res.status(403).json({

@@ -29,15 +29,39 @@ api.interceptors.response.use(
     if (error.response?.status === 401) {
       localStorage.removeItem('token');
       localStorage.removeItem('user');
-      window.location.href = '/joinus';
+      localStorage.removeItem('userType');
+      localStorage.removeItem('isAdmin');
+      
+      // Redirect to appropriate login page
+      const isAdmin = window.location.pathname.includes('admin');
+      window.location.href = isAdmin ? '/admin' : '/login';
     }
     return Promise.reject(error);
   }
 );
 
 export const authAPI = {
+  // Admin authentication
+  adminLogin: async (data) => {
+    const response = await api.post('/auth/admin/login', data);
+    if (response.data.data.token) {
+      localStorage.setItem('token', response.data.data.token);
+      localStorage.setItem('user', JSON.stringify(response.data.data.user));
+      localStorage.setItem('userType', 'admin');
+      localStorage.setItem('isAdmin', 'true');
+    }
+    return response.data;
+  },
+
+  // Staff authentication
   staffSignup: async (data) => {
     const response = await api.post('/auth/staff/signup', data);
+    if (response.data.data.token) {
+      localStorage.setItem('token', response.data.data.token);
+      localStorage.setItem('user', JSON.stringify(response.data.data.user));
+      localStorage.setItem('userType', 'staff');
+      localStorage.setItem('isAdmin', 'false');
+    }
     return response.data;
   },
 
@@ -47,6 +71,7 @@ export const authAPI = {
       localStorage.setItem('token', response.data.data.token);
       localStorage.setItem('user', JSON.stringify(response.data.data.user));
       localStorage.setItem('userType', 'staff');
+      localStorage.setItem('isAdmin', 'false');
     }
     return response.data;
   },
@@ -56,6 +81,7 @@ export const authAPI = {
     localStorage.removeItem('token');
     localStorage.removeItem('user');
     localStorage.removeItem('userType');
+    localStorage.removeItem('isAdmin');
     return response.data;
   },
 
@@ -93,44 +119,37 @@ export const orderAPI = {
 };
 
 export const tableAPI = {
-  // Initialize tables (one-time setup)
   initializeTables: async () => {
     const response = await api.post('/tables/initialize');
     return response.data;
   },
 
-  // Get all tables
   getAllTables: async (floor) => {
     const params = floor ? { floor } : {};
     const response = await api.get('/tables', { params });
     return response.data;
   },
 
-  // Update table status
   updateTableStatus: async (tableId, status) => {
     const response = await api.patch(`/tables/${tableId}/status`, { status });
     return response.data;
   },
 
-  // Reserve a table
   reserveTable: async (tableId, reservationData) => {
     const response = await api.post(`/tables/${tableId}/reserve`, reservationData);
     return response.data;
   },
 
-  // Cancel reservation
   cancelReservation: async (tableId) => {
     const response = await api.post(`/tables/${tableId}/cancel-reservation`);
     return response.data;
   },
 
-  // Start dining
   startDining: async (tableId) => {
     const response = await api.post(`/tables/${tableId}/start-dining`);
     return response.data;
   },
 
-  // End dining
   endDining: async (tableId) => {
     const response = await api.post(`/tables/${tableId}/end-dining`);
     return response.data;

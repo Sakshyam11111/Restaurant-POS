@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import KOTContent from './KOT/KOTContent';
@@ -13,6 +13,7 @@ const POSContent = () => {
   const [openTableMenu, setOpenTableMenu] = useState(null);
   const [tables, setTables] = useState([]);
   const [loading, setLoading] = useState(true);
+  const abortControllerRef = useRef(null);
 
   const [showReservationModal, setShowReservationModal] = useState(false);
   const [selectedTableForReservation, setSelectedTableForReservation] = useState(null);
@@ -25,27 +26,68 @@ const POSContent = () => {
 
   useEffect(() => {
     loadTables();
+    
+    return () => {
+      if (abortControllerRef.current) {
+        abortControllerRef.current.abort();
+      }
+    };
   }, [activeFloor]);
 
+  const removeDuplicateTables = (tablesArray) => {
+    const seen = new Set();
+    return tablesArray.filter(table => {
+      const duplicate = seen.has(table.tableId);
+      seen.add(table.tableId);
+      return !duplicate;
+    });
+  };
+
   const loadTables = async () => {
+    if (abortControllerRef.current) {
+      abortControllerRef.current.abort();
+    }
+    
+    abortControllerRef.current = new AbortController();
+
     try {
       setLoading(true);
-      const response = await tableAPI.getAllTables(activeFloor);
+      const response = await tableAPI.getAllTables(activeFloor, {
+        signal: abortControllerRef.current.signal
+      });
 
       if (response.data.tables.length === 0) {
-        await tableAPI.initializeTables();
-        const newResponse = await tableAPI.getAllTables(activeFloor);
-        setTables(newResponse.data.tables);
+        const checkResponse = await tableAPI.getAllTables(activeFloor, {
+          signal: abortControllerRef.current.signal
+        });
+        
+        if (checkResponse.data.tables.length === 0) {
+          await tableAPI.initializeTables(activeFloor, {
+            signal: abortControllerRef.current.signal
+          });
+        }
+        
+        const finalResponse = await tableAPI.getAllTables(activeFloor, {
+          signal: abortControllerRef.current.signal
+        });
+        
+        const uniqueTables = removeDuplicateTables(finalResponse.data.tables);
+        setTables(uniqueTables);
       } else {
-        setTables(response.data.tables);
+        const uniqueTables = removeDuplicateTables(response.data.tables);
+        setTables(uniqueTables);
       }
     } catch (error) {
+      if (error.name === 'AbortError') return;
+      
       console.error('Error loading tables:', error);
       toast.error('Failed to load tables');
-      setTables(Array.from({ length: 15 }, (_, i) => ({
+      
+      const fallbackTables = Array.from({ length: 15 }, (_, i) => ({
         tableId: i + 1,
         status: 'available'
-      })));
+      }));
+      setTables(fallbackTables);
     } finally {
       setLoading(false);
     }

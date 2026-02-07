@@ -26,6 +26,18 @@ exports.protect = async (req, res, next) => {
 
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
+    // Handle admin authentication
+    if (decoded.userType === 'admin') {
+      req.user = {
+        userId: decoded.id,
+        userType: 'admin',
+        role: 'admin',
+        isAdmin: true
+      };
+      return next();
+    }
+
+    // Handle staff authentication
     if (decoded.userType !== 'staff') {
       return res.status(401).json({
         status: 'error',
@@ -53,7 +65,8 @@ exports.protect = async (req, res, next) => {
       userId: user._id,
       email: user.email,
       userType: 'staff',
-      role: user.role
+      role: user.role,
+      isAdmin: false
     };
 
     next();
@@ -95,11 +108,16 @@ exports.restrictTo = (...userTypes) => {
 
 exports.restrictToRole = (...roles) => {
   return (req, res, next) => {
-    if (req.user.userType !== 'staff') {
+    if (req.user.userType !== 'staff' && req.user.userType !== 'admin') {
       return res.status(403).json({
         status: 'error',
-        message: 'Access denied. Staff only.'
+        message: 'Access denied. Staff or Admin only.'
       });
+    }
+
+    // Allow admin to access all routes
+    if (req.user.userType === 'admin' || req.user.isAdmin) {
+      return next();
     }
 
     if (!roles.includes(req.user.role)) {
@@ -110,4 +128,15 @@ exports.restrictToRole = (...roles) => {
     }
     next();
   };
+};
+
+// Middleware to check if user is admin
+exports.requireAdmin = (req, res, next) => {
+  if (!req.user || !req.user.isAdmin) {
+    return res.status(403).json({
+      status: 'error',
+      message: 'Admin access required'
+    });
+  }
+  next();
 };
