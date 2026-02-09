@@ -84,7 +84,6 @@ const OrderDetailPage = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Header */}
       <motion.div 
         initial={{ y: -20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
@@ -166,9 +165,7 @@ const OrderDetailPage = () => {
         </div>
       </motion.div>
 
-      {/* Rest of the component remains unchanged */}
       <div className="flex">
-        {/* Main Content */}
         <div className="flex-1 p-6 bg-gray-50">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
@@ -201,7 +198,6 @@ const OrderDetailPage = () => {
             </motion.div>
           </motion.div>
 
-          {/* Menu Grid */}
           <motion.div 
             variants={containerVariants}
             initial="hidden"

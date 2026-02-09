@@ -81,14 +81,12 @@ const POSMenu = () => {
 
   const handleClearAll = () => setOrderItems([]);
 
-  // --- Place Order: POST to backend ---
   const handlePlaceOrder = async () => {
     if (orderItems.length === 0 || isSubmitting) return;
 
     setIsSubmitting(true);
 
     try {
-      // Map orderType label to backend enum value
       const typeMap = {
         'Dine in': 'Dine In',
         'Takeaway': 'Take Away',
@@ -113,7 +111,6 @@ const POSMenu = () => {
         position: 'top-center',
       });
 
-      // Clear the order and go back to POS
       setOrderItems([]);
       setTimeout(() => {
         navigate('/pos');
@@ -168,7 +165,6 @@ const POSMenu = () => {
       />
 
       <div className="flex-1 flex flex-col min-w-0 overflow-hidden">
-        {/* Category pills */}
         <div className="px-6 py-4 bg-gray-50 border-b border-gray-200 overflow-x-auto">
           <div className="flex gap-2 flex-wrap">
             {menuData.categories.map((cat) => (
@@ -191,7 +187,6 @@ const POSMenu = () => {
         </div>
 
         <div className="flex flex-1 overflow-hidden">
-          {/* Menu grid */}
           <div className="flex-1 overflow-y-auto bg-white">
             <div className="p-6 border-b border-gray-200">
               <div className="flex gap-3">
@@ -243,7 +238,6 @@ const POSMenu = () => {
             </div>
           </div>
 
-          {/* Order summary sidebar */}
           <div className="w-96 bg-white border-l border-gray-200 flex flex-col">
             <div className="p-6 border-b border-gray-200">
               <div className="flex items-center justify-between mb-6">
@@ -251,7 +245,6 @@ const POSMenu = () => {
                 <span className="text-lg font-semibold text-[#386890]">{orderNumber}</span>
               </div>
 
-              {/* Order type toggle */}
               <div className="flex gap-2 mb-6">
                 {['Dine in', 'Takeaway', 'Delivery'].map((type) => (
                   <button
@@ -268,7 +261,6 @@ const POSMenu = () => {
                 ))}
               </div>
 
-              {/* Waiter select */}
               <div className="mb-4">
                 <div className="flex items-center justify-between">
                   <span className="text-sm font-medium text-gray-700">Waiter</span>
@@ -284,7 +276,6 @@ const POSMenu = () => {
                 </div>
               </div>
 
-              {/* Table select */}
               <div>
                 <div className="flex items-center justify-between">
                   <span className="text-sm font-medium text-gray-700">Table</span>
@@ -301,7 +292,6 @@ const POSMenu = () => {
               </div>
             </div>
 
-            {/* Order items list */}
             <div className="flex-1 p-6 overflow-y-auto">
               <div className="flex items-center justify-between mb-4">
                 <h3 className="font-semibold text-gray-900 text-base">Order Items</h3>
@@ -336,7 +326,6 @@ const POSMenu = () => {
               )}
             </div>
 
-            {/* Total + Place Order button */}
             {orderItems.length > 0 && (
               <div className="p-6 border-t border-gray-200 bg-white">
                 <div className="flex items-center justify-between mb-4">

@@ -126,9 +126,7 @@ const OrderContent = () => {
 
   return (
     <div className="p-6 bg-gray-50 min-h-screen">
-      {/* Filters */}
       <div className="mb-6 flex flex-wrap gap-4 items-center">
-        {/* Date Filter */}
         <div className="flex items-center gap-2">
           <label className="text-sm font-medium text-gray-700">Date:</label>
           <input
@@ -139,7 +137,6 @@ const OrderContent = () => {
           />
         </div>
 
-        {/* Status Filter */}
         <div className="flex items-center gap-2">
           <label className="text-sm font-medium text-gray-700">Status:</label>
           <div className="flex gap-2">
@@ -159,7 +156,6 @@ const OrderContent = () => {
           </div>
         </div>
 
-        {/* Refresh Button */}
         <button
           onClick={loadOrders}
           className="ml-auto px-4 py-2 bg-white border border-gray-300 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors"
@@ -168,7 +164,6 @@ const OrderContent = () => {
         </button>
       </div>
 
-      {/* Orders Grid */}
       {orders.length === 0 ? (
         <div className="text-center py-12">
           <div className="w-20 h-20 mx-auto mb-4 bg-gray-100 rounded-full flex items-center justify-center">
@@ -191,7 +186,6 @@ const OrderContent = () => {
               transition={{ delay: index * 0.05 }}
               className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden hover:shadow-md transition-shadow"
             >
-              {/* Header */}
               <div className="p-4 bg-gradient-to-r from-gray-50 to-white border-b border-gray-200">
                 <div className="flex items-start justify-between mb-2">
                   <div>
@@ -215,7 +209,6 @@ const OrderContent = () => {
                 </div>
               </div>
 
-              {/* Items */}
               <div className="p-4">
                 <div className="space-y-2 mb-4 max-h-32 overflow-y-auto">
                   {order.items.map((item, idx) => (
@@ -225,7 +218,6 @@ const OrderContent = () => {
                   ))}
                 </div>
 
-                {/* Status Badge */}
                 <div className="mb-4">
                   <div className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-lg border ${getStatusColor(order.status)}`}>
                     {getStatusIcon(order.status)}
@@ -233,7 +225,6 @@ const OrderContent = () => {
                   </div>
                 </div>
 
-                {/* Total */}
                 <div className="flex items-center justify-between py-3 border-t border-gray-200">
                   <span className="text-sm font-medium text-gray-600">Total:</span>
                   <span className="text-lg font-bold text-gray-900">
@@ -241,7 +232,6 @@ const OrderContent = () => {
                   </span>
                 </div>
 
-                {/* Actions */}
                 <div className="flex gap-2 mt-4">
                   <button
                     onClick={() => handleViewDetails(order.id)}
