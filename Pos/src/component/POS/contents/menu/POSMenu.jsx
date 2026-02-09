@@ -1,20 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import toast, { Toaster } from 'react-hot-toast';
-import {
-  Search,
-  List,
-} from 'lucide-react';
-
+import { Search, List } from 'lucide-react';
 import Menudata from '../menu/data/Menudata.json';
 import Sidebar from './Sidebar';
 import { orderAPI } from '../../../../services/api';
+import { useOrders } from '../OrderContext';
 
 const POSMenu = () => {
   const navigate = useNavigate();
+  const { notifyNewOrder } = useOrders(); 
+  
   const [isExpanded, setIsExpanded] = useState(true);
   const [isMasterOpen, setIsMasterOpen] = useState(true);
-
   const [menuData, setMenuData] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState('All Menu');
   const [selectedSubCategory, setSelectedSubCategory] = useState(null);
@@ -104,14 +102,20 @@ const POSMenu = () => {
         waiter: selectedWaiter,
       };
 
-      await orderAPI.createOrder(payload);
+      const response = await orderAPI.createOrder(payload);
 
-      toast.success('Order placed successfully!', {
+      if (response.data?.order) {
+        notifyNewOrder(response.data.order);
+      }
+
+      toast.success('Order placed successfully! KOT generated.', {
         duration: 2500,
         position: 'top-center',
+        icon: '🍽️',
       });
 
       setOrderItems([]);
+      
       setTimeout(() => {
         navigate('/pos');
       }, 1000);
