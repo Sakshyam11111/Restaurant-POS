@@ -79,7 +79,6 @@ const OrderContent = () => {
   };
 
   const handleViewDetails = (order) => {
-    // Navigate to order detail page with order data
     navigate(`/order/${order.id}`, { 
       state: { order } 
     });

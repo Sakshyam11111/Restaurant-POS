@@ -5,6 +5,7 @@ import { AuthProvider } from './context/AuthContext';
 import LandingPage from './component/mainpage/landingpage/Landingpage';
 import Pos from './component/POS/Pos';
 import OrderDetailPage from './component/POS/contents/order/OrderDetailPage';
+import CheckoutPage from './component/POS/contents/order/checkout/CheckoutPage';
 import POSMenu from './component/POS/contents/menu/POSMenu';
 import HomeContent from './component/POS/contents/HomeContent';
 import UnitMaster from './component/POS/master/unitmaster';
@@ -26,6 +27,7 @@ const App = () => {
             <Route path="/admin" element={<AdminLogin />} />
             <Route path="/pos" element={<Pos />} />
             <Route path="/order/:id" element={<OrderDetailPage />} />
+            <Route path="/checkout" element={<CheckoutPage />} />
             <Route path="/posmenu" element={<POSMenu />} />
             <Route path="/homecontent" element={<HomeContent />} />
             <Route path="/poscontent" element={<POSContent />} />
