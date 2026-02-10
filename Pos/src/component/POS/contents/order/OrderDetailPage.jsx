@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import { orderAPI } from '../../../../services/api';
@@ -20,6 +19,7 @@ const OrderDetailPage = () => {
   const [order, setOrder] = useState(null);
   const [loading, setLoading] = useState(true);
   const [selectedItem, setSelectedItem] = useState(null);
+  const [itemStatuses, setItemStatuses] = useState({});
 
   useEffect(() => {
     const loadOrderDetails = async () => {
@@ -114,6 +114,8 @@ const OrderDetailPage = () => {
       finalPrice = item.priceFromOrder;
     }
 
+    const itemStatus = itemStatuses[item.id] || order?.status || 'Pending';
+
     return {
       id: item.id,
       name: item.name,
@@ -121,7 +123,7 @@ const OrderDetailPage = () => {
       price: finalPrice,
       image: menuDetails?.image || menuItemsData.defaultImage,
       category: menuDetails?.category || 'Uncategorized',
-      status: order?.status || 'Pending',
+      status: itemStatus,
       note: item.note,
       tags: menuDetails?.tags || [],
       qty: item.qty,
@@ -134,6 +136,18 @@ const OrderDetailPage = () => {
 
   const openItemModal = (item) => setSelectedItem(item);
   const closeItemModal = () => setSelectedItem(null);
+
+  const handleItemStatusChange = (itemId, newStatus) => {
+    setItemStatuses(prev => ({
+      ...prev,
+      [itemId]: newStatus
+    }));
+    
+    toast.success(`Item status changed to ${newStatus}`, {
+      duration: 2000,
+      position: 'top-center',
+    });
+  };
 
   if (loading) {
     return (
@@ -285,6 +299,7 @@ const OrderDetailPage = () => {
       <OrderItemModal
         item={selectedItem}
         onClose={closeItemModal}
+        onStatusChange={handleItemStatusChange}
       />
     </div>
   );

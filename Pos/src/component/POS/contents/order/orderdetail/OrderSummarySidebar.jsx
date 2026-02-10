@@ -7,6 +7,21 @@ const OrderSummarySidebar = ({ order, menuItems, total, itemCount, navigate }) =
     exit: { opacity: 0, x: -20, transition: { duration: 0.2 } },
   };
 
+  const handleCheckout = () => {
+    const orderWithPrices = {
+      ...order,
+      items: menuItems.map(item => ({
+        name: item.name,
+        quantity: item.qty,
+        price: item.price,
+        note: item.note
+      })),
+      totalPrice: total
+    };
+    
+    navigate('/checkout', { state: { order: orderWithPrices } });
+  };
+
   return (
     <div className="w-96 bg-white border-l border-gray-200 flex flex-col relative">
       <div className="sticky top-0 bg-white z-20 border-b border-gray-200">
@@ -97,7 +112,7 @@ const OrderSummarySidebar = ({ order, menuItems, total, itemCount, navigate }) =
           </span>
         </div>
         <button
-          onClick={() => navigate('/checkout', { state: { order } })}
+          onClick={handleCheckout}
           className="w-full py-3.5 bg-[#4A7BA7] text-white rounded-xl font-semibold hover:bg-[#3d6a92] transition-all shadow-sm flex items-center justify-center gap-2"
         >
           <span>Checkout</span>

@@ -1,8 +1,15 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { X } from 'lucide-react';
 
-const OrderItemModal = ({ item, onClose }) => {
+const OrderItemModal = ({ item, onClose, onStatusChange }) => {
   if (!item) return null;
+
+  const handleStatusChange = (newStatus) => {
+    if (onStatusChange) {
+      onStatusChange(item.id, newStatus);
+    }
+    onClose();
+  };
 
   return (
     <AnimatePresence>
@@ -33,10 +40,14 @@ const OrderItemModal = ({ item, onClose }) => {
               <div>
                 <h2 className="text-xl font-bold text-gray-900 mb-1">{item.name}</h2>
                 <p className="text-sm text-gray-500">No Modifier</p>
-                <p className="text-sm text-gray-500">No Note</p>
+                {item.note ? (
+                  <p className="text-sm text-gray-500">Note: {item.note}</p>
+                ) : (
+                  <p className="text-sm text-gray-500">No Note</p>
+                )}
               </div>
               <div className="text-5xl">
-                {item.image.includes('default') ? (
+                {item.image?.includes('default') ? (
                   <span className="text-4xl">🍔</span>
                 ) : (
                   <img
@@ -63,7 +74,7 @@ const OrderItemModal = ({ item, onClose }) => {
                   <tr className="border-t border-gray-100">
                     <td className="py-4 px-4 text-gray-900">{item.name}</td>
                     <td className="py-4 px-4 text-center text-gray-900">{item.qty}</td>
-                    <td className="py-4 px-4 text-right text-gray-900">{item.price}</td>
+                    <td className="py-4 px-4 text-right text-gray-900">Rs {item.price}</td>
                   </tr>
                 </tbody>
               </table>
@@ -73,31 +84,34 @@ const OrderItemModal = ({ item, onClose }) => {
           <div className="px-6 pb-6">
             <div className="bg-gray-100 rounded-xl p-1 flex gap-1">
               <button
-                onClick={() => {
-                  alert('Status changed to Pending');
-                  onClose();
-                }}
-                className="flex-1 py-2.5 px-4 bg-white text-gray-700 rounded-lg text-sm font-medium shadow-sm hover:bg-gray-50 transition-colors"
+                onClick={() => handleStatusChange('Pending')}
+                className={`flex-1 py-2.5 px-4 rounded-lg text-sm font-medium shadow-sm transition-colors ${
+                  item.status === 'Pending'
+                    ? 'bg-yellow-500 text-white'
+                    : 'bg-white text-gray-700 hover:bg-gray-50'
+                }`}
               >
                 Pending
               </button>
 
               <button
-                onClick={() => {
-                  alert('Status changed to Cancel');
-                  onClose();
-                }}
-                className="flex-1 py-2.5 px-4 text-gray-500 rounded-lg text-sm font-medium hover:text-gray-700 hover:bg-gray-200/50 transition-colors"
+                onClick={() => handleStatusChange('Cancelled')}
+                className={`flex-1 py-2.5 px-4 rounded-lg text-sm font-medium transition-colors ${
+                  item.status === 'Cancelled'
+                    ? 'bg-red-500 text-white'
+                    : 'text-gray-500 hover:text-gray-700 hover:bg-gray-200/50'
+                }`}
               >
                 Cancel
               </button>
 
               <button
-                onClick={() => {
-                  alert('Status changed to Completed');
-                  onClose();
-                }}
-                className="flex-1 py-2.5 px-4 text-gray-500 rounded-lg text-sm font-medium hover:text-gray-700 hover:bg-gray-200/50 transition-colors"
+                onClick={() => handleStatusChange('Completed')}
+                className={`flex-1 py-2.5 px-4 rounded-lg text-sm font-medium transition-colors ${
+                  item.status === 'Completed'
+                    ? 'bg-green-500 text-white'
+                    : 'text-gray-500 hover:text-gray-700 hover:bg-gray-200/50'
+                }`}
               >
                 Completed
               </button>
