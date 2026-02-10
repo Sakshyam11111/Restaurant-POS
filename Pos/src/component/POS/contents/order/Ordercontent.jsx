@@ -78,8 +78,11 @@ const OrderContent = () => {
     }
   };
 
-  const handleViewDetails = (orderId) => {
-    navigate(`/order/${orderId}`);
+  const handleViewDetails = (order) => {
+    // Navigate to order detail page with order data
+    navigate(`/order/${order.id}`, { 
+      state: { order } 
+    });
   };
 
   const getStatusColor = (status) => {
@@ -184,7 +187,8 @@ const OrderContent = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.05 }}
-              className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden hover:shadow-md transition-shadow"
+              className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden hover:shadow-md transition-shadow cursor-pointer"
+              onClick={() => handleViewDetails(order)}
             >
               <div className="p-4 bg-gradient-to-r from-gray-50 to-white border-b border-gray-200">
                 <div className="flex items-start justify-between mb-2">
@@ -232,9 +236,9 @@ const OrderContent = () => {
                   </span>
                 </div>
 
-                <div className="flex gap-2 mt-4">
+                <div className="flex gap-2 mt-4" onClick={(e) => e.stopPropagation()}>
                   <button
-                    onClick={() => handleViewDetails(order.id)}
+                    onClick={() => handleViewDetails(order)}
                     className="flex-1 px-3 py-2 bg-gray-100 text-gray-700 rounded-lg text-sm font-medium hover:bg-gray-200 transition-colors flex items-center justify-center gap-2"
                   >
                     <Eye className="w-4 h-4" />

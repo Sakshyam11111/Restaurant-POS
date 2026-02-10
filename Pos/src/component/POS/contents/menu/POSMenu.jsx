@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import toast, { Toaster } from 'react-hot-toast';
-import { Search, List } from 'lucide-react';
+import { Search, List, Trash2 } from 'lucide-react';
 import Menudata from '../menu/data/Menudata.json';
 import Sidebar from './Sidebar';
 import { orderAPI } from '../../../../services/api';
@@ -9,8 +9,8 @@ import { useOrders } from '../OrderContext';
 
 const POSMenu = () => {
   const navigate = useNavigate();
-  const { notifyNewOrder } = useOrders(); 
-  
+  const { notifyNewOrder } = useOrders();
+
   const [isExpanded, setIsExpanded] = useState(true);
   const [isMasterOpen, setIsMasterOpen] = useState(true);
   const [menuData, setMenuData] = useState(null);
@@ -41,22 +41,22 @@ const POSMenu = () => {
     }
 
     const routes = {
-      'home': '/pos',
-      'pos': '/pos',
-      'reports': '/pos',
-      'settings': '/pos',
+      home: '/pos',
+      pos: '/pos',
+      reports: '/pos',
+      settings: '/pos',
       'unit-master': '/pos',
       'unit-measure': '/pos',
-      'zone': '/pos',
-      'table': '/pos',
+      zone: '/pos',
+      table: '/pos',
       'menu-items': '/pos',
-      'employee': '/pos',
-      'department': '/pos',
-      'designation': '/pos',
-      'employeeshifts': '/pos',
-      'employeeshiftsrotation': '/pos',
-      'printtype': '/pos',
-      'printsetting': '/pos',
+      employee: '/pos',
+      department: '/pos',
+      designation: '/pos',
+      employeeshifts: '/pos',
+      employeeshiftsrotation: '/pos',
+      printtype: '/pos',
+      printsetting: '/pos',
     };
 
     if (routes[id]) {
@@ -77,6 +77,22 @@ const POSMenu = () => {
     }
   };
 
+  const handleRemoveItem = (id) => {
+    setOrderItems(orderItems.filter((item) => item.id !== id));
+  };
+
+  const handleDecreaseQuantity = (id) => {
+    setOrderItems(
+      orderItems
+        .map((item) =>
+          item.id === id && item.quantity > 1
+            ? { ...item, quantity: item.quantity - 1 }
+            : item
+        )
+        .filter((item) => item.quantity > 0)
+    );
+  };
+
   const handleClearAll = () => setOrderItems([]);
 
   const handlePlaceOrder = async () => {
@@ -87,8 +103,8 @@ const POSMenu = () => {
     try {
       const typeMap = {
         'Dine in': 'Dine In',
-        'Takeaway': 'Take Away',
-        'Delivery': 'Delivery',
+        Takeaway: 'Take Away',
+        Delivery: 'Delivery',
       };
 
       const payload = {
@@ -115,7 +131,7 @@ const POSMenu = () => {
       });
 
       setOrderItems([]);
-      
+
       setTimeout(() => {
         navigate('/pos');
       }, 1000);
@@ -274,7 +290,9 @@ const POSMenu = () => {
                     className="text-[#386890] font-medium text-sm border-0 focus:ring-0 cursor-pointer bg-transparent"
                   >
                     {menuData.waiters.map((waiter) => (
-                      <option key={waiter.id} value={waiter.name}>{waiter.name}</option>
+                      <option key={waiter.id} value={waiter.name}>
+                        {waiter.name}
+                      </option>
                     ))}
                   </select>
                 </div>
@@ -289,7 +307,9 @@ const POSMenu = () => {
                     className="text-[#386890] font-medium text-sm border-0 focus:ring-0 cursor-pointer bg-transparent"
                   >
                     {menuData.tables.map((table) => (
-                      <option key={table.id} value={table.id}>{table.id}</option>
+                      <option key={table.id} value={table.id}>
+                        {table.id}
+                      </option>
                     ))}
                   </select>
                 </div>
@@ -300,8 +320,11 @@ const POSMenu = () => {
               <div className="flex items-center justify-between mb-4">
                 <h3 className="font-semibold text-gray-900 text-base">Order Items</h3>
                 {orderItems.length > 0 && (
-                  <button onClick={handleClearAll} className="text-sm text-[#386890] hover:text-blue-700 font-medium">
-                    Clear All Items
+                  <button
+                    onClick={handleClearAll}
+                    className="text-sm text-red-600 hover:text-red-800 font-medium"
+                  >
+                    Clear All
                   </button>
                 )}
               </div>
@@ -314,16 +337,40 @@ const POSMenu = () => {
               ) : (
                 <div className="space-y-3">
                   {orderItems.map((item) => (
-                    <div key={item.id} className="flex items-start justify-between p-3 bg-gray-50 rounded-lg">
+                    <div
+                      key={item.id}
+                      className="flex items-center justify-between p-3 bg-gray-50 rounded-lg group"
+                    >
                       <div className="flex-1 min-w-0">
                         <h4 className="font-medium text-gray-900 text-sm">{item.name}</h4>
-                        <p className="text-xs text-gray-500 mt-1">
+                        <p className="text-xs text-gray-500 mt-0.5">
                           {item.currency} {item.price} × {item.quantity}
                         </p>
                       </div>
-                      <p className="font-semibold text-gray-900 whitespace-nowrap ml-3 text-sm">
-                        {item.currency} {item.price * item.quantity}
-                      </p>
+
+                      <div className="flex items-center gap-3">
+                        <p className="font-semibold text-gray-900 whitespace-nowrap text-sm">
+                          {item.currency} {item.price * item.quantity}
+                        </p>
+
+                        <div className="flex items-center gap-1 opacity-70 group-hover:opacity-100 transition-opacity">
+                          <button
+                            onClick={() => handleDecreaseQuantity(item.id)}
+                            className="p-1 text-gray-500 hover:text-gray-700 rounded hover:bg-gray-200 transition-colors"
+                            title="Decrease quantity"
+                          >
+                            <span className="text-lg">-</span>
+                          </button>
+
+                          <button
+                            onClick={() => handleRemoveItem(item.id)}
+                            className="p-1.5 text-red-500 hover:text-red-700 rounded hover:bg-red-50 transition-colors"
+                            title="Remove item"
+                          >
+                            <Trash2 size={16} />
+                          </button>
+                        </div>
+                      </div>
                     </div>
                   ))}
                 </div>
