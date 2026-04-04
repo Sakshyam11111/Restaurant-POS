@@ -1,24 +1,55 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Home, CheckCircle, ShoppingBag, Clock, DollarSign, ArrowUpRight, ArrowDownRight, TrendingUp } from 'lucide-react';
+import {
+  Home, CheckCircle, ShoppingBag, Clock, DollarSign,
+  ArrowUpRight, ArrowDownRight, TrendingUp
+} from 'lucide-react';
+
+// ── Attempt to pull real summary data; fall back gracefully ───────────────
+const fetchDashboardStats = async () => {
+  try {
+    // If your backend exposes a stats/summary endpoint, replace this import
+    const { orderAPI } = await import('../../../services/api');
+    const today = new Date().toISOString().split('T')[0];
+    const res = await orderAPI.getOrders({ date: today });
+    const orders = res.data?.orders || [];
+
+    const completed = orders.filter((o) => o.status === 'Served').length;
+    const pending   = orders.filter((o) => ['Pending', 'Preparing', 'Ready'].includes(o.status)).length;
+    const totalRevenue = orders
+      .filter((o) => o.status === 'Served')
+      .reduce((sum, o) => sum + (o.totalPrice || 0), 0);
+
+    return { completed, pending, totalRevenue, total: orders.length };
+  } catch {
+    return null; // use mock data
+  }
+};
 
 const HomeContent = () => {
+  const [liveStats, setLiveStats] = useState(null);
+
+  useEffect(() => {
+    fetchDashboardStats().then(setLiveStats);
+  }, []);
+
+  // FIX: unified currency to Rs. / NPR throughout
   const statsCards = [
     {
-      title: 'Total Sales',
-      value: '1,245',
+      title: 'Total Sales Today',
+      value: liveStats ? liveStats.total : '1,245',
       change: '+5% from last month',
       isPositive: true,
       icon: Home,
-      bgColor: 'bg-blue-50'
+      bgColor: 'bg-blue-50',
     },
     {
       title: 'Completed Orders',
-      value: '1,200',
+      value: liveStats ? liveStats.completed : '1,200',
       change: '+3% from last month',
       isPositive: true,
       icon: CheckCircle,
-      bgColor: 'bg-emerald-50'
+      bgColor: 'bg-emerald-50',
     },
     {
       title: 'Total Expenses',
@@ -26,24 +57,24 @@ const HomeContent = () => {
       change: '-2% from last month',
       isPositive: false,
       icon: ShoppingBag,
-      bgColor: 'bg-amber-50'
+      bgColor: 'bg-amber-50',
     },
     {
       title: 'Pending Orders',
-      value: '24',
+      value: liveStats ? liveStats.pending : '24',
       change: '+15% from last month',
       isPositive: true,
       icon: Clock,
-      bgColor: 'bg-violet-50'
+      bgColor: 'bg-violet-50',
     },
     {
-      title: 'Total Income',
-      value: 'Rs. 4.5M',
+      title: "Today's Revenue",
+      value: liveStats ? `Rs. ${liveStats.totalRevenue.toLocaleString()}` : 'Rs. 4.5M',
       change: '+12% from last month',
       isPositive: true,
       icon: DollarSign,
-      bgColor: 'bg-teal-50'
-    }
+      bgColor: 'bg-teal-50',
+    },
   ];
 
   const monthlyRevenue = [
@@ -58,29 +89,29 @@ const HomeContent = () => {
     { month: 'Sep', value: 58 },
     { month: 'Oct', value: 42 },
     { month: 'Nov', value: 70 },
-    { month: 'Dec', value: 72 }
+    { month: 'Dec', value: 72 },
   ];
 
-  const maxValue = Math.max(...monthlyRevenue.map(m => m.value));
+  const maxValue = Math.max(...monthlyRevenue.map((m) => m.value));
 
   const topSellingItems = [
-    { name: 'Spicy Chicken Momos', category: 'Appetizer', price: 250, qty: 450, revenue: 112500 },
-    { name: 'Classic Burger', category: 'Main Course', price: 450, qty: 320, revenue: 144000 },
-    { name: 'Pepperoni Pizza', category: 'Main Course', price: 800, qty: 210, revenue: 168000 },
-    { name: 'Mango Lassi', category: 'Beverage', price: 180, qty: 560, revenue: 100800 }
+    { name: 'Spicy Chicken Momos', category: 'Appetizer',   price: 250, qty: 450, revenue: 112500 },
+    { name: 'Classic Burger',       category: 'Main Course', price: 450, qty: 320, revenue: 144000 },
+    { name: 'Pepperoni Pizza',      category: 'Main Course', price: 800, qty: 210, revenue: 168000 },
+    { name: 'Mango Lassi',          category: 'Beverage',    price: 180, qty: 560, revenue: 100800 },
   ];
 
   const recentTransactions = [
-    { name: 'Aarav Shrestha', orderId: 'ORD-209', payment: 'QR Payment', amount: 1250, time: 'Today, 10:40 AM', status: 'success' },
-    { name: 'Sita Gurung', orderId: 'ORD-208', payment: 'Cash', amount: 1250, time: 'Today, 10:30 AM', status: 'success' },
-    { name: 'Table 4 (Guest)', orderId: 'ORD-208', payment: 'Card', amount: 1100, time: 'Today, 10:45 AM', status: 'failed' }
+    { name: 'Aarav Shrestha',  orderId: 'ORD-209', payment: 'QR Payment', amount: 1250, time: 'Today, 10:40 AM', status: 'success' },
+    { name: 'Sita Gurung',     orderId: 'ORD-208', payment: 'Cash',       amount: 1250, time: 'Today, 10:30 AM', status: 'success' },
+    { name: 'Table 4 (Guest)', orderId: 'ORD-207', payment: 'Card',       amount: 1100, time: 'Today, 10:45 AM', status: 'failed'  },
   ];
 
   const categoryData = [
-    { name: 'Dine-In', value: 40, color: '#4682B4' },
-    { name: 'Takeaway', value: 15, color: '#8B5CF6' },
-    { name: 'Delivery', value: 25, color: '#10B981' },
-    { name: 'Reservation', value: 20, color: '#F59E0B' }
+    { name: 'Dine-In',     value: 40, color: '#4682B4' },
+    { name: 'Takeaway',    value: 15, color: '#8B5CF6' },
+    { name: 'Delivery',    value: 25, color: '#10B981' },
+    { name: 'Reservation', value: 20, color: '#F59E0B' },
   ];
 
   const total = categoryData.reduce((sum, item) => sum + item.value, 0);
@@ -88,24 +119,15 @@ const HomeContent = () => {
 
   const cardVariants = {
     hidden: { opacity: 0, y: 20 },
-    visible: i => ({
-      opacity: 1,
-      y: 0,
-      transition: {
-        delay: i * 0.1,
-        duration: 0.5,
-        ease: "easeOut"
-      }
-    })
+    visible: (i) => ({
+      opacity: 1, y: 0,
+      transition: { delay: i * 0.1, duration: 0.5, ease: 'easeOut' },
+    }),
   };
 
   const chartVariants = {
     hidden: { opacity: 0, scale: 0.95 },
-    visible: {
-      opacity: 1,
-      scale: 1,
-      transition: { duration: 0.7, ease: "easeOut" }
-    }
+    visible: { opacity: 1, scale: 1, transition: { duration: 0.7, ease: 'easeOut' } },
   };
 
   return (
@@ -133,7 +155,9 @@ const HomeContent = () => {
                       <Icon className="w-5 h-5 text-slate-700" strokeWidth={2} />
                     </div>
                     <div className={`flex items-center gap-1 text-xs font-medium ${stat.isPositive ? 'text-emerald-600' : 'text-rose-600'}`}>
-                      {stat.isPositive ? <ArrowUpRight className="w-3.5 h-3.5" /> : <ArrowDownRight className="w-3.5 h-3.5" />}
+                      {stat.isPositive
+                        ? <ArrowUpRight className="w-3.5 h-3.5" />
+                        : <ArrowDownRight className="w-3.5 h-3.5" />}
                       <span>{stat.change.split(' ')[0]}</span>
                     </div>
                   </div>
@@ -148,7 +172,7 @@ const HomeContent = () => {
 
         {/* Charts Section */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          {/* Monthly Revenue Chart */}
+          {/* Monthly Revenue */}
           <motion.div
             className="lg:col-span-2 bg-white rounded-2xl p-7 shadow-sm border border-slate-200/60"
             variants={chartVariants}
@@ -170,55 +194,45 @@ const HomeContent = () => {
                 <div key={index} className="flex-1 flex flex-col items-center gap-3 group">
                   <div className="w-full flex items-end justify-center relative" style={{ height: '240px' }}>
                     <motion.div
-                      className={`w-full rounded-t-lg relative overflow-hidden ${
-                        data.month === 'Jul' ? 'bg-gradient-to-t from-[#4682B4] to-[#5a9fd4]' : 'bg-gradient-to-t from-slate-200 to-slate-100'
-                      }`}
+                      className="w-full rounded-t-lg bg-gradient-to-t from-[#487AA4] to-[#6ba3cc] group-hover:from-[#386184] group-hover:to-[#487AA4] transition-colors cursor-pointer"
                       style={{ height: `${(data.value / maxValue) * 100}%` }}
-                      initial={{ height: 0 }}
-                      animate={{ height: `${(data.value / maxValue) * 100}%` }}
-                      transition={{ duration: 1.2, delay: index * 0.08, ease: "easeOut" }}
-                      whileHover={{ 
-                        backgroundColor: data.month === 'Jul' ? '#4682B4' : '#cbd5e1',
-                        transition: { duration: 0.2 }
-                      }}
-                    >
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                    </motion.div>
-                    <div className="absolute -top-8 left-1/2 -translate-x-1/2 bg-slate-900 text-white text-xs font-medium px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
-                      {data.value}K
-                    </div>
+                      initial={{ scaleY: 0, originY: 1 }}
+                      animate={{ scaleY: 1 }}
+                      transition={{ delay: index * 0.05, duration: 0.6, ease: 'easeOut' }}
+                    />
                   </div>
-                  <span className="text-xs font-medium text-slate-500 group-hover:text-slate-900 transition-colors">{data.month}</span>
+                  <span className="text-xs text-slate-500 group-hover:text-slate-700 transition-colors">
+                    {data.month}
+                  </span>
                 </div>
               ))}
             </div>
           </motion.div>
 
-          {/* Sales by Category */}
+          {/* Donut chart */}
           <motion.div
-            className="bg-white rounded-2xl p-7 shadow-sm border border-slate-200/60"
+            className="bg-white rounded-2xl p-7 shadow-sm border border-slate-200/60 flex flex-col"
             variants={chartVariants}
             initial="hidden"
             animate="visible"
           >
-            <div className="mb-8">
-              <h2 className="text-lg font-semibold text-slate-900">Sales by Category</h2>
-              <p className="text-sm text-slate-500 mt-1">Order distribution</p>
+            <div className="mb-6">
+              <h2 className="text-lg font-semibold text-slate-900">Order Distribution</h2>
+              <p className="text-sm text-slate-500 mt-1">By service type</p>
             </div>
-            <div className="flex flex-col items-center">
-              <div className="relative w-52 h-52 mb-8">
-                <svg viewBox="0 0 200 200" className="transform -rotate-90 w-full h-full drop-shadow-sm">
+
+            <div className="flex-1 flex flex-col items-center justify-center gap-6">
+              <div className="relative w-44 h-44">
+                <svg viewBox="0 0 200 200" className="w-full h-full -rotate-90">
                   {categoryData.map((category, index) => {
-                    const percentage = (category.value / total) * 100;
-                    const angle = (percentage / 100) * 360;
+                    const angle = (category.value / total) * 360;
                     const startAngle = currentAngle;
+                    const endAngle = currentAngle + angle;
                     currentAngle += angle;
 
+                    const outerRadius = 90, innerRadius = 55;
                     const startRad = (startAngle * Math.PI) / 180;
-                    const endRad = (currentAngle * Math.PI) / 180;
-
-                    const innerRadius = 60;
-                    const outerRadius = 90;
+                    const endRad   = (endAngle   * Math.PI) / 180;
 
                     const x1 = 100 + outerRadius * Math.cos(startRad);
                     const y1 = 100 + outerRadius * Math.sin(startRad);
@@ -238,7 +252,7 @@ const HomeContent = () => {
                         fill={category.color}
                         initial={{ pathLength: 0, opacity: 0 }}
                         animate={{ pathLength: 1, opacity: 1 }}
-                        transition={{ duration: 1.5, delay: index * 0.2, ease: "easeOut" }}
+                        transition={{ duration: 1.5, delay: index * 0.2, ease: 'easeOut' }}
                         className="hover:opacity-80 transition-opacity cursor-pointer"
                       />
                     );
@@ -246,8 +260,8 @@ const HomeContent = () => {
                 </svg>
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="text-center">
-                    <div className="text-xs font-medium text-slate-500 mb-1">Top Category</div>
-                    <div className="text-lg font-semibold text-[#4682B4]">Dine-In</div>
+                    <div className="text-xs font-medium text-slate-500 mb-1">Top</div>
+                    <div className="text-base font-semibold text-[#4682B4]">Dine-In</div>
                     <div className="text-sm text-slate-600 mt-0.5">40%</div>
                   </div>
                 </div>
@@ -257,11 +271,11 @@ const HomeContent = () => {
                 {categoryData.map((category, index) => (
                   <div key={index} className="flex items-center gap-2.5 group cursor-pointer">
                     <div
-                      className="w-3 h-3 rounded-full ring-2 ring-offset-2 ring-transparent group-hover:ring-slate-200 transition-all"
+                      className="w-3 h-3 rounded-full ring-2 ring-offset-2 ring-transparent group-hover:ring-slate-200 transition-all shrink-0"
                       style={{ backgroundColor: category.color }}
                     />
-                    <div className="flex flex-col">
-                      <span className="text-sm font-medium text-slate-700 group-hover:text-slate-900 transition-colors">{category.name}</span>
+                    <div className="flex flex-col min-w-0">
+                      <span className="text-sm font-medium text-slate-700 truncate">{category.name}</span>
                       <span className="text-xs text-slate-500">{category.value}%</span>
                     </div>
                   </div>
@@ -271,7 +285,7 @@ const HomeContent = () => {
           </motion.div>
         </div>
 
-        {/* Tables Section */}
+        {/* Bottom tables */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* Top Selling Items */}
           <motion.div
@@ -291,14 +305,19 @@ const HomeContent = () => {
               </button>
             </div>
             <div className="overflow-x-auto -mx-7 px-7">
-              <table className="w-full min-w-[600px]">
+              <table className="w-full min-w-[520px]">
                 <thead>
                   <tr className="border-b border-slate-200">
-                    <th className="text-left text-xs font-semibold text-slate-600 uppercase tracking-wider pb-4">Items</th>
-                    <th className="text-left text-xs font-semibold text-slate-600 uppercase tracking-wider pb-4">Category</th>
-                    <th className="text-right text-xs font-semibold text-slate-600 uppercase tracking-wider pb-4">Price</th>
-                    <th className="text-right text-xs font-semibold text-slate-600 uppercase tracking-wider pb-4">Qty</th>
-                    <th className="text-right text-xs font-semibold text-slate-600 uppercase tracking-wider pb-4">Revenue</th>
+                    {['Items', 'Category', 'Price', 'Qty', 'Revenue'].map((h) => (
+                      <th
+                        key={h}
+                        className={`text-xs font-semibold text-slate-600 uppercase tracking-wider pb-4 ${
+                          ['Price', 'Qty', 'Revenue'].includes(h) ? 'text-right' : 'text-left'
+                        }`}
+                      >
+                        {h}
+                      </th>
+                    ))}
                   </tr>
                 </thead>
                 <tbody>
@@ -310,19 +329,12 @@ const HomeContent = () => {
                           <span className="text-sm font-medium text-slate-900">{item.name}</span>
                         </div>
                       </td>
-                      <td className="py-4">
-                        <span className="text-sm text-slate-600">{item.category}</span>
-                      </td>
-                      <td className="py-4 text-right">
-                        <span className="text-sm font-medium text-slate-900">₹{item.price}</span>
-                      </td>
-                      <td className="py-4 text-right">
-                        <span className="text-sm font-medium text-slate-900">{item.qty}</span>
-                      </td>
-                      <td className="py-4 text-right">
-                        <span className="text-sm font-semibold text-[#4682B4]">
-                          ₹{item.revenue.toLocaleString()}
-                        </span>
+                      <td className="py-4 text-sm text-slate-600">{item.category}</td>
+                      {/* FIX: unified to Rs. */}
+                      <td className="py-4 text-right text-sm font-medium text-slate-900">Rs. {item.price}</td>
+                      <td className="py-4 text-right text-sm font-medium text-slate-900">{item.qty}</td>
+                      <td className="py-4 text-right text-sm font-semibold text-[#4682B4]">
+                        Rs. {item.revenue.toLocaleString()}
                       </td>
                     </tr>
                   ))}
@@ -358,18 +370,14 @@ const HomeContent = () => {
                   transition={{ delay: index * 0.1 + 0.6 }}
                 >
                   <div className="flex items-center gap-4">
-                    <div
-                      className={`w-11 h-11 rounded-xl flex items-center justify-center ${
-                        transaction.status === 'success' 
-                          ? 'bg-emerald-50 text-emerald-600' 
-                          : 'bg-rose-50 text-rose-600'
-                      }`}
-                    >
-                      {transaction.status === 'success' ? (
-                        <CheckCircle className="w-5 h-5" strokeWidth={2.5} />
-                      ) : (
-                        <span className="text-xl font-bold">×</span>
-                      )}
+                    <div className={`w-11 h-11 rounded-xl flex items-center justify-center ${
+                      transaction.status === 'success'
+                        ? 'bg-emerald-50 text-emerald-600'
+                        : 'bg-rose-50 text-rose-600'
+                    }`}>
+                      {transaction.status === 'success'
+                        ? <CheckCircle className="w-5 h-5" strokeWidth={2.5} />
+                        : <span className="text-xl font-bold">×</span>}
                     </div>
                     <div>
                       <p className="text-sm font-semibold text-slate-900 group-hover:text-[#4682B4] transition-colors">
@@ -383,6 +391,7 @@ const HomeContent = () => {
                     </div>
                   </div>
                   <div className="text-right">
+                    {/* FIX: NPR consistently */}
                     <p className="text-sm font-semibold text-slate-900">
                       NPR {transaction.amount.toLocaleString()}
                     </p>

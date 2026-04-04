@@ -173,4 +173,39 @@ export const staffAPI = {
   }
 };
 
+// ── Menu Items API ────────────────────────────────────────────────────────────
+export const menuAPI = {
+  // Fetch all items — optional { search, category, status } filters
+  getMenuItems: async (params = {}) => {
+    const response = await api.get('/menu', { params });
+    return response.data;
+  },
+
+  // Fetch single item
+  getMenuItemById: async (id) => {
+    const response = await api.get(`/menu/${id}`);
+    return response.data;
+  },
+
+  // Create — payload shape:
+  // { name, itemCode, hsCode, price, category, menuGroup, menuSubGroup,
+  //   printType, addOns, status, image (base64), variants: [{name,price,cogs,...}] }
+  createMenuItem: async (data) => {
+    const response = await api.post('/menu', data);
+    return response.data;
+  },
+
+  // Update existing item by MongoDB _id
+  updateMenuItem: async (id, data) => {
+    const response = await api.put(`/menu/${id}`, data);
+    return response.data;
+  },
+
+  // Delete by MongoDB _id
+  deleteMenuItem: async (id) => {
+    const response = await api.delete(`/menu/${id}`);
+    return response.data;
+  },
+};
+
 export default api;

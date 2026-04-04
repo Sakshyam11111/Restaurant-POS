@@ -22,7 +22,6 @@ import UnitMaster from './master/unitmaster';
 import UnitMeasure from './master/UnitMeasure';
 import Zone from './master/Zone';
 import Table from './master/Table';
-import MenuItems from './master/MenuItems';
 import Employee from './master/Employee';
 import Settings from './contents/Settings';
 import Department from './master/Department';
@@ -33,6 +32,8 @@ import Printtype from './master/Printtype';
 import PrintSetting from './master/PrintSetting';
 import TableContent from './contents/order/TableContent';
 import OrderDetailPage from './contents/order/OrderDetailPage';
+import MenuItems from './master/menuitems/MenuItems';
+
 export default function Pos() {
   const navigate = useNavigate();
   const [isExpanded, setIsExpanded] = useState(true);
@@ -40,25 +41,25 @@ export default function Pos() {
   const [activeStep, setActiveStep] = useState(1);
 
   const steps = {
-    1: { id: 'home', component: HomeContent },
-    2: { id: 'pos', component: POSContent },
-    3: { id: 'tablecomponent', component: TableContent },
-    4: { id: 'orderdetail', component: OrderDetailPage },
-    5: { id: 'reports', component: ReportsContent },
-    6: { id: 'unit-master', component: UnitMaster },
-    7: { id: 'unit-measure', component: UnitMeasure },
-    8: { id: 'zone', component: Zone },
-    9: { id: 'table', component: Table },
-    10: { id: 'menu-items', component: MenuItems },
-    11: { id: 'employee', component: Employee },
-    12: { id: 'department', component: Department },
-    13: { id: 'designation', component: Designation },
-    14: { id: 'employeeshifts', component: Employeeshifts },
-    15: { id: 'employeeshiftsrotation', component: Employeeshiftsrotation },
-    16: { id: 'printtype', component: Printtype },
-    17: { id: 'printsetting', component: PrintSetting },
-    18: { id: 'settings', component: Settings },    
-    19: { id: 'posmenu', component: POSMenu },
+    1:  { id: 'home',                    component: HomeContent },
+    2:  { id: 'pos',                     component: POSContent },
+    3:  { id: 'tablecomponent',          component: TableContent },
+    4:  { id: 'orderdetail',             component: OrderDetailPage },
+    5:  { id: 'reports',                 component: ReportsContent },
+    6:  { id: 'unit-master',             component: UnitMaster },
+    7:  { id: 'unit-measure',            component: UnitMeasure },
+    8:  { id: 'zone',                    component: Zone },
+    9:  { id: 'table',                   component: Table },
+    10: { id: 'menu-items',              component: MenuItems },
+    11: { id: 'employee',                component: Employee },
+    12: { id: 'department',              component: Department },
+    13: { id: 'designation',             component: Designation },
+    14: { id: 'employeeshifts',          component: Employeeshifts },
+    15: { id: 'employeeshiftsrotation',  component: Employeeshiftsrotation },
+    16: { id: 'printtype',               component: Printtype },
+    17: { id: 'printsetting',            component: PrintSetting },
+    18: { id: 'settings',                component: Settings },
+    19: { id: 'posmenu',                 component: POSMenu },
   };
 
   const handleMenuClick = (id) => {
@@ -72,10 +73,7 @@ export default function Pos() {
         duration: 3000,
         position: 'top-center',
       });
-      setTimeout(() => {
-        navigate('/', { replace: true });
-      }, 800);
-
+      setTimeout(() => navigate('/', { replace: true }), 800);
       return;
     }
 
@@ -86,40 +84,43 @@ export default function Pos() {
     }
   };
 
+  // Exposed so child components (POSContent) can navigate within Pos
+  const navigateToStep = (id) => handleMenuClick(id);
+
   const activeId = steps[activeStep]?.id || 'home';
 
   const collapsedMenuItems = [
-    { id: 'home', icon: Home, label: 'Home' },
-    { id: 'pos', icon: Package, label: 'POS' },
-    { id: 'reports', icon: BarChart3, label: 'Reports' },
+    { id: 'home',     icon: Home,         label: 'Home' },
+    { id: 'pos',      icon: Package,      label: 'POS' },
+    { id: 'reports',  icon: BarChart3,    label: 'Reports' },
     { id: 'settings', icon: SettingsIcon, label: 'Settings' },
-    { id: 'logout', icon: LogOut, label: 'Logout' },
+    { id: 'logout',   icon: LogOut,       label: 'Logout' },
   ];
 
   const expandedMenuItems = [
-    { id: 'home', icon: Home, label: 'Home' },
-    { id: 'pos', icon: Package, label: 'POS' },
+    { id: 'home',    icon: Home,        label: 'Home' },
+    { id: 'pos',     icon: Package,     label: 'POS' },
     {
       id: 'master',
       icon: FolderOpen,
       label: 'Master',
       hasSubmenu: true,
       submenu: [
-        { id: 'unit-master', label: 'Unit Master' },
-        { id: 'unit-measure', label: 'Unit Measure' },
-        { id: 'zone', label: 'Zone' },
-        { id: 'table', label: 'Table' },
-        { id: 'menu-items', label: 'Menu Items' },
-        { id: 'employee', label: 'Employee' },
-        { id: 'department', label: 'Department' },
-        { id: 'designation', label: 'Designation' },
-        { id: 'employeeshifts', label: 'Employee Shifts' },
-        { id: 'employeeshiftsrotation', label: 'Employee Shifts Rotation' },
-        { id: 'printtype', label: 'Print Type' },
-        { id: 'printsetting', label: 'Print Setting' },
+        { id: 'unit-master',             label: 'Unit Master' },
+        { id: 'unit-measure',            label: 'Unit Measure' },
+        { id: 'zone',                    label: 'Zone' },
+        { id: 'table',                   label: 'Table' },
+        { id: 'menu-items',              label: 'Menu Items' },
+        { id: 'employee',                label: 'Employee' },
+        { id: 'department',              label: 'Department' },
+        { id: 'designation',             label: 'Designation' },
+        { id: 'employeeshifts',          label: 'Employee Shifts' },
+        { id: 'employeeshiftsrotation',  label: 'Employee Shifts Rotation' },
+        { id: 'printtype',               label: 'Print Type' },
+        { id: 'printsetting',            label: 'Print Setting' },
       ],
     },
-    { id: 'reports', icon: BarChart3, label: 'Reports' },
+    { id: 'reports',  icon: BarChart3,    label: 'Reports' },
     { id: 'settings', icon: SettingsIcon, label: 'Settings' },
   ];
 
@@ -132,6 +133,8 @@ export default function Pos() {
   return (
     <div className="flex h-screen bg-gray-50 overflow-hidden">
       <Toaster />
+
+      {/* ── Collapsed sidebar ─────────────────────────────────────── */}
       {!isExpanded && (
         <div className="w-20 bg-white border-r border-gray-200 flex flex-col items-center py-6 space-y-8">
           <div className="mb-4">
@@ -151,15 +154,15 @@ export default function Pos() {
           {collapsedMenuItems.map((item) => {
             const Icon = item.icon;
             const isActive = activeId === item.id;
-
             return (
               <button
                 key={item.id}
                 onClick={() => handleMenuClick(item.id)}
-                className={`p-3 rounded-xl transition-all duration-200 ${isActive && item.id !== 'logout'
-                  ? 'bg-blue-50 text-[#386184] shadow-sm'
-                  : 'text-gray-500 hover:text-gray-700 hover:bg-gray-100'
-                  } ${item.id === 'logout' ? 'mt-auto' : ''}`}
+                className={`p-3 rounded-xl transition-all duration-200 ${
+                  isActive && item.id !== 'logout'
+                    ? 'bg-blue-50 text-[#386184] shadow-sm'
+                    : 'text-gray-500 hover:text-gray-700 hover:bg-gray-100'
+                } ${item.id === 'logout' ? 'mt-auto' : ''}`}
                 data-tooltip-id="sidebar-tooltip"
                 data-tooltip-content={item.label}
                 data-tooltip-place="right"
@@ -171,6 +174,7 @@ export default function Pos() {
         </div>
       )}
 
+      {/* ── Expanded sidebar ──────────────────────────────────────── */}
       {isExpanded && (
         <div className="w-72 bg-white border-r border-gray-200 flex flex-col">
           <div className="p-6 border-b border-gray-100 flex items-center justify-between">
@@ -178,9 +182,6 @@ export default function Pos() {
             <button
               onClick={() => setIsExpanded(false)}
               className="p-2 rounded-lg text-gray-500 hover:text-gray-700 hover:bg-gray-100 transition-colors"
-              data-tooltip-id="sidebar-tooltip"
-              data-tooltip-content="Collapse sidebar"
-              data-tooltip-place="right"
             >
               <Menu size={20} />
             </button>
@@ -190,18 +191,15 @@ export default function Pos() {
             {expandedMenuItems.map((item) => {
               const Icon = item.icon;
               const isActive = activeId === item.id;
-
               return (
                 <div key={item.id}>
                   <button
                     onClick={() => handleMenuClick(item.id)}
-                    className={`w-full flex items-center justify-between px-4 py-3 rounded-xl mb-1 transition-colors ${isActive && !item.hasSubmenu
-                      ? 'bg-blue-50 text-[#386184] font-semibold'
-                      : 'text-gray-700 hover:bg-gray-100'
-                      }`}
-                    data-tooltip-id="sidebar-tooltip"
-                    data-tooltip-content={item.label}
-                    data-tooltip-place="right"
+                    className={`w-full flex items-center justify-between px-4 py-3 rounded-xl mb-1 transition-colors ${
+                      isActive && !item.hasSubmenu
+                        ? 'bg-blue-50 text-[#386184] font-semibold'
+                        : 'text-gray-700 hover:bg-gray-100'
+                    }`}
                   >
                     <div className="flex items-center gap-3">
                       <Icon size={20} strokeWidth={2} />
@@ -221,13 +219,11 @@ export default function Pos() {
                         <button
                           key={sub.id}
                           onClick={() => handleMenuClick(sub.id)}
-                          className={`w-full text-left px-4 py-2.5 rounded-lg text-sm transition-colors ${activeId === sub.id
-                            ? 'bg-blue-50 text-[#386184] font-medium'
-                            : 'text-gray-600 hover:bg-gray-50'
-                            }`}
-                          data-tooltip-id="sidebar-tooltip"
-                          data-tooltip-content={sub.label}
-                          data-tooltip-place="right"
+                          className={`w-full text-left px-4 py-2.5 rounded-lg text-sm transition-colors ${
+                            activeId === sub.id
+                              ? 'bg-blue-50 text-[#386184] font-medium'
+                              : 'text-gray-600 hover:bg-gray-50'
+                          }`}
                         >
                           {sub.label}
                         </button>
@@ -243,9 +239,6 @@ export default function Pos() {
             <button
               onClick={() => handleMenuClick('logout')}
               className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-gray-700 hover:bg-red-50 hover:text-red-700 transition-colors"
-              data-tooltip-id="sidebar-tooltip"
-              data-tooltip-content="Logout from system"
-              data-tooltip-place="right"
             >
               <LogOut size={20} strokeWidth={2} />
               <span className="font-medium">Logout</span>
@@ -254,8 +247,10 @@ export default function Pos() {
         </div>
       )}
 
+      {/* ── Main content ──────────────────────────────────────────── */}
       <div className="flex-1 overflow-auto bg-gray-50">
-        <SelectedContent />
+        {/* Pass navigateToStep so child components can trigger sidebar navigation */}
+        <SelectedContent navigateToStep={navigateToStep} />
       </div>
 
       <Tooltip

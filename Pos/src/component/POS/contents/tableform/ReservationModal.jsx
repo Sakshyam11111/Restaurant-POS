@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 const ReservationModal = ({
   isOpen,
@@ -8,6 +8,9 @@ const ReservationModal = ({
   setReservationData,
   selectedTableId,
 }) => {
+  // FIX: local submitting state to prevent double-submit
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   if (!isOpen) return null;
 
   const handleChange = (e) => {
@@ -16,6 +19,17 @@ const ReservationModal = ({
       ...prev,
       [name]: name === 'partySize' ? parseInt(value) || 1 : value,
     }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (isSubmitting) return;
+    setIsSubmitting(true);
+    try {
+      await onSubmit(e);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -27,10 +41,10 @@ const ReservationModal = ({
           </h3>
         </div>
 
-        <form onSubmit={onSubmit} className="p-6 space-y-4">
+        <div className="p-6 space-y-4">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
-              Guest Name *
+              Guest Name <span className="text-red-500">*</span>
             </label>
             <input
               type="text"
@@ -45,7 +59,7 @@ const ReservationModal = ({
 
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
-              Phone Number *
+              Phone Number <span className="text-red-500">*</span>
             </label>
             <input
               type="tel"
@@ -59,9 +73,7 @@ const ReservationModal = ({
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              Party Size
-            </label>
+            <label className="block text-sm font-medium text-gray-700 mb-2">Party Size</label>
             <input
               type="number"
               name="partySize"
@@ -85,22 +97,25 @@ const ReservationModal = ({
             />
           </div>
 
-          <div className="flex gap-3 pt-4">
+          <div className="flex gap-3 pt-2">
             <button
-              type="submit"
-              className="flex-1 bg-gradient-to-r from-[#487AA4] to-[#386184] text-white py-2.5 rounded-lg font-semibold hover:opacity-90 transition"
+              type="button"
+              onClick={handleSubmit}
+              disabled={isSubmitting || !reservationData.guestName || !reservationData.guestPhone}
+              className="flex-1 bg-gradient-to-r from-[#487AA4] to-[#386184] text-white py-2.5 rounded-lg font-semibold hover:opacity-90 transition disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              Confirm Reservation
+              {isSubmitting ? 'Reserving…' : 'Confirm Reservation'}
             </button>
             <button
               type="button"
               onClick={onClose}
-              className="flex-1 bg-gray-100 text-gray-700 py-2.5 rounded-lg font-semibold hover:bg-gray-200 transition"
+              disabled={isSubmitting}
+              className="flex-1 bg-gray-100 text-gray-700 py-2.5 rounded-lg font-semibold hover:bg-gray-200 transition disabled:opacity-50"
             >
               Cancel
             </button>
           </div>
-        </form>
+        </div>
       </div>
     </div>
   );
