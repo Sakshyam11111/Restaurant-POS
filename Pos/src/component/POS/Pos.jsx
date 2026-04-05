@@ -35,7 +35,6 @@ import OrderDetailPage from './contents/order/OrderDetailPage';
 import MenuItems from './master/menuitems/MenuItems';
 import { orderAPI, menuAPI } from '../../services/api';
 
-// ── Date range helpers ────────────────────────────────────────────────────────
 export const DATE_RANGES = [
   { key: 'today',       label: 'Today' },
   { key: 'yesterday',   label: 'Yesterday' },
@@ -45,10 +44,6 @@ export const DATE_RANGES = [
   { key: 'last_year',   label: 'Last Year' },
 ];
 
-/**
- * Returns { startDate, endDate } as ISO date strings (YYYY-MM-DD)
- * for the given range key.
- */
 export const getDateRange = (rangeKey) => {
   const now = new Date();
   const toISO = (d) => d.toISOString().split('T')[0];
@@ -66,7 +61,7 @@ export const getDateRange = (rangeKey) => {
     }
     case 'this_week': {
       const start = new Date(now);
-      start.setDate(now.getDate() - now.getDay()); // Sunday
+      start.setDate(now.getDate() - now.getDay());
       return { startDate: toISO(start), endDate: toISO(now) };
     }
     case 'this_month': {
@@ -90,11 +85,9 @@ export const getDateRange = (rangeKey) => {
   }
 };
 
-// ── Fetch & aggregate dashboard data for a given date range ──────────────────
 const buildDashboardData = async (rangeKey = 'today') => {
   const { startDate, endDate } = getDateRange(rangeKey);
 
-  // Fetch orders and menu items in parallel
   const [ordersRes, menuRes] = await Promise.allSettled([
     orderAPI.getOrders({ startDate, endDate }),
     menuAPI.getMenuItems(),
@@ -103,7 +96,6 @@ const buildDashboardData = async (rangeKey = 'today') => {
   const orders    = ordersRes.status === 'fulfilled' ? (ordersRes.value.data?.orders   || []) : [];
   const menuItems = menuRes.status   === 'fulfilled' ? (menuRes.value.data?.items       || []) : [];
 
-  // Build a price + category lookup keyed by normalised item name
   const menuPriceMap = {};
   menuItems.forEach((m) => {
     const key = (m.name || '').toLowerCase().trim();
@@ -119,13 +111,11 @@ const buildDashboardData = async (rangeKey = 'today') => {
     return partial ? menuPriceMap[partial] : null;
   };
 
-  // ── Basic KPIs ────────────────────────────────────────────────────────────
   const completedOrders  = orders.filter((o) => o.status === 'Served');
   const pendingOrders    = orders.filter((o) => ['Pending', 'Preparing', 'Ready'].includes(o.status));
   const cancelledOrders  = orders.filter((o) => o.status === 'Cancelled');
   const totalRevenue     = completedOrders.reduce((sum, o) => sum + (o.totalPrice || 0), 0);
 
-  // ── Order type distribution ───────────────────────────────────────────────
   const typeCounts = { 'Dine In': 0, 'Take Away': 0, Delivery: 0 };
   orders.forEach((o) => {
     const t = o.type || 'Dine In';
@@ -141,7 +131,6 @@ const buildDashboardData = async (rangeKey = 'today') => {
   const pctSum = categoryData.reduce((s, c) => s + c.value, 0);
   if (pctSum !== 100 && categoryData[0]) categoryData[0].value += (100 - pctSum);
 
-  // ── Top selling items ─────────────────────────────────────────────────────
   const itemMap = {};
   orders.forEach((o) => {
     (o.items || []).forEach((item) => {
@@ -171,7 +160,6 @@ const buildDashboardData = async (rangeKey = 'today') => {
     .sort((a, b) => b.qty - a.qty)
     .slice(0, 5);
 
-  // ── Recent transactions ───────────────────────────────────────────────────
   const recentTransactions = completedOrders
     .slice(-10)
     .reverse()
@@ -189,7 +177,6 @@ const buildDashboardData = async (rangeKey = 'today') => {
       status: 'success',
     }));
 
-  // ── Revenue chart bucketed by range ──────────────────────────────────────
   const monthlyRevenue = buildRevenueChart(orders, rangeKey);
 
   return {
@@ -206,19 +193,10 @@ const buildDashboardData = async (rangeKey = 'today') => {
   };
 };
 
-/**
- * Build a revenue chart appropriate for the selected range.
- * For today/yesterday → hourly buckets
- * For this_week → daily buckets (Mon–Sun)
- * For this_month → daily buckets
- * For last_6month → monthly buckets
- * For last_year → monthly buckets
- */
 const buildRevenueChart = (orders, rangeKey) => {
   const completedOrders = orders.filter((o) => o.status === 'Served');
 
   if (rangeKey === 'today' || rangeKey === 'yesterday') {
-    // Hourly buckets 0–23
     const buckets = Array.from({ length: 24 }, (_, h) => ({
       month: `${h.toString().padStart(2, '0')}:00`,
       value: 0,
@@ -245,7 +223,6 @@ const buildRevenueChart = (orders, rangeKey) => {
   }
 
   if (rangeKey === 'this_month') {
-    // Daily buckets for current month (up to 31)
     const now = new Date();
     const daysInMonth = new Date(now.getFullYear(), now.getMonth() + 1, 0).getDate();
     const buckets = Array.from({ length: daysInMonth }, (_, i) => ({
@@ -261,7 +238,6 @@ const buildRevenueChart = (orders, rangeKey) => {
     return buckets;
   }
 
-  // last_6month and last_year → monthly buckets
   const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
   const numMonths = rangeKey === 'last_6month' ? 6 : 12;
   const now = new Date();
@@ -286,7 +262,6 @@ export default function Pos() {
   const [isMasterOpen, setIsMasterOpen] = useState(true);
   const [activeStep, setActiveStep] = useState(1);
 
-  // ── Dashboard state ───────────────────────────────────────────────────────
   const [dashboardData, setDashboardData]           = useState(null);
   const [isLoadingDashboard, setIsLoadingDashboard] = useState(false);
   const [dashboardRange, setDashboardRange]         = useState('today');
@@ -312,7 +287,7 @@ export default function Pos() {
 
   useEffect(() => {
     if (activeStep === 1) loadDashboard(dashboardRange);
-  }, [activeStep]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [activeStep]);
 
   const steps = {
     1:  { id: 'home',                    component: HomeContent },
@@ -330,10 +305,10 @@ export default function Pos() {
     13: { id: 'designation',             component: Designation },
     14: { id: 'employeeshifts',          component: Employeeshifts },
     15: { id: 'employeeshiftsrotation',  component: Employeeshiftsrotation },
-    16: { id: 'printtype',              component: Printtype },
+    16: { id: 'printtype',               component: Printtype },
     17: { id: 'printsetting',            component: PrintSetting },
-    18: { id: 'settings',               component: Settings },
-    19: { id: 'posmenu',                component: POSMenu },
+    18: { id: 'settings',                component: Settings },
+    19: { id: 'posmenu',                 component: POSMenu },
   };
 
   const handleMenuClick = (id) => {
@@ -417,10 +392,9 @@ export default function Pos() {
   };
 
   return (
-    <div className="flex h-screen bg-gray-50 overflow-hidden">
+    <div className="flex h-screen bg-gray-50">
       <Toaster />
 
-      {/* Collapsed sidebar */}
       {!isExpanded && (
         <div className="w-20 bg-white border-r border-gray-200 flex flex-col items-center py-6 space-y-8">
           <div className="mb-4">
@@ -458,7 +432,6 @@ export default function Pos() {
         </div>
       )}
 
-      {/* Expanded sidebar */}
       {isExpanded && (
         <div className="w-72 bg-white border-r border-gray-200 flex flex-col">
           <div className="p-6 border-b border-gray-100 flex items-center justify-between">
@@ -528,8 +501,7 @@ export default function Pos() {
         </div>
       )}
 
-      {/* Main content */}
-      <div className="flex-1 overflow-auto bg-gray-50">
+      <div className="flex-1 overflow-y-auto min-h-0 bg-gray-50">
         {renderContent()}
       </div>
 

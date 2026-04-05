@@ -9,23 +9,13 @@ import OrderItemsSection from './OrderItemsSection';
 import CustomerAndPayment from './CustomerAndPayment';
 import EstimateInvoice from './EstimateInvoice';
 
-/**
- * FIX: previously only handled "Table #3" format.
- * Now handles all formats the app can produce:
- *   "Table #3"  → "3"
- *   "#3"        → "3"
- *   "3"         → "3"
- *   "T3"        → null  (non-numeric IDs — can't call endDining)
- */
 const extractTableId = (tableField) => {
   if (!tableField) return null;
   const str = String(tableField).trim();
 
-  // "#N" or "Table #N" or "Table#N"
   const hashMatch = str.match(/#(\d+)/);
   if (hashMatch) return hashMatch[1];
 
-  // Plain integer string
   if (/^\d+$/.test(str)) return str;
 
   return null;
@@ -139,27 +129,23 @@ const CheckoutPage = () => {
     setIsProcessing(true);
 
     try {
-      // 1. Mark order as Served
       await orderAPI.updateOrderStatus(order.id, { status: 'Served' });
 
-      // 2. Free the table — FIX: handles all table field formats reliably
       const tableId = extractTableId(order.table);
       if (tableId) {
         try {
           await tableAPI.endDining(tableId);
         } catch (tableErr) {
-          // Log but don't block — order is already marked Served
           console.warn(`Could not free table ${tableId}:`, tableErr.message);
           toast(`Order paid but table #${tableId} may need manual reset`, { icon: '⚠️' });
         }
       } else {
-        // FIX: warn if we couldn't parse the table ID — table won't auto-free
         console.warn('Could not parse table ID from:', order.table);
         toast(`Order paid — please manually free the table`, { icon: '⚠️' });
       }
 
       toast.success('Payment confirmed! Table is now free.', { duration: 3000, icon: '✅' });
-      setTimeout(() => navigate('/pos'), 1500);
+      setTimeout(() => navigate('/pos', { state: { servedOrderId: order.id } }), 1500);
     } catch (error) {
       console.error('Payment confirmation error:', error);
       toast.error('Failed to confirm payment. Please try again.');

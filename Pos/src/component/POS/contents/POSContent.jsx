@@ -11,8 +11,6 @@ const POSContent = () => {
   const [activeTab, setActiveTab] = useState('Table');
   const navigate = useNavigate();
   const [activeFloor, setActiveFloor] = useState('First Floor');
-
-  // FIX: activeFilter is now actually used to filter the tables grid
   const [activeFilter, setActiveFilter] = useState('All');
   const [openTableMenu, setOpenTableMenu] = useState(null);
   const [tables, setTables] = useState([]);
@@ -104,19 +102,16 @@ const POSContent = () => {
 
   const filters = ['All', 'Reservation', 'On Dine', 'Takeaway', 'Delivery', 'Split Table', 'Table Transfer'];
 
-  // FIX: actually filter tables based on activeFilter
   const getFilteredTables = () => {
     if (activeFilter === 'All') return tables;
 
     const filterMap = {
-      'Reservation':      'reserved',
-      'On Dine':          'on-dine',
-      'Split Table':      'split',
-      'Table Transfer':   'merge',
-      // Takeaway and Delivery are order types, not table statuses.
-      // We surface available tables for those modes.
-      'Takeaway':         'available',
-      'Delivery':         'available',
+      'Reservation':    'reserved',
+      'On Dine':        'on-dine',
+      'Split Table':    'split',
+      'Table Transfer': 'merge',
+      'Takeaway':       'available',
+      'Delivery':       'available',
     };
 
     const statusKey = filterMap[activeFilter];
@@ -219,8 +214,7 @@ const POSContent = () => {
   };
 
   return (
-    <div className="flex flex-col h-screen bg-white overflow-hidden">
-      {/* Tab Bar */}
+    <div className="flex flex-col h-full bg-white">
       <div className="border-b border-gray-200 px-6 pt-4">
         <div className="flex gap-1">
           {['Table', 'Orders', 'KOT'].map((tab) => (
@@ -239,16 +233,20 @@ const POSContent = () => {
         </div>
       </div>
 
-      {/* Orders Tab */}
-      {activeTab === 'Orders' && <OrderContent />}
+      {activeTab === 'Orders' && (
+        <div className="flex-1 overflow-y-auto min-h-0">
+          <OrderContent />
+        </div>
+      )}
 
-      {/* KOT Tab */}
-      {activeTab === 'KOT' && <KOTContent />}
+      {activeTab === 'KOT' && (
+        <div className="flex-1 overflow-y-auto min-h-0">
+          <KOTContent />
+        </div>
+      )}
 
-      {/* Table Tab */}
       {activeTab === 'Table' && (
-        <div className="flex flex-col flex-1 overflow-hidden">
-          {/* Filter bar */}
+        <div className="flex flex-col flex-1 min-h-0">
           <div className="px-6 py-3 border-b border-gray-200 flex flex-wrap items-center justify-between gap-3">
             <div className="flex flex-wrap gap-2">
               {filters.map((filter) => (
@@ -293,7 +291,6 @@ const POSContent = () => {
             </div>
           </div>
 
-          {/* Legend */}
           <div className="px-6 py-3 flex flex-wrap gap-x-8 gap-y-2 text-sm text-gray-600 bg-gray-50 border-b border-gray-200">
             {[
               { color: 'bg-blue-400',   label: 'Available' },
@@ -312,8 +309,7 @@ const POSContent = () => {
             </span>
           </div>
 
-          {/* Table grid */}
-          <div className="flex-1 p-8 overflow-auto bg-white relative">
+          <div className="flex-1 p-8 overflow-y-auto min-h-0 bg-white relative">
             {loading ? (
               <div className="flex items-center justify-center h-full">
                 <div className="text-center">
@@ -357,7 +353,6 @@ const POSContent = () => {
                         )}
                       </button>
 
-                      {/* Reservation tooltip */}
                       {isReserved && table.reservedBy && (
                         <div className="mt-3 bg-white rounded-lg shadow-sm border border-gray-200 p-3 text-xs w-40">
                           <div className="flex items-center gap-2 mb-1">
@@ -391,7 +386,6 @@ const POSContent = () => {
                         </div>
                       )}
 
-                      {/* Context menu */}
                       {openTableMenu === table.tableId && (
                         <div
                           className="absolute z-50 mt-2 w-52 bg-white rounded-lg shadow-xl border border-gray-200 py-1 text-sm font-medium text-gray-700"
