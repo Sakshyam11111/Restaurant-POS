@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-const EstimateInvoice = ({ order, orderItems, subtotal, discount, totalDue, onConfirmPay }) => {
+const EstimateInvoice = ({ order, orderItems, subtotal, discount, totalDue, onConfirmPay, isProcessing = false }) => {
   return (
     <div className="bg-white rounded-xl shadow-sm sticky top-6">
       <div className="bg-gray-50 px-6 py-4 border-b border-gray-200 rounded-t-xl">
@@ -82,12 +82,23 @@ const EstimateInvoice = ({ order, orderItems, subtotal, discount, totalDue, onCo
           <span className="text-lg font-bold text-gray-900">{totalDue.toFixed(2)}</span>
         </div>
         <motion.button
-          whileHover={{ scale: 1.02 }}
-          whileTap={{ scale: 0.98 }}
+          whileHover={{ scale: isProcessing ? 1 : 1.02 }}
+          whileTap={{ scale: isProcessing ? 1 : 0.98 }}
           onClick={onConfirmPay}
-          className="w-full py-3 bg-[#4A7BA7] text-white rounded-lg font-semibold hover:bg-[#3d6a92] transition-colors"
+          disabled={isProcessing}
+          className="w-full py-3 bg-[#4A7BA7] text-white rounded-lg font-semibold hover:bg-[#3d6a92] transition-colors disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center gap-2"
         >
-          Confirm Pay
+          {isProcessing ? (
+            <>
+              <svg className="animate-spin h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+              </svg>
+              Processing...
+            </>
+          ) : (
+            'Confirm Pay'
+          )}
         </motion.button>
       </div>
     </div>

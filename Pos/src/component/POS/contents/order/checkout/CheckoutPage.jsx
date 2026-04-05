@@ -3,11 +3,25 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ChevronLeft, Printer, Download } from 'lucide-react';
 import toast from 'react-hot-toast';
-import { orderAPI } from '../../../../../services/api';
+import { orderAPI, tableAPI } from '../../../../../services/api';
 
 import OrderItemsSection from './OrderItemsSection';
 import CustomerAndPayment from './CustomerAndPayment';
 import EstimateInvoice from './EstimateInvoice';
+
+// Extract a numeric/string table ID from whatever format is stored on the order.
+// order.table might be: "Table #3", "3", 3, "T1", etc.
+const extractTableId = (tableField) => {
+  if (!tableField) return null;
+  const str = String(tableField).trim();
+
+  // "Table #3" → "3"
+  const match = str.match(/#(\w+)/);
+  if (match) return match[1];
+
+  // Pure number string or plain id → return as-is
+  return str;
+};
 
 const CheckoutPage = () => {
   const navigate = useNavigate();
@@ -22,6 +36,7 @@ const CheckoutPage = () => {
     tenderAmount: '',
     changeAmount: ''
   });
+  const [isProcessing, setIsProcessing] = useState(false);
 
   if (!order) {
     navigate('/pos');
@@ -42,12 +57,7 @@ const CheckoutPage = () => {
       price = item.price || 0;
     }
 
-    return {
-      id: index + 1,
-      name: itemName,
-      quantity,
-      price
-    };
+    return { id: index + 1, name: itemName, quantity, price };
   }) || [];
 
   const subtotal = orderItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
@@ -84,7 +94,6 @@ const CheckoutPage = () => {
             <h1>ESTIMATE INVOICE</h1>
             <p style="margin: 10px 0; color: #666;">Thank you for your visit!</p>
           </div>
-
           <div class="order-info">
             <div>
               <div class="info-row"><span class="info-label">Date:</span><span>${new Date().toLocaleDateString()}</span></div>
@@ -97,12 +106,9 @@ const CheckoutPage = () => {
               <div class="info-row"><span class="info-label">Location:</span><span>Kathmandu, Nepal</span></div>
             </div>
           </div>
-
           <table class="items-table">
             <thead>
-              <tr>
-                <th>S.N.</th><th>Item</th><th>Qty</th><th>Rate</th><th>Discount</th><th>Item Total</th>
-              </tr>
+              <tr><th>S.N.</th><th>Item</th><th>Qty</th><th>Rate</th><th>Discount</th><th>Item Total</th></tr>
             </thead>
             <tbody>
               ${orderItems.map((item, index) => `
@@ -117,13 +123,11 @@ const CheckoutPage = () => {
               `).join('')}
             </tbody>
           </table>
-
           <div class="totals">
             <div class="totals-row"><span>Subtotal:</span><span>Rs ${subtotal.toFixed(2)}</span></div>
             <div class="totals-row"><span>Discount:</span><span>Rs ${discount.toFixed(2)}</span></div>
             <div class="totals-row total-due"><span>Total Due:</span><span>Rs ${totalDue.toFixed(2)}</span></div>
           </div>
-
           <div class="footer">
             <p><strong>Thank You !!!</strong></p>
             <p>Thank you for your visit! Visit again!!</p>
@@ -132,22 +136,42 @@ const CheckoutPage = () => {
         </body>
       </html>
     `;
-
     printWindow.document.write(printContent);
     printWindow.document.close();
     setTimeout(() => printWindow.print(), 250);
-    
     toast.success('Preparing invoice for print...');
   };
 
   const handleConfirmPay = async () => {
+    if (isProcessing) return;
+    setIsProcessing(true);
+
     try {
+      // 1. Mark the order as Served
       await orderAPI.updateOrderStatus(order.id, { status: 'Served' });
-      toast.success('Payment confirmed! Order completed.', { duration: 3000, icon: '✅' });
+
+      // 2. Free the table — extract the numeric/string ID from order.table
+      const tableId = extractTableId(order.table);
+      if (tableId) {
+        try {
+          await tableAPI.endDining(tableId);
+        } catch (tableErr) {
+          // Log but don't block the payment confirmation
+          console.warn(`Could not free table ${tableId}:`, tableErr.message);
+        }
+      }
+
+      toast.success('Payment confirmed! Table is now free.', {
+        duration: 3000,
+        icon: '✅',
+      });
+
       setTimeout(() => navigate('/pos'), 1500);
     } catch (error) {
       console.error('Payment confirmation error:', error);
       toast.error('Failed to confirm payment. Please try again.');
+    } finally {
+      setIsProcessing(false);
     }
   };
 
@@ -198,7 +222,6 @@ const CheckoutPage = () => {
               activeTab={activeTab}
               setActiveTab={setActiveTab}
             />
-
             <CustomerAndPayment
               customerInfo={customerInfo}
               setCustomerInfo={setCustomerInfo}
@@ -217,6 +240,7 @@ const CheckoutPage = () => {
               discount={discount}
               totalDue={totalDue}
               onConfirmPay={handleConfirmPay}
+              isProcessing={isProcessing}
             />
           </div>
         </div>

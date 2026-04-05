@@ -2,42 +2,29 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import {
   Home, CheckCircle, ShoppingBag, Clock, DollarSign,
-  ArrowUpRight, ArrowDownRight, TrendingUp
+  ArrowUpRight, ArrowDownRight, TrendingUp, RefreshCw
 } from 'lucide-react';
 
-// ── Attempt to pull real summary data; fall back gracefully ───────────────
-const fetchDashboardStats = async () => {
-  try {
-    // If your backend exposes a stats/summary endpoint, replace this import
-    const { orderAPI } = await import('../../../services/api');
-    const today = new Date().toISOString().split('T')[0];
-    const res = await orderAPI.getOrders({ date: today });
-    const orders = res.data?.orders || [];
+const HomeContent = ({ dashboardData, isLoadingDashboard, onRefresh }) => {
+  // dashboardData shape:
+  // {
+  //   totalSalesToday: number,
+  //   completedOrders: number,
+  //   totalExpenses: number,      // static / manual entry for now
+  //   pendingOrders: number,
+  //   todaysRevenue: number,
+  //   monthlyRevenue: [{ month, value }],
+  //   topSellingItems: [{ name, category, price, qty, revenue }],
+  //   recentTransactions: [{ name, orderId, payment, amount, time, status }],
+  //   categoryData: [{ name, value, color }],
+  // }
 
-    const completed = orders.filter((o) => o.status === 'Served').length;
-    const pending   = orders.filter((o) => ['Pending', 'Preparing', 'Ready'].includes(o.status)).length;
-    const totalRevenue = orders
-      .filter((o) => o.status === 'Served')
-      .reduce((sum, o) => sum + (o.totalPrice || 0), 0);
+  const data = dashboardData || {};
 
-    return { completed, pending, totalRevenue, total: orders.length };
-  } catch {
-    return null; // use mock data
-  }
-};
-
-const HomeContent = () => {
-  const [liveStats, setLiveStats] = useState(null);
-
-  useEffect(() => {
-    fetchDashboardStats().then(setLiveStats);
-  }, []);
-
-  // FIX: unified currency to Rs. / NPR throughout
   const statsCards = [
     {
       title: 'Total Sales Today',
-      value: liveStats ? liveStats.total : '1,245',
+      value: data.totalSalesToday ?? '—',
       change: '+5% from last month',
       isPositive: true,
       icon: Home,
@@ -45,7 +32,7 @@ const HomeContent = () => {
     },
     {
       title: 'Completed Orders',
-      value: liveStats ? liveStats.completed : '1,200',
+      value: data.completedOrders ?? '—',
       change: '+3% from last month',
       isPositive: true,
       icon: CheckCircle,
@@ -53,7 +40,7 @@ const HomeContent = () => {
     },
     {
       title: 'Total Expenses',
-      value: 'Rs. 2.4M',
+      value: data.totalExpenses != null ? `Rs. ${Number(data.totalExpenses).toLocaleString()}` : 'Rs. —',
       change: '-2% from last month',
       isPositive: false,
       icon: ShoppingBag,
@@ -61,7 +48,7 @@ const HomeContent = () => {
     },
     {
       title: 'Pending Orders',
-      value: liveStats ? liveStats.pending : '24',
+      value: data.pendingOrders ?? '—',
       change: '+15% from last month',
       isPositive: true,
       icon: Clock,
@@ -69,7 +56,9 @@ const HomeContent = () => {
     },
     {
       title: "Today's Revenue",
-      value: liveStats ? `Rs. ${liveStats.totalRevenue.toLocaleString()}` : 'Rs. 4.5M',
+      value: data.todaysRevenue != null
+        ? `Rs. ${Number(data.todaysRevenue).toLocaleString()}`
+        : 'Rs. —',
       change: '+12% from last month',
       isPositive: true,
       icon: DollarSign,
@@ -77,37 +66,22 @@ const HomeContent = () => {
     },
   ];
 
-  const monthlyRevenue = [
-    { month: 'Jan', value: 35 },
-    { month: 'Feb', value: 55 },
-    { month: 'Mar', value: 40 },
-    { month: 'Apr', value: 50 },
-    { month: 'May', value: 60 },
-    { month: 'Jun', value: 30 },
-    { month: 'Jul', value: 95 },
-    { month: 'Aug', value: 52 },
-    { month: 'Sep', value: 58 },
-    { month: 'Oct', value: 42 },
-    { month: 'Nov', value: 70 },
-    { month: 'Dec', value: 72 },
+  const monthlyRevenue = data.monthlyRevenue || [
+    { month: 'Jan', value: 35 }, { month: 'Feb', value: 55 },
+    { month: 'Mar', value: 40 }, { month: 'Apr', value: 50 },
+    { month: 'May', value: 60 }, { month: 'Jun', value: 30 },
+    { month: 'Jul', value: 95 }, { month: 'Aug', value: 52 },
+    { month: 'Sep', value: 58 }, { month: 'Oct', value: 42 },
+    { month: 'Nov', value: 70 }, { month: 'Dec', value: 72 },
   ];
 
-  const maxValue = Math.max(...monthlyRevenue.map((m) => m.value));
+  const maxValue = Math.max(...monthlyRevenue.map((m) => m.value), 1);
 
-  const topSellingItems = [
-    { name: 'Spicy Chicken Momos', category: 'Appetizer',   price: 250, qty: 450, revenue: 112500 },
-    { name: 'Classic Burger',       category: 'Main Course', price: 450, qty: 320, revenue: 144000 },
-    { name: 'Pepperoni Pizza',      category: 'Main Course', price: 800, qty: 210, revenue: 168000 },
-    { name: 'Mango Lassi',          category: 'Beverage',    price: 180, qty: 560, revenue: 100800 },
-  ];
+  const topSellingItems = data.topSellingItems || [];
 
-  const recentTransactions = [
-    { name: 'Aarav Shrestha',  orderId: 'ORD-209', payment: 'QR Payment', amount: 1250, time: 'Today, 10:40 AM', status: 'success' },
-    { name: 'Sita Gurung',     orderId: 'ORD-208', payment: 'Cash',       amount: 1250, time: 'Today, 10:30 AM', status: 'success' },
-    { name: 'Table 4 (Guest)', orderId: 'ORD-207', payment: 'Card',       amount: 1100, time: 'Today, 10:45 AM', status: 'failed'  },
-  ];
+  const recentTransactions = data.recentTransactions || [];
 
-  const categoryData = [
+  const categoryData = data.categoryData || [
     { name: 'Dine-In',     value: 40, color: '#4682B4' },
     { name: 'Takeaway',    value: 15, color: '#8B5CF6' },
     { name: 'Delivery',    value: 25, color: '#10B981' },
@@ -116,6 +90,8 @@ const HomeContent = () => {
 
   const total = categoryData.reduce((sum, item) => sum + item.value, 0);
   let currentAngle = -90;
+
+  const topCategory = categoryData.reduce((prev, curr) => curr.value > prev.value ? curr : prev, categoryData[0] || { name: '—', value: 0 });
 
   const cardVariants = {
     hidden: { opacity: 0, y: 20 },
@@ -130,9 +106,39 @@ const HomeContent = () => {
     visible: { opacity: 1, scale: 1, transition: { duration: 0.7, ease: 'easeOut' } },
   };
 
+  if (isLoadingDashboard) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#487AA4] mx-auto" />
+          <p className="mt-4 text-gray-500 text-sm">Loading dashboard...</p>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 p-6 lg:p-8">
       <div className="max-w-[1600px] mx-auto space-y-8">
+
+        {/* Header */}
+        <div className="flex items-center justify-between">
+          <div>
+            <h1 className="text-2xl font-semibold text-slate-900">Dashboard</h1>
+            <p className="text-sm text-slate-500 mt-0.5">
+              {new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}
+            </p>
+          </div>
+          {onRefresh && (
+            <button
+              onClick={onRefresh}
+              className="flex items-center gap-2 px-4 py-2 bg-white border border-gray-200 rounded-lg text-sm text-gray-600 hover:bg-gray-50 transition-colors shadow-sm"
+            >
+              <RefreshCw className="w-4 h-4" />
+              Refresh
+            </button>
+          )}
+        </div>
 
         {/* Stats Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-5">
@@ -261,8 +267,8 @@ const HomeContent = () => {
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="text-center">
                     <div className="text-xs font-medium text-slate-500 mb-1">Top</div>
-                    <div className="text-base font-semibold text-[#4682B4]">Dine-In</div>
-                    <div className="text-sm text-slate-600 mt-0.5">40%</div>
+                    <div className="text-base font-semibold text-[#4682B4]">{topCategory.name}</div>
+                    <div className="text-sm text-slate-600 mt-0.5">{topCategory.value}%</div>
                   </div>
                 </div>
               </div>
@@ -304,43 +310,50 @@ const HomeContent = () => {
                 <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
               </button>
             </div>
-            <div className="overflow-x-auto -mx-7 px-7">
-              <table className="w-full min-w-[520px]">
-                <thead>
-                  <tr className="border-b border-slate-200">
-                    {['Items', 'Category', 'Price', 'Qty', 'Revenue'].map((h) => (
-                      <th
-                        key={h}
-                        className={`text-xs font-semibold text-slate-600 uppercase tracking-wider pb-4 ${
-                          ['Price', 'Qty', 'Revenue'].includes(h) ? 'text-right' : 'text-left'
-                        }`}
-                      >
-                        {h}
-                      </th>
-                    ))}
-                  </tr>
-                </thead>
-                <tbody>
-                  {topSellingItems.map((item, index) => (
-                    <tr key={index} className="border-b border-slate-100 last:border-0 hover:bg-slate-50/50 transition-colors group">
-                      <td className="py-4">
-                        <div className="flex items-center gap-3">
-                          <div className="w-2 h-2 rounded-full bg-[#4682B4] opacity-0 group-hover:opacity-100 transition-opacity" />
-                          <span className="text-sm font-medium text-slate-900">{item.name}</span>
-                        </div>
-                      </td>
-                      <td className="py-4 text-sm text-slate-600">{item.category}</td>
-                      {/* FIX: unified to Rs. */}
-                      <td className="py-4 text-right text-sm font-medium text-slate-900">Rs. {item.price}</td>
-                      <td className="py-4 text-right text-sm font-medium text-slate-900">{item.qty}</td>
-                      <td className="py-4 text-right text-sm font-semibold text-[#4682B4]">
-                        Rs. {item.revenue.toLocaleString()}
-                      </td>
+
+            {topSellingItems.length === 0 ? (
+              <div className="flex flex-col items-center justify-center py-12 text-slate-400">
+                <ShoppingBag className="w-10 h-10 mb-3 opacity-40" />
+                <p className="text-sm">No sales data available yet</p>
+              </div>
+            ) : (
+              <div className="overflow-x-auto -mx-7 px-7">
+                <table className="w-full min-w-[520px]">
+                  <thead>
+                    <tr className="border-b border-slate-200">
+                      {['Items', 'Category', 'Price', 'Qty', 'Revenue'].map((h) => (
+                        <th
+                          key={h}
+                          className={`text-xs font-semibold text-slate-600 uppercase tracking-wider pb-4 ${
+                            ['Price', 'Qty', 'Revenue'].includes(h) ? 'text-right' : 'text-left'
+                          }`}
+                        >
+                          {h}
+                        </th>
+                      ))}
                     </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
+                  </thead>
+                  <tbody>
+                    {topSellingItems.map((item, index) => (
+                      <tr key={index} className="border-b border-slate-100 last:border-0 hover:bg-slate-50/50 transition-colors group">
+                        <td className="py-4">
+                          <div className="flex items-center gap-3">
+                            <div className="w-2 h-2 rounded-full bg-[#4682B4] opacity-0 group-hover:opacity-100 transition-opacity" />
+                            <span className="text-sm font-medium text-slate-900">{item.name}</span>
+                          </div>
+                        </td>
+                        <td className="py-4 text-sm text-slate-600">{item.category}</td>
+                        <td className="py-4 text-right text-sm font-medium text-slate-900">Rs. {item.price}</td>
+                        <td className="py-4 text-right text-sm font-medium text-slate-900">{item.qty}</td>
+                        <td className="py-4 text-right text-sm font-semibold text-[#4682B4]">
+                          Rs. {Number(item.revenue).toLocaleString()}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            )}
           </motion.div>
 
           {/* Recent Transactions */}
@@ -360,48 +373,60 @@ const HomeContent = () => {
                 <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
               </button>
             </div>
-            <div className="space-y-4">
-              {recentTransactions.map((transaction, index) => (
-                <motion.div
-                  key={index}
-                  className="group flex items-center justify-between p-4 rounded-xl hover:bg-slate-50/50 transition-all cursor-pointer border border-transparent hover:border-slate-200/60"
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.1 + 0.6 }}
-                >
-                  <div className="flex items-center gap-4">
-                    <div className={`w-11 h-11 rounded-xl flex items-center justify-center ${
-                      transaction.status === 'success'
-                        ? 'bg-emerald-50 text-emerald-600'
-                        : 'bg-rose-50 text-rose-600'
-                    }`}>
-                      {transaction.status === 'success'
-                        ? <CheckCircle className="w-5 h-5" strokeWidth={2.5} />
-                        : <span className="text-xl font-bold">×</span>}
+
+            {recentTransactions.length === 0 ? (
+              <div className="flex flex-col items-center justify-center py-12 text-slate-400">
+                <DollarSign className="w-10 h-10 mb-3 opacity-40" />
+                <p className="text-sm">No transactions today yet</p>
+              </div>
+            ) : (
+              <div className="space-y-4">
+                {recentTransactions.map((transaction, index) => (
+                  <motion.div
+                    key={index}
+                    className="group flex items-center justify-between p-4 rounded-xl hover:bg-slate-50/50 transition-all cursor-pointer border border-transparent hover:border-slate-200/60"
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: index * 0.1 + 0.6 }}
+                  >
+                    <div className="flex items-center gap-4">
+                      <div className={`w-11 h-11 rounded-xl flex items-center justify-center ${
+                        transaction.status === 'success' || transaction.status === 'Served'
+                          ? 'bg-emerald-50 text-emerald-600'
+                          : 'bg-rose-50 text-rose-600'
+                      }`}>
+                        {transaction.status === 'success' || transaction.status === 'Served'
+                          ? <CheckCircle className="w-5 h-5" strokeWidth={2.5} />
+                          : <span className="text-xl font-bold">×</span>}
+                      </div>
+                      <div>
+                        <p className="text-sm font-semibold text-slate-900 group-hover:text-[#4682B4] transition-colors">
+                          {transaction.name}
+                        </p>
+                        <p className="text-xs text-slate-500 mt-0.5">
+                          <span className="font-medium text-slate-600">{transaction.orderId}</span>
+                          {transaction.payment && (
+                            <>
+                              <span className="mx-1.5">•</span>
+                              {transaction.payment}
+                            </>
+                          )}
+                        </p>
+                      </div>
                     </div>
-                    <div>
-                      <p className="text-sm font-semibold text-slate-900 group-hover:text-[#4682B4] transition-colors">
-                        {transaction.name}
+                    <div className="text-right">
+                      <p className="text-sm font-semibold text-slate-900">
+                        NPR {Number(transaction.amount).toLocaleString()}
                       </p>
-                      <p className="text-xs text-slate-500 mt-0.5">
-                        <span className="font-medium text-slate-600">{transaction.orderId}</span>
-                        <span className="mx-1.5">•</span>
-                        {transaction.payment}
-                      </p>
+                      <p className="text-xs text-slate-500 mt-0.5">{transaction.time}</p>
                     </div>
-                  </div>
-                  <div className="text-right">
-                    {/* FIX: NPR consistently */}
-                    <p className="text-sm font-semibold text-slate-900">
-                      NPR {transaction.amount.toLocaleString()}
-                    </p>
-                    <p className="text-xs text-slate-500 mt-0.5">{transaction.time}</p>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
+                  </motion.div>
+                ))}
+              </div>
+            )}
           </motion.div>
         </div>
+
       </div>
     </div>
   );
