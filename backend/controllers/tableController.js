@@ -1,5 +1,5 @@
 // backend/controllers/tableController.js
-const Table = require("../models/Table");
+const Table = require('../models/Table');
 
 exports.initializeTables = async (req, res) => {
   try {
@@ -7,12 +7,15 @@ exports.initializeTables = async (req, res) => {
     if (tableCount === 0) {
       const tables = [];
       let tableCounter = 1;
-      const floors = ["First Floor", "Second Floor"];
+      const floors = ['First Floor', 'Second Floor'];
       floors.forEach((floor) => {
         for (let i = 0; i < 15; i++) {
           tables.push({
             tableId: tableCounter++,
-            status: "available",
+            tableName: `Table ${tableCounter - 1}`,
+            seatingCapacity: 4,
+            zone: 'Main Hall',
+            status: 'available',
             floor,
             createdBy: req.user?.userId,
           });
@@ -20,19 +23,19 @@ exports.initializeTables = async (req, res) => {
       });
       await Table.insertMany(tables);
       return res.status(201).json({
-        status: "success",
-        message: "Tables initialized successfully",
+        status: 'success',
+        message: 'Tables initialized successfully',
         data: { count: 30 },
       });
     }
     res.status(200).json({
-      status: "success",
-      message: "Tables already initialized",
+      status: 'success',
+      message: 'Tables already initialized',
       data: { count: tableCount },
     });
   } catch (error) {
-    console.error("Initialize Tables Error:", error);
-    res.status(500).json({ status: "error", message: "Failed to initialize tables" });
+    console.error('Initialize Tables Error:', error);
+    res.status(500).json({ status: 'error', message: 'Failed to initialize tables' });
   }
 };
 
@@ -42,13 +45,102 @@ exports.getAllTables = async (req, res) => {
     const filter = floor ? { floor } : {};
     const tables = await Table.find(filter).sort({ tableId: 1 });
     res.status(200).json({
-      status: "success",
+      status: 'success',
       results: tables.length,
       data: { tables },
     });
   } catch (error) {
-    console.error("Get Tables Error:", error);
-    res.status(500).json({ status: "error", message: "Failed to fetch tables" });
+    console.error('Get Tables Error:', error);
+    res.status(500).json({ status: 'error', message: 'Failed to fetch tables' });
+  }
+};
+
+// ── NEW: create a single table from the Master form ───────────────────────────
+exports.createTable = async (req, res) => {
+  try {
+    const { tableNumber, tableName, seatingCapacity, zone, floor } = req.body;
+
+    if (!tableNumber || !tableName) {
+      return res.status(400).json({
+        status: 'error',
+        message: 'Table number and table name are required',
+      });
+    }
+
+    const existing = await Table.findOne({ tableId: parseInt(tableNumber) });
+    if (existing) {
+      return res.status(400).json({
+        status: 'error',
+        message: `Table #${tableNumber} already exists`,
+      });
+    }
+
+    const table = await Table.create({
+      tableId:        parseInt(tableNumber),
+      tableName,
+      seatingCapacity: parseInt(seatingCapacity) || 2,
+      zone:            zone  || 'Main Hall',
+      floor:           floor || 'First Floor',
+      status:          'available',
+      createdBy:       req.user?.userId,
+    });
+
+    res.status(201).json({
+      status: 'success',
+      message: 'Table created successfully',
+      data: { table },
+    });
+  } catch (error) {
+    console.error('Create Table Error:', error);
+    res.status(500).json({ status: 'error', message: error.message || 'Failed to create table' });
+  }
+};
+
+// ── NEW: full update (name, capacity, zone, floor) from Master form ───────────
+exports.updateTable = async (req, res) => {
+  try {
+    const { tableId } = req.params;
+    const { tableName, seatingCapacity, zone, floor } = req.body;
+
+    const table = await Table.findOneAndUpdate(
+      { tableId: parseInt(tableId) },
+      {
+        tableName,
+        seatingCapacity: parseInt(seatingCapacity) || 2,
+        zone,
+        floor,
+        lastUpdatedBy: req.user?.userId,
+      },
+      { new: true, runValidators: true }
+    );
+
+    if (!table) {
+      return res.status(404).json({ status: 'error', message: 'Table not found' });
+    }
+
+    res.status(200).json({
+      status: 'success',
+      message: 'Table updated successfully',
+      data: { table },
+    });
+  } catch (error) {
+    console.error('Update Table Error:', error);
+    res.status(500).json({ status: 'error', message: 'Failed to update table' });
+  }
+};
+
+// ── NEW: delete a table from Master ──────────────────────────────────────────
+exports.deleteTable = async (req, res) => {
+  try {
+    const { tableId } = req.params;
+    const table = await Table.findOneAndDelete({ tableId: parseInt(tableId) });
+    if (!table) {
+      return res.status(404).json({ status: 'error', message: 'Table not found' });
+    }
+    res.status(200).json({ status: 'success', message: 'Table deleted successfully' });
+  } catch (error) {
+    console.error('Delete Table Error:', error);
+    res.status(500).json({ status: 'error', message: 'Failed to delete table' });
   }
 };
 
@@ -56,17 +148,17 @@ exports.updateTableStatus = async (req, res) => {
   try {
     const { tableId } = req.params;
     const { status, reservedBy } = req.body;
-    const validStatuses = ["available", "reserved", "on-dine", "split", "merge"];
+    const validStatuses = ['available', 'reserved', 'on-dine', 'split', 'merge'];
     if (!validStatuses.includes(status)) {
       return res.status(400).json({
-        status: "error",
-        message: `Status must be one of: ${validStatuses.join(", ")}`,
+        status: 'error',
+        message: `Status must be one of: ${validStatuses.join(', ')}`,
       });
     }
     const updateData = { status, lastUpdatedBy: req.user?.userId };
-    if (status === "reserved" && reservedBy) updateData.reservedBy = reservedBy;
-    if (status === "available") {
-      updateData.reservedBy = null;
+    if (status === 'reserved' && reservedBy) updateData.reservedBy = reservedBy;
+    if (status === 'available') {
+      updateData.reservedBy   = null;
       updateData.currentOrder = null;
     }
     const table = await Table.findOneAndUpdate(
@@ -74,11 +166,11 @@ exports.updateTableStatus = async (req, res) => {
       updateData,
       { new: true, runValidators: true }
     );
-    if (!table) return res.status(404).json({ status: "error", message: "Table not found" });
-    res.status(200).json({ status: "success", message: "Table status updated successfully", data: { table } });
+    if (!table) return res.status(404).json({ status: 'error', message: 'Table not found' });
+    res.status(200).json({ status: 'success', message: 'Table status updated successfully', data: { table } });
   } catch (error) {
-    console.error("Update Table Error:", error);
-    res.status(500).json({ status: "error", message: "Failed to update table status" });
+    console.error('Update Table Error:', error);
+    res.status(500).json({ status: 'error', message: 'Failed to update table status' });
   }
 };
 
@@ -87,21 +179,21 @@ exports.reserveTable = async (req, res) => {
     const { tableId } = req.params;
     const { guestName, guestPhone, reservationTime, partySize } = req.body;
     if (!guestName || !guestPhone) {
-      return res.status(400).json({ status: "error", message: "Guest name and phone are required" });
+      return res.status(400).json({ status: 'error', message: 'Guest name and phone are required' });
     }
     const table = await Table.findOne({ tableId: parseInt(tableId) });
-    if (!table) return res.status(404).json({ status: "error", message: "Table not found" });
-    if (table.status !== "available") {
-      return res.status(400).json({ status: "error", message: `Table is currently ${table.status}` });
+    if (!table) return res.status(404).json({ status: 'error', message: 'Table not found' });
+    if (table.status !== 'available') {
+      return res.status(400).json({ status: 'error', message: `Table is currently ${table.status}` });
     }
-    table.status = "reserved";
+    table.status     = 'reserved';
     table.reservedBy = { guestName, guestPhone, reservationTime: reservationTime || new Date(), partySize: partySize || 1 };
     table.lastUpdatedBy = req.user?.userId;
     await table.save();
-    res.status(200).json({ status: "success", message: "Table reserved successfully", data: { table } });
+    res.status(200).json({ status: 'success', message: 'Table reserved successfully', data: { table } });
   } catch (error) {
-    console.error("Reserve Table Error:", error);
-    res.status(500).json({ status: "error", message: "Failed to reserve table" });
+    console.error('Reserve Table Error:', error);
+    res.status(500).json({ status: 'error', message: 'Failed to reserve table' });
   }
 };
 
@@ -110,14 +202,14 @@ exports.cancelReservation = async (req, res) => {
     const { tableId } = req.params;
     const table = await Table.findOneAndUpdate(
       { tableId: parseInt(tableId) },
-      { status: "available", reservedBy: null, lastUpdatedBy: req.user?.userId },
+      { status: 'available', reservedBy: null, lastUpdatedBy: req.user?.userId },
       { new: true }
     );
-    if (!table) return res.status(404).json({ status: "error", message: "Table not found" });
-    res.status(200).json({ status: "success", message: "Reservation cancelled successfully", data: { table } });
+    if (!table) return res.status(404).json({ status: 'error', message: 'Table not found' });
+    res.status(200).json({ status: 'success', message: 'Reservation cancelled successfully', data: { table } });
   } catch (error) {
-    console.error("Cancel Reservation Error:", error);
-    res.status(500).json({ status: "error", message: "Failed to cancel reservation" });
+    console.error('Cancel Reservation Error:', error);
+    res.status(500).json({ status: 'error', message: 'Failed to cancel reservation' });
   }
 };
 
@@ -125,40 +217,38 @@ exports.startDining = async (req, res) => {
   try {
     const { tableId } = req.params;
     const table = await Table.findOne({ tableId: parseInt(tableId) });
-    if (!table) return res.status(404).json({ status: "error", message: "Table not found" });
-    if (table.status === "on-dine") {
-      return res.status(400).json({ status: "error", message: "Table is already in use" });
+    if (!table) return res.status(404).json({ status: 'error', message: 'Table not found' });
+    if (table.status === 'on-dine') {
+      return res.status(400).json({ status: 'error', message: 'Table is already in use' });
     }
-    table.status = "on-dine";
-    table.reservedBy = null;       // clear any reservation when dining starts
+    table.status        = 'on-dine';
+    table.reservedBy    = null;
     table.lastUpdatedBy = req.user?.userId;
     await table.save();
-    res.status(200).json({ status: "success", message: "Dining started successfully", data: { table } });
+    res.status(200).json({ status: 'success', message: 'Dining started successfully', data: { table } });
   } catch (error) {
-    console.error("Start Dining Error:", error);
-    res.status(500).json({ status: "error", message: "Failed to start dining" });
+    console.error('Start Dining Error:', error);
+    res.status(500).json({ status: 'error', message: 'Failed to start dining' });
   }
 };
 
-// FIX: new endpoint — called by orderController after creating an order
-// so currentOrder is actually written to the table document
 exports.linkOrderToTable = async (req, res) => {
   try {
     const { tableId } = req.params;
     const { orderId } = req.body;
     if (!orderId) {
-      return res.status(400).json({ status: "error", message: "orderId is required" });
+      return res.status(400).json({ status: 'error', message: 'orderId is required' });
     }
     const table = await Table.findOneAndUpdate(
       { tableId: parseInt(tableId) },
       { currentOrder: orderId, lastUpdatedBy: req.user?.userId },
       { new: true }
     );
-    if (!table) return res.status(404).json({ status: "error", message: "Table not found" });
-    res.status(200).json({ status: "success", message: "Order linked to table", data: { table } });
+    if (!table) return res.status(404).json({ status: 'error', message: 'Table not found' });
+    res.status(200).json({ status: 'success', message: 'Order linked to table', data: { table } });
   } catch (error) {
-    console.error("Link Order Error:", error);
-    res.status(500).json({ status: "error", message: "Failed to link order to table" });
+    console.error('Link Order Error:', error);
+    res.status(500).json({ status: 'error', message: 'Failed to link order to table' });
   }
 };
 
@@ -168,17 +258,17 @@ exports.endDining = async (req, res) => {
     const table = await Table.findOneAndUpdate(
       { tableId: parseInt(tableId) },
       {
-        status: "available",
-        reservedBy: null,
-        currentOrder: null,       // clears the linked order on checkout
-        lastUpdatedBy: req.user?.userId,
+        status:         'available',
+        reservedBy:     null,
+        currentOrder:   null,
+        lastUpdatedBy:  req.user?.userId,
       },
       { new: true }
     );
-    if (!table) return res.status(404).json({ status: "error", message: "Table not found" });
-    res.status(200).json({ status: "success", message: "Dining ended successfully", data: { table } });
+    if (!table) return res.status(404).json({ status: 'error', message: 'Table not found' });
+    res.status(200).json({ status: 'success', message: 'Dining ended successfully', data: { table } });
   } catch (error) {
-    console.error("End Dining Error:", error);
-    res.status(500).json({ status: "error", message: "Failed to end dining" });
+    console.error('End Dining Error:', error);
+    res.status(500).json({ status: 'error', message: 'Failed to end dining' });
   }
 };

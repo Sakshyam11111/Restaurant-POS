@@ -1,3 +1,4 @@
+// Pos/src/services/api.js
 import axios from 'axios';
 
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
@@ -78,11 +79,6 @@ export const authAPI = {
 };
 
 export const orderAPI = {
-  /**
-   * FIX: after creating an order, if a numeric tableId can be parsed,
-   * automatically link the new order's _id back into the Table document
-   * so Table.currentOrder is always populated.
-   */
   createOrder: async (data) => {
     const response = await api.post('/orders', data);
     const order = response.data?.data?.order;
@@ -93,7 +89,6 @@ export const orderAPI = {
         try {
           await api.post(`/tables/${numericId}/link-order`, { orderId: order._id });
         } catch (err) {
-          // Non-fatal — order was created successfully, link is best-effort
           console.warn('Could not link order to table:', err.message);
         }
       }
@@ -101,7 +96,6 @@ export const orderAPI = {
 
     return response.data;
   },
-
   getOrders: async (params = {}) => {
     const response = await api.get('/orders', { params });
     return response.data;
@@ -121,10 +115,27 @@ export const orderAPI = {
 };
 
 export const tableAPI = {
+  // ── Initialization ──────────────────────────────────────────────────────────
   initializeTables: async () => {
     const response = await api.post('/tables/initialize');
     return response.data;
   },
+
+  // ── Master CRUD (used by Table.jsx master page) ─────────────────────────────
+  createTable: async (data) => {
+    const response = await api.post('/tables', data);
+    return response.data;
+  },
+  updateTable: async (tableId, data) => {
+    const response = await api.put(`/tables/${tableId}`, data);
+    return response.data;
+  },
+  deleteTable: async (tableId) => {
+    const response = await api.delete(`/tables/${tableId}`);
+    return response.data;
+  },
+
+  // ── Operational (used by POSContent.jsx) ───────────────────────────────────
   getAllTables: async (floor) => {
     const params = floor ? { floor } : {};
     const response = await api.get('/tables', { params });
@@ -150,7 +161,6 @@ export const tableAPI = {
     const response = await api.post(`/tables/${tableId}/end-dining`);
     return response.data;
   },
-  // NEW: links an order _id to a table document after order creation
   linkOrderToTable: async (tableId, orderId) => {
     const response = await api.post(`/tables/${tableId}/link-order`, { orderId });
     return response.data;

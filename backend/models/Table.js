@@ -7,6 +7,21 @@ const tableSchema = new mongoose.Schema({
     required: [true, 'Table ID is required'],
     unique: true
   },
+  tableName: {
+    type: String,
+    trim: true,
+    default: ''
+  },
+  seatingCapacity: {
+    type: Number,
+    default: 2,
+    min: [1, 'Seating capacity must be at least 1']
+  },
+  zone: {
+    type: String,
+    trim: true,
+    default: 'Main Hall'
+  },
   status: {
     type: String,
     enum: ['available', 'reserved', 'on-dine', 'split', 'merge'],
