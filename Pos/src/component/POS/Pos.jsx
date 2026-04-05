@@ -35,18 +35,73 @@ import OrderDetailPage from './contents/order/OrderDetailPage';
 import MenuItems from './master/menuitems/MenuItems';
 import { orderAPI, menuAPI } from '../../services/api';
 
-// ── Fetch & aggregate today's dashboard data ─────────────────────────────────
-const buildDashboardData = async () => {
-  const today = new Date().toISOString().split('T')[0];
+// ── Date range helpers ────────────────────────────────────────────────────────
+export const DATE_RANGES = [
+  { key: 'today',       label: 'Today' },
+  { key: 'yesterday',   label: 'Yesterday' },
+  { key: 'this_week',   label: 'This Week' },
+  { key: 'this_month',  label: 'This Month' },
+  { key: 'last_6month', label: 'Last 6 Months' },
+  { key: 'last_year',   label: 'Last Year' },
+];
+
+/**
+ * Returns { startDate, endDate } as ISO date strings (YYYY-MM-DD)
+ * for the given range key.
+ */
+export const getDateRange = (rangeKey) => {
+  const now = new Date();
+  const toISO = (d) => d.toISOString().split('T')[0];
+
+  switch (rangeKey) {
+    case 'today': {
+      const d = toISO(now);
+      return { startDate: d, endDate: d };
+    }
+    case 'yesterday': {
+      const y = new Date(now);
+      y.setDate(y.getDate() - 1);
+      const d = toISO(y);
+      return { startDate: d, endDate: d };
+    }
+    case 'this_week': {
+      const start = new Date(now);
+      start.setDate(now.getDate() - now.getDay()); // Sunday
+      return { startDate: toISO(start), endDate: toISO(now) };
+    }
+    case 'this_month': {
+      const start = new Date(now.getFullYear(), now.getMonth(), 1);
+      return { startDate: toISO(start), endDate: toISO(now) };
+    }
+    case 'last_6month': {
+      const start = new Date(now);
+      start.setMonth(start.getMonth() - 6);
+      return { startDate: toISO(start), endDate: toISO(now) };
+    }
+    case 'last_year': {
+      const start = new Date(now);
+      start.setFullYear(start.getFullYear() - 1);
+      return { startDate: toISO(start), endDate: toISO(now) };
+    }
+    default: {
+      const d = toISO(now);
+      return { startDate: d, endDate: d };
+    }
+  }
+};
+
+// ── Fetch & aggregate dashboard data for a given date range ──────────────────
+const buildDashboardData = async (rangeKey = 'today') => {
+  const { startDate, endDate } = getDateRange(rangeKey);
 
   // Fetch orders and menu items in parallel
   const [ordersRes, menuRes] = await Promise.allSettled([
-    orderAPI.getOrders({ date: today }),
+    orderAPI.getOrders({ startDate, endDate }),
     menuAPI.getMenuItems(),
   ]);
 
-  const orders    = ordersRes.status    === 'fulfilled' ? (ordersRes.value.data?.orders   || []) : [];
-  const menuItems = menuRes.status      === 'fulfilled' ? (menuRes.value.data?.items       || []) : [];
+  const orders    = ordersRes.status === 'fulfilled' ? (ordersRes.value.data?.orders   || []) : [];
+  const menuItems = menuRes.status   === 'fulfilled' ? (menuRes.value.data?.items       || []) : [];
 
   // Build a price + category lookup keyed by normalised item name
   const menuPriceMap = {};
@@ -57,9 +112,7 @@ const buildDashboardData = async () => {
 
   const lookupMenu = (rawName) => {
     const key = (rawName || '').toLowerCase().trim();
-    // Exact match first
     if (menuPriceMap[key]) return menuPriceMap[key];
-    // Partial match fallback
     const partial = Object.keys(menuPriceMap).find(
       (k) => k.includes(key) || key.includes(k)
     );
@@ -67,11 +120,12 @@ const buildDashboardData = async () => {
   };
 
   // ── Basic KPIs ────────────────────────────────────────────────────────────
-  const completedOrders = orders.filter((o) => o.status === 'Served');
-  const pendingOrders   = orders.filter((o) => ['Pending', 'Preparing', 'Ready'].includes(o.status));
-  const totalRevenue    = completedOrders.reduce((sum, o) => sum + (o.totalPrice || 0), 0);
+  const completedOrders  = orders.filter((o) => o.status === 'Served');
+  const pendingOrders    = orders.filter((o) => ['Pending', 'Preparing', 'Ready'].includes(o.status));
+  const cancelledOrders  = orders.filter((o) => o.status === 'Cancelled');
+  const totalRevenue     = completedOrders.reduce((sum, o) => sum + (o.totalPrice || 0), 0);
 
-  // ── Order type distribution (for donut chart) ────────────────────────────
+  // ── Order type distribution ───────────────────────────────────────────────
   const typeCounts = { 'Dine In': 0, 'Take Away': 0, Delivery: 0 };
   orders.forEach((o) => {
     const t = o.type || 'Dine In';
@@ -80,9 +134,9 @@ const buildDashboardData = async () => {
   });
   const totalOrders = orders.length || 1;
   const categoryData = [
-    { name: 'Dine-In',  value: Math.round((typeCounts['Dine In']   / totalOrders) * 100), color: '#4682B4' },
-    { name: 'Takeaway', value: Math.round((typeCounts['Take Away']  / totalOrders) * 100), color: '#8B5CF6' },
-    { name: 'Delivery', value: Math.round((typeCounts['Delivery']   / totalOrders) * 100), color: '#10B981' },
+    { name: 'Dine-In',  value: Math.round((typeCounts['Dine In']  / totalOrders) * 100), color: '#4682B4' },
+    { name: 'Takeaway', value: Math.round((typeCounts['Take Away'] / totalOrders) * 100), color: '#8B5CF6' },
+    { name: 'Delivery', value: Math.round((typeCounts['Delivery']  / totalOrders) * 100), color: '#10B981' },
   ];
   const pctSum = categoryData.reduce((s, c) => s + c.value, 0);
   if (pctSum !== 100 && categoryData[0]) categoryData[0].value += (100 - pctSum);
@@ -91,13 +145,11 @@ const buildDashboardData = async () => {
   const itemMap = {};
   orders.forEach((o) => {
     (o.items || []).forEach((item) => {
-      // Support both string format "Chicken Momo ×2" and object format {name, quantity, price}
       const name = typeof item === 'string' ? item.split(' ×')[0].trim() : (item.name || '').trim();
       const qty  = typeof item === 'string'
         ? parseInt(item.split(' ×')[1]) || 1
         : item.quantity || 1;
 
-      // Price priority: 1) object item.price  2) menu API lookup  3) 0
       let price = 0;
       if (typeof item === 'object' && item.price > 0) {
         price = item.price;
@@ -112,7 +164,6 @@ const buildDashboardData = async () => {
       if (!itemMap[name]) itemMap[name] = { name, price, qty: 0, revenue: 0, category };
       itemMap[name].qty     += qty;
       itemMap[name].revenue += price * qty;
-      // Update price if we found a better one
       if (price > 0 && itemMap[name].price === 0) itemMap[name].price = price;
     });
   });
@@ -120,17 +171,17 @@ const buildDashboardData = async () => {
     .sort((a, b) => b.qty - a.qty)
     .slice(0, 5);
 
-  // ── Recent transactions (last 10 served orders) ──────────────────────────
+  // ── Recent transactions ───────────────────────────────────────────────────
   const recentTransactions = completedOrders
     .slice(-10)
     .reverse()
     .map((o) => ({
       name:    o.table ? `Table ${o.table}` : 'Guest',
       orderId: o.kot || o.id,
-      payment: 'Cash',          // payment method not stored yet; placeholder
+      payment: 'Cash',
       amount:  o.totalPrice || 0,
-      time:    o.time || o.createdAt
-        ? new Date(o.createdAt || Date.now()).toLocaleString('en-US', {
+      time:    o.createdAt
+        ? new Date(o.createdAt).toLocaleString('en-US', {
             month: 'short', day: 'numeric',
             hour: '2-digit', minute: '2-digit',
           })
@@ -138,27 +189,95 @@ const buildDashboardData = async () => {
       status: 'success',
     }));
 
-  // ── Monthly revenue (build from all orders if endpoint supports no date) ──
-  // We keep static placeholders for months we cannot query in one call,
-  // and overlay today's actual revenue on the current month.
-  const currentMonth = new Date().getMonth(); // 0-indexed
-  const monthNames   = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-  const monthlyRevenue = monthNames.map((month, i) => ({
-    month,
-    value: i === currentMonth ? Math.round(totalRevenue / 100) || 1 : Math.floor(Math.random() * 80 + 20),
-  }));
+  // ── Revenue chart bucketed by range ──────────────────────────────────────
+  const monthlyRevenue = buildRevenueChart(orders, rangeKey);
 
   return {
     totalSalesToday:   orders.length,
     completedOrders:   completedOrders.length,
-    totalExpenses:     0,          // no expense API yet
+    cancelledOrders:   cancelledOrders.length,
     pendingOrders:     pendingOrders.length,
     todaysRevenue:     totalRevenue,
     monthlyRevenue,
     topSellingItems,
     recentTransactions,
     categoryData,
+    rangeKey,
   };
+};
+
+/**
+ * Build a revenue chart appropriate for the selected range.
+ * For today/yesterday → hourly buckets
+ * For this_week → daily buckets (Mon–Sun)
+ * For this_month → daily buckets
+ * For last_6month → monthly buckets
+ * For last_year → monthly buckets
+ */
+const buildRevenueChart = (orders, rangeKey) => {
+  const completedOrders = orders.filter((o) => o.status === 'Served');
+
+  if (rangeKey === 'today' || rangeKey === 'yesterday') {
+    // Hourly buckets 0–23
+    const buckets = Array.from({ length: 24 }, (_, h) => ({
+      month: `${h.toString().padStart(2, '0')}:00`,
+      value: 0,
+    }));
+    completedOrders.forEach((o) => {
+      if (o.createdAt) {
+        const h = new Date(o.createdAt).getHours();
+        buckets[h].value += o.totalPrice || 0;
+      }
+    });
+    return buckets;
+  }
+
+  if (rangeKey === 'this_week') {
+    const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+    const buckets = days.map((d) => ({ month: d, value: 0 }));
+    completedOrders.forEach((o) => {
+      if (o.createdAt) {
+        const dow = new Date(o.createdAt).getDay();
+        buckets[dow].value += o.totalPrice || 0;
+      }
+    });
+    return buckets;
+  }
+
+  if (rangeKey === 'this_month') {
+    // Daily buckets for current month (up to 31)
+    const now = new Date();
+    const daysInMonth = new Date(now.getFullYear(), now.getMonth() + 1, 0).getDate();
+    const buckets = Array.from({ length: daysInMonth }, (_, i) => ({
+      month: String(i + 1),
+      value: 0,
+    }));
+    completedOrders.forEach((o) => {
+      if (o.createdAt) {
+        const day = new Date(o.createdAt).getDate() - 1;
+        if (day >= 0 && day < daysInMonth) buckets[day].value += o.totalPrice || 0;
+      }
+    });
+    return buckets;
+  }
+
+  // last_6month and last_year → monthly buckets
+  const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  const numMonths = rangeKey === 'last_6month' ? 6 : 12;
+  const now = new Date();
+  const buckets = [];
+  for (let i = numMonths - 1; i >= 0; i--) {
+    const d = new Date(now.getFullYear(), now.getMonth() - i, 1);
+    buckets.push({ month: monthNames[d.getMonth()], value: 0, _year: d.getFullYear(), _month: d.getMonth() });
+  }
+  completedOrders.forEach((o) => {
+    if (o.createdAt) {
+      const d = new Date(o.createdAt);
+      const bucket = buckets.find((b) => b._year === d.getFullYear() && b._month === d.getMonth());
+      if (bucket) bucket.value += o.totalPrice || 0;
+    }
+  });
+  return buckets;
 };
 
 export default function Pos() {
@@ -167,27 +286,33 @@ export default function Pos() {
   const [isMasterOpen, setIsMasterOpen] = useState(true);
   const [activeStep, setActiveStep] = useState(1);
 
-  // ── Dashboard data state ──────────────────────────────────────────────────
+  // ── Dashboard state ───────────────────────────────────────────────────────
   const [dashboardData, setDashboardData]           = useState(null);
   const [isLoadingDashboard, setIsLoadingDashboard] = useState(false);
+  const [dashboardRange, setDashboardRange]         = useState('today');
 
-  const loadDashboard = useCallback(async () => {
+  const loadDashboard = useCallback(async (rangeKey) => {
+    const range = rangeKey || dashboardRange;
     setIsLoadingDashboard(true);
     try {
-      const data = await buildDashboardData();
+      const data = await buildDashboardData(range);
       setDashboardData(data);
     } catch (err) {
-      console.warn('Dashboard fetch failed, using empty state:', err.message);
+      console.warn('Dashboard fetch failed:', err.message);
       setDashboardData(null);
     } finally {
       setIsLoadingDashboard(false);
     }
-  }, []);
+  }, [dashboardRange]);
 
-  // Load whenever home tab is activated
+  const handleRangeChange = useCallback((rangeKey) => {
+    setDashboardRange(rangeKey);
+    loadDashboard(rangeKey);
+  }, [loadDashboard]);
+
   useEffect(() => {
-    if (activeStep === 1) loadDashboard();
-  }, [activeStep, loadDashboard]);
+    if (activeStep === 1) loadDashboard(dashboardRange);
+  }, [activeStep]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const steps = {
     1:  { id: 'home',                    component: HomeContent },
@@ -205,10 +330,10 @@ export default function Pos() {
     13: { id: 'designation',             component: Designation },
     14: { id: 'employeeshifts',          component: Employeeshifts },
     15: { id: 'employeeshiftsrotation',  component: Employeeshiftsrotation },
-    16: { id: 'printtype',               component: Printtype },
+    16: { id: 'printtype',              component: Printtype },
     17: { id: 'printsetting',            component: PrintSetting },
-    18: { id: 'settings',                component: Settings },
-    19: { id: 'posmenu',                 component: POSMenu },
+    18: { id: 'settings',               component: Settings },
+    19: { id: 'posmenu',                component: POSMenu },
   };
 
   const handleMenuClick = (id) => {
@@ -216,16 +341,11 @@ export default function Pos() {
       setIsMasterOpen((prev) => !prev);
       return;
     }
-
     if (id === 'logout') {
-      toast.success('Logged out successfully', {
-        duration: 3000,
-        position: 'top-center',
-      });
+      toast.success('Logged out successfully', { duration: 3000, position: 'top-center' });
       setTimeout(() => navigate('/', { replace: true }), 800);
       return;
     }
-
     const stepEntry = Object.entries(steps).find(([, item]) => item.id === id);
     if (stepEntry) {
       const [stepNumber] = stepEntry;
@@ -234,7 +354,6 @@ export default function Pos() {
   };
 
   const navigateToStep = (id) => handleMenuClick(id);
-
   const activeId = steps[activeStep]?.id || 'home';
 
   const collapsedMenuItems = [
@@ -254,25 +373,24 @@ export default function Pos() {
       label: 'Master',
       hasSubmenu: true,
       submenu: [
-        { id: 'unit-master',             label: 'Unit Master' },
-        { id: 'unit-measure',            label: 'Unit Measure' },
-        { id: 'zone',                    label: 'Zone' },
-        { id: 'table',                   label: 'Table' },
-        { id: 'menu-items',              label: 'Menu Items' },
-        { id: 'employee',                label: 'Employee' },
-        { id: 'department',              label: 'Department' },
-        { id: 'designation',             label: 'Designation' },
-        { id: 'employeeshifts',          label: 'Employee Shifts' },
-        { id: 'employeeshiftsrotation',  label: 'Employee Shifts Rotation' },
-        { id: 'printtype',               label: 'Print Type' },
-        { id: 'printsetting',            label: 'Print Setting' },
+        { id: 'unit-master',            label: 'Unit Master' },
+        { id: 'unit-measure',           label: 'Unit Measure' },
+        { id: 'zone',                   label: 'Zone' },
+        { id: 'table',                  label: 'Table' },
+        { id: 'menu-items',             label: 'Menu Items' },
+        { id: 'employee',               label: 'Employee' },
+        { id: 'department',             label: 'Department' },
+        { id: 'designation',            label: 'Designation' },
+        { id: 'employeeshifts',         label: 'Employee Shifts' },
+        { id: 'employeeshiftsrotation', label: 'Employee Shifts Rotation' },
+        { id: 'printtype',              label: 'Print Type' },
+        { id: 'printsetting',           label: 'Print Setting' },
       ],
     },
     { id: 'reports',  icon: BarChart3,    label: 'Reports' },
     { id: 'settings', icon: SettingsIcon, label: 'Settings' },
   ];
 
-  // ── Render the active content with appropriate props ──────────────────────
   const renderContent = () => {
     const step = steps[activeStep];
     if (!step) return (
@@ -286,8 +404,10 @@ export default function Pos() {
         <HomeContent
           dashboardData={dashboardData}
           isLoadingDashboard={isLoadingDashboard}
-          onRefresh={loadDashboard}
+          onRefresh={() => loadDashboard(dashboardRange)}
           navigateToStep={navigateToStep}
+          dashboardRange={dashboardRange}
+          onRangeChange={handleRangeChange}
         />
       );
     }
@@ -300,13 +420,12 @@ export default function Pos() {
     <div className="flex h-screen bg-gray-50 overflow-hidden">
       <Toaster />
 
-      {/* ── Collapsed sidebar ─────────────────────────────────────── */}
+      {/* Collapsed sidebar */}
       {!isExpanded && (
         <div className="w-20 bg-white border-r border-gray-200 flex flex-col items-center py-6 space-y-8">
           <div className="mb-4">
             <img src={Logo} alt="Logo" className="w-12 h-12 object-contain" />
           </div>
-
           <button
             onClick={() => setIsExpanded(true)}
             className="p-3 rounded-xl text-gray-500 hover:text-gray-700 hover:bg-gray-100 transition-colors"
@@ -316,7 +435,6 @@ export default function Pos() {
           >
             <Menu size={24} strokeWidth={2} />
           </button>
-
           {collapsedMenuItems.map((item) => {
             const Icon = item.icon;
             const isActive = activeId === item.id;
@@ -340,7 +458,7 @@ export default function Pos() {
         </div>
       )}
 
-      {/* ── Expanded sidebar ──────────────────────────────────────── */}
+      {/* Expanded sidebar */}
       {isExpanded && (
         <div className="w-72 bg-white border-r border-gray-200 flex flex-col">
           <div className="p-6 border-b border-gray-100 flex items-center justify-between">
@@ -352,7 +470,6 @@ export default function Pos() {
               <Menu size={20} />
             </button>
           </div>
-
           <nav className="flex-1 px-3 py-6 overflow-y-auto">
             {expandedMenuItems.map((item) => {
               const Icon = item.icon;
@@ -378,7 +495,6 @@ export default function Pos() {
                       />
                     )}
                   </button>
-
                   {item.hasSubmenu && isMasterOpen && (
                     <div className="ml-9 space-y-1 mt-1 mb-3">
                       {item.submenu.map((sub) => (
@@ -400,7 +516,6 @@ export default function Pos() {
               );
             })}
           </nav>
-
           <div className="p-4 border-t border-gray-100">
             <button
               onClick={() => handleMenuClick('logout')}
@@ -413,7 +528,7 @@ export default function Pos() {
         </div>
       )}
 
-      {/* ── Main content ──────────────────────────────────────────── */}
+      {/* Main content */}
       <div className="flex-1 overflow-auto bg-gray-50">
         {renderContent()}
       </div>

@@ -1,31 +1,42 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 import {
   Home, CheckCircle, ShoppingBag, Clock, DollarSign,
-  ArrowUpRight, ArrowDownRight, TrendingUp, RefreshCw
+  ArrowUpRight, ArrowDownRight, TrendingUp, RefreshCw, Calendar
 } from 'lucide-react';
+const DATE_RANGES = [
+  { key: 'today',       label: 'Today' },
+  { key: 'yesterday',   label: 'Yesterday' },
+  { key: 'this_week',   label: 'This Week' },
+  { key: 'this_month',  label: 'This Month' },
+  { key: 'last_6month', label: 'Last 6 Months' },
+  { key: 'last_year',   label: 'Last Year' },
+];
 
-const HomeContent = ({ dashboardData, isLoadingDashboard, onRefresh }) => {
-  // dashboardData shape:
-  // {
-  //   totalSalesToday: number,
-  //   completedOrders: number,
-  //   totalExpenses: number,      // static / manual entry for now
-  //   pendingOrders: number,
-  //   todaysRevenue: number,
-  //   monthlyRevenue: [{ month, value }],
-  //   topSellingItems: [{ name, category, price, qty, revenue }],
-  //   recentTransactions: [{ name, orderId, payment, amount, time, status }],
-  //   categoryData: [{ name, value, color }],
-  // }
-
+const HomeContent = ({
+  dashboardData,
+  isLoadingDashboard,
+  onRefresh,
+  dashboardRange = 'today',
+  onRangeChange,
+}) => {
   const data = dashboardData || {};
+
+  // ── Label shown inside chart ──────────────────────────────────────────────
+  const chartLabel = {
+    today:       'Hourly Revenue (Today)',
+    yesterday:   'Hourly Revenue (Yesterday)',
+    this_week:   'Daily Revenue (This Week)',
+    this_month:  'Daily Revenue (This Month)',
+    last_6month: 'Monthly Revenue (Last 6 Months)',
+    last_year:   'Monthly Revenue (Last Year)',
+  }[dashboardRange] || 'Revenue';
 
   const statsCards = [
     {
-      title: 'Total Sales Today',
+      title: 'Total Sales',
       value: data.totalSalesToday ?? '—',
-      change: '+5% from last month',
+      change: '+5% from prev period',
       isPositive: true,
       icon: Home,
       bgColor: 'bg-blue-50',
@@ -33,15 +44,15 @@ const HomeContent = ({ dashboardData, isLoadingDashboard, onRefresh }) => {
     {
       title: 'Completed Orders',
       value: data.completedOrders ?? '—',
-      change: '+3% from last month',
+      change: '+3% from prev period',
       isPositive: true,
       icon: CheckCircle,
       bgColor: 'bg-emerald-50',
     },
     {
-      title: 'Total Expenses',
-      value: data.totalExpenses != null ? `Rs. ${Number(data.totalExpenses).toLocaleString()}` : 'Rs. —',
-      change: '-2% from last month',
+      title: 'Cancelled Orders',
+      value: data.cancelledOrders ?? '—',
+      change: '-2% from prev period',
       isPositive: false,
       icon: ShoppingBag,
       bgColor: 'bg-amber-50',
@@ -49,17 +60,17 @@ const HomeContent = ({ dashboardData, isLoadingDashboard, onRefresh }) => {
     {
       title: 'Pending Orders',
       value: data.pendingOrders ?? '—',
-      change: '+15% from last month',
+      change: '+15% from prev period',
       isPositive: true,
       icon: Clock,
       bgColor: 'bg-violet-50',
     },
     {
-      title: "Today's Revenue",
+      title: 'Revenue',
       value: data.todaysRevenue != null
         ? `Rs. ${Number(data.todaysRevenue).toLocaleString()}`
         : 'Rs. —',
-      change: '+12% from last month',
+      change: '+12% from prev period',
       isPositive: true,
       icon: DollarSign,
       bgColor: 'bg-teal-50',
@@ -76,9 +87,7 @@ const HomeContent = ({ dashboardData, isLoadingDashboard, onRefresh }) => {
   ];
 
   const maxValue = Math.max(...monthlyRevenue.map((m) => m.value), 1);
-
-  const topSellingItems = data.topSellingItems || [];
-
+  const topSellingItems    = data.topSellingItems    || [];
   const recentTransactions = data.recentTransactions || [];
 
   const categoryData = data.categoryData || [
@@ -90,8 +99,10 @@ const HomeContent = ({ dashboardData, isLoadingDashboard, onRefresh }) => {
 
   const total = categoryData.reduce((sum, item) => sum + item.value, 0);
   let currentAngle = -90;
-
-  const topCategory = categoryData.reduce((prev, curr) => curr.value > prev.value ? curr : prev, categoryData[0] || { name: '—', value: 0 });
+  const topCategory = categoryData.reduce(
+    (prev, curr) => curr.value > prev.value ? curr : prev,
+    categoryData[0] || { name: '—', value: 0 }
+  );
 
   const cardVariants = {
     hidden: { opacity: 0, y: 20 },
@@ -121,26 +132,48 @@ const HomeContent = ({ dashboardData, isLoadingDashboard, onRefresh }) => {
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 p-6 lg:p-8">
       <div className="max-w-[1600px] mx-auto space-y-8">
 
-        {/* Header */}
-        <div className="flex items-center justify-between">
+        {/* ── Header ─────────────────────────────────────────────────────── */}
+        <div className="flex flex-wrap items-center justify-between gap-4">
           <div>
             <h1 className="text-2xl font-semibold text-slate-900">Dashboard</h1>
             <p className="text-sm text-slate-500 mt-0.5">
-              {new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}
+              {new Date().toLocaleDateString('en-US', {
+                weekday: 'long', year: 'numeric', month: 'long', day: 'numeric',
+              })}
             </p>
           </div>
-          {onRefresh && (
-            <button
-              onClick={onRefresh}
-              className="flex items-center gap-2 px-4 py-2 bg-white border border-gray-200 rounded-lg text-sm text-gray-600 hover:bg-gray-50 transition-colors shadow-sm"
-            >
-              <RefreshCw className="w-4 h-4" />
-              Refresh
-            </button>
-          )}
+
+          <div className="flex flex-wrap items-center gap-3">
+            {/* ── Date range dropdown ─────────────────────────────────────── */}
+            <div className="flex items-center gap-2 bg-white border border-gray-200 rounded-lg px-3 py-2 shadow-sm">
+              <Calendar className="w-4 h-4 text-gray-400 shrink-0" />
+              <select
+                value={dashboardRange}
+                onChange={(e) => onRangeChange?.(e.target.value)}
+                className="text-sm font-medium text-gray-700 bg-transparent border-0 outline-none cursor-pointer pr-1"
+              >
+                {DATE_RANGES.map((range) => (
+                  <option key={range.key} value={range.key}>
+                    {range.label}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            {/* ── Refresh ─────────────────────────────────────────────────── */}
+            {onRefresh && (
+              <button
+                onClick={onRefresh}
+                className="flex items-center gap-2 px-4 py-2 bg-white border border-gray-200 rounded-lg text-sm text-gray-600 hover:bg-gray-50 transition-colors shadow-sm"
+              >
+                <RefreshCw className="w-4 h-4" />
+                Refresh
+              </button>
+            )}
+          </div>
         </div>
 
-        {/* Stats Cards */}
+        {/* ── Stats Cards ────────────────────────────────────────────────── */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-5">
           {statsCards.map((stat, index) => {
             const Icon = stat.icon;
@@ -176,9 +209,9 @@ const HomeContent = ({ dashboardData, isLoadingDashboard, onRefresh }) => {
           })}
         </div>
 
-        {/* Charts Section */}
+        {/* ── Charts Section ─────────────────────────────────────────────── */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          {/* Monthly Revenue */}
+          {/* Revenue chart */}
           <motion.div
             className="lg:col-span-2 bg-white rounded-2xl p-7 shadow-sm border border-slate-200/60"
             variants={chartVariants}
@@ -187,31 +220,45 @@ const HomeContent = ({ dashboardData, isLoadingDashboard, onRefresh }) => {
           >
             <div className="flex items-center justify-between mb-8">
               <div>
-                <h2 className="text-lg font-semibold text-slate-900">Monthly Revenue</h2>
-                <p className="text-sm text-slate-500 mt-1">Revenue trends across the year</p>
+                <h2 className="text-lg font-semibold text-slate-900">{chartLabel}</h2>
+                <p className="text-sm text-slate-500 mt-1">Revenue trends for selected period</p>
               </div>
               <div className="flex items-center gap-2 text-sm text-slate-600 bg-slate-50 px-3 py-1.5 rounded-lg">
                 <TrendingUp className="w-4 h-4 text-emerald-600" />
-                <span className="font-medium">+23% YoY</span>
+                <span className="font-medium">
+                  Rs. {Number(data.todaysRevenue || 0).toLocaleString()}
+                </span>
               </div>
             </div>
-            <div className="h-72 flex items-end justify-between gap-3">
-              {monthlyRevenue.map((data, index) => (
-                <div key={index} className="flex-1 flex flex-col items-center gap-3 group">
-                  <div className="w-full flex items-end justify-center relative" style={{ height: '240px' }}>
-                    <motion.div
-                      className="w-full rounded-t-lg bg-gradient-to-t from-[#487AA4] to-[#6ba3cc] group-hover:from-[#386184] group-hover:to-[#487AA4] transition-colors cursor-pointer"
-                      style={{ height: `${(data.value / maxValue) * 100}%` }}
-                      initial={{ scaleY: 0, originY: 1 }}
-                      animate={{ scaleY: 1 }}
-                      transition={{ delay: index * 0.05, duration: 0.6, ease: 'easeOut' }}
-                    />
+
+            {/* Bar chart – auto-hides labels for dense datasets */}
+            <div className="h-72 flex items-end justify-between gap-1">
+              {monthlyRevenue.map((item, index) => {
+                const showLabel = monthlyRevenue.length <= 16
+                  || index % Math.ceil(monthlyRevenue.length / 16) === 0;
+                return (
+                  <div
+                    key={index}
+                    className="flex-1 flex flex-col items-center gap-2 group"
+                    title={`${item.month}: Rs. ${item.value.toLocaleString()}`}
+                  >
+                    <div className="w-full flex items-end justify-center relative" style={{ height: '240px' }}>
+                      <motion.div
+                        className="w-full rounded-t-lg bg-gradient-to-t from-[#487AA4] to-[#6ba3cc] group-hover:from-[#386184] group-hover:to-[#487AA4] transition-colors cursor-pointer min-h-[2px]"
+                        style={{ height: `${Math.max((item.value / maxValue) * 100, item.value > 0 ? 1 : 0)}%` }}
+                        initial={{ scaleY: 0, originY: 1 }}
+                        animate={{ scaleY: 1 }}
+                        transition={{ delay: index * 0.02, duration: 0.5, ease: 'easeOut' }}
+                      />
+                    </div>
+                    {showLabel && (
+                      <span className="text-[10px] text-slate-500 group-hover:text-slate-700 transition-colors truncate w-full text-center">
+                        {item.month}
+                      </span>
+                    )}
                   </div>
-                  <span className="text-xs text-slate-500 group-hover:text-slate-700 transition-colors">
-                    {data.month}
-                  </span>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </motion.div>
 
@@ -233,7 +280,7 @@ const HomeContent = ({ dashboardData, isLoadingDashboard, onRefresh }) => {
                   {categoryData.map((category, index) => {
                     const angle = (category.value / total) * 360;
                     const startAngle = currentAngle;
-                    const endAngle = currentAngle + angle;
+                    const endAngle   = currentAngle + angle;
                     currentAngle += angle;
 
                     const outerRadius = 90, innerRadius = 55;
@@ -291,7 +338,7 @@ const HomeContent = ({ dashboardData, isLoadingDashboard, onRefresh }) => {
           </motion.div>
         </div>
 
-        {/* Bottom tables */}
+        {/* ── Bottom tables ──────────────────────────────────────────────── */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* Top Selling Items */}
           <motion.div
@@ -303,7 +350,7 @@ const HomeContent = ({ dashboardData, isLoadingDashboard, onRefresh }) => {
             <div className="flex items-center justify-between mb-6">
               <div>
                 <h2 className="text-lg font-semibold text-slate-900">Top Selling Items</h2>
-                <p className="text-sm text-slate-500 mt-1">Best performers this month</p>
+                <p className="text-sm text-slate-500 mt-1">Best performers this period</p>
               </div>
               <button className="group flex items-center gap-1.5 text-sm font-medium text-[#4682B4] hover:text-[#3a6a94] transition-colors">
                 View All
@@ -314,7 +361,7 @@ const HomeContent = ({ dashboardData, isLoadingDashboard, onRefresh }) => {
             {topSellingItems.length === 0 ? (
               <div className="flex flex-col items-center justify-center py-12 text-slate-400">
                 <ShoppingBag className="w-10 h-10 mb-3 opacity-40" />
-                <p className="text-sm">No sales data available yet</p>
+                <p className="text-sm">No sales data for this period</p>
               </div>
             ) : (
               <div className="overflow-x-auto -mx-7 px-7">
@@ -377,11 +424,11 @@ const HomeContent = ({ dashboardData, isLoadingDashboard, onRefresh }) => {
             {recentTransactions.length === 0 ? (
               <div className="flex flex-col items-center justify-center py-12 text-slate-400">
                 <DollarSign className="w-10 h-10 mb-3 opacity-40" />
-                <p className="text-sm">No transactions today yet</p>
+                <p className="text-sm">No transactions for this period</p>
               </div>
             ) : (
               <div className="space-y-4">
-                {recentTransactions.map((transaction, index) => (
+                {recentTransactions.slice(0, 5).map((transaction, index) => (
                   <motion.div
                     key={index}
                     className="group flex items-center justify-between p-4 rounded-xl hover:bg-slate-50/50 transition-all cursor-pointer border border-transparent hover:border-slate-200/60"
