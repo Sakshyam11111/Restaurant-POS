@@ -9,18 +9,26 @@ import OrderItemsSection from './OrderItemsSection';
 import CustomerAndPayment from './CustomerAndPayment';
 import EstimateInvoice from './EstimateInvoice';
 
-// Extract a numeric/string table ID from whatever format is stored on the order.
-// order.table might be: "Table #3", "3", 3, "T1", etc.
+/**
+ * FIX: previously only handled "Table #3" format.
+ * Now handles all formats the app can produce:
+ *   "Table #3"  → "3"
+ *   "#3"        → "3"
+ *   "3"         → "3"
+ *   "T3"        → null  (non-numeric IDs — can't call endDining)
+ */
 const extractTableId = (tableField) => {
   if (!tableField) return null;
   const str = String(tableField).trim();
 
-  // "Table #3" → "3"
-  const match = str.match(/#(\w+)/);
-  if (match) return match[1];
+  // "#N" or "Table #N" or "Table#N"
+  const hashMatch = str.match(/#(\d+)/);
+  if (hashMatch) return hashMatch[1];
 
-  // Pure number string or plain id → return as-is
-  return str;
+  // Plain integer string
+  if (/^\d+$/.test(str)) return str;
+
+  return null;
 };
 
 const CheckoutPage = () => {
@@ -34,7 +42,7 @@ const CheckoutPage = () => {
   const [paymentAmounts, setPaymentAmounts] = useState({
     amount: '',
     tenderAmount: '',
-    changeAmount: ''
+    changeAmount: '',
   });
   const [isProcessing, setIsProcessing] = useState(false);
 
@@ -43,9 +51,8 @@ const CheckoutPage = () => {
     return null;
   }
 
-  const orderItems = order?.items?.map((item, index) => {
+  const orderItems = (order?.items || []).map((item, index) => {
     let itemName, quantity, price;
-
     if (typeof item === 'string') {
       const parts = item.split(' ×');
       itemName = parts[0];
@@ -56,9 +63,8 @@ const CheckoutPage = () => {
       quantity = item.quantity || 1;
       price = item.price || 0;
     }
-
     return { id: index + 1, name: itemName, quantity, price };
-  }) || [];
+  });
 
   const subtotal = orderItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
   const discount = 0;
@@ -72,53 +78,43 @@ const CheckoutPage = () => {
         <head>
           <title>Estimate Invoice - ${order.table}</title>
           <style>
-            body { font-family: 'Arial', sans-serif; padding: 40px; max-width: 800px; margin: 0 auto; }
+            body { font-family: Arial, sans-serif; padding: 40px; max-width: 800px; margin: 0 auto; }
             .header { text-align: center; border-bottom: 2px solid #333; padding-bottom: 20px; margin-bottom: 30px; }
-            .header h1 { margin: 0; font-size: 28px; color: #333; }
+            .header h1 { margin: 0; font-size: 28px; }
             .order-info { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 30px; background: #f5f5f5; padding: 20px; border-radius: 8px; }
             .info-row { display: flex; justify-content: space-between; margin: 8px 0; }
-            .info-label { font-weight: bold; color: #555; }
             .items-table { width: 100%; border-collapse: collapse; margin: 30px 0; }
-            .items-table th { background: #333; color: white; padding: 12px; text-align: left; font-weight: bold; }
+            .items-table th { background: #333; color: white; padding: 12px; text-align: left; }
             .items-table td { padding: 12px; border-bottom: 1px solid #ddd; }
-            .items-table tr:hover { background: #f9f9f9; }
             .totals { margin-top: 30px; float: right; width: 300px; }
             .totals-row { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #eee; }
-            .total-due { font-size: 24px; font-weight: bold; color: #333; border-top: 2px solid #333; margin-top: 10px; padding-top: 10px; }
-            .footer { clear: both; text-align: center; margin-top: 60px; padding-top: 20px; border-top: 2px solid #333; color: #666; }
+            .total-due { font-size: 24px; font-weight: bold; border-top: 2px solid #333; margin-top: 10px; padding-top: 10px; }
+            .footer { clear: both; text-align: center; margin-top: 60px; padding-top: 20px; border-top: 2px solid #333; }
             @media print { body { margin: 0; padding: 20px; } }
           </style>
         </head>
         <body>
-          <div class="header">
-            <h1>ESTIMATE INVOICE</h1>
-            <p style="margin: 10px 0; color: #666;">Thank you for your visit!</p>
-          </div>
+          <div class="header"><h1>ESTIMATE INVOICE</h1></div>
           <div class="order-info">
             <div>
-              <div class="info-row"><span class="info-label">Date:</span><span>${new Date().toLocaleDateString()}</span></div>
-              <div class="info-row"><span class="info-label">Time:</span><span>${new Date().toLocaleTimeString()}</span></div>
-              <div class="info-row"><span class="info-label">Order ID:</span><span>${order.kot}</span></div>
+              <div class="info-row"><strong>Date:</strong><span>${new Date().toLocaleDateString()}</span></div>
+              <div class="info-row"><strong>Time:</strong><span>${new Date().toLocaleTimeString()}</span></div>
+              <div class="info-row"><strong>Order ID:</strong><span>${order.kot}</span></div>
             </div>
             <div>
-              <div class="info-row"><span class="info-label">Table:</span><span>${order.table}</span></div>
-              <div class="info-row"><span class="info-label">Order Type:</span><span>${order.type}</span></div>
-              <div class="info-row"><span class="info-label">Location:</span><span>Kathmandu, Nepal</span></div>
+              <div class="info-row"><strong>Table:</strong><span>${order.table}</span></div>
+              <div class="info-row"><strong>Type:</strong><span>${order.type}</span></div>
             </div>
           </div>
           <table class="items-table">
             <thead>
-              <tr><th>S.N.</th><th>Item</th><th>Qty</th><th>Rate</th><th>Discount</th><th>Item Total</th></tr>
+              <tr><th>S.N.</th><th>Item</th><th>Qty</th><th>Rate</th><th>Total</th></tr>
             </thead>
             <tbody>
-              ${orderItems.map((item, index) => `
+              ${orderItems.map((item, i) => `
                 <tr>
-                  <td>${index + 1}</td>
-                  <td>${item.name}</td>
-                  <td>${item.quantity}</td>
-                  <td>Rs ${item.price}</td>
-                  <td>Rs 0.00</td>
-                  <td>Rs ${item.price * item.quantity}</td>
+                  <td>${i + 1}</td><td>${item.name}</td><td>${item.quantity}</td>
+                  <td>Rs ${item.price}</td><td>Rs ${item.price * item.quantity}</td>
                 </tr>
               `).join('')}
             </tbody>
@@ -128,11 +124,7 @@ const CheckoutPage = () => {
             <div class="totals-row"><span>Discount:</span><span>Rs ${discount.toFixed(2)}</span></div>
             <div class="totals-row total-due"><span>Total Due:</span><span>Rs ${totalDue.toFixed(2)}</span></div>
           </div>
-          <div class="footer">
-            <p><strong>Thank You !!!</strong></p>
-            <p>Thank you for your visit! Visit again!!</p>
-            <p style="margin-top: 20px; font-size: 12px;">Printed on ${new Date().toLocaleString()}</p>
-          </div>
+          <div class="footer"><p><strong>Thank You!!!</strong></p></div>
         </body>
       </html>
     `;
@@ -147,25 +139,26 @@ const CheckoutPage = () => {
     setIsProcessing(true);
 
     try {
-      // 1. Mark the order as Served
+      // 1. Mark order as Served
       await orderAPI.updateOrderStatus(order.id, { status: 'Served' });
 
-      // 2. Free the table — extract the numeric/string ID from order.table
+      // 2. Free the table — FIX: handles all table field formats reliably
       const tableId = extractTableId(order.table);
       if (tableId) {
         try {
           await tableAPI.endDining(tableId);
         } catch (tableErr) {
-          // Log but don't block the payment confirmation
+          // Log but don't block — order is already marked Served
           console.warn(`Could not free table ${tableId}:`, tableErr.message);
+          toast(`Order paid but table #${tableId} may need manual reset`, { icon: '⚠️' });
         }
+      } else {
+        // FIX: warn if we couldn't parse the table ID — table won't auto-free
+        console.warn('Could not parse table ID from:', order.table);
+        toast(`Order paid — please manually free the table`, { icon: '⚠️' });
       }
 
-      toast.success('Payment confirmed! Table is now free.', {
-        duration: 3000,
-        icon: '✅',
-      });
-
+      toast.success('Payment confirmed! Table is now free.', { duration: 3000, icon: '✅' });
       setTimeout(() => navigate('/pos'), 1500);
     } catch (error) {
       console.error('Payment confirmation error:', error);
@@ -179,17 +172,15 @@ const CheckoutPage = () => {
     <div className="min-h-screen bg-gray-50">
       <div className="bg-white border-b border-gray-200 px-6 py-4">
         <div className="flex items-center justify-between max-w-7xl mx-auto">
-          <div className="flex items-center gap-4">
-            <motion.button
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              onClick={() => navigate(-1)}
-              className="flex items-center gap-2 px-4 py-2 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors"
-            >
-              <ChevronLeft className="w-5 h-5" />
-              <span className="font-medium">Checkout - {order.table}</span>
-            </motion.button>
-          </div>
+          <motion.button
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            onClick={() => navigate(-1)}
+            className="flex items-center gap-2 px-4 py-2 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors"
+          >
+            <ChevronLeft className="w-5 h-5" />
+            <span className="font-medium">Checkout — {order.table}</span>
+          </motion.button>
 
           <div className="flex items-center gap-3">
             <motion.button
