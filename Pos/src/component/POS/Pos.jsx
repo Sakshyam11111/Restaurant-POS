@@ -46,7 +46,12 @@ export const DATE_RANGES = [
 
 export const getDateRange = (rangeKey) => {
   const now = new Date();
-  const toISO = (d) => d.toISOString().split('T')[0];
+  const toISO = (d) => {
+    const year = d.getFullYear();
+    const month = String(d.getMonth() + 1).padStart(2, '0');
+    const day   = String(d.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  };
 
   switch (rangeKey) {
     case 'today': {
@@ -62,6 +67,7 @@ export const getDateRange = (rangeKey) => {
     case 'this_week': {
       const start = new Date(now);
       start.setDate(now.getDate() - now.getDay());
+      start.setHours(0, 0, 0, 0);
       return { startDate: toISO(start), endDate: toISO(now) };
     }
     case 'this_month': {
@@ -71,11 +77,13 @@ export const getDateRange = (rangeKey) => {
     case 'last_6month': {
       const start = new Date(now);
       start.setMonth(start.getMonth() - 6);
+      start.setDate(1);
       return { startDate: toISO(start), endDate: toISO(now) };
     }
     case 'last_year': {
       const start = new Date(now);
       start.setFullYear(start.getFullYear() - 1);
+      start.setDate(1);
       return { startDate: toISO(start), endDate: toISO(now) };
     }
     default: {
@@ -83,6 +91,18 @@ export const getDateRange = (rangeKey) => {
       return { startDate: d, endDate: d };
     }
   }
+};
+
+// ── Client-side date filter so we never rely solely on backend filtering ──────
+const isOrderInRange = (order, startDate, endDate) => {
+  if (!order.createdAt) return false;
+  const orderDate = new Date(order.createdAt);
+  // Normalise to YYYY-MM-DD in local time for comparison
+  const year  = orderDate.getFullYear();
+  const month = String(orderDate.getMonth() + 1).padStart(2, '0');
+  const day   = String(orderDate.getDate()).padStart(2, '0');
+  const orderISO = `${year}-${month}-${day}`;
+  return orderISO >= startDate && orderISO <= endDate;
 };
 
 const buildDashboardData = async (rangeKey = 'today') => {
@@ -93,9 +113,18 @@ const buildDashboardData = async (rangeKey = 'today') => {
     menuAPI.getMenuItems(),
   ]);
 
-  const orders    = ordersRes.status === 'fulfilled' ? (ordersRes.value.data?.orders   || []) : [];
-  const menuItems = menuRes.status   === 'fulfilled' ? (menuRes.value.data?.items       || []) : [];
+  const allOrders = ordersRes.status === 'fulfilled'
+    ? (ordersRes.value.data?.orders || [])
+    : [];
 
+  // ── Always apply client-side date filter as a safety net ─────────────────
+  const orders = allOrders.filter((o) => isOrderInRange(o, startDate, endDate));
+
+  const menuItems = menuRes.status === 'fulfilled'
+    ? (menuRes.value.data?.items || [])
+    : [];
+
+  // ── Menu price lookup ─────────────────────────────────────────────────────
   const menuPriceMap = {};
   menuItems.forEach((m) => {
     const key = (m.name || '').toLowerCase().trim();
@@ -111,11 +140,13 @@ const buildDashboardData = async (rangeKey = 'today') => {
     return partial ? menuPriceMap[partial] : null;
   };
 
-  const completedOrders  = orders.filter((o) => o.status === 'Served');
-  const pendingOrders    = orders.filter((o) => ['Pending', 'Preparing', 'Ready'].includes(o.status));
-  const cancelledOrders  = orders.filter((o) => o.status === 'Cancelled');
-  const totalRevenue     = completedOrders.reduce((sum, o) => sum + (o.totalPrice || 0), 0);
+  // ── Order buckets ─────────────────────────────────────────────────────────
+  const completedOrders = orders.filter((o) => o.status === 'Served');
+  const pendingOrders   = orders.filter((o) => ['Pending', 'Preparing', 'Ready'].includes(o.status));
+  const cancelledOrders = orders.filter((o) => o.status === 'Cancelled');
+  const totalRevenue    = completedOrders.reduce((sum, o) => sum + (o.totalPrice || 0), 0);
 
+  // ── Order type distribution ───────────────────────────────────────────────
   const typeCounts = { 'Dine In': 0, 'Take Away': 0, Delivery: 0 };
   orders.forEach((o) => {
     const t = o.type || 'Dine In';
@@ -131,6 +162,7 @@ const buildDashboardData = async (rangeKey = 'today') => {
   const pctSum = categoryData.reduce((s, c) => s + c.value, 0);
   if (pctSum !== 100 && categoryData[0]) categoryData[0].value += (100 - pctSum);
 
+  // ── Top selling items ─────────────────────────────────────────────────────
   const itemMap = {};
   orders.forEach((o) => {
     (o.items || []).forEach((item) => {
@@ -160,6 +192,7 @@ const buildDashboardData = async (rangeKey = 'today') => {
     .sort((a, b) => b.qty - a.qty)
     .slice(0, 5);
 
+  // ── Recent transactions ───────────────────────────────────────────────────
   const recentTransactions = completedOrders
     .slice(-10)
     .reverse()
@@ -177,6 +210,7 @@ const buildDashboardData = async (rangeKey = 'today') => {
       status: 'success',
     }));
 
+  // ── Revenue chart ─────────────────────────────────────────────────────────
   const monthlyRevenue = buildRevenueChart(orders, rangeKey);
 
   return {
@@ -190,12 +224,15 @@ const buildDashboardData = async (rangeKey = 'today') => {
     recentTransactions,
     categoryData,
     rangeKey,
+    startDate,
+    endDate,
   };
 };
 
 const buildRevenueChart = (orders, rangeKey) => {
   const completedOrders = orders.filter((o) => o.status === 'Served');
 
+  // ── Hourly buckets (today / yesterday) ───────────────────────────────────
   if (rangeKey === 'today' || rangeKey === 'yesterday') {
     const buckets = Array.from({ length: 24 }, (_, h) => ({
       month: `${h.toString().padStart(2, '0')}:00`,
@@ -210,6 +247,7 @@ const buildRevenueChart = (orders, rangeKey) => {
     return buckets;
   }
 
+  // ── Daily buckets (this week) ─────────────────────────────────────────────
   if (rangeKey === 'this_week') {
     const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
     const buckets = days.map((d) => ({ month: d, value: 0 }));
@@ -222,6 +260,7 @@ const buildRevenueChart = (orders, rangeKey) => {
     return buckets;
   }
 
+  // ── Daily buckets (this month) ────────────────────────────────────────────
   if (rangeKey === 'this_month') {
     const now = new Date();
     const daysInMonth = new Date(now.getFullYear(), now.getMonth() + 1, 0).getDate();
@@ -238,17 +277,23 @@ const buildRevenueChart = (orders, rangeKey) => {
     return buckets;
   }
 
+  // ── Monthly buckets (last 6 months / last year) ───────────────────────────
   const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
   const numMonths = rangeKey === 'last_6month' ? 6 : 12;
   const now = new Date();
   const buckets = [];
   for (let i = numMonths - 1; i >= 0; i--) {
     const d = new Date(now.getFullYear(), now.getMonth() - i, 1);
-    buckets.push({ month: monthNames[d.getMonth()], value: 0, _year: d.getFullYear(), _month: d.getMonth() });
+    buckets.push({
+      month:  monthNames[d.getMonth()],
+      value:  0,
+      _year:  d.getFullYear(),
+      _month: d.getMonth(),
+    });
   }
   completedOrders.forEach((o) => {
     if (o.createdAt) {
-      const d = new Date(o.createdAt);
+      const d      = new Date(o.createdAt);
       const bucket = buckets.find((b) => b._year === d.getFullYear() && b._month === d.getMonth());
       if (bucket) bucket.value += o.totalPrice || 0;
     }
@@ -258,19 +303,18 @@ const buildRevenueChart = (orders, rangeKey) => {
 
 export default function Pos() {
   const navigate = useNavigate();
-  const [isExpanded, setIsExpanded] = useState(true);
-  const [isMasterOpen, setIsMasterOpen] = useState(true);
-  const [activeStep, setActiveStep] = useState(1);
+  const [isExpanded, setIsExpanded]       = useState(true);
+  const [isMasterOpen, setIsMasterOpen]   = useState(true);
+  const [activeStep, setActiveStep]       = useState(1);
 
   const [dashboardData, setDashboardData]           = useState(null);
   const [isLoadingDashboard, setIsLoadingDashboard] = useState(false);
   const [dashboardRange, setDashboardRange]         = useState('today');
 
   const loadDashboard = useCallback(async (rangeKey) => {
-    const range = rangeKey || dashboardRange;
     setIsLoadingDashboard(true);
     try {
-      const data = await buildDashboardData(range);
+      const data = await buildDashboardData(rangeKey);
       setDashboardData(data);
     } catch (err) {
       console.warn('Dashboard fetch failed:', err.message);
@@ -278,13 +322,15 @@ export default function Pos() {
     } finally {
       setIsLoadingDashboard(false);
     }
-  }, [dashboardRange]);
+  }, []);
 
+  // ── When range changes: update state AND immediately fetch with new range ──
   const handleRangeChange = useCallback((rangeKey) => {
     setDashboardRange(rangeKey);
     loadDashboard(rangeKey);
   }, [loadDashboard]);
 
+  // ── Load dashboard when navigating to home tab ────────────────────────────
   useEffect(() => {
     if (activeStep === 1) loadDashboard(dashboardRange);
   }, [activeStep]);
