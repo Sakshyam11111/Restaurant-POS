@@ -11,6 +11,7 @@ const customerRoutes = require("./routes/customerRoutes");
 const tableRoutes = require("./routes/tableRoutes");
 const orderRoutes = require("./routes/orderRoutes");
 const menuRoutes = require("./routes/menuRoutes");
+const recommendationRoutes = require("./routes/recommendationRoutes");
 
 dotenv.config();
 
@@ -78,6 +79,7 @@ app.use("/api/customer", customerRoutes);
 app.use("/api/tables", tableRoutes);
 app.use("/api/orders", orderRoutes);
 app.use("/api/menu", menuRoutes);
+app.use("/api/recommendations", recommendationRoutes);
 
 console.log("✓ Routes registered:");
 console.log("  - /api/auth/*");

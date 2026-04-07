@@ -1,8 +1,9 @@
-// Employee.jsx
 import React, { useState } from 'react';
 
 const Employee = () => {
   const [showForm, setShowForm] = useState(false);
+  const [employees, setEmployees] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
   const [formData, setFormData] = useState({
     fullName: '',
     gender: 'Male',
@@ -24,11 +25,16 @@ const Employee = () => {
   });
 
   const [showPassword, setShowPassword] = useState(false);
+  const [editingId, setEditingId] = useState(null);
 
-  const handleShowForm = () => setShowForm(true);
+  const handleShowForm = () => {
+    setEditingId(null);
+    setShowForm(true);
+  };
 
   const handleHideForm = () => {
     setShowForm(false);
+    setEditingId(null);
     setFormData({
       fullName: '',
       gender: 'Male',
@@ -69,8 +75,81 @@ const Employee = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('New employee data:', formData);
+
+    const employeeData = {
+      ...formData,
+      id: editingId || Date.now(),
+      photoUrl: formData.photo ? URL.createObjectURL(formData.photo) : null,
+    };
+
+    if (editingId) {
+      setEmployees(prev => prev.map(emp => emp.id === editingId ? employeeData : emp));
+    } else {
+      setEmployees(prev => [...prev, employeeData]);
+    }
+
     handleHideForm();
+  };
+
+  const handleEdit = (employee) => {
+    setFormData({
+      fullName: employee.fullName,
+      gender: employee.gender,
+      address: employee.address,
+      email: employee.email,
+      contactNumber: employee.contactNumber,
+      dateOfBirth: employee.dateOfBirth,
+      joiningDate: employee.joiningDate,
+      education: employee.education,
+      designation: employee.designation,
+      department: employee.department,
+      status: employee.status,
+      panNumber: employee.panNumber,
+      description: employee.description,
+      username: employee.username,
+      password: employee.password,
+      photo: null,
+      documents: [],
+    });
+    setEditingId(employee.id);
+    setShowForm(true);
+  };
+
+  const handleDelete = (id) => {
+    if (window.confirm('Are you sure you want to delete this employee?')) {
+      setEmployees(prev => prev.filter(emp => emp.id !== id));
+    }
+  };
+
+  const filteredEmployees = employees.filter(emp =>
+    emp.fullName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    emp.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    emp.designation.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    emp.department.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  const generateExcel = () => {
+    const headers = ['Full Name', 'Gender', 'Email', 'Contact', 'Department', 'Designation', 'Status', 'Joining Date'];
+    const csvContent = [
+      headers.join(','),
+      ...employees.map(emp => [
+        emp.fullName,
+        emp.gender,
+        emp.email,
+        emp.contactNumber,
+        emp.department,
+        emp.designation,
+        emp.status,
+        emp.joiningDate
+      ].join(','))
+    ].join('\n');
+
+    const blob = new Blob([csvContent], { type: 'text/csv' });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'employees.csv';
+    a.click();
   };
 
   return (
@@ -87,7 +166,10 @@ const Employee = () => {
               Add Employee
             </button>
           )}
-          <button className="inline-flex items-center gap-2 px-5 py-2.5 bg-white text-gray-700 text-sm font-medium rounded-lg border border-gray-300 hover:bg-gray-50 transition-colors">
+          <button 
+            onClick={generateExcel}
+            className="inline-flex items-center gap-2 px-5 py-2.5 bg-white text-gray-700 text-sm font-medium rounded-lg border border-gray-300 hover:bg-gray-50 transition-colors"
+          >
             <span className="text-lg">↓</span>
             Generate Excel
           </button>
@@ -101,8 +183,10 @@ const Employee = () => {
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
               {/* Left Card - Employee Details */}
               <div className="lg:col-span-2 bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-                <h2 className="text-lg font-semibold text-gray-900 mb-6">Add New Employee</h2>
-                
+                <h2 className="text-lg font-semibold text-gray-900 mb-6">
+                  {editingId ? 'Edit Employee' : 'Add New Employee'}
+                </h2>
+
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-5">
                   {/* Full Name */}
                   <div>
@@ -400,7 +484,7 @@ const Employee = () => {
                 type="submit"
                 className="px-16 py-3 bg-gradient-to-r from-[#487AA4] to-[#5a8eb8] text-white font-medium rounded-md hover:brightness-105 transition text-sm"
               >
-                Save
+                {editingId ? 'Update' : 'Save'}
               </button>
               <button
                 type="button"
@@ -411,6 +495,123 @@ const Employee = () => {
               </button>
             </div>
           </form>
+        </div>
+      ) : employees.length > 0 ? (
+        // Employee Table View
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200">
+          {/* Search Bar */}
+          <div className="p-4 border-b border-gray-200">
+            <div className="flex items-center gap-4">
+              <div className="relative flex-1 max-w-md">
+                <input
+                  type="text"
+                  placeholder="Search by name, email, department or designation..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none text-sm"
+                />
+                <svg className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
+              </div>
+              <span className="text-sm text-gray-600">
+                Total: {filteredEmployees.length} employee{filteredEmployees.length !== 1 ? 's' : ''}
+              </span>
+            </div>
+          </div>
+
+          {/* Table */}
+          <div className="overflow-x-auto">
+            <table className="w-full">
+              <thead className="bg-gray-50 border-b border-gray-200">
+                <tr>
+                  <th className="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Employee</th>
+                  <th className="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Contact</th>
+                  <th className="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Department</th>
+                  <th className="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Designation</th>
+                  <th className="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Status</th>
+                  <th className="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Joining Date</th>
+                  <th className="px-6 py-3 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider">Actions</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-gray-200">
+                {filteredEmployees.map((employee) => (
+                  <tr key={employee.id} className="hover:bg-gray-50 transition-colors">
+                    <td className="px-6 py-4">
+                      <div className="flex items-center gap-3">
+                        <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-100 to-blue-200 flex items-center justify-center overflow-hidden">
+                          {employee.photoUrl ? (
+                            <img src={employee.photoUrl} alt="" className="w-full h-full object-cover" />
+                          ) : (
+                            <span className="text-sm font-medium text-blue-600">
+                              {employee.fullName.split(' ').map(n => n[0]).join('').toUpperCase()}
+                            </span>
+                          )}
+                        </div>
+                        <div>
+                          <div className="text-sm font-medium text-gray-900">{employee.fullName}</div>
+                          <div className="text-sm text-gray-500">{employee.email}</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td className="px-6 py-4">
+                      <div className="text-sm text-gray-900">{employee.contactNumber || '-'}</div>
+                      <div className="text-sm text-gray-500">{employee.gender}</div>
+                    </td>
+                    <td className="px-6 py-4">
+                      <span className="text-sm text-gray-900">{employee.department || '-'}</span>
+                    </td>
+                    <td className="px-6 py-4">
+                      <span className="text-sm text-gray-900">{employee.designation || '-'}</span>
+                    </td>
+                    <td className="px-6 py-4">
+                      <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
+                        employee.status === 'Active' 
+                          ? 'bg-green-100 text-green-800' 
+                          : 'bg-gray-100 text-gray-800'
+                      }`}>
+                        {employee.status === 'Active' && (
+                          <span className="w-1.5 h-1.5 bg-green-500 rounded-full mr-1.5"></span>
+                        )}
+                        {employee.status}
+                      </span>
+                    </td>
+                    <td className="px-6 py-4 text-sm text-gray-900">
+                      {employee.joiningDate || '-'}
+                    </td>
+                    <td className="px-6 py-4">
+                      <div className="flex items-center justify-center gap-2">
+                        <button
+                          onClick={() => handleEdit(employee)}
+                          className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
+                          title="Edit"
+                        >
+                          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                          </svg>
+                        </button>
+                        <button
+                          onClick={() => handleDelete(employee.id)}
+                          className="p-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors"
+                          title="Delete"
+                        >
+                          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                          </svg>
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          {filteredEmployees.length === 0 && (
+            <div className="p-8 text-center">
+              <p className="text-gray-500">No employees found matching your search.</p>
+            </div>
+          )}
         </div>
       ) : (
         // Empty state

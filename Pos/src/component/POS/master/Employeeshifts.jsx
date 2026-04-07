@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 
 const Employeeshifts = () => {
   const [showForm, setShowForm] = useState(false);
+  const [shifts, setShifts] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
   const [formData, setFormData] = useState({
     shiftName: '',
     startTime: '',
@@ -9,10 +11,16 @@ const Employeeshifts = () => {
     status: 'Active',
   });
 
-  const handleShowForm = () => setShowForm(true);
+  const [editingId, setEditingId] = useState(null);
+
+  const handleShowForm = () => {
+    setEditingId(null);
+    setShowForm(true);
+  };
 
   const handleHideForm = () => {
     setShowForm(false);
+    setEditingId(null);
     setFormData({
       shiftName: '',
       startTime: '',
@@ -28,11 +36,83 @@ const Employeeshifts = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('New shift saved:', formData);
+
+    const shiftData = {
+      ...formData,
+      id: editingId || Date.now(),
+      createdAt: editingId ? shifts.find(s => s.id === editingId)?.createdAt || new Date().toLocaleDateString() : new Date().toLocaleDateString(),
+    };
+
+    if (editingId) {
+      setShifts(prev => prev.map(shift => shift.id === editingId ? shiftData : shift));
+    } else {
+      setShifts(prev => [...prev, shiftData]);
+    }
+
     handleHideForm();
   };
 
-  const hasShifts = false;
+  const handleEdit = (shift) => {
+    setFormData({
+      shiftName: shift.shiftName,
+      startTime: shift.startTime,
+      endTime: shift.endTime,
+      status: shift.status,
+    });
+    setEditingId(shift.id);
+    setShowForm(true);
+  };
+
+  const handleDelete = (id) => {
+    if (window.confirm('Are you sure you want to delete this shift?')) {
+      setShifts(prev => prev.filter(shift => shift.id !== id));
+    }
+  };
+
+  const formatTime = (time) => {
+    if (!time) return '-';
+    const [hours, minutes] = time.split(':');
+    const date = new Date();
+    date.setHours(hours, minutes);
+    return date.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true });
+  };
+
+  const getDuration = (start, end) => {
+    if (!start || !end) return '-';
+    const [startH, startM] = start.split(':').map(Number);
+    const [endH, endM] = end.split(':').map(Number);
+    let diff = (endH * 60 + endM) - (startH * 60 + startM);
+    if (diff < 0) diff += 24 * 60;
+    const hours = Math.floor(diff / 60);
+    const minutes = diff % 60;
+    return `${hours}h ${minutes > 0 ? minutes + 'm' : ''}`;
+  };
+
+  const filteredShifts = shifts.filter(shift =>
+    shift.shiftName.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  const generateExcel = () => {
+    const headers = ['Shift Name', 'Start Time', 'End Time', 'Duration', 'Status', 'Created Date'];
+    const csvContent = [
+      headers.join(','),
+      ...shifts.map(shift => [
+        shift.shiftName,
+        shift.startTime,
+        shift.endTime,
+        getDuration(shift.startTime, shift.endTime),
+        shift.status,
+        shift.createdAt
+      ].join(','))
+    ].join('\n');
+
+    const blob = new Blob([csvContent], { type: 'text/csv' });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'employee_shifts.csv';
+    a.click();
+  };
 
   return (
     <div className="min-h-screen bg-gray-50 px-6 py-6 font-sans">
@@ -48,7 +128,10 @@ const Employeeshifts = () => {
               Add Employee Shift
             </button>
           )}
-          <button className="inline-flex items-center gap-2 px-5 py-2.5 bg-white text-gray-700 text-sm font-medium rounded-lg border border-gray-300 hover:bg-gray-50 transition-colors">
+          <button 
+            onClick={generateExcel}
+            className="inline-flex items-center gap-2 px-5 py-2.5 bg-white text-gray-700 text-sm font-medium rounded-lg border border-gray-300 hover:bg-gray-50 transition-colors"
+          >
             <span className="text-lg">↓</span>
             Generate Excel
           </button>
@@ -59,7 +142,7 @@ const Employeeshifts = () => {
         <div className="bg-white rounded-xl shadow-sm">
           <div className="px-6 sm:px-8 lg:px-10 pt-8 pb-10">
             <h2 className="text-2xl font-semibold text-gray-900 mb-8">
-              Add Employee Shift
+              {editingId ? 'Edit Employee Shift' : 'Add Employee Shift'}
             </h2>
 
             <form onSubmit={handleSubmit} className="space-y-6 w-full">
@@ -135,11 +218,122 @@ const Employeeshifts = () => {
                   type="submit"
                   className="px-10 py-2.5 bg-gradient-to-r from-[#487AA4] to-[#386184] text-white font-medium rounded-lg hover:brightness-105 transition"
                 >
-                  Save
+                  {editingId ? 'Update' : 'Save'}
                 </button>
               </div>
             </form>
           </div>
+        </div>
+      ) : shifts.length > 0 ? (
+        // Shifts Table View
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200">
+          {/* Search Bar */}
+          <div className="p-4 border-b border-gray-200">
+            <div className="flex items-center gap-4">
+              <div className="relative flex-1 max-w-md">
+                <input
+                  type="text"
+                  placeholder="Search by shift name..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none text-sm"
+                />
+                <svg className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
+              </div>
+              <span className="text-sm text-gray-600">
+                Total: {filteredShifts.length} shift{filteredShifts.length !== 1 ? 's' : ''}
+              </span>
+            </div>
+          </div>
+
+          {/* Table */}
+          <div className="overflow-x-auto">
+            <table className="w-full">
+              <thead className="bg-gray-50 border-b border-gray-200">
+                <tr>
+                  <th className="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Shift Name</th>
+                  <th className="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Start Time</th>
+                  <th className="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">End Time</th>
+                  <th className="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Duration</th>
+                  <th className="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Status</th>
+                  <th className="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Created Date</th>
+                  <th className="px-6 py-3 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider">Actions</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-gray-200">
+                {filteredShifts.map((shift) => (
+                  <tr key={shift.id} className="hover:bg-gray-50 transition-colors">
+                    <td className="px-6 py-4">
+                      <div className="flex items-center gap-3">
+                        <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-100 to-blue-200 flex items-center justify-center">
+                          <svg className="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                          </svg>
+                        </div>
+                        <span className="text-sm font-medium text-gray-900">{shift.shiftName}</span>
+                      </div>
+                    </td>
+                    <td className="px-6 py-4">
+                      <span className="text-sm text-gray-900 font-medium">{formatTime(shift.startTime)}</span>
+                    </td>
+                    <td className="px-6 py-4">
+                      <span className="text-sm text-gray-900 font-medium">{formatTime(shift.endTime)}</span>
+                    </td>
+                    <td className="px-6 py-4">
+                      <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                        {getDuration(shift.startTime, shift.endTime)}
+                      </span>
+                    </td>
+                    <td className="px-6 py-4">
+                      <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
+                        shift.status === 'Active' 
+                          ? 'bg-green-100 text-green-800' 
+                          : 'bg-gray-100 text-gray-800'
+                      }`}>
+                        {shift.status === 'Active' && (
+                          <span className="w-1.5 h-1.5 bg-green-500 rounded-full mr-1.5"></span>
+                        )}
+                        {shift.status}
+                      </span>
+                    </td>
+                    <td className="px-6 py-4 text-sm text-gray-600">
+                      {shift.createdAt}
+                    </td>
+                    <td className="px-6 py-4">
+                      <div className="flex items-center justify-center gap-2">
+                        <button
+                          onClick={() => handleEdit(shift)}
+                          className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
+                          title="Edit"
+                        >
+                          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                          </svg>
+                        </button>
+                        <button
+                          onClick={() => handleDelete(shift.id)}
+                          className="p-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors"
+                          title="Delete"
+                        >
+                          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                          </svg>
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          {filteredShifts.length === 0 && (
+            <div className="p-8 text-center">
+              <p className="text-gray-500">No shifts found matching your search.</p>
+            </div>
+          )}
         </div>
       ) : (
         <div className="flex flex-col items-center justify-center mt-20 text-center">
