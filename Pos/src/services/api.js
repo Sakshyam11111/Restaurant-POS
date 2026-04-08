@@ -115,13 +115,10 @@ export const orderAPI = {
 };
 
 export const tableAPI = {
-  // ── Initialization ──────────────────────────────────────────────────────────
   initializeTables: async () => {
     const response = await api.post('/tables/initialize');
     return response.data;
   },
-
-  // ── Master CRUD (used by Table.jsx master page) ─────────────────────────────
   createTable: async (data) => {
     const response = await api.post('/tables', data);
     return response.data;
@@ -134,8 +131,6 @@ export const tableAPI = {
     const response = await api.delete(`/tables/${tableId}`);
     return response.data;
   },
-
-  // ── Operational (used by POSContent.jsx) ───────────────────────────────────
   getAllTables: async (floor) => {
     const params = floor ? { floor } : {};
     const response = await api.get('/tables', { params });
@@ -201,6 +196,70 @@ export const menuAPI = {
   },
   deleteMenuItem: async (id) => {
     const response = await api.delete(`/menu/${id}`);
+    return response.data;
+  },
+};
+
+// ── Zone API ─────────────────────────────────────────────────────────────────
+export const zoneAPI = {
+  getZones: async (params = {}) => {
+    const response = await api.get('/zones', { params });
+    return response.data;
+  },
+  createZone: async (data) => {
+    const response = await api.post('/zones', data);
+    return response.data;
+  },
+  updateZone: async (id, data) => {
+    const response = await api.put(`/zones/${id}`, data);
+    return response.data;
+  },
+  deleteZone: async (id) => {
+    const response = await api.delete(`/zones/${id}`);
+    return response.data;
+  },
+};
+
+// ── Designation API ───────────────────────────────────────────────────────────
+export const designationAPI = {
+  getDesignations: async (params = {}) => {
+    const response = await api.get('/designations', { params });
+    return response.data;
+  },
+  createDesignation: async (data) => {
+    const response = await api.post('/designations', data);
+    return response.data;
+  },
+  updateDesignation: async (id, data) => {
+    const response = await api.put(`/designations/${id}`, data);
+    return response.data;
+  },
+  deleteDesignation: async (id) => {
+    const response = await api.delete(`/designations/${id}`);
+    return response.data;
+  },
+};
+
+// ── Employee API ──────────────────────────────────────────────────────────────
+export const employeeAPI = {
+  getEmployees: async (params = {}) => {
+    const response = await api.get('/employees', { params });
+    return response.data;
+  },
+  getEmployeeById: async (id) => {
+    const response = await api.get(`/employees/${id}`);
+    return response.data;
+  },
+  createEmployee: async (data) => {
+    const response = await api.post('/employees', data);
+    return response.data;
+  },
+  updateEmployee: async (id, data) => {
+    const response = await api.put(`/employees/${id}`, data);
+    return response.data;
+  },
+  deleteEmployee: async (id) => {
+    const response = await api.delete(`/employees/${id}`);
     return response.data;
   },
 };

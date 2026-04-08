@@ -5,13 +5,16 @@ const dotenv = require("dotenv");
 const cookieParser = require("cookie-parser");
 
 // Import routes
-const authRoutes = require("./routes/authRoutes");
-const staffRoutes = require("./routes/staffRoutes");
-const customerRoutes = require("./routes/customerRoutes");
-const tableRoutes = require("./routes/tableRoutes");
-const orderRoutes = require("./routes/orderRoutes");
-const menuRoutes = require("./routes/menuRoutes");
+const authRoutes         = require("./routes/authRoutes");
+const staffRoutes        = require("./routes/staffRoutes");
+const customerRoutes     = require("./routes/customerRoutes");
+const tableRoutes        = require("./routes/tableRoutes");
+const orderRoutes        = require("./routes/orderRoutes");
+const menuRoutes         = require("./routes/menuRoutes");
 const recommendationRoutes = require("./routes/recommendationRoutes");
+const zoneRoutes         = require("./routes/zoneRoutes");
+const designationRoutes  = require("./routes/designationRoutes");
+const employeeRoutes     = require("./routes/employeeRoutes");
 
 dotenv.config();
 
@@ -20,9 +23,9 @@ const app = express();
 app.set("x-powered-by", false);
 app.set("etag", false);
 
-// Body parsing middleware
-app.use(express.json({ limit: "10mb" }));
-app.use(express.urlencoded({ extended: true, limit: "10mb" }));
+// Body parsing middleware – increased limit for base64 employee photos
+app.use(express.json({ limit: "15mb" }));
+app.use(express.urlencoded({ extended: true, limit: "15mb" }));
 app.use(cookieParser());
 
 // CORS configuration
@@ -54,32 +57,28 @@ const connectDB = async () => {
     console.log("✓ MongoDB Connected Successfully");
   } catch (err) {
     console.error("✗ MongoDB Connection Error:", err.message);
-    console.error("  Make sure MongoDB is running and MONGODB_URI is correct");
     process.exit(1);
   }
 };
 
 connectDB();
 
-// Connection event listeners
-mongoose.connection.on("disconnected", () => {
-  console.warn("MongoDB disconnected");
-});
+mongoose.connection.on("disconnected", () => { console.warn("MongoDB disconnected"); });
+mongoose.connection.on("error", (err) => { console.error("MongoDB error:", err); });
 
-mongoose.connection.on("error", (err) => {
-  console.error("MongoDB error:", err);
-});
-
-// API Routes - IMPORTANT: Register all routes
+// API Routes
 console.log("Registering API routes...");
 
-app.use("/api/auth", authRoutes);
-app.use("/api/staff", staffRoutes);
-app.use("/api/customer", customerRoutes);
-app.use("/api/tables", tableRoutes);
-app.use("/api/orders", orderRoutes);
-app.use("/api/menu", menuRoutes);
+app.use("/api/auth",            authRoutes);
+app.use("/api/staff",           staffRoutes);
+app.use("/api/customer",        customerRoutes);
+app.use("/api/tables",          tableRoutes);
+app.use("/api/orders",          orderRoutes);
+app.use("/api/menu",            menuRoutes);
 app.use("/api/recommendations", recommendationRoutes);
+app.use("/api/zones",           zoneRoutes);
+app.use("/api/designations",    designationRoutes);
+app.use("/api/employees",       employeeRoutes);
 
 console.log("✓ Routes registered:");
 console.log("  - /api/auth/*");
@@ -88,6 +87,10 @@ console.log("  - /api/customer/*");
 console.log("  - /api/tables/*");
 console.log("  - /api/orders/*");
 console.log("  - /api/menu/*");
+console.log("  - /api/recommendations/*");
+console.log("  - /api/zones/*");
+console.log("  - /api/designations/*");
+console.log("  - /api/employees/*");
 
 // Health check endpoint
 app.get("/api/health", (req, res) => {
@@ -99,12 +102,8 @@ app.get("/api/health", (req, res) => {
   });
 });
 
-// Test endpoint for debugging
 app.get("/api/test", (req, res) => {
-  res.json({ 
-    message: "API is working!",
-    env: process.env.NODE_ENV || 'development'
-  });
+  res.json({ message: "API is working!", env: process.env.NODE_ENV || 'development' });
 });
 
 // Error handling middleware
@@ -118,11 +117,7 @@ app.use((err, req, res, next) => {
 
 // 404 handler
 app.use((req, res) => {
-  res.status(404).json({ 
-    status: "error", 
-    message: "Route not found",
-    path: req.path 
-  });
+  res.status(404).json({ status: "error", message: "Route not found", path: req.path });
 });
 
 const PORT = process.env.PORT || 5000;
@@ -134,7 +129,7 @@ const server = app.listen(PORT, () => {
 });
 
 server.keepAliveTimeout = 65000;
-server.headersTimeout = 66000;
-server.timeout = 60000;
+server.headersTimeout   = 66000;
+server.timeout          = 60000;
 
 module.exports = app;
