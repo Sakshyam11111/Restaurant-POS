@@ -18,8 +18,6 @@ import POSContent from './contents/POSContent';
 import ReportsContent from './contents/ReportsContent';
 import POSMenu from './contents/menu/POSMenu';
 
-import UnitMaster from './master/unitmaster';
-import UnitMeasure from './master/UnitMeasure';
 import Zone from './master/Zone';
 import Table from './master/Table';
 import Employee from './master/Employee';
@@ -93,11 +91,9 @@ export const getDateRange = (rangeKey) => {
   }
 };
 
-// ── Client-side date filter so we never rely solely on backend filtering ──────
 const isOrderInRange = (order, startDate, endDate) => {
   if (!order.createdAt) return false;
   const orderDate = new Date(order.createdAt);
-  // Normalise to YYYY-MM-DD in local time for comparison
   const year  = orderDate.getFullYear();
   const month = String(orderDate.getMonth() + 1).padStart(2, '0');
   const day   = String(orderDate.getDate()).padStart(2, '0');
@@ -117,14 +113,12 @@ const buildDashboardData = async (rangeKey = 'today') => {
     ? (ordersRes.value.data?.orders || [])
     : [];
 
-  // ── Always apply client-side date filter as a safety net ─────────────────
   const orders = allOrders.filter((o) => isOrderInRange(o, startDate, endDate));
 
   const menuItems = menuRes.status === 'fulfilled'
     ? (menuRes.value.data?.items || [])
     : [];
 
-  // ── Menu price lookup ─────────────────────────────────────────────────────
   const menuPriceMap = {};
   menuItems.forEach((m) => {
     const key = (m.name || '').toLowerCase().trim();
@@ -140,13 +134,11 @@ const buildDashboardData = async (rangeKey = 'today') => {
     return partial ? menuPriceMap[partial] : null;
   };
 
-  // ── Order buckets ─────────────────────────────────────────────────────────
   const completedOrders = orders.filter((o) => o.status === 'Served');
   const pendingOrders   = orders.filter((o) => ['Pending', 'Preparing', 'Ready'].includes(o.status));
   const cancelledOrders = orders.filter((o) => o.status === 'Cancelled');
   const totalRevenue    = completedOrders.reduce((sum, o) => sum + (o.totalPrice || 0), 0);
 
-  // ── Order type distribution ───────────────────────────────────────────────
   const typeCounts = { 'Dine In': 0, 'Take Away': 0, Delivery: 0 };
   orders.forEach((o) => {
     const t = o.type || 'Dine In';
@@ -162,7 +154,6 @@ const buildDashboardData = async (rangeKey = 'today') => {
   const pctSum = categoryData.reduce((s, c) => s + c.value, 0);
   if (pctSum !== 100 && categoryData[0]) categoryData[0].value += (100 - pctSum);
 
-  // ── Top selling items ─────────────────────────────────────────────────────
   const itemMap = {};
   orders.forEach((o) => {
     (o.items || []).forEach((item) => {
@@ -192,7 +183,6 @@ const buildDashboardData = async (rangeKey = 'today') => {
     .sort((a, b) => b.qty - a.qty)
     .slice(0, 5);
 
-  // ── Recent transactions ───────────────────────────────────────────────────
   const recentTransactions = completedOrders
     .slice(-10)
     .reverse()
@@ -210,7 +200,6 @@ const buildDashboardData = async (rangeKey = 'today') => {
       status: 'success',
     }));
 
-  // ── Revenue chart ─────────────────────────────────────────────────────────
   const monthlyRevenue = buildRevenueChart(orders, rangeKey);
 
   return {
@@ -232,7 +221,6 @@ const buildDashboardData = async (rangeKey = 'today') => {
 const buildRevenueChart = (orders, rangeKey) => {
   const completedOrders = orders.filter((o) => o.status === 'Served');
 
-  // ── Hourly buckets (today / yesterday) ───────────────────────────────────
   if (rangeKey === 'today' || rangeKey === 'yesterday') {
     const buckets = Array.from({ length: 24 }, (_, h) => ({
       month: `${h.toString().padStart(2, '0')}:00`,
@@ -247,7 +235,6 @@ const buildRevenueChart = (orders, rangeKey) => {
     return buckets;
   }
 
-  // ── Daily buckets (this week) ─────────────────────────────────────────────
   if (rangeKey === 'this_week') {
     const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
     const buckets = days.map((d) => ({ month: d, value: 0 }));
@@ -260,7 +247,6 @@ const buildRevenueChart = (orders, rangeKey) => {
     return buckets;
   }
 
-  // ── Daily buckets (this month) ────────────────────────────────────────────
   if (rangeKey === 'this_month') {
     const now = new Date();
     const daysInMonth = new Date(now.getFullYear(), now.getMonth() + 1, 0).getDate();
@@ -277,7 +263,6 @@ const buildRevenueChart = (orders, rangeKey) => {
     return buckets;
   }
 
-  // ── Monthly buckets (last 6 months / last year) ───────────────────────────
   const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
   const numMonths = rangeKey === 'last_6month' ? 6 : 12;
   const now = new Date();
@@ -324,13 +309,11 @@ export default function Pos() {
     }
   }, []);
 
-  // ── When range changes: update state AND immediately fetch with new range ──
   const handleRangeChange = useCallback((rangeKey) => {
     setDashboardRange(rangeKey);
     loadDashboard(rangeKey);
   }, [loadDashboard]);
 
-  // ── Load dashboard when navigating to home tab ────────────────────────────
   useEffect(() => {
     if (activeStep === 1) loadDashboard(dashboardRange);
   }, [activeStep]);
@@ -341,20 +324,18 @@ export default function Pos() {
     3:  { id: 'tablecomponent',          component: TableContent },
     4:  { id: 'orderdetail',             component: OrderDetailPage },
     5:  { id: 'reports',                 component: ReportsContent },
-    6:  { id: 'unit-master',             component: UnitMaster },
-    7:  { id: 'unit-measure',            component: UnitMeasure },
-    8:  { id: 'zone',                    component: Zone },
-    9:  { id: 'table',                   component: Table },
-    10: { id: 'menu-items',              component: MenuItems },
-    11: { id: 'employee',                component: Employee },
-    12: { id: 'department',              component: Department },
-    13: { id: 'designation',             component: Designation },
-    14: { id: 'employeeshifts',          component: Employeeshifts },
-    15: { id: 'employeeshiftsrotation',  component: Employeeshiftsrotation },
-    16: { id: 'printtype',               component: Printtype },
-    17: { id: 'printsetting',            component: PrintSetting },
-    18: { id: 'settings',                component: Settings },
-    19: { id: 'posmenu',                 component: POSMenu },
+    6:  { id: 'zone',                    component: Zone },
+    7:  { id: 'table',                   component: Table },
+    8:  { id: 'menu-items',              component: MenuItems },
+    9:  { id: 'employee',                component: Employee },
+    10: { id: 'department',              component: Department },
+    11: { id: 'designation',             component: Designation },
+    12: { id: 'employeeshifts',          component: Employeeshifts },
+    13: { id: 'employeeshiftsrotation',  component: Employeeshiftsrotation },
+    14: { id: 'printtype',               component: Printtype },
+    15: { id: 'printsetting',            component: PrintSetting },
+    16: { id: 'settings',                component: Settings },
+    17: { id: 'posmenu',                 component: POSMenu },
   };
 
   const handleMenuClick = (id) => {
@@ -394,8 +375,6 @@ export default function Pos() {
       label: 'Master',
       hasSubmenu: true,
       submenu: [
-        { id: 'unit-master',            label: 'Unit Master' },
-        { id: 'unit-measure',           label: 'Unit Measure' },
         { id: 'zone',                   label: 'Zone' },
         { id: 'table',                  label: 'Table' },
         { id: 'menu-items',             label: 'Menu Items' },

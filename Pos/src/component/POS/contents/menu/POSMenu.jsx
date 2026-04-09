@@ -1,5 +1,3 @@
-// Pos/src/component/POS/contents/menu/POSMenu.jsx
-// AI Suggestions moved to header as an expandable drawer panel
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import toast, { Toaster } from 'react-hot-toast';
@@ -30,11 +28,9 @@ const POSMenu = () => {
   const [orderNumber, setOrderNumber] = useState('PR3004');
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // ── AI Suggestions header state ─────────────────────────────────────────────
   const [aiDrawerOpen, setAiDrawerOpen] = useState(false);
   const aiDrawerRef = useRef(null);
 
-  // Close drawer when clicking outside
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (aiDrawerRef.current && !aiDrawerRef.current.contains(e.target)) {
@@ -47,7 +43,6 @@ const POSMenu = () => {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, [aiDrawerOpen]);
 
-  // ── Fetch menu ──────────────────────────────────────────────────────────────
   useEffect(() => {
     const fetchMenu = async () => {
       setLoadingMenu(true);
@@ -73,6 +68,10 @@ const POSMenu = () => {
             { id: 0, name: 'All Menu' },
             { id: 1, name: 'Vegetarian' },
             { id: 2, name: 'Non-Vegetarian' },
+            { id: 3, name: 'Main Course' },
+            { id: 4, name: 'Appetizers' },
+            { id: 5, name: 'Beverages' },
+            { id: 6, name: 'Lunch' },
           ],
           menuItems,
           waiters: FallbackMenudata.waiters || [{ id: 1, name: 'Ram Shahi' }],
@@ -86,7 +85,10 @@ const POSMenu = () => {
             { id: 0, name: 'All Menu' },
             { id: 1, name: 'Vegetarian' },
             { id: 2, name: 'Non-Vegetarian' },
-            ...(FallbackMenudata.categories || []).filter((c) => c.id > 2),
+            { id: 3, name: 'Main Course' },
+            { id: 4, name: 'Appetizers' },
+            { id: 5, name: 'Beverages' },
+            { id: 6, name: 'Lunch' },
           ],
         });
       } finally {
@@ -102,7 +104,6 @@ const POSMenu = () => {
     if (!selectedTable && menuData.tables?.length)   setSelectedTable(String(menuData.tables[0].id));
   }, [menuData]);
 
-  // ── Cart helpers ────────────────────────────────────────────────────────────
   const handleAddItem = (item) => {
     setOrderItems((prev) => {
       const existing = prev.find((o) => o.id === item.id);
@@ -119,10 +120,9 @@ const POSMenu = () => {
     );
   };
 
-  const handleRemoveItem  = (id) => setOrderItems((prev) => prev.filter((item) => item.id !== id));
-  const handleClearAll    = ()   => setOrderItems([]);
+  const handleRemoveItem = (id) => setOrderItems((prev) => prev.filter((item) => item.id !== id));
+  const handleClearAll = () => setOrderItems([]);
 
-  // ── Place order ─────────────────────────────────────────────────────────────
   const handlePlaceOrder = async () => {
     if (orderItems.length === 0 || isSubmitting) return;
     setIsSubmitting(true);
@@ -150,14 +150,26 @@ const POSMenu = () => {
     }
   };
 
-  // ── Filtered items ──────────────────────────────────────────────────────────
   const filteredItems = (() => {
     if (!menuData) return [];
     let items = menuData.menuItems;
-    if (selectedCategory === 'Vegetarian')          items = items.filter((i) => i.isVegetarian);
-    else if (selectedCategory === 'Non-Vegetarian') items = items.filter((i) => !i.isVegetarian);
-    else if (selectedCategory !== 'All Menu')       items = items.filter((i) => i.category === selectedCategory || i.menuGroup === selectedCategory);
-    if (searchQuery) items = items.filter((i) => i.name.toLowerCase().includes(searchQuery.toLowerCase()));
+
+    if (selectedCategory === 'Vegetarian') {
+      items = items.filter((i) => i.isVegetarian);
+    } else if (selectedCategory === 'Non-Vegetarian') {
+      items = items.filter((i) => !i.isVegetarian);
+    } else if (selectedCategory !== 'All Menu') {
+      items = items.filter((i) =>
+        i.category === selectedCategory || i.menuGroup === selectedCategory
+      );
+    }
+
+    if (searchQuery) {
+      items = items.filter((i) =>
+        i.name.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+    }
+
     return items;
   })();
 
@@ -178,10 +190,8 @@ const POSMenu = () => {
     <div className="flex flex-col h-screen bg-gray-50 overflow-hidden">
       <Toaster />
 
-      {/* ── Header ── */}
       <div className="flex-shrink-0" ref={aiDrawerRef}>
         <header className="px-6 py-4 bg-white border-b border-gray-200 flex items-center justify-between">
-          {/* Left: Back + category tabs */}
           <div className="flex items-center gap-6">
             <button
               onClick={() => navigate('/pos')}
@@ -191,13 +201,24 @@ const POSMenu = () => {
               Back
             </button>
             <div className="h-6 w-px bg-gray-300" />
-            <div className="flex gap-1 bg-gray-100 p-1 rounded-lg">
-              {['All Menu', 'Vegetarian', 'Non-Vegetarian'].map((cat) => (
+
+            <div className="flex gap-1 bg-gray-100 p-1 rounded-lg overflow-x-auto hide-scrollbar">
+              {[
+                'All Menu',
+                'Vegetarian',
+                'Non-Vegetarian',
+                'Main Course',
+                'Appetizers',
+                'Beverages',
+                'Lunch'
+              ].map((cat) => (
                 <button
                   key={cat}
                   onClick={() => setSelectedCategory(cat)}
-                  className={`px-4 py-2 rounded-md text-sm font-medium transition-all ${
-                    selectedCategory === cat ? 'bg-white text-gray-900 shadow-sm' : 'text-gray-600 hover:text-gray-900'
+                  className={`px-5 py-2 rounded-md text-sm font-medium whitespace-nowrap transition-all ${
+                    selectedCategory === cat
+                      ? 'bg-white text-gray-900 shadow-sm'
+                      : 'text-gray-600 hover:text-gray-900'
                   }`}
                 >
                   {cat}
@@ -206,7 +227,6 @@ const POSMenu = () => {
             </div>
           </div>
 
-          {/* Center/Right: Search + AI Suggestions button */}
           <div className="flex items-center gap-3">
             <div className="w-72 relative">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
@@ -219,17 +239,13 @@ const POSMenu = () => {
               />
             </div>
 
-            {/* ── AI Suggestions toggle button ── */}
             <button
               onClick={() => setAiDrawerOpen((prev) => !prev)}
-              className={`
-                relative flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold
-                border transition-all duration-200 select-none
-                ${aiDrawerOpen
+              className={`relative flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold border transition-all duration-200 select-none ${
+                aiDrawerOpen
                   ? 'bg-gradient-to-r from-violet-600 to-blue-600 text-white border-transparent shadow-md shadow-violet-200'
                   : 'bg-white text-gray-700 border-gray-200 hover:border-violet-300 hover:text-violet-700 hover:bg-violet-50'
-                }
-              `}
+              }`}
             >
               <div className={`w-5 h-5 rounded flex items-center justify-center transition-colors ${aiDrawerOpen ? 'bg-white/20' : 'bg-gradient-to-br from-violet-500 to-blue-500'}`}>
                 <Sparkles size={11} className={aiDrawerOpen ? 'text-white' : 'text-white'} />
@@ -240,33 +256,24 @@ const POSMenu = () => {
                   {orderItems.length}
                 </span>
               )}
-              {aiDrawerOpen
-                ? <ChevronUp size={14} className="ml-0.5" />
-                : <ChevronDown size={14} className="ml-0.5" />
-              }
+              {aiDrawerOpen ? <ChevronUp size={14} className="ml-0.5" /> : <ChevronDown size={14} className="ml-0.5" />}
             </button>
           </div>
         </header>
 
-        {/* ── AI Suggestions Drawer ── */}
         <div
-          className={`
-            overflow-hidden bg-white border-b border-gray-200
-            transition-all duration-300 ease-in-out
-            ${aiDrawerOpen ? 'max-h-[340px] opacity-100' : 'max-h-0 opacity-0'}
-          `}
+          className={`overflow-hidden bg-white border-b border-gray-200 transition-all duration-300 ease-in-out ${
+            aiDrawerOpen ? 'max-h-[340px] opacity-100' : 'max-h-0 opacity-0'
+          }`}
           style={{ boxShadow: aiDrawerOpen ? '0 4px 24px -4px rgba(109,40,217,0.12)' : 'none' }}
         >
           <div className="px-6 py-4">
-            {/* Drawer header label */}
             <div className="flex items-center justify-between mb-3">
               <div className="flex items-center gap-2">
                 <div className="w-5 h-5 bg-gradient-to-br from-violet-500 to-blue-500 rounded flex items-center justify-center">
                   <Sparkles size={10} className="text-white" />
                 </div>
-                <span className="text-sm font-bold text-gray-800">
-                  AI-Powered Recommendations
-                </span>
+                <span className="text-sm font-bold text-gray-800">AI-Powered Recommendations</span>
                 <span className="text-[10px] text-gray-400 font-medium bg-gray-100 px-2 py-0.5 rounded-full">
                   Content-based filtering
                 </span>
@@ -279,7 +286,6 @@ const POSMenu = () => {
               </button>
             </div>
 
-            {/* Horizontal recommendation panel */}
             <RecommendationPanel
               orderItems={orderItems}
               onAddItem={(item) => {
@@ -292,10 +298,7 @@ const POSMenu = () => {
         </div>
       </div>
 
-      {/* ── Body ── */}
       <div className="flex flex-1 overflow-hidden">
-
-        {/* ── Menu Grid ── */}
         <div className="flex-1 overflow-y-auto p-6 bg-gray-50">
           {filteredItems.length === 0 ? (
             <div className="text-center text-gray-400 py-20">
@@ -331,16 +334,12 @@ const POSMenu = () => {
           )}
         </div>
 
-        {/* ── Right sidebar: Order only (AI moved to header) ── */}
         <div className="w-96 bg-white border-l border-gray-200 flex flex-col flex-shrink-0">
-
-          {/* Order Details header */}
           <div className="p-5 border-b border-gray-200 flex-shrink-0">
             <div className="flex items-center justify-between mb-4">
               <h2 className="text-lg font-bold text-gray-900">Order Details</h2>
               <span className="text-[#4682B4] font-semibold text-sm">{orderNumber}</span>
             </div>
-            {/* Order type tabs */}
             <div className="flex bg-gray-100 rounded-lg p-1">
               {['Dine in', 'Takeaway', 'Delivery'].map((type) => (
                 <button
@@ -356,7 +355,6 @@ const POSMenu = () => {
             </div>
           </div>
 
-          {/* Waiter & Table */}
           <div className="px-5 py-3 border-b border-gray-200 flex-shrink-0">
             <div className="flex items-center justify-between py-1.5 border-b border-gray-100">
               <span className="text-xs font-medium text-gray-600">Waiter</span>
@@ -384,7 +382,6 @@ const POSMenu = () => {
             </div>
           </div>
 
-          {/* ── Scrollable: Order Items ── */}
           <div className="flex-1 overflow-y-auto px-5 pt-4">
             <div className="flex items-center justify-between mb-3">
               <h3 className="text-sm font-bold text-gray-900">Order Items</h3>
@@ -460,7 +457,6 @@ const POSMenu = () => {
             )}
           </div>
 
-          {/* ── AI suggestion nudge (when items are in cart) ── */}
           {orderItems.length > 0 && !aiDrawerOpen && (
             <div className="mx-5 mb-3">
               <button
@@ -473,7 +469,6 @@ const POSMenu = () => {
             </div>
           )}
 
-          {/* ── Footer: Total + Place Order ── */}
           <div className="p-5 border-t border-gray-200 bg-white flex-shrink-0">
             <div className="flex items-center justify-between mb-3">
               <span className="text-sm font-semibold text-gray-700">Total</span>
