@@ -1,13 +1,6 @@
-// backend/controllers/recommendationController.js
 const MenuItem = require('../models/MenuItem');
+const { getReadyCF } = require('../collaborativeFilter');
 
-// ── TF-IDF helpers (no external library needed) ───────────────────────────────
-
-/**
- * Build a "feature vector" string for a menu item.
- * We concatenate: name tokens + menuGroup + menuSubGroup + category + addOns
- * All lowercased and split into terms.
- */
 const buildFeatureTokens = (item) => {
   const parts = [
     item.name || '',
@@ -24,9 +17,6 @@ const buildFeatureTokens = (item) => {
     .filter((t) => t.length > 1);
 };
 
-/**
- * Term-frequency map for a list of tokens.
- */
 const termFrequency = (tokens) => {
   const tf = {};
   tokens.forEach((t) => { tf[t] = (tf[t] || 0) + 1; });
@@ -35,26 +25,19 @@ const termFrequency = (tokens) => {
   return tf;
 };
 
-/**
- * Compute TF-IDF vectors for all documents.
- * Returns: { docVectors: Map<id, {term: weight}>, idf: {term: idfScore} }
- */
 const buildTfIdf = (items) => {
   const tokenSets = items.map((item) => buildFeatureTokens(item));
   const N = items.length;
 
-  // Collect all unique terms
   const allTerms = new Set();
   tokenSets.forEach((tokens) => tokens.forEach((t) => allTerms.add(t)));
 
-  // IDF: log(N / df)
   const idf = {};
   allTerms.forEach((term) => {
     const df = tokenSets.filter((tokens) => tokens.includes(term)).length;
-    idf[term] = Math.log((N + 1) / (df + 1)) + 1; // smoothed
+    idf[term] = Math.log((N + 1) / (df + 1)) + 1;
   });
 
-  // TF-IDF vector per item
   const docVectors = new Map();
   items.forEach((item, idx) => {
     const tf = termFrequency(tokenSets[idx]);
@@ -68,9 +51,6 @@ const buildTfIdf = (items) => {
   return { docVectors, idf };
 };
 
-/**
- * Cosine similarity between two TF-IDF vectors.
- */
 const cosineSimilarity = (vecA, vecB) => {
   const termsA = Object.keys(vecA);
   if (!termsA.length) return 0;
@@ -92,15 +72,11 @@ const cosineSimilarity = (vecA, vecB) => {
   return denom === 0 ? 0 : dot / denom;
 };
 
-// ── Price-range bonus ─────────────────────────────────────────────────────────
 const priceRangeBonus = (targetPrice, candidatePrice) => {
   const ratio = Math.abs(targetPrice - candidatePrice) / (targetPrice || 1);
-  // Full bonus if within 30%, fades to 0 at 100%+ difference
   return Math.max(0, 1 - ratio * 1.2);
 };
 
-// ── Category complement map ───────────────────────────────────────────────────
-// Maps menuGroup → groups that pair well with it
 const COMPLEMENT_MAP = {
   'Main Course': ['Beverages', 'Appetizers', 'Desserts', 'Sides'],
   'Appetizers':  ['Main Course', 'Beverages'],
@@ -110,177 +86,119 @@ const COMPLEMENT_MAP = {
   'Lunch':       ['Beverages', 'Desserts'],
   'Snacks':      ['Beverages'],
   'Specials':    ['Beverages', 'Desserts'],
-  // Fallback - also match by category
   'Vegetarian':     ['Beverages', 'Desserts'],
   'Non-Vegetarian': ['Beverages', 'Main Course'],
   'Vegan':          ['Beverages', 'Desserts'],
 };
 
-/**
- * GET /api/recommendations
- *
- * Query params:
- *   itemIds   – comma-separated MongoDB IDs of items currently in the order
- *   limit     – how many recommendations to return (default 5)
- *   mode      – "similar" | "complement" | "both" (default "both")
- */
 exports.getRecommendations = async (req, res) => {
   try {
     const { itemIds = '', limit = 5, mode = 'both' } = req.query;
 
-    // Fetch all active menu items from MongoDB
     const allItems = await MenuItem.find({ status: 'Active' }).lean();
-
     if (!allItems.length) {
       return res.status(200).json({ status: 'success', data: { recommendations: [] } });
     }
 
-    // Parse requested item IDs
-    const requestedIds = itemIds
-      .split(',')
-      .map((id) => id.trim())
-      .filter(Boolean);
+    const requestedIds = itemIds.split(',').map(id => id.trim()).filter(Boolean);
 
-    // If no cart items — return popular items (by price bracket variety)
     if (!requestedIds.length) {
       const popular = allItems
-        .sort(() => Math.random() - 0.5) // shuffle for variety
+        .sort(() => Math.random() - 0.5)
         .slice(0, Number(limit))
-        .map((item) => ({
-          ...item,
-          score: 0.5,
-          reason: 'Popular choice',
-          matchType: 'popular',
-        }));
+        .map(item => ({ ...item, score: 0.5, reason: 'Popular choice', matchType: 'popular' }));
       return res.status(200).json({ status: 'success', data: { recommendations: popular } });
     }
 
-    // Build TF-IDF index over ALL items
     const { docVectors } = buildTfIdf(allItems);
 
-    // Cart items
-    const cartItems = allItems.filter((item) =>
-      requestedIds.includes(String(item._id))
-    );
-
+    const cartItems = allItems.filter(item => requestedIds.includes(String(item._id)));
     if (!cartItems.length) {
       return res.status(200).json({ status: 'success', data: { recommendations: [] } });
     }
 
-    // Candidate items = items NOT in the cart
-    const candidates = allItems.filter(
-      (item) => !requestedIds.includes(String(item._id))
-    );
+    const candidates = allItems.filter(item => !requestedIds.includes(String(item._id)));
+    const avgCartPrice = cartItems.reduce((s, i) => s + (i.price || 0), 0) / cartItems.length;
+    const cartGroups = new Set(cartItems.map(i => i.menuGroup).filter(Boolean));
+    const cartCategories = new Set(cartItems.map(i => i.category).filter(Boolean));
+    const cartNames = cartItems.map(i => i.name);
 
-    const avgCartPrice =
-      cartItems.reduce((s, i) => s + (i.price || 0), 0) / cartItems.length;
-
-    const cartGroups = new Set(cartItems.map((i) => i.menuGroup).filter(Boolean));
-    const cartCategories = new Set(cartItems.map((i) => i.category).filter(Boolean));
-
-    // Derive complement target groups
     const complementTargets = new Set();
-    cartGroups.forEach((g) => {
-      (COMPLEMENT_MAP[g] || []).forEach((cg) => complementTargets.add(cg));
-    });
-    cartCategories.forEach((c) => {
-      (COMPLEMENT_MAP[c] || []).forEach((cg) => complementTargets.add(cg));
-    });
+    cartGroups.forEach(g => (COMPLEMENT_MAP[g] || []).forEach(cg => complementTargets.add(cg)));
+    cartCategories.forEach(c => (COMPLEMENT_MAP[c] || []).forEach(cg => complementTargets.add(cg)));
 
-    // Score each candidate
-    const scored = candidates.map((candidate) => {
+    // Load collaborative filter (builds lazily, cached 10 min)
+    const cf = await getReadyCF();
+    const cfAvailable = cf.coverage() >= 3 && cf.totalOrders >= 5;
+    // Blend weight: ramp up CF as order history grows, cap at 0.55
+    const alpha = cfAvailable
+      ? Math.min(0.55, 0.15 + (cf.totalOrders / 200) * 0.4)
+      : 0;
+
+    const scored = candidates.map(candidate => {
       const candVec = docVectors.get(String(candidate._id)) || {};
 
-      // ── Content similarity: average cosine sim against all cart items ──
+      // Content-based score (existing logic)
       let contentScore = 0;
-      cartItems.forEach((cartItem) => {
+      cartItems.forEach(cartItem => {
         const cartVec = docVectors.get(String(cartItem._id)) || {};
         contentScore += cosineSimilarity(cartVec, candVec);
       });
       contentScore /= cartItems.length;
 
-      // ── Price range bonus ──
       const priceBonus = priceRangeBonus(avgCartPrice, candidate.price || 0) * 0.2;
-
-      // ── Complement bonus ──
-      const isComplement =
-        complementTargets.has(candidate.menuGroup) ||
-        complementTargets.has(candidate.category);
+      const isComplement = complementTargets.has(candidate.menuGroup) || complementTargets.has(candidate.category);
       const complementBonus = isComplement ? 0.35 : 0;
-
-      // ── Same-group penalty (avoid duplicating what's already ordered) ──
       const sameGroupPenalty = cartGroups.has(candidate.menuGroup) ? 0.15 : 0;
 
-      // ── Final score ──
-      let finalScore, matchType, reason;
+      // Collaborative filtering score
+      const cfScore = cfAvailable ? cf.score(candidate.name, cartNames) : 0;
 
-      if (mode === 'similar') {
-        finalScore = contentScore + priceBonus - sameGroupPenalty;
-        matchType = 'similar';
-        reason = `Similar to items in your order`;
-      } else if (mode === 'complement') {
-        finalScore = complementBonus + priceBonus + contentScore * 0.1;
+      // Hybrid blend
+      const contentFinalScore =
+        contentScore * 0.45 + complementBonus * 0.35 + priceBonus * 0.2 - sameGroupPenalty;
+      const finalScore = alpha * cfScore + (1 - alpha) * contentFinalScore;
+
+      let matchType, reason;
+      if (cfScore > 0.3 && alpha > 0.2) {
+        matchType = 'collaborative';
+        reason = 'Frequently ordered with your selection';
+      } else if (complementBonus > 0 && contentScore < 0.3) {
         matchType = 'complement';
-        reason = isComplement
-          ? `Pairs well with your ${[...cartGroups][0] || 'order'}`
-          : 'Good addition';
+        reason = `Pairs well with your order`;
+      } else if (contentScore > 0.3) {
+        matchType = 'similar';
+        reason = 'Similar to items in your cart';
       } else {
-        // "both" — blend
-        finalScore =
-          contentScore * 0.45 +
-          complementBonus * 0.35 +
-          priceBonus * 0.2 -
-          sameGroupPenalty;
-
-        if (complementBonus > 0 && contentScore < 0.3) {
-          matchType = 'complement';
-          reason = `Pairs well with your order`;
-        } else if (contentScore > 0.3) {
-          matchType = 'similar';
-          reason = `Similar to items in your cart`;
-        } else {
-          matchType = 'popular';
-          reason = 'You might enjoy this';
-        }
+        matchType = 'popular';
+        reason = 'You might enjoy this';
       }
 
       return {
-        _id:         candidate._id,
-        name:        candidate.name,
-        price:       candidate.price,
-        category:    candidate.category,
-        menuGroup:   candidate.menuGroup,
-        menuSubGroup:candidate.menuSubGroup,
-        image:       candidate.image,
-        status:      candidate.status,
-        score:       Math.max(0, Math.min(1, finalScore)),
+        _id: candidate._id,
+        name: candidate.name,
+        price: candidate.price,
+        category: candidate.category,
+        menuGroup: candidate.menuGroup,
+        menuSubGroup: candidate.menuSubGroup,
+        image: candidate.image,
+        status: candidate.status,
+        score: Math.max(0, Math.min(1, finalScore)),
         reason,
         matchType,
+        _debug: { cfScore: Math.round(cfScore * 100) / 100, contentScore: Math.round(contentFinalScore * 100) / 100, alpha: Math.round(alpha * 100) / 100 },
       };
     });
 
-    // Sort by score descending and pick top N
-    const recommendations = scored
-      .sort((a, b) => b.score - a.score)
-      .slice(0, Number(limit));
+    const recommendations = scored.sort((a, b) => b.score - a.score).slice(0, Number(limit));
 
-    return res.status(200).json({
-      status: 'success',
-      data: { recommendations },
-    });
+    return res.status(200).json({ status: 'success', data: { recommendations } });
   } catch (error) {
     console.error('Recommendation error:', error);
-    res.status(500).json({
-      status: 'error',
-      message: 'Failed to generate recommendations: ' + error.message,
-    });
+    res.status(500).json({ status: 'error', message: 'Failed to generate recommendations: ' + error.message });
   }
 };
 
-/**
- * GET /api/recommendations/similar/:id
- * Returns items most similar to a single menu item (for item detail pages).
- */
 exports.getSimilarItems = async (req, res) => {
   try {
     const { id } = req.params;

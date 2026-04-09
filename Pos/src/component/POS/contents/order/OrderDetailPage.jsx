@@ -8,7 +8,8 @@ import OrderDetailHeader from './orderdetail/OrderDetailHeader';
 import OrderSummarySidebar from './orderdetail/OrderSummarySidebar';
 import DishCard from './orderdetail/DishCard';
 import OrderItemModal from './orderdetail/OrderItemModal';
-import { Clock } from 'lucide-react';
+import AddItemsModal from './AddItemsModal';
+import { Clock, PlusCircle } from 'lucide-react';
 
 // ── Build a price+meta lookup from the menu API response ─────────────────────
 const buildMenuLookup = (apiItems) => {
@@ -66,56 +67,61 @@ const OrderDetailPage = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const [activeTab, setActiveTab]       = useState('Dishes');
-  const [order, setOrder]               = useState(null);
-  const [menuLookup, setMenuLookup]     = useState({});
-  const [loading, setLoading]           = useState(true);
-  const [selectedItem, setSelectedItem] = useState(null);
-  const [itemStatuses, setItemStatuses] = useState({});
+  const [activeTab, setActiveTab]           = useState('Dishes');
+  const [order, setOrder]                   = useState(null);
+  const [menuLookup, setMenuLookup]         = useState({});
+  const [loading, setLoading]               = useState(true);
+  const [selectedItem, setSelectedItem]     = useState(null);
+  const [itemStatuses, setItemStatuses]     = useState({});
+  const [showAddItems, setShowAddItems]     = useState(false);
+
+  const loadOrder = async () => {
+    try {
+      setLoading(true);
+
+      const [orderResult, menuResult] = await Promise.allSettled([
+        location.state?.order
+          ? Promise.resolve({ data: { order: location.state.order } })
+          : orderAPI.getOrderById(id),
+        menuAPI.getMenuItems(),
+      ]);
+
+      if (orderResult.status === 'fulfilled') {
+        const raw = orderResult.value.data;
+        setOrder(raw?.order || raw);
+      } else {
+        throw new Error('Order not found');
+      }
+
+      if (menuResult.status === 'fulfilled') {
+        const items = menuResult.value.data?.items || [];
+        setMenuLookup(buildMenuLookup(items));
+      }
+    } catch (error) {
+      console.error('Error loading order details:', error);
+      toast.error('Failed to load order details');
+      navigate('/pos');
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
-    const load = async () => {
-      try {
-        setLoading(true);
+    loadOrder();
+  }, [id]);
 
-        // Fetch order and menu in parallel
-        const [orderResult, menuResult] = await Promise.allSettled([
-          location.state?.order
-            ? Promise.resolve({ data: { order: location.state.order } })
-            : orderAPI.getOrderById(id),
-          menuAPI.getMenuItems(),
-        ]);
-
-        if (orderResult.status === 'fulfilled') {
-          const raw = orderResult.value.data;
-          setOrder(raw?.order || raw);
-        } else {
-          throw new Error('Order not found');
-        }
-
-        if (menuResult.status === 'fulfilled') {
-          const items = menuResult.value.data?.items || [];
-          setMenuLookup(buildMenuLookup(items));
-        }
-        // if menu API fails, menuLookup stays {} → falls back to local JSON
-      } catch (error) {
-        console.error('Error loading order details:', error);
-        toast.error('Failed to load order details');
-        navigate('/pos');
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    load();
-  }, [id, location.state, navigate]);
+  const handleItemsAdded = async () => {
+    // Re-fetch order from API to get latest items
+    try {
+      const res = await orderAPI.getOrderById(id || order?.id);
+      const raw = res.data;
+      setOrder(raw?.order || raw);
+    } catch {
+      await loadOrder();
+    }
+  };
 
   // ── Parse raw order.items → unified objects ──────────────────────────────
-  // Price priority:
-  //   1. item.price from API object format   (most accurate — stored at order time)
-  //   2. menu API lookup by name             (for string-format "Name ×qty" items)
-  //   3. local Menudata.json lookup          (offline / static fallback)
-  //   4. 0
   const menuItems = (order?.items || []).map((item, index) => {
     let name, qty, apiPrice, note;
 
@@ -200,6 +206,7 @@ const OrderDetailPage = () => {
 
       <div className="flex">
         <div className="flex-1 p-6 bg-gray-50">
+          {/* Page title row + Add Items button */}
           <div className="mb-6 flex items-center justify-between">
             <div className="flex items-center gap-4">
               <h1 className="text-2xl font-semibold text-gray-900">{order.type}</h1>
@@ -219,9 +226,22 @@ const OrderDetailPage = () => {
               </div>
             </div>
 
-            <div className="flex items-center gap-2 text-gray-500">
-              <Clock className="w-5 h-5" />
-              <span className="text-sm">{order.time}</span>
+            <div className="flex items-center gap-3">
+              {/* Add Items button — hidden for served/cancelled */}
+              {order.status !== 'Served' && order.status !== 'Cancelled' && (
+                <button
+                  onClick={() => setShowAddItems(true)}
+                  className="flex items-center gap-2 px-4 py-2 bg-[#487AA4] text-white rounded-lg text-sm font-semibold hover:bg-[#386184] transition-colors shadow-sm"
+                >
+                  <PlusCircle className="w-4 h-4" />
+                  Add Items
+                </button>
+              )}
+
+              <div className="flex items-center gap-2 text-gray-500">
+                <Clock className="w-5 h-5" />
+                <span className="text-sm">{order.time}</span>
+              </div>
             </div>
           </div>
 
@@ -235,6 +255,18 @@ const OrderDetailPage = () => {
                   onClick={() => openItemModal(item)}
                 />
               ))}
+              {/* Add Items card shortcut */}
+              {order.status !== 'Served' && order.status !== 'Cancelled' && (
+                <button
+                  onClick={() => setShowAddItems(true)}
+                  className="border-2 border-dashed border-gray-200 rounded-xl flex flex-col items-center justify-center gap-3 p-8 text-gray-400 hover:border-[#487AA4] hover:text-[#487AA4] hover:bg-blue-50/50 transition-all group cursor-pointer min-h-[180px]"
+                >
+                  <div className="w-12 h-12 rounded-full border-2 border-dashed border-current flex items-center justify-center group-hover:scale-110 transition-transform">
+                    <PlusCircle className="w-6 h-6" />
+                  </div>
+                  <span className="text-sm font-medium">Add more items</span>
+                </button>
+              )}
             </div>
           )}
 
@@ -300,6 +332,13 @@ const OrderDetailPage = () => {
         item={selectedItem}
         onClose={closeItemModal}
         onStatusChange={handleItemStatusChange}
+      />
+
+      <AddItemsModal
+        isOpen={showAddItems}
+        onClose={() => setShowAddItems(false)}
+        order={order}
+        onItemsAdded={handleItemsAdded}
       />
     </div>
   );

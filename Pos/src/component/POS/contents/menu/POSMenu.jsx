@@ -243,16 +243,16 @@ const POSMenu = () => {
               onClick={() => setAiDrawerOpen((prev) => !prev)}
               className={`relative flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold border transition-all duration-200 select-none ${
                 aiDrawerOpen
-                  ? 'bg-gradient-to-r from-violet-600 to-blue-600 text-white border-transparent shadow-md shadow-violet-200'
-                  : 'bg-white text-gray-700 border-gray-200 hover:border-violet-300 hover:text-violet-700 hover:bg-violet-50'
+                  ? 'bg-[#4682B4] text-white border-transparent shadow-md shadow-violet-200'
+                  : 'bg-white text-gray-700 border-gray-200 hover:border-violet-300 hover:text-[#4682B4] hover:bg-violet-50'
               }`}
             >
-              <div className={`w-5 h-5 rounded flex items-center justify-center transition-colors ${aiDrawerOpen ? 'bg-white/20' : 'bg-gradient-to-br from-violet-500 to-blue-500'}`}>
+              <div className={`w-5 h-5 rounded flex items-center justify-center transition-colors ${aiDrawerOpen ? 'bg-white/20' : 'bg-gradient-to-br from-[#4682B4] to-blue-500'}`}>
                 <Sparkles size={11} className={aiDrawerOpen ? 'text-white' : 'text-white'} />
               </div>
               AI Suggestions
               {orderItems.length > 0 && (
-                <span className={`text-[10px] px-1.5 py-0.5 rounded-full font-bold ${aiDrawerOpen ? 'bg-white/20 text-white' : 'bg-violet-100 text-violet-700'}`}>
+                <span className={`text-[10px] px-1.5 py-0.5 rounded-full font-bold ${aiDrawerOpen ? 'bg-white/20 text-white' : 'bg-violet-100 text-[#4682B4]'}`}>
                   {orderItems.length}
                 </span>
               )}

@@ -1,10 +1,7 @@
-// Pos/src/component/POS/contents/menu/RecommendationPanel.jsx
-// Supports layout="horizontal" (header drawer) and layout="vertical" (sidebar, legacy)
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { Sparkles, ChevronRight, RefreshCw, Zap, TrendingUp, Star } from 'lucide-react';
 import api from '../../../../services/api';
 
-// ── Match-type config ─────────────────────────────────────────────────────────
 const MATCH_CONFIG = {
   similar: {
     label: 'Similar',
@@ -27,9 +24,15 @@ const MATCH_CONFIG = {
     dotColor: 'bg-amber-400',
     border: 'border-amber-100',
   },
+  collaborative: {
+    label: 'Often together',
+    color: 'bg-teal-100 text-teal-700',
+    icon: TrendingUp,
+    dotColor: 'bg-teal-400',
+    border: 'border-teal-100',
+  },
 };
 
-// ── Horizontal card (for header drawer) ──────────────────────────────────────
 const HorizontalCard = ({ item, onAdd, adding }) => {
   const config = MATCH_CONFIG[item.matchType] || MATCH_CONFIG.popular;
   const Icon = config.icon;
@@ -43,7 +46,6 @@ const HorizontalCard = ({ item, onAdd, adding }) => {
         ${adding ? 'opacity-60 pointer-events-none' : ''}
       `}
     >
-      {/* Image */}
       <div className="relative h-28 bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center overflow-hidden">
         {item.image ? (
           <img
@@ -55,14 +57,12 @@ const HorizontalCard = ({ item, onAdd, adding }) => {
         ) : (
           <span className="text-4xl select-none">🍽️</span>
         )}
-        {/* Match badge */}
         <span className={`absolute top-1.5 left-1.5 inline-flex items-center gap-1 px-1.5 py-0.5 rounded-md text-[10px] font-semibold ${config.color}`}>
           <Icon size={9} />
           {config.label}
         </span>
       </div>
 
-      {/* Content */}
       <div className="p-2.5">
         <p className="text-xs font-semibold text-gray-800 truncate leading-tight mb-0.5">
           {item.name}
@@ -87,7 +87,6 @@ const HorizontalCard = ({ item, onAdd, adding }) => {
             {adding ? <RefreshCw size={9} className="animate-spin" /> : <>Add <ChevronRight size={9} /></>}
           </button>
         </div>
-        {/* Score bar */}
         <div className="mt-2 h-0.5 bg-gray-100 rounded-full overflow-hidden">
           <div
             className={`h-full rounded-full transition-all duration-500 ${config.dotColor}`}
@@ -99,7 +98,6 @@ const HorizontalCard = ({ item, onAdd, adding }) => {
   );
 };
 
-// ── Vertical card (legacy sidebar) ────────────────────────────────────────────
 const VerticalCard = ({ item, onAdd, adding }) => {
   const config = MATCH_CONFIG[item.matchType] || MATCH_CONFIG.popular;
   const Icon = config.icon;
@@ -153,7 +151,6 @@ const VerticalCard = ({ item, onAdd, adding }) => {
   );
 };
 
-// ── Mode tab ──────────────────────────────────────────────────────────────────
 const ModeTab = ({ active, onClick, children }) => (
   <button
     onClick={onClick}
@@ -168,16 +165,6 @@ const ModeTab = ({ active, onClick, children }) => (
   </button>
 );
 
-// ── Main component ────────────────────────────────────────────────────────────
-/**
- * RecommendationPanel
- *
- * Props:
- *   orderItems   – array of items currently in cart ({ id, name, price, ... })
- *   onAddItem    – callback(item) to add a recommended item to the cart
- *   layout       – "horizontal" (header drawer, scrollable row) | "vertical" (sidebar, default)
- *   className    – optional extra classes
- */
 const RecommendationPanel = ({ orderItems = [], onAddItem, layout = 'vertical', className = '' }) => {
   const [recommendations, setRecommendations] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -188,7 +175,6 @@ const RecommendationPanel = ({ orderItems = [], onAddItem, layout = 'vertical', 
   const debounceRef = useRef(null);
   const isHorizontal = layout === 'horizontal';
 
-  // ── Fetch recommendations ─────────────────────────────────────────────────
   const fetchRecommendations = useCallback(async (cartItems, currentMode) => {
     setLoading(true);
     setError(null);
@@ -209,7 +195,6 @@ const RecommendationPanel = ({ orderItems = [], onAddItem, layout = 'vertical', 
     }
   }, [isHorizontal]);
 
-  // ── Debounce re-fetch when cart changes ───────────────────────────────────
   useEffect(() => {
     if (debounceRef.current) clearTimeout(debounceRef.current);
     debounceRef.current = setTimeout(() => {
@@ -218,7 +203,6 @@ const RecommendationPanel = ({ orderItems = [], onAddItem, layout = 'vertical', 
     return () => clearTimeout(debounceRef.current);
   }, [orderItems, mode, fetchRecommendations]);
 
-  // ── Handle add ────────────────────────────────────────────────────────────
   const handleAdd = async (item) => {
     if (addingId) return;
     setAddingId(String(item._id));
@@ -237,18 +221,15 @@ const RecommendationPanel = ({ orderItems = [], onAddItem, layout = 'vertical', 
 
   const isEmpty = orderItems.length === 0 && hasLoaded && !loading;
 
-  // ─────────────────────────────────────────────────────────────────────────
-  // HORIZONTAL layout (header drawer)
-  // ─────────────────────────────────────────────────────────────────────────
   if (isHorizontal) {
     return (
       <div className={`${className}`}>
-        {/* Mode tabs row */}
         <div className="flex items-center justify-between mb-3">
           <div className="flex gap-1 p-1 bg-gray-50 rounded-lg">
-            <ModeTab active={mode === 'both'}       onClick={() => setMode('both')}>      ✨ Smart    </ModeTab>
-            <ModeTab active={mode === 'similar'}    onClick={() => setMode('similar')}>   🎯 Similar  </ModeTab>
-            <ModeTab active={mode === 'complement'} onClick={() => setMode('complement')}> 🍷 Pair     </ModeTab>
+            <ModeTab active={mode === 'both'}          onClick={() => setMode('both')}>      ✨ Smart    </ModeTab>
+            <ModeTab active={mode === 'similar'}       onClick={() => setMode('similar')}>   🎯 Similar  </ModeTab>
+            <ModeTab active={mode === 'complement'}    onClick={() => setMode('complement')}> 🍷 Pair     </ModeTab>
+            <ModeTab active={mode === 'collaborative'} onClick={() => setMode('collaborative')}>👥 Together</ModeTab>
           </div>
           <button
             onClick={() => fetchRecommendations(orderItems, mode)}
@@ -260,7 +241,6 @@ const RecommendationPanel = ({ orderItems = [], onAddItem, layout = 'vertical', 
           </button>
         </div>
 
-        {/* Horizontal scroll container */}
         <div className="relative">
           {loading && (
             <div className="flex items-center justify-center h-36 gap-2">
@@ -316,12 +296,8 @@ const RecommendationPanel = ({ orderItems = [], onAddItem, layout = 'vertical', 
     );
   }
 
-  // ─────────────────────────────────────────────────────────────────────────
-  // VERTICAL layout (legacy sidebar)
-  // ─────────────────────────────────────────────────────────────────────────
   return (
     <div className={`flex flex-col ${className}`}>
-      {/* Header */}
       <div className="flex items-center justify-between mb-3">
         <div className="flex items-center gap-1.5">
           <div className="w-5 h-5 bg-gradient-to-br from-violet-500 to-blue-500 rounded-md flex items-center justify-center">
@@ -344,14 +320,13 @@ const RecommendationPanel = ({ orderItems = [], onAddItem, layout = 'vertical', 
         </button>
       </div>
 
-      {/* Mode tabs */}
       <div className="flex gap-1 mb-3 p-1 bg-gray-50 rounded-lg">
-        <ModeTab active={mode === 'both'}       onClick={() => setMode('both')}>      ✨ Smart    </ModeTab>
-        <ModeTab active={mode === 'similar'}    onClick={() => setMode('similar')}>   🎯 Similar  </ModeTab>
-        <ModeTab active={mode === 'complement'} onClick={() => setMode('complement')}> 🍷 Pair     </ModeTab>
+        <ModeTab active={mode === 'both'}          onClick={() => setMode('both')}>      ✨ Smart    </ModeTab>
+        <ModeTab active={mode === 'similar'}       onClick={() => setMode('similar')}>   🎯 Similar  </ModeTab>
+        <ModeTab active={mode === 'complement'}    onClick={() => setMode('complement')}> 🍷 Pair     </ModeTab>
+        <ModeTab active={mode === 'collaborative'} onClick={() => setMode('collaborative')}>👥 Together</ModeTab>
       </div>
 
-      {/* Content */}
       <div className="flex-1 min-h-0">
         {loading && (
           <div className="flex flex-col items-center justify-center py-8 gap-2">

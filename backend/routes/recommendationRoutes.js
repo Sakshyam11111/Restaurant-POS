@@ -1,12 +1,25 @@
-// backend/routes/recommendationRoutes.js
 const express = require('express');
 const router = express.Router();
 const recommendationController = require('../controllers/recommendationController');
 
-// GET /api/recommendations?itemIds=id1,id2&limit=5&mode=both
-router.get('/', recommendationController.getRecommendations);
+const { getReadyCF } = require('../collaborativeFilter');
 
-// GET /api/recommendations/similar/:id
+router.get('/', recommendationController.getRecommendations);
 router.get('/similar/:id', recommendationController.getSimilarItems);
+
+router.post('/rebuild-cf', async (req, res) => {
+  try {
+    const { CollaborativeFilter } = require('../collaborativeFilter');
+    const fresh = new CollaborativeFilter();
+    await fresh.build();
+    Object.assign(require('../collaborativeFilter').cfInstance || {}, fresh);
+    res.json({ 
+      status: 'success', 
+      message: `CF rebuilt: ${fresh.coverage()} items, ${fresh.totalOrders} orders` 
+    });
+  } catch (e) {
+    res.status(500).json({ status: 'error', message: e.message });
+  }
+});
 
 module.exports = router;

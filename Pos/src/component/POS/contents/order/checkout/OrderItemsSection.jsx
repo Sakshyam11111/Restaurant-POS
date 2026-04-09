@@ -1,6 +1,7 @@
 import React from 'react';
+import { PlusCircle } from 'lucide-react';
 
-const OrderItemsSection = ({ orderItems, activeTab, setActiveTab }) => {
+const OrderItemsSection = ({ orderItems, activeTab, setActiveTab, onAddItems }) => {
   return (
     <div className="bg-white rounded-xl shadow-sm">
       <div className="border-b border-gray-200 px-6 py-4">
@@ -19,8 +20,11 @@ const OrderItemsSection = ({ orderItems, activeTab, setActiveTab }) => {
             </button>
           ))}
 
-          <button className="ml-auto px-6 py-2 bg-[#4A7BA7] text-white rounded-lg hover:bg-[#3d6a92] transition-colors font-medium flex items-center gap-2">
-            <span className="text-lg">+</span>
+          <button
+            onClick={onAddItems}
+            className="ml-auto px-5 py-2 bg-[#487AA4] text-white rounded-lg hover:bg-[#386184] transition-colors font-medium flex items-center gap-2"
+          >
+            <PlusCircle className="w-4 h-4" />
             Add Item
           </button>
         </div>
@@ -54,6 +58,10 @@ const OrderItemsSection = ({ orderItems, activeTab, setActiveTab }) => {
           </tbody>
         </table>
       </div>
+
+      {orderItems.length === 0 && (
+        <div className="py-10 text-center text-gray-400 text-sm">No items in this order.</div>
+      )}
     </div>
   );
 };

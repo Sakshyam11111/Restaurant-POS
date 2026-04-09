@@ -8,7 +8,6 @@ import OrderDetailPage from './component/POS/contents/order/OrderDetailPage';
 import CheckoutPage from './component/POS/contents/order/checkout/CheckoutPage';
 import POSMenu from './component/POS/contents/menu/POSMenu';
 import HomeContent from './component/POS/contents/HomeContent';
-import UnitMaster from './component/POS/master/unitmaster';
 import POSContent from './component/POS/contents/POSContent';
 import Login from './component/mainpage/Login';
 import Signup from './component/mainpage/Signup';
@@ -31,7 +30,6 @@ const App = () => {
             <Route path="/posmenu" element={<POSMenu />} />
             <Route path="/homecontent" element={<HomeContent />} />
             <Route path="/poscontent" element={<POSContent />} />
-            <Route path="/unitmaster" element={<UnitMaster />} />
           </Routes>
         </Router>
       </OrderProvider>

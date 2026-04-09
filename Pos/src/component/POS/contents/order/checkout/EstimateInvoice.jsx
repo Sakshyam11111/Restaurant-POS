@@ -1,7 +1,20 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { Tag } from 'lucide-react';
 
-const EstimateInvoice = ({ order, orderItems, subtotal, discount, totalDue, onConfirmPay, isProcessing = false }) => {
+const EstimateInvoice = ({
+  order,
+  orderItems,
+  subtotal,
+  discount = 0,
+  discountMeta = {},
+  totalDue,
+  onConfirmPay,
+  isProcessing = false,
+  onAddDiscount,
+}) => {
+  const hasDiscount = discount > 0;
+
   return (
     <div className="bg-white rounded-xl shadow-sm sticky top-6">
       <div className="bg-gray-50 px-6 py-4 border-b border-gray-200 rounded-t-xl">
@@ -14,6 +27,7 @@ const EstimateInvoice = ({ order, orderItems, subtotal, discount, totalDue, onCo
       <div className="px-6 py-4">
         <h4 className="text-sm font-semibold text-gray-900 mb-4">ESTIMATE INVOICE</h4>
 
+        {/* Order meta */}
         <div className="space-y-2 text-sm mb-6">
           <div className="flex justify-between">
             <span className="text-gray-600">Date:</span>
@@ -37,6 +51,7 @@ const EstimateInvoice = ({ order, orderItems, subtotal, discount, totalDue, onCo
           </div>
         </div>
 
+        {/* Items */}
         <div className="border-t border-gray-200 pt-4 mb-4">
           <h5 className="text-sm font-semibold text-gray-900 mb-3">Items</h5>
           <div className="space-y-2">
@@ -55,19 +70,57 @@ const EstimateInvoice = ({ order, orderItems, subtotal, discount, totalDue, onCo
           </div>
         </div>
 
+        {/* Totals */}
         <div className="border-t border-gray-200 pt-4 space-y-2">
           <div className="flex justify-between text-sm">
             <span className="text-gray-600">Subtotal:</span>
             <span className="text-gray-900">Rs {subtotal.toFixed(2)}</span>
           </div>
-          <div className="flex justify-between text-sm">
-            <span className="text-gray-600">Discount:</span>
-            <span className="text-gray-900">Rs {discount.toFixed(2)}</span>
-          </div>
+
+          {/* Discount row — show actual discount or an "Add discount" prompt */}
+          {hasDiscount ? (
+            <div className="flex justify-between text-sm">
+              <span className="text-emerald-700 font-medium flex items-center gap-1">
+                <Tag className="w-3.5 h-3.5" />
+                Discount
+                {discountMeta.type === 'percentage' && discountMeta.value
+                  ? ` (${discountMeta.value}%)`
+                  : ' (Flat)'}
+                {discountMeta.reason ? `:` : ''}
+              </span>
+              <span className="text-emerald-700 font-semibold">– Rs {discount.toFixed(2)}</span>
+            </div>
+          ) : (
+            onAddDiscount && (
+              <button
+                onClick={onAddDiscount}
+                className="w-full flex items-center justify-between text-sm py-1 group"
+              >
+                <span className="text-gray-400 group-hover:text-emerald-600 transition-colors flex items-center gap-1">
+                  <Tag className="w-3.5 h-3.5" />
+                  Add discount
+                </span>
+                <span className="text-gray-300 group-hover:text-emerald-500 transition-colors text-xs">+ Apply</span>
+              </button>
+            )
+          )}
+
+          {hasDiscount && discountMeta.reason && (
+            <p className="text-xs text-gray-400 italic pl-5">"{discountMeta.reason}"</p>
+          )}
+
           <div className="flex justify-between text-lg font-bold pt-2 border-t border-gray-300">
             <span className="text-gray-900">Total Due</span>
-            <span className="text-[#4A7BA7]">Rs {totalDue.toFixed(2)}</span>
+            <span className={hasDiscount ? 'text-emerald-600' : 'text-[#4A7BA7]'}>
+              Rs {totalDue.toFixed(2)}
+            </span>
           </div>
+
+          {hasDiscount && (
+            <p className="text-xs text-emerald-600 text-right">
+              You saved Rs {discount.toFixed(2)} 🎉
+            </p>
+          )}
         </div>
 
         <div className="mt-6 pt-6 border-t border-gray-200 text-center">
@@ -79,7 +132,9 @@ const EstimateInvoice = ({ order, orderItems, subtotal, discount, totalDue, onCo
       <div className="px-6 py-4 bg-gray-50 rounded-b-xl border-t border-gray-200">
         <div className="flex items-center justify-between mb-2">
           <span className="text-sm font-medium text-gray-700">Total:</span>
-          <span className="text-lg font-bold text-gray-900">{totalDue.toFixed(2)}</span>
+          <span className={`text-lg font-bold ${hasDiscount ? 'text-emerald-600' : 'text-gray-900'}`}>
+            {totalDue.toFixed(2)}
+          </span>
         </div>
         <motion.button
           whileHover={{ scale: isProcessing ? 1 : 1.02 }}
