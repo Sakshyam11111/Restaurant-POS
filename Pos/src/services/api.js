@@ -1,23 +1,26 @@
-// Pos/src/services/api.js
 import axios from 'axios';
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
-
 const api = axios.create({
-  baseURL: API_URL,
-  headers: { 'Content-Type': 'application/json' },
+  baseURL: import.meta.env.VITE_API_URL || 'http://localhost:5000/api',
   withCredentials: true,
+  headers: {
+    'Content-Type': 'application/json',
+  },
 });
 
+// Request interceptor – attach JWT token
 api.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem('token');
-    if (token) config.headers.Authorization = `Bearer ${token}`;
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
     return config;
   },
   (error) => Promise.reject(error)
 );
 
+// Response interceptor – handle 401
 api.interceptors.response.use(
   (response) => response,
   (error) => {
@@ -26,50 +29,28 @@ api.interceptors.response.use(
       localStorage.removeItem('user');
       localStorage.removeItem('userType');
       localStorage.removeItem('isAdmin');
-      const isAdmin = window.location.pathname.includes('admin');
-      window.location.href = isAdmin ? '/admin' : '/login';
+      window.location.href = '/login';
     }
     return Promise.reject(error);
   }
 );
 
+// ── Auth API ──────────────────────────────────────────────────────────────────
 export const authAPI = {
-  adminLogin: async (data) => {
-    const response = await api.post('/auth/admin/login', data);
-    if (response.data.data.token) {
-      localStorage.setItem('token', response.data.data.token);
-      localStorage.setItem('user', JSON.stringify(response.data.data.user));
-      localStorage.setItem('userType', 'admin');
-      localStorage.setItem('isAdmin', 'true');
-    }
+  adminLogin: async (credentials) => {
+    const response = await api.post('/auth/admin/login', credentials);
     return response.data;
   },
-  staffSignup: async (data) => {
-    const response = await api.post('/auth/staff/signup', data);
-    if (response.data.data.token) {
-      localStorage.setItem('token', response.data.data.token);
-      localStorage.setItem('user', JSON.stringify(response.data.data.user));
-      localStorage.setItem('userType', 'staff');
-      localStorage.setItem('isAdmin', 'false');
-    }
+  staffSignup: async (userData) => {
+    const response = await api.post('/auth/staff/signup', userData);
     return response.data;
   },
-  staffLogin: async (data) => {
-    const response = await api.post('/auth/staff/login', data);
-    if (response.data.data.token) {
-      localStorage.setItem('token', response.data.data.token);
-      localStorage.setItem('user', JSON.stringify(response.data.data.user));
-      localStorage.setItem('userType', 'staff');
-      localStorage.setItem('isAdmin', 'false');
-    }
+  staffLogin: async (credentials) => {
+    const response = await api.post('/auth/staff/login', credentials);
     return response.data;
   },
   logout: async () => {
     const response = await api.post('/auth/logout');
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
-    localStorage.removeItem('userType');
-    localStorage.removeItem('isAdmin');
     return response.data;
   },
   getCurrentUser: async () => {
@@ -78,30 +59,18 @@ export const authAPI = {
   },
 };
 
+// ── Order API ─────────────────────────────────────────────────────────────────
 export const orderAPI = {
-  createOrder: async (data) => {
-    const response = await api.post('/orders', data);
-    const order = response.data?.data?.order;
-
-    if (order?._id && data.table) {
-      const numericId = String(data.table).match(/\d+/)?.[0];
-      if (numericId) {
-        try {
-          await api.post(`/tables/${numericId}/link-order`, { orderId: order._id });
-        } catch (err) {
-          console.warn('Could not link order to table:', err.message);
-        }
-      }
-    }
-
-    return response.data;
-  },
   getOrders: async (params = {}) => {
     const response = await api.get('/orders', { params });
     return response.data;
   },
   getOrderById: async (id) => {
     const response = await api.get(`/orders/${id}`);
+    return response.data;
+  },
+  createOrder: async (orderData) => {
+    const response = await api.post('/orders', orderData);
     return response.data;
   },
   updateOrderStatus: async (id, data) => {
@@ -114,30 +83,31 @@ export const orderAPI = {
   },
 };
 
+// ── Table API ─────────────────────────────────────────────────────────────────
 export const tableAPI = {
-  initializeTables: async () => {
-    const response = await api.post('/tables/initialize');
+  getAllTables: async (floor, options = {}) => {
+    const params = floor ? { floor } : {};
+    const response = await api.get('/tables', { params, ...options });
     return response.data;
   },
-  createTable: async (data) => {
-    const response = await api.post('/tables', data);
+  createTable: async (tableData) => {
+    const response = await api.post('/tables', tableData);
     return response.data;
   },
-  updateTable: async (tableId, data) => {
-    const response = await api.put(`/tables/${tableId}`, data);
+  updateTable: async (tableId, tableData) => {
+    const response = await api.put(`/tables/${tableId}`, tableData);
     return response.data;
   },
   deleteTable: async (tableId) => {
     const response = await api.delete(`/tables/${tableId}`);
     return response.data;
   },
-  getAllTables: async (floor) => {
-    const params = floor ? { floor } : {};
-    const response = await api.get('/tables', { params });
+  initializeTables: async (options = {}) => {
+    const response = await api.post('/tables/initialize', {}, options);
     return response.data;
   },
-  updateTableStatus: async (tableId, status) => {
-    const response = await api.patch(`/tables/${tableId}/status`, { status });
+  updateTableStatus: async (tableId, statusData) => {
+    const response = await api.patch(`/tables/${tableId}/status`, statusData);
     return response.data;
   },
   reserveTable: async (tableId, reservationData) => {
@@ -162,21 +132,7 @@ export const tableAPI = {
   },
 };
 
-export const staffAPI = {
-  getProfile: async () => {
-    const response = await api.get('/staff/profile');
-    return response.data;
-  },
-  updateProfile: async (data) => {
-    const response = await api.patch('/staff/profile', data);
-    return response.data;
-  },
-  getAllStaff: async () => {
-    const response = await api.get('/staff/all');
-    return response.data;
-  },
-};
-
+// ── Menu API ──────────────────────────────────────────────────────────────────
 export const menuAPI = {
   getMenuItems: async (params = {}) => {
     const response = await api.get('/menu', { params });
@@ -186,12 +142,12 @@ export const menuAPI = {
     const response = await api.get(`/menu/${id}`);
     return response.data;
   },
-  createMenuItem: async (data) => {
-    const response = await api.post('/menu', data);
+  createMenuItem: async (itemData) => {
+    const response = await api.post('/menu', itemData);
     return response.data;
   },
-  updateMenuItem: async (id, data) => {
-    const response = await api.put(`/menu/${id}`, data);
+  updateMenuItem: async (id, itemData) => {
+    const response = await api.put(`/menu/${id}`, itemData);
     return response.data;
   },
   deleteMenuItem: async (id) => {
@@ -200,10 +156,30 @@ export const menuAPI = {
   },
 };
 
-// ── Zone API ─────────────────────────────────────────────────────────────────
+// ── Staff API ─────────────────────────────────────────────────────────────────
+export const staffAPI = {
+  getStaffProfile: async () => {
+    const response = await api.get('/staff/profile');
+    return response.data;
+  },
+  updateStaffProfile: async (data) => {
+    const response = await api.patch('/staff/profile', data);
+    return response.data;
+  },
+  getAllStaff: async () => {
+    const response = await api.get('/staff/all');
+    return response.data;
+  },
+};
+
+// ── Zone API ──────────────────────────────────────────────────────────────────
 export const zoneAPI = {
   getZones: async (params = {}) => {
     const response = await api.get('/zones', { params });
+    return response.data;
+  },
+  getZoneById: async (id) => {
+    const response = await api.get(`/zones/${id}`);
     return response.data;
   },
   createZone: async (data) => {
@@ -224,6 +200,10 @@ export const zoneAPI = {
 export const designationAPI = {
   getDesignations: async (params = {}) => {
     const response = await api.get('/designations', { params });
+    return response.data;
+  },
+  getDesignationById: async (id) => {
+    const response = await api.get(`/designations/${id}`);
     return response.data;
   },
   createDesignation: async (data) => {
@@ -260,6 +240,30 @@ export const employeeAPI = {
   },
   deleteEmployee: async (id) => {
     const response = await api.delete(`/employees/${id}`);
+    return response.data;
+  },
+};
+
+// ── Ingredient API ────────────────────────────────────────────────────────────
+export const ingredientAPI = {
+  getIngredients: async (params = {}) => {
+    const response = await api.get('/ingredients', { params });
+    return response.data;
+  },
+  getIngredientById: async (id) => {
+    const response = await api.get(`/ingredients/${id}`);
+    return response.data;
+  },
+  createIngredient: async (data) => {
+    const response = await api.post('/ingredients', data);
+    return response.data;
+  },
+  updateIngredient: async (id, data) => {
+    const response = await api.put(`/ingredients/${id}`, data);
+    return response.data;
+  },
+  deleteIngredient: async (id) => {
+    const response = await api.delete(`/ingredients/${id}`);
     return response.data;
   },
 };

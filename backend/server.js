@@ -15,6 +15,7 @@ const recommendationRoutes = require("./routes/recommendationRoutes");
 const zoneRoutes         = require("./routes/zoneRoutes");
 const designationRoutes  = require("./routes/designationRoutes");
 const employeeRoutes     = require("./routes/employeeRoutes");
+const ingredientRoutes   = require("./routes/Ingredientroutes");
 
 dotenv.config();
 
@@ -79,6 +80,7 @@ app.use("/api/recommendations", recommendationRoutes);
 app.use("/api/zones",           zoneRoutes);
 app.use("/api/designations",    designationRoutes);
 app.use("/api/employees",       employeeRoutes);
+app.use("/api/ingredients",     ingredientRoutes);
 
 console.log("✓ Routes registered:");
 console.log("  - /api/auth/*");
@@ -91,6 +93,7 @@ console.log("  - /api/recommendations/*");
 console.log("  - /api/zones/*");
 console.log("  - /api/designations/*");
 console.log("  - /api/employees/*");
+console.log("  - /api/ingredients/*");
 
 // Health check endpoint
 app.get("/api/health", (req, res) => {

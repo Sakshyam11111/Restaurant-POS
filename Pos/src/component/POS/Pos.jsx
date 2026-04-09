@@ -28,6 +28,7 @@ import Employeeshifts from './master/Employeeshifts';
 import Employeeshiftsrotation from './master/Employeeshiftsrotation';
 import Printtype from './master/Printtype';
 import PrintSetting from './master/PrintSetting';
+import Ingredient from './master/Ingredient';
 import TableContent from './contents/order/TableContent';
 import OrderDetailPage from './contents/order/OrderDetailPage';
 import MenuItems from './master/menuitems/MenuItems';
@@ -336,6 +337,7 @@ export default function Pos() {
     15: { id: 'printsetting',            component: PrintSetting },
     16: { id: 'settings',                component: Settings },
     17: { id: 'posmenu',                 component: POSMenu },
+    18: { id: 'ingredient',              component: Ingredient },
   };
 
   const handleMenuClick = (id) => {
@@ -378,6 +380,7 @@ export default function Pos() {
         { id: 'zone',                   label: 'Zone' },
         { id: 'table',                  label: 'Table' },
         { id: 'menu-items',             label: 'Menu Items' },
+        { id: 'ingredient',             label: 'Ingredient' },
         { id: 'employee',               label: 'Employee' },
         { id: 'department',             label: 'Department' },
         { id: 'designation',            label: 'Designation' },
