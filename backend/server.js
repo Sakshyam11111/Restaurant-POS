@@ -16,6 +16,7 @@ const zoneRoutes         = require("./routes/zoneRoutes");
 const designationRoutes  = require("./routes/designationRoutes");
 const employeeRoutes     = require("./routes/employeeRoutes");
 const ingredientRoutes   = require("./routes/Ingredientroutes");
+const aiIngredientRoutes = require('./routes/aiIngredientRoutes');
 
 dotenv.config();
 
@@ -81,6 +82,8 @@ app.use("/api/zones",           zoneRoutes);
 app.use("/api/designations",    designationRoutes);
 app.use("/api/employees",       employeeRoutes);
 app.use("/api/ingredients",     ingredientRoutes);
+app.use('/api/ai', aiIngredientRoutes);
+
 
 console.log("✓ Routes registered:");
 console.log("  - /api/auth/*");
