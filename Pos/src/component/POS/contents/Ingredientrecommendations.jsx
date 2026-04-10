@@ -17,7 +17,6 @@ const STOCK_LABELS = {
   unknown:      { label: 'Not tracked',  color: '#5F5E5A', bg: '#F1EFE8' },
 };
 
-/** Cross-reference an ingredient name against the live stock database */
 function crossRef(name, dbIngredients) {
   const n = name.toLowerCase().trim();
   const match = dbIngredients.find((d) => {
@@ -25,9 +24,11 @@ function crossRef(name, dbIngredients) {
     return dn === n || dn.includes(n) || n.includes(dn);
   });
   if (!match) return { stockStatus: 'unknown', stockQuantity: null, reorderLevel: null, unit: '', supplier: '', costPerUnit: 0 };
+  
   const qty = match.stockQuantity || 0;
   const reorder = match.reorderLevel || 0;
   const stockStatus = qty === 0 ? 'out_of_stock' : qty <= reorder ? 'low_stock' : 'sufficient';
+  
   return {
     stockStatus,
     stockQuantity: qty,
@@ -38,7 +39,6 @@ function crossRef(name, dbIngredients) {
   };
 }
 
-/** Small reusable badge */
 function Badge({ label, color, bg }) {
   return (
     <span
@@ -57,7 +57,6 @@ function Badge({ label, color, bg }) {
   );
 }
 
-/** Expandable ingredient row */
 function IngredientRow({ ing, maxFreq }) {
   const [open, setOpen] = React.useState(false);
   const pc = PRIORITY_COLORS[ing.priority] || PRIORITY_COLORS.low;
@@ -74,35 +73,37 @@ function IngredientRow({ ing, maxFreq }) {
         overflow: 'hidden',
       }}
     >
-      {/* Summary row */}
       <div
         onClick={() => setOpen((o) => !o)}
         style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '9px 14px', cursor: 'pointer' }}
       >
         <span style={{ width: 8, height: 8, borderRadius: '50%', background: pc.dot, flexShrink: 0 }} />
         <span style={{ flex: 1, fontSize: 13, fontWeight: 500, textTransform: 'capitalize' }}>{ing.name}</span>
+        
         {ing.aiReason && (
           <span style={{ fontSize: 11, color: '#6b7280', maxWidth: 160, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
             {ing.aiReason}
           </span>
         )}
+
         <div style={{ width: 60, height: 4, background: '#e5e7eb', borderRadius: 3, flexShrink: 0 }}>
           <div style={{ width: `${barPct}%`, height: 4, borderRadius: 3, background: pc.dot }} />
         </div>
+
         <span style={{ fontSize: 11, color: '#6b7280', width: 48, textAlign: 'right' }}>
           {ing.usedIn?.length || 0} dishes
         </span>
+
         <Badge label={ing.priority} color={pc.text} bg={pc.bg} />
         <Badge label={sc.label} color={sc.color} bg={sc.bg} />
+        
         {ing.alert && <span title="Stock alert">⚠</span>}
         <span style={{ fontSize: 12, color: '#9ca3af' }}>{open ? '▴' : '▾'}</span>
       </div>
 
-      {/* Expanded detail */}
       {open && (
         <div style={{ padding: '0 14px 12px', borderTop: '0.5px solid #e5e7eb' }}>
           <div style={{ paddingTop: 10, display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
-            {/* Dishes */}
             <div>
               <p style={{ fontSize: 11, color: '#6b7280', marginBottom: 4, marginTop: 0 }}>Used in dishes</p>
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: 4 }}>
@@ -117,7 +118,6 @@ function IngredientRow({ ing, maxFreq }) {
               )}
             </div>
 
-            {/* Stock info */}
             <div>
               <p style={{ fontSize: 11, color: '#6b7280', marginBottom: 4, marginTop: 0 }}>Stock info</p>
               {ing.stockQuantity !== null && ing.stockQuantity !== undefined ? (
@@ -138,7 +138,6 @@ function IngredientRow({ ing, maxFreq }) {
   );
 }
 
-/** ─── Main Component ──────────────────────────────────────────────────────── */
 const IngredientRecommendations = () => {
   const [menuItems,     setMenuItems]     = useState([]);
   const [dbIngredients, setDbIngredients] = useState([]);
@@ -152,7 +151,6 @@ const IngredientRecommendations = () => {
   const [groupFilter,   setGroupFilter]   = useState('All');
   const [error,         setError]         = useState('');
 
-  /* ── Load menu + stock on mount ── */
   useEffect(() => {
     (async () => {
       setLoadingMenu(true);
@@ -174,7 +172,6 @@ const IngredientRecommendations = () => {
     })();
   }, []);
 
-  /* ── Derived menu filter ── */
   const groups = ['All', ...Array.from(new Set(menuItems.map((i) => i.menuGroup).filter(Boolean)))];
 
   const filteredMenu = menuItems.filter((item) => {
@@ -183,7 +180,6 @@ const IngredientRecommendations = () => {
     return matchGroup && matchSearch;
   });
 
-  /* ── Call backend proxy → Claude ── */
   async function analyze() {
     if (selectedIds.length === 0) {
       setError('Select at least one menu item.');
@@ -244,7 +240,6 @@ const IngredientRecommendations = () => {
     setAnalyzing(false);
   }
 
-  /* ── Displayed ingredient list (filter + search) ── */
   const displayed = (results?.ingredients || []).filter((ing) => {
     const matchFilter =
       filter === 'all'    ? true :
@@ -255,22 +250,19 @@ const IngredientRecommendations = () => {
 
   const maxFreq = displayed.length ? Math.max(...displayed.map((i) => i.usedIn?.length || 0)) : 1;
 
-  /* ── Render ── */
   return (
     <div style={{ minHeight: '100vh', background: '#f9fafb', padding: 24, fontFamily: 'inherit' }}>
-      {/* Header */}
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 20 }}>
         <div>
           <h1 style={{ fontSize: 20, fontWeight: 600, margin: 0, color: '#111827' }}>
             AI Ingredient Recommendations
           </h1>
           <p style={{ fontSize: 13, color: '#6b7280', marginTop: 4 }}>
-            Claude analyses your menu and cross-references live stock
+            AI analyses your menu and cross-references live stock
           </p>
         </div>
       </div>
 
-      {/* Error banner */}
       {error && (
         <div
           style={{
@@ -288,9 +280,8 @@ const IngredientRecommendations = () => {
       )}
 
       <div style={{ display: 'grid', gridTemplateColumns: '300px 1fr', gap: 16, alignItems: 'start' }}>
-        {/* ── Left: Menu selector ── */}
+        {/* Left: Menu selector */}
         <div style={{ background: '#fff', border: '0.5px solid #e5e7eb', borderRadius: 12, overflow: 'hidden' }}>
-          {/* Selector header */}
           <div style={{ padding: '12px 14px', borderBottom: '0.5px solid #e5e7eb' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 8 }}>
               <span style={{ fontSize: 13, fontWeight: 500 }}>
@@ -321,7 +312,6 @@ const IngredientRecommendations = () => {
               </div>
             </div>
 
-            {/* Menu search */}
             <input
               type="text"
               placeholder="Search dishes…"
@@ -339,7 +329,6 @@ const IngredientRecommendations = () => {
               }}
             />
 
-            {/* Group pills */}
             <div style={{ display: 'flex', gap: 3, flexWrap: 'wrap' }}>
               {groups.map((g) => (
                 <button
@@ -362,7 +351,6 @@ const IngredientRecommendations = () => {
             </div>
           </div>
 
-          {/* Menu list */}
           <div style={{ maxHeight: 360, overflowY: 'auto' }}>
             {loadingMenu ? (
               <div style={{ padding: '2rem', textAlign: 'center', fontSize: 13, color: '#6b7280' }}>
@@ -393,7 +381,6 @@ const IngredientRecommendations = () => {
                       background: isSel ? '#E6F1FB' : 'transparent',
                     }}
                   >
-                    {/* Checkbox */}
                     <div
                       style={{
                         width: 15,
@@ -433,7 +420,6 @@ const IngredientRecommendations = () => {
             )}
           </div>
 
-          {/* Analyze button */}
           <div style={{ padding: 12, borderTop: '0.5px solid #e5e7eb' }}>
             <button
               onClick={analyze}
@@ -456,11 +442,8 @@ const IngredientRecommendations = () => {
           </div>
         </div>
 
-        {/* ── Right: Results panel ── */}
-        <div
-          style={{ background: '#fff', border: '0.5px solid #e5e7eb', borderRadius: 12, padding: 18 }}
-        >
-          {/* Empty / loading states */}
+        {/* Right: Results panel */}
+        <div style={{ background: '#fff', border: '0.5px solid #e5e7eb', borderRadius: 12, padding: 18 }}>
           {!results && !analyzing && (
             <div style={{ textAlign: 'center', padding: '5rem 2rem', color: '#9ca3af' }}>
               <div style={{ fontSize: 40, marginBottom: 12 }}>🧑‍🍳</div>
@@ -492,13 +475,9 @@ const IngredientRecommendations = () => {
             </div>
           )}
 
-          {/* Results */}
           {results && (
             <>
-              {/* Stats row */}
-              <div
-                style={{ display: 'grid', gridTemplateColumns: 'repeat(5,1fr)', gap: 8, marginBottom: 14 }}
-              >
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5,1fr)', gap: 8, marginBottom: 14 }}>
                 {[
                   ['Total ingredients', results.stats.total, null],
                   ['Critical',          results.stats.critCount,  '#A32D2D'],
@@ -516,7 +495,6 @@ const IngredientRecommendations = () => {
                 ))}
               </div>
 
-              {/* AI summary */}
               {results.summary && (
                 <p
                   style={{
@@ -533,7 +511,6 @@ const IngredientRecommendations = () => {
                 </p>
               )}
 
-              {/* Filter pills + search */}
               <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', marginBottom: 10 }}>
                 {[
                   ['all',      `All (${results.stats.total})`],
@@ -575,7 +552,6 @@ const IngredientRecommendations = () => {
                 />
               </div>
 
-              {/* Ingredient rows */}
               {displayed.length === 0 ? (
                 <p style={{ fontSize: 13, color: '#9ca3af', textAlign: 'center', padding: '2rem 0' }}>
                   No ingredients match the current filter.
