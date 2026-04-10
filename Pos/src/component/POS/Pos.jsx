@@ -33,6 +33,7 @@ import TableContent from './contents/order/TableContent';
 import OrderDetailPage from './contents/order/OrderDetailPage';
 import MenuItems from './master/menuitems/MenuItems';
 import { orderAPI, menuAPI } from '../../services/api';
+import IngredientRecommendations from './contents/Ingredientrecommendations';
 
 export const DATE_RANGES = [
   { key: 'today',       label: 'Today' },
@@ -338,6 +339,7 @@ export default function Pos() {
     16: { id: 'settings',                component: Settings },
     17: { id: 'posmenu',                 component: POSMenu },
     18: { id: 'ingredient',              component: Ingredient },
+    19: { id: 'ingredient-ai',           component: IngredientRecommendations },
   };
 
   const handleMenuClick = (id) => {
@@ -381,6 +383,7 @@ export default function Pos() {
         { id: 'table',                  label: 'Table' },
         { id: 'menu-items',             label: 'Menu Items' },
         { id: 'ingredient',             label: 'Ingredient' },
+        { id: 'ingredient-ai',          label: 'AI Ingredient Planner' },
         { id: 'employee',               label: 'Employee' },
         { id: 'department',             label: 'Department' },
         { id: 'designation',            label: 'Designation' },
