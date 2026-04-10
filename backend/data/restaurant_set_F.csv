@@ -1,0 +1,1221 @@
+ingredientName,unit,category,costPerUnit,stockQuantity,reorderLevel,usage
+Chopped All-purpose Flour,kg,Flour,9.22,57,42,used in pizza
+Chopped Basil,pcs,Herb,15.13,41,40,used in grilled dishes
+Chopped Basil,L,Herb,7.69,130,12,used in biryani
+Chopped Basil,L,Herb,9.89,181,9,used in sauces
+Chopped Basmati Rice,L,Grain,3.52,88,21,used in burgers
+Chopped Beef,pcs,Meat,10.29,78,11,used in sauces
+Chopped Black Pepper,kg,Spice,2.37,137,23,used in desserts
+Chopped Brown Rice,mL,Grain,16.58,85,41,used in salads
+Chopped Brown Rice,g,Grain,10.33,122,49,used in pizza
+Chopped Brown Rice,g,Grain,17.4,186,15,used in grilled dishes
+Chopped Brown Rice,g,Grain,8.18,197,18,used in salads
+Chopped Butter,g,Dairy,5.87,61,28,used in salads
+Chopped Butter,L,Dairy,11.18,86,33,used in stir fry
+Chopped Butter,pcs,Dairy,15.19,193,37,used in soups
+Chopped Cabbage,g,Vegetable,19.54,134,37,used in biryani
+Chopped Cabbage,kg,Vegetable,2.47,45,12,used in biryani
+Chopped Cabbage,mL,Vegetable,17.04,109,5,used in desserts
+Chopped Carrot,g,Vegetable,2.26,109,40,used in soups
+Chopped Carrot,pcs,Vegetable,15.65,195,34,used in burgers
+Chopped Carrot,g,Vegetable,4.95,126,38,used in stir fry
+Chopped Cheddar Cheese,pcs,Dairy,3.97,145,33,used in sauces
+Chopped Cheddar Cheese,g,Dairy,17.22,131,38,used in salads
+Chopped Chicken Breast,kg,Poultry,1.69,136,19,used in grilled dishes
+Chopped Chicken Thigh,pcs,Poultry,5.69,121,43,used in sauces
+Chopped Chicken Thigh,L,Poultry,3.98,124,7,used in sauces
+Chopped Chicken Thigh,g,Poultry,12.11,162,32,used in desserts
+Chopped Chickpeas,pcs,Legume,13.47,95,27,used in pasta recipes
+Chopped Chickpeas,g,Legume,10.25,96,15,used in burgers
+Chopped Chickpeas,pcs,Legume,19.93,154,21,used in desserts
+Chopped Chili Powder,mL,Spice,5.67,37,9,used in pasta recipes
+Chopped Chili Powder,g,Spice,16.36,36,11,used in pizza
+Chopped Cilantro,g,Herb,6.69,175,48,used in desserts
+Chopped Cilantro,pcs,Herb,0.93,142,31,used in biryani
+Chopped Cilantro,mL,Herb,17.38,47,50,used in curry dishes
+Chopped Cilantro,mL,Herb,1.98,161,24,used in grilled dishes
+Chopped Coriander Powder,kg,Spice,19.48,66,30,used in biryani
+Chopped Cumin,mL,Spice,19.06,114,46,used in curry dishes
+Chopped Cumin,g,Spice,2.71,157,30,used in pasta recipes
+Chopped Cumin,g,Spice,7.01,144,19,used in pasta recipes
+Chopped Cumin,pcs,Spice,3.6,30,16,used in curry dishes
+Chopped Garlic,L,Vegetable,10.13,86,14,used in curry dishes
+Chopped Garlic,L,Vegetable,16.86,151,24,used in salads
+Chopped Garlic,mL,Vegetable,5.19,199,28,used in burgers
+Chopped Ginger,g,Vegetable,9.05,27,31,used in biryani
+Chopped Honey,mL,Sweetener,16.67,101,13,used in curry dishes
+Chopped Honey,L,Sweetener,17.47,65,22,used in stir fry
+Chopped Honey,L,Sweetener,5.45,188,36,used in salads
+Chopped Kidney Beans,mL,Legume,19.71,76,34,used in pizza
+Chopped Kidney Beans,L,Legume,19.28,55,7,used in pasta recipes
+Chopped Kidney Beans,pcs,Legume,6.5,87,21,used in stir fry
+Chopped Lentils,pcs,Legume,14.07,21,23,used in stir fry
+Chopped Lentils,kg,Legume,16.76,104,39,used in pasta recipes
+Chopped Lentils,mL,Legume,6.75,127,46,used in curry dishes
+Chopped Mayonnaise,g,Condiment,16.26,132,39,used in biryani
+Chopped Mayonnaise,kg,Condiment,4.51,130,23,used in sauces
+Chopped Mayonnaise,mL,Condiment,17.02,77,11,used in pasta recipes
+Chopped Milk,L,Dairy,0.63,87,50,used in stir fry
+Chopped Mint,L,Herb,12.76,194,40,used in grilled dishes
+Chopped Mint,pcs,Herb,17.84,110,35,used in soups
+Chopped Mozzarella,g,Dairy,1.94,46,43,used in burgers
+Chopped Mozzarella,mL,Dairy,18.76,171,5,used in pasta recipes
+Chopped Mozzarella,kg,Dairy,9.03,170,28,used in grilled dishes
+Chopped Mustard Oil,kg,Oil,12.03,185,8,used in sauces
+Chopped Mustard Oil,L,Oil,1.33,18,50,used in biryani
+Chopped Mutton,pcs,Meat,13.67,115,6,used in desserts
+Chopped Mutton,g,Meat,13.63,30,50,used in salads
+Chopped Mutton,kg,Meat,16.43,112,44,used in sauces
+Chopped Mutton,pcs,Meat,15.88,154,44,used in grilled dishes
+Chopped Noodles,mL,Pasta,14.32,73,32,used in sauces
+Chopped Noodles,pcs,Pasta,9.19,180,16,used in desserts
+Chopped Olive Oil,mL,Oil,10.67,10,48,used in pizza
+Chopped Olive Oil,L,Oil,17.48,97,22,used in pasta recipes
+Chopped Olive Oil,L,Oil,17.54,127,45,used in burgers
+Chopped Olive Oil,L,Oil,11.39,167,19,used in biryani
+Chopped Olive Oil,pcs,Oil,10.98,150,23,used in stir fry
+Chopped Onion,g,Vegetable,4.16,58,17,used in sauces
+Chopped Onion,pcs,Vegetable,14.96,18,42,used in sauces
+Chopped Onion,L,Vegetable,18.7,197,12,used in salads
+Chopped Onion,kg,Vegetable,13.89,168,37,used in burgers
+Chopped Paneer,g,Dairy,8.3,133,27,used in soups
+Chopped Pasta,g,Pasta,6.45,181,6,used in salads
+Chopped Pasta,mL,Pasta,4.14,184,22,used in stir fry
+Chopped Pasta,L,Pasta,1.8,65,34,used in sauces
+Chopped Pork,kg,Meat,2.35,174,22,used in salads
+Chopped Pork,pcs,Meat,5.85,180,15,used in stir fry
+Chopped Pork,kg,Meat,8.73,157,39,used in biryani
+Chopped Pork,kg,Meat,1.44,98,10,used in salads
+Chopped Pork,pcs,Meat,9.71,149,36,used in stir fry
+Chopped Potato,kg,Vegetable,19.58,98,7,used in desserts
+Chopped Potato,g,Vegetable,9.41,85,32,used in pasta recipes
+Chopped Rice,mL,Grain,5.47,27,39,used in curry dishes
+Chopped Salmon,L,Seafood,11.61,101,35,used in burgers
+Chopped Salmon,kg,Seafood,3.91,147,42,used in grilled dishes
+Chopped Salmon,g,Seafood,14.98,99,21,used in desserts
+Chopped Salmon,pcs,Seafood,10.23,32,29,used in pizza
+Chopped Salmon,kg,Seafood,11.98,63,45,used in grilled dishes
+Chopped Salmon,g,Seafood,16.04,68,26,used in curry dishes
+Chopped Salt,kg,Spice,2.9,112,12,used in salads
+Chopped Salt,kg,Spice,13.29,121,44,used in desserts
+Chopped Shrimp,mL,Seafood,16.7,160,6,used in curry dishes
+Chopped Soy Sauce,L,Condiment,1.52,143,34,used in stir fry
+Chopped Soy Sauce,mL,Condiment,6.28,70,49,used in biryani
+Chopped Soy Sauce,pcs,Condiment,2.84,137,31,used in desserts
+Chopped Soy Sauce,L,Condiment,3.04,124,32,used in desserts
+Chopped Spaghetti,kg,Pasta,0.64,38,44,used in stir fry
+Chopped Spaghetti,L,Pasta,7.5,11,5,used in pizza
+Chopped Spaghetti,L,Pasta,18.19,171,24,used in stir fry
+Chopped Spinach,L,Vegetable,15.92,132,39,used in desserts
+Chopped Spinach,g,Vegetable,15.23,42,13,used in sauces
+Chopped Spinach,g,Vegetable,11.88,93,7,used in desserts
+Chopped Spinach,kg,Vegetable,8.95,172,47,used in burgers
+Chopped Sugar,L,Sweetener,8.43,93,46,used in desserts
+Chopped Sunflower Oil,mL,Oil,6.75,42,43,used in sauces
+Chopped Sunflower Oil,kg,Oil,2.84,131,36,used in stir fry
+Chopped Tomato,L,Vegetable,8.48,36,33,used in desserts
+Chopped Tomato Ketchup,kg,Condiment,16.16,199,8,used in stir fry
+Chopped Tomato Ketchup,g,Condiment,6.52,138,18,used in sauces
+Chopped Tomato Ketchup,pcs,Condiment,8.56,173,20,used in grilled dishes
+Chopped Tuna,kg,Seafood,18.05,153,6,used in burgers
+Chopped Tuna,g,Seafood,10.48,90,45,used in sauces
+Chopped Tuna,pcs,Seafood,10.68,73,30,used in pasta recipes
+Chopped Tuna,g,Seafood,0.54,141,49,used in pizza
+Chopped Turmeric,g,Spice,4.61,29,43,used in curry dishes
+Chopped Vinegar,L,Condiment,12.64,59,11,used in biryani
+Chopped Wheat Flour,L,Flour,10.9,177,39,used in biryani
+Chopped Wheat Flour,mL,Flour,0.91,61,12,used in stir fry
+Chopped Yogurt,pcs,Dairy,6.61,122,46,used in sauces
+Chopped Yogurt,L,Dairy,9.76,19,21,used in pizza
+Chopped Yogurt,L,Dairy,15.42,198,12,used in biryani
+Chopped Yogurt,mL,Dairy,17.16,35,23,used in pizza
+Dried All-purpose Flour,kg,Flour,5.72,105,37,used in soups
+Dried Basil,g,Herb,6.44,112,45,used in salads
+Dried Basmati Rice,g,Grain,9.14,167,6,used in curry dishes
+Dried Basmati Rice,pcs,Grain,7.69,84,35,used in biryani
+Dried Basmati Rice,g,Grain,8.98,135,49,used in curry dishes
+Dried Beef,g,Meat,0.99,148,47,used in pizza
+Dried Black Pepper,g,Spice,19.98,90,14,used in burgers
+Dried Black Pepper,mL,Spice,1.26,168,16,used in soups
+Dried Brown Rice,mL,Grain,2.48,37,18,used in curry dishes
+Dried Brown Rice,g,Grain,5.42,45,14,used in burgers
+Dried Butter,L,Dairy,12.78,34,27,used in pizza
+Dried Butter,g,Dairy,18.08,172,10,used in sauces
+Dried Butter,g,Dairy,1.28,130,50,used in stir fry
+Dried Butter,kg,Dairy,18.43,109,30,used in biryani
+Dried Cabbage,g,Vegetable,5.19,100,38,used in sauces
+Dried Cabbage,kg,Vegetable,11.65,121,38,used in salads
+Dried Carrot,L,Vegetable,15.86,10,26,used in desserts
+Dried Cheddar Cheese,L,Dairy,4.76,95,42,used in pizza
+Dried Cheddar Cheese,g,Dairy,7.95,105,23,used in desserts
+Dried Cheddar Cheese,kg,Dairy,17.42,138,33,used in grilled dishes
+Dried Cheddar Cheese,kg,Dairy,12.75,123,47,used in pasta recipes
+Dried Cheddar Cheese,L,Dairy,19.41,70,40,used in biryani
+Dried Cheddar Cheese,kg,Dairy,14.37,61,37,used in sauces
+Dried Chicken Breast,pcs,Poultry,5.14,120,7,used in biryani
+Dried Chicken Breast,mL,Poultry,1.76,177,9,used in grilled dishes
+Dried Chicken Breast,pcs,Poultry,2.6,129,28,used in burgers
+Dried Chicken Thigh,kg,Poultry,19.15,132,42,used in stir fry
+Dried Chicken Thigh,L,Poultry,6.22,11,32,used in desserts
+Dried Chicken Thigh,pcs,Poultry,3.04,32,44,used in pizza
+Dried Chicken Thigh,g,Poultry,11.67,73,22,used in burgers
+Dried Chicken Thigh,mL,Poultry,7.85,61,49,used in grilled dishes
+Dried Chicken Thigh,pcs,Poultry,15.1,62,36,used in biryani
+Dried Chickpeas,pcs,Legume,11.09,48,33,used in curry dishes
+Dried Chili Powder,g,Spice,6.5,93,39,used in pasta recipes
+Dried Cilantro,pcs,Herb,18.44,109,23,used in stir fry
+Dried Cilantro,g,Herb,5.21,35,43,used in salads
+Dried Cilantro,pcs,Herb,17.63,195,46,used in burgers
+Dried Cilantro,kg,Herb,14.2,185,45,used in soups
+Dried Coriander Powder,g,Spice,7.59,176,10,used in sauces
+Dried Coriander Powder,pcs,Spice,5.35,182,13,used in pizza
+Dried Cumin,pcs,Spice,3.05,154,34,used in sauces
+Dried Cumin,pcs,Spice,4.37,118,15,used in pizza
+Dried Cumin,g,Spice,12.11,194,36,used in burgers
+Dried Garlic,pcs,Vegetable,10.46,43,10,used in grilled dishes
+Dried Garlic,g,Vegetable,9.44,158,8,used in desserts
+Dried Ginger,mL,Vegetable,1.35,128,46,used in stir fry
+Dried Ginger,pcs,Vegetable,18.35,185,29,used in soups
+Dried Ginger,kg,Vegetable,5.13,68,27,used in stir fry
+Dried Ginger,kg,Vegetable,10.22,68,13,used in burgers
+Dried Ginger,L,Vegetable,18.44,89,16,used in soups
+Dried Ginger,kg,Vegetable,14.54,55,34,used in salads
+Dried Honey,pcs,Sweetener,4.69,50,42,used in burgers
+Dried Kidney Beans,pcs,Legume,7.66,169,5,used in sauces
+Dried Kidney Beans,g,Legume,7.91,52,46,used in pasta recipes
+Dried Lentils,mL,Legume,15.47,170,10,used in pizza
+Dried Mayonnaise,g,Condiment,5.88,77,44,used in burgers
+Dried Mayonnaise,g,Condiment,9.6,176,15,used in salads
+Dried Milk,g,Dairy,1,136,38,used in pizza
+Dried Milk,mL,Dairy,8.73,84,45,used in grilled dishes
+Dried Mint,pcs,Herb,10.09,70,7,used in sauces
+Dried Mozzarella,kg,Dairy,0.59,177,18,used in curry dishes
+Dried Mozzarella,kg,Dairy,9.51,26,49,used in pasta recipes
+Dried Mozzarella,pcs,Dairy,1.43,68,23,used in grilled dishes
+Dried Mozzarella,kg,Dairy,10.29,83,40,used in soups
+Dried Mozzarella,L,Dairy,1.61,165,18,used in curry dishes
+Dried Mozzarella,pcs,Dairy,14.12,45,13,used in salads
+Dried Mustard Oil,L,Oil,13.26,89,24,used in curry dishes
+Dried Mustard Oil,kg,Oil,10.7,48,9,used in sauces
+Dried Mutton,g,Meat,9.37,27,17,used in burgers
+Dried Mutton,kg,Meat,12.04,59,35,used in salads
+Dried Mutton,pcs,Meat,12.21,166,23,used in desserts
+Dried Mutton,pcs,Meat,8.46,172,35,used in curry dishes
+Dried Noodles,g,Pasta,0.68,94,24,used in stir fry
+Dried Noodles,g,Pasta,9.46,90,9,used in salads
+Dried Noodles,kg,Pasta,7.09,16,30,used in desserts
+Dried Noodles,L,Pasta,5.36,173,32,used in biryani
+Dried Noodles,mL,Pasta,17.93,13,36,used in sauces
+Dried Olive Oil,pcs,Oil,15.63,39,28,used in salads
+Dried Onion,kg,Vegetable,13.4,164,19,used in soups
+Dried Paneer,g,Dairy,9.41,84,37,used in desserts
+Dried Paneer,kg,Dairy,8.61,172,7,used in grilled dishes
+Dried Pasta,mL,Pasta,3.29,68,21,used in salads
+Dried Pasta,L,Pasta,16.82,54,28,used in biryani
+Dried Pasta,g,Pasta,12.26,95,11,used in desserts
+Dried Pork,kg,Meat,0.92,61,41,used in curry dishes
+Dried Pork,kg,Meat,7.23,100,49,used in biryani
+Dried Pork,L,Meat,5.63,36,49,used in sauces
+Dried Pork,g,Meat,19.54,44,43,used in soups
+Dried Potato,kg,Vegetable,11.23,96,15,used in salads
+Dried Potato,L,Vegetable,17.77,181,37,used in salads
+Dried Rice,pcs,Grain,9.86,190,43,used in soups
+Dried Rice,pcs,Grain,7.38,161,30,used in stir fry
+Dried Rice,g,Grain,11.13,136,31,used in pasta recipes
+Dried Salmon,kg,Seafood,4.54,81,19,used in salads
+Dried Salmon,mL,Seafood,5.92,144,41,used in sauces
+Dried Salt,kg,Spice,14.28,92,49,used in grilled dishes
+Dried Shrimp,L,Seafood,4.54,134,44,used in sauces
+Dried Shrimp,g,Seafood,14.17,47,48,used in curry dishes
+Dried Soy Sauce,kg,Condiment,1.78,32,43,used in pizza
+Dried Soy Sauce,kg,Condiment,8.27,128,17,used in salads
+Dried Soy Sauce,mL,Condiment,14.56,24,23,used in curry dishes
+Dried Soy Sauce,pcs,Condiment,12.69,196,43,used in sauces
+Dried Soy Sauce,pcs,Condiment,8.83,58,40,used in stir fry
+Dried Spaghetti,mL,Pasta,6.92,159,49,used in biryani
+Dried Spaghetti,g,Pasta,10.9,116,47,used in stir fry
+Dried Spaghetti,mL,Pasta,7.21,197,18,used in salads
+Dried Spaghetti,g,Pasta,15.87,71,30,used in biryani
+Dried Spaghetti,g,Pasta,19.39,160,27,used in pizza
+Dried Spinach,mL,Vegetable,2.91,153,35,used in salads
+Dried Spinach,pcs,Vegetable,16.65,162,38,used in grilled dishes
+Dried Sugar,pcs,Sweetener,13.25,145,25,used in sauces
+Dried Sunflower Oil,pcs,Oil,1.4,197,28,used in biryani
+Dried Sunflower Oil,g,Oil,1.51,192,31,used in biryani
+Dried Sunflower Oil,g,Oil,10.43,85,27,used in pasta recipes
+Dried Tomato,L,Vegetable,0.76,196,30,used in salads
+Dried Tomato,kg,Vegetable,18.74,146,27,used in sauces
+Dried Tomato,kg,Vegetable,14.34,129,49,used in salads
+Dried Tomato Ketchup,kg,Condiment,10.35,173,17,used in salads
+Dried Tuna,kg,Seafood,1.74,104,47,used in salads
+Dried Tuna,mL,Seafood,15.57,100,25,used in pizza
+Dried Tuna,L,Seafood,8.36,38,47,used in pasta recipes
+Dried Tuna,kg,Seafood,14.38,131,44,used in desserts
+Dried Turmeric,pcs,Spice,14.01,56,7,used in biryani
+Dried Turmeric,L,Spice,4.92,200,10,used in biryani
+Dried Vinegar,pcs,Condiment,14.35,130,43,used in biryani
+Dried Vinegar,pcs,Condiment,18.94,157,11,used in pasta recipes
+Dried Wheat Flour,kg,Flour,16.92,159,14,used in sauces
+Dried Wheat Flour,g,Flour,13.95,110,26,used in pasta recipes
+Dried Yogurt,L,Dairy,17.83,11,35,used in desserts
+Dried Yogurt,mL,Dairy,19.28,103,20,used in desserts
+Dried Yogurt,pcs,Dairy,16.49,96,10,used in grilled dishes
+Dried Yogurt,g,Dairy,2.4,28,8,used in burgers
+Fresh All-purpose Flour,kg,Flour,18.59,174,39,used in stir fry
+Fresh All-purpose Flour,pcs,Flour,5.52,40,10,used in biryani
+Fresh All-purpose Flour,pcs,Flour,8.35,182,11,used in desserts
+Fresh All-purpose Flour,pcs,Flour,7.88,54,42,used in biryani
+Fresh Basil,kg,Herb,8.42,127,44,used in sauces
+Fresh Basil,kg,Herb,7.07,72,13,used in stir fry
+Fresh Basmati Rice,L,Grain,1.25,42,43,used in burgers
+Fresh Basmati Rice,L,Grain,9.78,83,8,used in biryani
+Fresh Beef,mL,Meat,12.71,140,30,used in pizza
+Fresh Beef,kg,Meat,16.79,178,27,used in pasta recipes
+Fresh Beef,kg,Meat,4.91,30,43,used in grilled dishes
+Fresh Black Pepper,kg,Spice,7.55,170,10,used in curry dishes
+Fresh Black Pepper,kg,Spice,18.32,91,44,used in burgers
+Fresh Black Pepper,L,Spice,2.43,44,17,used in salads
+Fresh Black Pepper,g,Spice,2.83,114,41,used in salads
+Fresh Brown Rice,mL,Grain,4.59,106,38,used in pasta recipes
+Fresh Butter,L,Dairy,17.05,52,35,used in stir fry
+Fresh Butter,kg,Dairy,19.57,89,6,used in grilled dishes
+Fresh Butter,L,Dairy,18.62,38,35,used in pizza
+Fresh Cabbage,kg,Vegetable,4.28,24,41,used in sauces
+Fresh Cabbage,pcs,Vegetable,14.77,88,14,used in burgers
+Fresh Cabbage,kg,Vegetable,14.94,95,32,used in pizza
+Fresh Carrot,pcs,Vegetable,17.62,120,14,used in desserts
+Fresh Carrot,pcs,Vegetable,7.29,31,8,used in pasta recipes
+Fresh Carrot,kg,Vegetable,13.78,32,28,used in grilled dishes
+Fresh Cheddar Cheese,L,Dairy,8.39,195,31,used in desserts
+Fresh Chicken Breast,L,Poultry,7.66,89,17,used in pasta recipes
+Fresh Chicken Thigh,kg,Poultry,6.66,42,48,used in pasta recipes
+Fresh Chicken Thigh,mL,Poultry,17.61,168,42,used in grilled dishes
+Fresh Chickpeas,pcs,Legume,15.24,65,50,used in burgers
+Fresh Chickpeas,g,Legume,15.53,132,15,used in burgers
+Fresh Chickpeas,mL,Legume,8.58,172,25,used in burgers
+Fresh Chickpeas,mL,Legume,5.05,161,6,used in burgers
+Fresh Chili Powder,g,Spice,2.1,119,50,used in stir fry
+Fresh Chili Powder,pcs,Spice,5.55,29,27,used in pizza
+Fresh Cilantro,kg,Herb,2.33,143,7,used in biryani
+Fresh Cilantro,L,Herb,9.2,174,37,used in stir fry
+Fresh Coriander Powder,L,Spice,8.92,184,31,used in pizza
+Fresh Cumin,mL,Spice,9.05,139,13,used in salads
+Fresh Cumin,L,Spice,11.44,79,41,used in curry dishes
+Fresh Garlic,g,Vegetable,19.97,21,12,used in biryani
+Fresh Garlic,pcs,Vegetable,0.83,176,32,used in soups
+Fresh Garlic,pcs,Vegetable,9.14,101,21,used in desserts
+Fresh Ginger,g,Vegetable,13.8,80,33,used in sauces
+Fresh Ginger,pcs,Vegetable,15.84,112,32,used in pizza
+Fresh Honey,kg,Sweetener,5.85,169,36,used in desserts
+Fresh Honey,L,Sweetener,6.33,27,22,used in sauces
+Fresh Kidney Beans,pcs,Legume,10.29,27,15,used in pasta recipes
+Fresh Kidney Beans,mL,Legume,15.62,172,23,used in stir fry
+Fresh Kidney Beans,mL,Legume,9.57,133,39,used in sauces
+Fresh Lentils,mL,Legume,11.68,46,39,used in pasta recipes
+Fresh Mayonnaise,L,Condiment,15.09,196,11,used in sauces
+Fresh Mayonnaise,L,Condiment,6.11,162,35,used in grilled dishes
+Fresh Mayonnaise,L,Condiment,5.73,107,46,used in grilled dishes
+Fresh Mayonnaise,mL,Condiment,13.32,136,5,used in pizza
+Fresh Milk,kg,Dairy,16.34,180,10,used in curry dishes
+Fresh Milk,mL,Dairy,7.45,19,7,used in pizza
+Fresh Mint,mL,Herb,18.81,159,16,used in salads
+Fresh Mint,pcs,Herb,18.82,51,38,used in pasta recipes
+Fresh Mozzarella,mL,Dairy,15.13,172,34,used in sauces
+Fresh Mozzarella,kg,Dairy,19.83,189,43,used in sauces
+Fresh Mozzarella,pcs,Dairy,16.06,167,16,used in pasta recipes
+Fresh Mustard Oil,pcs,Oil,6.81,105,35,used in grilled dishes
+Fresh Mustard Oil,kg,Oil,11.67,164,9,used in salads
+Fresh Mustard Oil,kg,Oil,14.49,54,22,used in curry dishes
+Fresh Mustard Oil,mL,Oil,1.45,80,42,used in grilled dishes
+Fresh Mutton,pcs,Meat,13.9,70,5,used in curry dishes
+Fresh Mutton,g,Meat,15.5,32,47,used in soups
+Fresh Mutton,L,Meat,15.36,179,47,used in stir fry
+Fresh Mutton,mL,Meat,13.03,62,21,used in curry dishes
+Fresh Noodles,g,Pasta,12.58,117,24,used in grilled dishes
+Fresh Olive Oil,pcs,Oil,10.52,106,14,used in soups
+Fresh Olive Oil,g,Oil,19.94,142,27,used in desserts
+Fresh Onion,g,Vegetable,7.75,18,20,used in salads
+Fresh Onion,mL,Vegetable,16.44,33,15,used in grilled dishes
+Fresh Onion,kg,Vegetable,4.19,82,39,used in pizza
+Fresh Paneer,pcs,Dairy,1.04,118,19,used in sauces
+Fresh Paneer,g,Dairy,17.97,32,40,used in curry dishes
+Fresh Paneer,g,Dairy,10.36,122,25,used in curry dishes
+Fresh Pasta,kg,Pasta,19.9,192,26,used in grilled dishes
+Fresh Pasta,g,Pasta,11.85,130,31,used in grilled dishes
+Fresh Pork,g,Meat,16.04,198,39,used in pasta recipes
+Fresh Pork,kg,Meat,2.64,138,23,used in pasta recipes
+Fresh Pork,pcs,Meat,13.57,188,45,used in burgers
+Fresh Pork,mL,Meat,18.28,89,24,used in biryani
+Fresh Potato,g,Vegetable,18.57,195,18,used in sauces
+Fresh Potato,L,Vegetable,17.09,89,42,used in pasta recipes
+Fresh Potato,g,Vegetable,19.45,28,38,used in burgers
+Fresh Potato,kg,Vegetable,14.66,17,23,used in sauces
+Fresh Potato,pcs,Vegetable,8.01,176,30,used in sauces
+Fresh Potato,L,Vegetable,17.49,90,50,used in curry dishes
+Fresh Rice,kg,Grain,4.2,108,21,used in soups
+Fresh Rice,L,Grain,11.68,145,14,used in desserts
+Fresh Salmon,L,Seafood,13.32,36,32,used in grilled dishes
+Fresh Salmon,kg,Seafood,15.98,57,44,used in pizza
+Fresh Salmon,pcs,Seafood,5.38,94,39,used in burgers
+Fresh Salmon,L,Seafood,1.51,128,23,used in desserts
+Fresh Salmon,g,Seafood,8.47,193,45,used in sauces
+Fresh Salt,L,Spice,9.91,161,5,used in desserts
+Fresh Salt,kg,Spice,2.94,17,31,used in desserts
+Fresh Salt,g,Spice,7.11,113,43,used in grilled dishes
+Fresh Salt,mL,Spice,6.37,200,7,used in sauces
+Fresh Salt,L,Spice,13.85,87,35,used in salads
+Fresh Shrimp,L,Seafood,18.17,165,43,used in sauces
+Fresh Shrimp,mL,Seafood,1.3,18,23,used in stir fry
+Fresh Shrimp,pcs,Seafood,2.49,80,11,used in pasta recipes
+Fresh Soy Sauce,pcs,Condiment,1.22,196,35,used in pizza
+Fresh Soy Sauce,pcs,Condiment,10.45,171,5,used in grilled dishes
+Fresh Soy Sauce,mL,Condiment,9.4,185,17,used in biryani
+Fresh Spaghetti,g,Pasta,1.81,197,38,used in stir fry
+Fresh Spinach,g,Vegetable,1.94,78,44,used in pasta recipes
+Fresh Spinach,g,Vegetable,13.66,198,43,used in curry dishes
+Fresh Sugar,pcs,Sweetener,3.72,59,45,used in curry dishes
+Fresh Sugar,mL,Sweetener,18.74,180,44,used in salads
+Fresh Sugar,mL,Sweetener,19.59,155,43,used in salads
+Fresh Sunflower Oil,L,Oil,3.24,16,26,used in pasta recipes
+Fresh Tomato,mL,Vegetable,18.09,130,9,used in burgers
+Fresh Tomato,pcs,Vegetable,6,51,33,used in burgers
+Fresh Tomato Ketchup,mL,Condiment,4.2,69,14,used in grilled dishes
+Fresh Tomato Ketchup,mL,Condiment,10.62,110,36,used in sauces
+Fresh Tuna,mL,Seafood,7.3,106,10,used in pizza
+Fresh Tuna,pcs,Seafood,3.56,196,9,used in stir fry
+Fresh Tuna,mL,Seafood,12.41,180,46,used in burgers
+Fresh Tuna,mL,Seafood,3.78,111,42,used in grilled dishes
+Fresh Tuna,kg,Seafood,1.69,168,48,used in soups
+Fresh Turmeric,mL,Spice,8.01,61,6,used in desserts
+Fresh Vinegar,pcs,Condiment,18.75,101,30,used in stir fry
+Fresh Wheat Flour,g,Flour,6.52,166,15,used in soups
+Fresh Yogurt,g,Dairy,19.93,171,43,used in stir fry
+Frozen All-purpose Flour,pcs,Flour,5.67,103,26,used in salads
+Frozen All-purpose Flour,mL,Flour,15.15,170,49,used in sauces
+Frozen Basil,L,Herb,5.89,19,35,used in pizza
+Frozen Basil,L,Herb,13.71,191,25,used in salads
+Frozen Basil,kg,Herb,19.83,44,7,used in desserts
+Frozen Basil,kg,Herb,14.42,50,16,used in desserts
+Frozen Basmati Rice,g,Grain,9.11,150,19,used in pizza
+Frozen Basmati Rice,pcs,Grain,16.06,165,23,used in grilled dishes
+Frozen Basmati Rice,g,Grain,10.19,121,20,used in curry dishes
+Frozen Beef,kg,Meat,2.28,119,42,used in pizza
+Frozen Black Pepper,kg,Spice,14.57,130,47,used in desserts
+Frozen Black Pepper,g,Spice,17.14,183,41,used in desserts
+Frozen Brown Rice,mL,Grain,17.97,114,8,used in curry dishes
+Frozen Brown Rice,mL,Grain,12.75,91,42,used in soups
+Frozen Brown Rice,mL,Grain,2.19,76,46,used in soups
+Frozen Brown Rice,pcs,Grain,13.15,43,28,used in sauces
+Frozen Brown Rice,g,Grain,7.52,41,16,used in sauces
+Frozen Brown Rice,mL,Grain,9.67,141,23,used in stir fry
+Frozen Butter,g,Dairy,3.26,84,29,used in curry dishes
+Frozen Butter,pcs,Dairy,15.9,104,41,used in pizza
+Frozen Butter,L,Dairy,2.41,187,28,used in stir fry
+Frozen Cabbage,kg,Vegetable,18.23,49,32,used in stir fry
+Frozen Cabbage,kg,Vegetable,1.28,161,49,used in biryani
+Frozen Cabbage,g,Vegetable,16.55,52,43,used in burgers
+Frozen Cabbage,kg,Vegetable,19.85,42,7,used in sauces
+Frozen Cabbage,mL,Vegetable,19.79,66,36,used in soups
+Frozen Carrot,kg,Vegetable,5.66,49,43,used in soups
+Frozen Carrot,mL,Vegetable,14.15,149,20,used in soups
+Frozen Carrot,pcs,Vegetable,19.76,141,43,used in grilled dishes
+Frozen Carrot,mL,Vegetable,4.32,128,19,used in grilled dishes
+Frozen Cheddar Cheese,kg,Dairy,11.4,49,18,used in desserts
+Frozen Cheddar Cheese,L,Dairy,13.53,136,36,used in salads
+Frozen Chicken Breast,kg,Poultry,2.83,176,24,used in pasta recipes
+Frozen Chicken Breast,pcs,Poultry,12.46,181,35,used in biryani
+Frozen Chicken Breast,mL,Poultry,10.7,130,20,used in curry dishes
+Frozen Chicken Thigh,mL,Poultry,10.4,136,42,used in burgers
+Frozen Chickpeas,L,Legume,6.63,117,37,used in desserts
+Frozen Chickpeas,mL,Legume,15.18,47,24,used in pasta recipes
+Frozen Chili Powder,mL,Spice,4.03,155,44,used in soups
+Frozen Cilantro,g,Herb,14.03,169,15,used in sauces
+Frozen Cilantro,mL,Herb,11.74,25,21,used in grilled dishes
+Frozen Cilantro,L,Herb,16.79,10,29,used in burgers
+Frozen Cilantro,pcs,Herb,3.4,22,48,used in stir fry
+Frozen Coriander Powder,kg,Spice,0.52,169,22,used in pasta recipes
+Frozen Cumin,g,Spice,14.97,161,19,used in pasta recipes
+Frozen Garlic,g,Vegetable,10.2,71,42,used in burgers
+Frozen Garlic,mL,Vegetable,19.67,97,41,used in curry dishes
+Frozen Garlic,mL,Vegetable,16.32,87,17,used in soups
+Frozen Garlic,mL,Vegetable,2.07,164,34,used in soups
+Frozen Garlic,kg,Vegetable,1.26,88,5,used in biryani
+Frozen Ginger,pcs,Vegetable,7.07,161,13,used in stir fry
+Frozen Ginger,g,Vegetable,3.21,60,6,used in biryani
+Frozen Ginger,g,Vegetable,7.75,42,43,used in biryani
+Frozen Ginger,kg,Vegetable,5.57,92,18,used in salads
+Frozen Ginger,pcs,Vegetable,4.34,158,33,used in stir fry
+Frozen Honey,g,Sweetener,12.45,51,30,used in pizza
+Frozen Honey,kg,Sweetener,13.75,144,43,used in soups
+Frozen Honey,mL,Sweetener,16.73,96,46,used in desserts
+Frozen Kidney Beans,L,Legume,16.57,149,26,used in soups
+Frozen Kidney Beans,mL,Legume,7.24,122,25,used in pizza
+Frozen Kidney Beans,g,Legume,6.48,53,22,used in curry dishes
+Frozen Lentils,mL,Legume,19.38,140,44,used in sauces
+Frozen Mayonnaise,g,Condiment,17.99,187,22,used in grilled dishes
+Frozen Mayonnaise,kg,Condiment,15.89,123,28,used in salads
+Frozen Milk,mL,Dairy,17.96,18,27,used in biryani
+Frozen Mint,kg,Herb,17.17,169,42,used in biryani
+Frozen Mozzarella,mL,Dairy,4.5,182,20,used in stir fry
+Frozen Mozzarella,mL,Dairy,16.53,186,15,used in burgers
+Frozen Mozzarella,mL,Dairy,12.59,56,13,used in biryani
+Frozen Mustard Oil,pcs,Oil,17.43,191,28,used in burgers
+Frozen Mustard Oil,kg,Oil,16.62,138,30,used in pasta recipes
+Frozen Mustard Oil,L,Oil,5.45,15,31,used in grilled dishes
+Frozen Mustard Oil,kg,Oil,7.75,22,25,used in grilled dishes
+Frozen Mustard Oil,g,Oil,4.92,90,5,used in desserts
+Frozen Mutton,pcs,Meat,1.57,194,38,used in biryani
+Frozen Noodles,mL,Pasta,5.8,33,36,used in desserts
+Frozen Noodles,L,Pasta,10.92,135,13,used in burgers
+Frozen Noodles,L,Pasta,7.09,62,45,used in pasta recipes
+Frozen Noodles,L,Pasta,9.62,141,25,used in grilled dishes
+Frozen Noodles,L,Pasta,7.25,29,35,used in pizza
+Frozen Noodles,L,Pasta,2.78,176,28,used in sauces
+Frozen Olive Oil,g,Oil,14.57,139,19,used in grilled dishes
+Frozen Olive Oil,L,Oil,12.99,40,50,used in biryani
+Frozen Olive Oil,pcs,Oil,17.81,90,9,used in burgers
+Frozen Onion,g,Vegetable,5.13,164,10,used in salads
+Frozen Onion,pcs,Vegetable,3.53,163,42,used in burgers
+Frozen Paneer,mL,Dairy,15.85,71,14,used in grilled dishes
+Frozen Paneer,g,Dairy,19.81,19,42,used in soups
+Frozen Paneer,g,Dairy,11.61,92,8,used in grilled dishes
+Frozen Pasta,mL,Pasta,16.83,174,42,used in sauces
+Frozen Pasta,kg,Pasta,18.48,177,27,used in grilled dishes
+Frozen Pork,L,Meat,14.27,167,24,used in salads
+Frozen Pork,mL,Meat,18.37,116,42,used in salads
+Frozen Potato,g,Vegetable,2.02,189,36,used in pasta recipes
+Frozen Potato,kg,Vegetable,7.86,25,13,used in desserts
+Frozen Rice,kg,Grain,18.85,12,26,used in soups
+Frozen Rice,mL,Grain,9.15,88,50,used in pasta recipes
+Frozen Rice,pcs,Grain,15.78,144,50,used in curry dishes
+Frozen Salmon,mL,Seafood,0.68,71,41,used in sauces
+Frozen Salmon,pcs,Seafood,14.98,55,28,used in biryani
+Frozen Salt,mL,Spice,5.59,94,32,used in soups
+Frozen Salt,pcs,Spice,0.87,148,11,used in curry dishes
+Frozen Shrimp,kg,Seafood,19.09,128,50,used in pizza
+Frozen Shrimp,g,Seafood,14.66,49,24,used in biryani
+Frozen Soy Sauce,mL,Condiment,3.46,168,14,used in sauces
+Frozen Soy Sauce,pcs,Condiment,17.11,77,45,used in grilled dishes
+Frozen Spaghetti,pcs,Pasta,18.43,29,20,used in grilled dishes
+Frozen Spaghetti,kg,Pasta,0.91,48,23,used in stir fry
+Frozen Spinach,pcs,Vegetable,15.63,186,18,used in curry dishes
+Frozen Spinach,kg,Vegetable,5.58,97,28,used in desserts
+Frozen Spinach,L,Vegetable,9.3,143,17,used in grilled dishes
+Frozen Spinach,mL,Vegetable,3.16,71,23,used in sauces
+Frozen Spinach,g,Vegetable,15.78,40,36,used in pasta recipes
+Frozen Sugar,g,Sweetener,12.76,86,47,used in desserts
+Frozen Sugar,L,Sweetener,16.98,84,13,used in salads
+Frozen Sugar,kg,Sweetener,8.43,135,28,used in sauces
+Frozen Sunflower Oil,mL,Oil,12.83,89,11,used in pizza
+Frozen Sunflower Oil,g,Oil,8.78,13,31,used in curry dishes
+Frozen Sunflower Oil,kg,Oil,13.77,199,15,used in burgers
+Frozen Tomato,g,Vegetable,18.08,11,28,used in desserts
+Frozen Tomato,mL,Vegetable,5.71,73,19,used in stir fry
+Frozen Tomato,kg,Vegetable,2.36,107,41,used in desserts
+Frozen Tomato Ketchup,pcs,Condiment,4.49,86,21,used in sauces
+Frozen Tomato Ketchup,L,Condiment,1.64,72,36,used in pasta recipes
+Frozen Tomato Ketchup,kg,Condiment,14.93,26,14,used in pasta recipes
+Frozen Tomato Ketchup,kg,Condiment,16.97,80,44,used in salads
+Frozen Tuna,mL,Seafood,14.27,71,9,used in burgers
+Frozen Turmeric,g,Spice,7.09,82,23,used in soups
+Frozen Turmeric,g,Spice,2.85,23,47,used in pizza
+Frozen Turmeric,L,Spice,5.4,66,35,used in pasta recipes
+Frozen Vinegar,mL,Condiment,3.41,133,43,used in sauces
+Frozen Vinegar,pcs,Condiment,12.77,133,44,used in salads
+Frozen Vinegar,L,Condiment,9.35,94,48,used in soups
+Frozen Wheat Flour,mL,Flour,4.56,169,32,used in biryani
+Frozen Wheat Flour,kg,Flour,17.52,67,5,used in sauces
+Frozen Wheat Flour,kg,Flour,1.41,57,29,used in burgers
+Frozen Wheat Flour,g,Flour,5.74,46,7,used in desserts
+Frozen Yogurt,mL,Dairy,4.13,188,14,used in burgers
+Frozen Yogurt,mL,Dairy,1.19,188,20,used in pizza
+Frozen Yogurt,pcs,Dairy,9.86,45,12,used in sauces
+Frozen Yogurt,g,Dairy,10.28,154,11,used in desserts
+Ground All-purpose Flour,kg,Flour,2.83,94,38,used in desserts
+Ground Basil,L,Herb,13.97,152,30,used in stir fry
+Ground Basil,kg,Herb,2.72,24,22,used in pasta recipes
+Ground Basil,g,Herb,15.83,157,39,used in pizza
+Ground Basil,L,Herb,2.8,30,33,used in biryani
+Ground Basmati Rice,g,Grain,3.31,85,47,used in pasta recipes
+Ground Basmati Rice,L,Grain,18.63,88,31,used in grilled dishes
+Ground Beef,mL,Meat,2.16,175,44,used in biryani
+Ground Beef,kg,Meat,1.17,38,48,used in salads
+Ground Beef,mL,Meat,14.27,193,19,used in sauces
+Ground Beef,pcs,Meat,1.06,146,44,used in curry dishes
+Ground Black Pepper,L,Spice,6.6,120,27,used in desserts
+Ground Black Pepper,mL,Spice,13.35,135,40,used in pasta recipes
+Ground Brown Rice,pcs,Grain,8.73,39,16,used in pasta recipes
+Ground Brown Rice,mL,Grain,5.07,108,44,used in stir fry
+Ground Butter,pcs,Dairy,16.57,129,14,used in pasta recipes
+Ground Cabbage,mL,Vegetable,15.09,25,8,used in curry dishes
+Ground Cabbage,kg,Vegetable,18.68,27,25,used in desserts
+Ground Cabbage,g,Vegetable,1.57,142,22,used in pasta recipes
+Ground Cabbage,L,Vegetable,10.08,28,5,used in burgers
+Ground Carrot,pcs,Vegetable,16.81,144,20,used in soups
+Ground Carrot,pcs,Vegetable,11.05,61,28,used in curry dishes
+Ground Carrot,kg,Vegetable,2.55,69,28,used in pizza
+Ground Cheddar Cheese,pcs,Dairy,19.07,51,36,used in curry dishes
+Ground Cheddar Cheese,kg,Dairy,10.99,52,5,used in salads
+Ground Chicken Breast,pcs,Poultry,17.34,196,24,used in sauces
+Ground Chicken Breast,g,Poultry,1.7,68,10,used in stir fry
+Ground Chicken Thigh,mL,Poultry,18.82,21,41,used in curry dishes
+Ground Chicken Thigh,pcs,Poultry,4.33,153,13,used in soups
+Ground Chickpeas,g,Legume,14.86,94,10,used in biryani
+Ground Chickpeas,L,Legume,8.07,104,32,used in grilled dishes
+Ground Chili Powder,g,Spice,15.84,135,32,used in pasta recipes
+Ground Chili Powder,mL,Spice,15.44,10,29,used in desserts
+Ground Chili Powder,kg,Spice,0.56,136,13,used in salads
+Ground Cilantro,pcs,Herb,14.27,177,13,used in curry dishes
+Ground Cilantro,kg,Herb,0.56,166,36,used in burgers
+Ground Coriander Powder,g,Spice,18.72,75,34,used in desserts
+Ground Coriander Powder,mL,Spice,13.47,64,50,used in pasta recipes
+Ground Cumin,L,Spice,12.16,25,48,used in pizza
+Ground Cumin,mL,Spice,13.88,25,43,used in desserts
+Ground Cumin,L,Spice,16.04,44,20,used in curry dishes
+Ground Cumin,L,Spice,4.86,196,37,used in biryani
+Ground Garlic,g,Vegetable,13.78,161,33,used in biryani
+Ground Garlic,g,Vegetable,2.44,59,20,used in desserts
+Ground Garlic,g,Vegetable,9.5,138,41,used in pasta recipes
+Ground Ginger,kg,Vegetable,1.54,129,17,used in desserts
+Ground Ginger,kg,Vegetable,15.7,153,21,used in salads
+Ground Ginger,L,Vegetable,18.16,84,45,used in desserts
+Ground Ginger,g,Vegetable,17.99,59,31,used in burgers
+Ground Honey,g,Sweetener,8.86,86,26,used in curry dishes
+Ground Kidney Beans,pcs,Legume,3.62,176,29,used in soups
+Ground Lentils,L,Legume,0.71,41,14,used in desserts
+Ground Mayonnaise,g,Condiment,18.38,94,21,used in curry dishes
+Ground Mayonnaise,mL,Condiment,8.14,154,5,used in salads
+Ground Milk,L,Dairy,13.52,115,24,used in biryani
+Ground Mint,mL,Herb,10.25,172,8,used in burgers
+Ground Mint,L,Herb,17.54,133,21,used in curry dishes
+Ground Mozzarella,mL,Dairy,8.79,61,36,used in desserts
+Ground Mozzarella,pcs,Dairy,1.89,28,18,used in salads
+Ground Mozzarella,mL,Dairy,2.22,162,6,used in desserts
+Ground Mozzarella,mL,Dairy,11.61,142,9,used in burgers
+Ground Mozzarella,pcs,Dairy,16.93,174,23,used in sauces
+Ground Mustard Oil,L,Oil,3.28,13,28,used in desserts
+Ground Mustard Oil,mL,Oil,17.36,131,17,used in desserts
+Ground Mustard Oil,kg,Oil,3.05,154,38,used in biryani
+Ground Mutton,kg,Meat,6.3,52,31,used in burgers
+Ground Mutton,kg,Meat,2.13,93,18,used in salads
+Ground Mutton,mL,Meat,8.92,98,12,used in salads
+Ground Mutton,L,Meat,2.39,180,15,used in sauces
+Ground Noodles,g,Pasta,7.95,149,33,used in biryani
+Ground Noodles,mL,Pasta,0.59,113,44,used in sauces
+Ground Olive Oil,kg,Oil,2.94,82,40,used in salads
+Ground Olive Oil,pcs,Oil,5.57,164,31,used in soups
+Ground Onion,L,Vegetable,2.12,190,23,used in stir fry
+Ground Paneer,mL,Dairy,15.98,150,49,used in salads
+Ground Paneer,kg,Dairy,13.49,60,31,used in pizza
+Ground Paneer,kg,Dairy,4.7,39,33,used in curry dishes
+Ground Pasta,g,Pasta,6.31,30,42,used in pizza
+Ground Pasta,pcs,Pasta,7.92,97,46,used in grilled dishes
+Ground Pasta,g,Pasta,18.56,123,38,used in salads
+Ground Pork,L,Meat,10.13,15,48,used in biryani
+Ground Potato,mL,Vegetable,15.85,68,37,used in desserts
+Ground Rice,mL,Grain,16.16,174,8,used in grilled dishes
+Ground Rice,pcs,Grain,9.55,118,6,used in pasta recipes
+Ground Salmon,mL,Seafood,8.78,147,48,used in sauces
+Ground Salt,pcs,Spice,19.92,138,20,used in salads
+Ground Salt,kg,Spice,12.09,174,47,used in stir fry
+Ground Salt,L,Spice,2.43,58,41,used in burgers
+Ground Salt,g,Spice,5.46,137,9,used in sauces
+Ground Salt,mL,Spice,18.39,158,13,used in sauces
+Ground Shrimp,kg,Seafood,0.68,44,32,used in pasta recipes
+Ground Shrimp,L,Seafood,19.03,97,16,used in desserts
+Ground Soy Sauce,g,Condiment,19.76,84,25,used in pizza
+Ground Soy Sauce,L,Condiment,6.8,29,23,used in salads
+Ground Spaghetti,pcs,Pasta,10.2,158,10,used in sauces
+Ground Spaghetti,g,Pasta,16.01,11,16,used in biryani
+Ground Spinach,kg,Vegetable,7.88,27,23,used in burgers
+Ground Sugar,pcs,Sweetener,9.06,10,13,used in sauces
+Ground Sunflower Oil,g,Oil,2.71,80,44,used in salads
+Ground Sunflower Oil,kg,Oil,10.75,155,28,used in soups
+Ground Tomato,kg,Vegetable,6.54,139,18,used in curry dishes
+Ground Tomato,L,Vegetable,15.32,50,29,used in pasta recipes
+Ground Tomato,kg,Vegetable,17.9,126,48,used in biryani
+Ground Tomato,mL,Vegetable,9.43,175,24,used in pizza
+Ground Tomato Ketchup,kg,Condiment,12.03,123,5,used in stir fry
+Ground Tomato Ketchup,g,Condiment,15.52,169,32,used in desserts
+Ground Tomato Ketchup,kg,Condiment,17.08,52,17,used in soups
+Ground Tomato Ketchup,mL,Condiment,12.7,125,27,used in biryani
+Ground Tomato Ketchup,mL,Condiment,5,191,25,used in burgers
+Ground Tuna,mL,Seafood,17.69,47,10,used in pasta recipes
+Ground Tuna,L,Seafood,8.49,164,8,used in soups
+Ground Turmeric,mL,Spice,10.82,149,21,used in soups
+Ground Turmeric,mL,Spice,9.72,197,34,used in salads
+Ground Vinegar,mL,Condiment,8.71,16,37,used in curry dishes
+Ground Vinegar,g,Condiment,3.63,177,35,used in pizza
+Ground Vinegar,L,Condiment,18.93,189,25,used in burgers
+Ground Vinegar,pcs,Condiment,13.6,177,43,used in stir fry
+Ground Vinegar,mL,Condiment,2.38,62,43,used in soups
+Ground Wheat Flour,L,Flour,17.05,118,39,used in desserts
+Ground Wheat Flour,pcs,Flour,7.27,115,30,used in stir fry
+Ground Yogurt,mL,Dairy,12.64,48,25,used in pizza
+Ground Yogurt,kg,Dairy,17.6,81,33,used in pizza
+Organic All-purpose Flour,pcs,Flour,9.4,193,39,used in salads
+Organic All-purpose Flour,pcs,Flour,13.86,128,45,used in sauces
+Organic All-purpose Flour,kg,Flour,9.13,33,49,used in desserts
+Organic Basil,mL,Herb,13.75,101,38,used in desserts
+Organic Basil,g,Herb,17.58,12,45,used in burgers
+Organic Basmati Rice,pcs,Grain,2.38,137,37,used in sauces
+Organic Basmati Rice,pcs,Grain,8.67,39,40,used in grilled dishes
+Organic Basmati Rice,L,Grain,11.98,156,37,used in salads
+Organic Beef,mL,Meat,6.07,60,42,used in curry dishes
+Organic Beef,kg,Meat,6.91,34,47,used in sauces
+Organic Black Pepper,pcs,Spice,17.09,71,26,used in pasta recipes
+Organic Black Pepper,g,Spice,1.4,43,34,used in sauces
+Organic Brown Rice,pcs,Grain,18.19,100,29,used in sauces
+Organic Brown Rice,L,Grain,19.98,73,23,used in desserts
+Organic Brown Rice,L,Grain,12.05,42,36,used in grilled dishes
+Organic Butter,pcs,Dairy,17.69,115,23,used in soups
+Organic Cabbage,L,Vegetable,10.64,142,25,used in curry dishes
+Organic Cabbage,g,Vegetable,5.59,39,28,used in stir fry
+Organic Carrot,g,Vegetable,6.55,171,35,used in curry dishes
+Organic Carrot,pcs,Vegetable,6.13,36,27,used in pasta recipes
+Organic Carrot,mL,Vegetable,17.54,64,21,used in soups
+Organic Cheddar Cheese,mL,Dairy,18.81,126,29,used in stir fry
+Organic Cheddar Cheese,kg,Dairy,11.73,85,47,used in curry dishes
+Organic Chicken Breast,pcs,Poultry,1.58,57,13,used in curry dishes
+Organic Chicken Breast,g,Poultry,14.78,61,31,used in curry dishes
+Organic Chicken Thigh,kg,Poultry,2.29,23,43,used in pizza
+Organic Chicken Thigh,mL,Poultry,14.62,181,9,used in pasta recipes
+Organic Chicken Thigh,kg,Poultry,7.78,98,21,used in biryani
+Organic Chicken Thigh,kg,Poultry,11.44,132,49,used in burgers
+Organic Chickpeas,pcs,Legume,14.42,171,47,used in grilled dishes
+Organic Chickpeas,mL,Legume,1.73,156,14,used in soups
+Organic Chili Powder,mL,Spice,9.51,138,37,used in soups
+Organic Chili Powder,mL,Spice,4.25,78,36,used in stir fry
+Organic Cilantro,g,Herb,19.78,182,39,used in sauces
+Organic Cilantro,L,Herb,4.72,12,45,used in desserts
+Organic Cilantro,g,Herb,1.81,175,18,used in desserts
+Organic Coriander Powder,L,Spice,14.92,59,7,used in soups
+Organic Cumin,mL,Spice,19.08,78,50,used in pizza
+Organic Cumin,mL,Spice,10.73,142,31,used in biryani
+Organic Garlic,g,Vegetable,15.13,155,42,used in pasta recipes
+Organic Ginger,mL,Vegetable,3.71,93,43,used in burgers
+Organic Ginger,L,Vegetable,10.35,152,9,used in sauces
+Organic Honey,pcs,Sweetener,7.61,111,48,used in sauces
+Organic Honey,kg,Sweetener,6.38,173,24,used in curry dishes
+Organic Kidney Beans,pcs,Legume,6.83,16,24,used in pasta recipes
+Organic Lentils,g,Legume,7.93,61,24,used in burgers
+Organic Lentils,pcs,Legume,17.92,105,10,used in sauces
+Organic Lentils,mL,Legume,15.75,23,18,used in curry dishes
+Organic Mayonnaise,L,Condiment,17.47,170,32,used in pizza
+Organic Mayonnaise,pcs,Condiment,4.09,85,46,used in stir fry
+Organic Mayonnaise,pcs,Condiment,13.68,76,35,used in pizza
+Organic Mayonnaise,L,Condiment,11.69,73,35,used in curry dishes
+Organic Milk,kg,Dairy,1.17,103,36,used in soups
+Organic Mint,mL,Herb,15.06,89,16,used in sauces
+Organic Mint,kg,Herb,7.09,108,8,used in burgers
+Organic Mozzarella,pcs,Dairy,18.8,29,35,used in curry dishes
+Organic Mustard Oil,kg,Oil,17.16,51,39,used in biryani
+Organic Mustard Oil,pcs,Oil,7.25,52,49,used in biryani
+Organic Mustard Oil,g,Oil,4.64,139,28,used in biryani
+Organic Mutton,L,Meat,6.73,162,40,used in sauces
+Organic Mutton,pcs,Meat,15.26,164,15,used in pizza
+Organic Noodles,g,Pasta,15.28,66,9,used in desserts
+Organic Noodles,L,Pasta,15.43,138,45,used in pasta recipes
+Organic Olive Oil,pcs,Oil,8.22,110,7,used in curry dishes
+Organic Olive Oil,g,Oil,4.76,104,15,used in curry dishes
+Organic Onion,kg,Vegetable,9.21,108,50,used in pizza
+Organic Onion,g,Vegetable,5.66,87,26,used in pizza
+Organic Paneer,g,Dairy,14.06,183,35,used in stir fry
+Organic Paneer,L,Dairy,8.1,116,25,used in sauces
+Organic Pasta,pcs,Pasta,18.27,125,43,used in sauces
+Organic Pasta,mL,Pasta,10.64,35,16,used in biryani
+Organic Pasta,g,Pasta,5.12,124,18,used in desserts
+Organic Pork,pcs,Meat,17.78,69,24,used in pasta recipes
+Organic Pork,kg,Meat,13.81,181,43,used in biryani
+Organic Pork,mL,Meat,19.95,185,9,used in desserts
+Organic Potato,pcs,Vegetable,8.42,143,6,used in biryani
+Organic Potato,mL,Vegetable,5.23,89,47,used in biryani
+Organic Potato,L,Vegetable,14.84,186,43,used in pasta recipes
+Organic Potato,mL,Vegetable,0.72,32,16,used in desserts
+Organic Potato,mL,Vegetable,15.5,68,25,used in curry dishes
+Organic Rice,pcs,Grain,7.28,35,15,used in biryani
+Organic Rice,L,Grain,6.92,167,23,used in salads
+Organic Salmon,L,Seafood,16.89,166,28,used in pasta recipes
+Organic Salmon,pcs,Seafood,1.78,144,20,used in burgers
+Organic Salmon,mL,Seafood,9.95,82,24,used in grilled dishes
+Organic Salmon,pcs,Seafood,15.21,106,48,used in burgers
+Organic Salt,L,Spice,1.64,199,48,used in grilled dishes
+Organic Salt,g,Spice,0.84,175,8,used in curry dishes
+Organic Salt,pcs,Spice,3.67,70,42,used in curry dishes
+Organic Salt,g,Spice,2.6,196,49,used in pizza
+Organic Salt,L,Spice,7.58,174,23,used in grilled dishes
+Organic Shrimp,kg,Seafood,1.82,101,8,used in pasta recipes
+Organic Shrimp,g,Seafood,13.39,55,28,used in soups
+Organic Soy Sauce,L,Condiment,4.11,159,7,used in sauces
+Organic Soy Sauce,kg,Condiment,0.55,42,8,used in burgers
+Organic Soy Sauce,mL,Condiment,14.7,92,32,used in biryani
+Organic Spaghetti,g,Pasta,18.42,18,35,used in curry dishes
+Organic Spaghetti,L,Pasta,3.52,60,45,used in grilled dishes
+Organic Spaghetti,mL,Pasta,6.37,172,40,used in grilled dishes
+Organic Spinach,L,Vegetable,13.91,129,6,used in sauces
+Organic Spinach,L,Vegetable,15.84,15,42,used in grilled dishes
+Organic Sugar,kg,Sweetener,16.17,147,42,used in sauces
+Organic Sunflower Oil,g,Oil,13.63,138,32,used in pasta recipes
+Organic Tomato,mL,Vegetable,13.69,26,29,used in salads
+Organic Tomato,L,Vegetable,5.73,189,41,used in pizza
+Organic Tomato,g,Vegetable,14.22,19,22,used in sauces
+Organic Tomato Ketchup,pcs,Condiment,12.23,73,15,used in biryani
+Organic Tuna,mL,Seafood,14.94,18,48,used in pasta recipes
+Organic Tuna,mL,Seafood,4.69,127,8,used in grilled dishes
+Organic Tuna,pcs,Seafood,18.14,124,18,used in sauces
+Organic Tuna,L,Seafood,14.07,177,33,used in stir fry
+Organic Turmeric,g,Spice,6.31,155,41,used in salads
+Organic Turmeric,pcs,Spice,9.94,81,49,used in salads
+Organic Vinegar,g,Condiment,7.84,119,15,used in biryani
+Organic Vinegar,pcs,Condiment,7.93,112,42,used in salads
+Organic Wheat Flour,g,Flour,9.85,53,16,used in curry dishes
+Organic Yogurt,g,Dairy,16.25,149,44,used in pizza
+Organic Yogurt,kg,Dairy,7.89,60,40,used in soups
+Sliced All-purpose Flour,pcs,Flour,9.71,32,13,used in desserts
+Sliced Basil,pcs,Herb,17.23,134,41,used in grilled dishes
+Sliced Basil,L,Herb,4.82,34,21,used in pizza
+Sliced Basmati Rice,mL,Grain,19.26,120,37,used in soups
+Sliced Beef,pcs,Meat,1.68,47,38,used in biryani
+Sliced Beef,mL,Meat,6.03,46,43,used in sauces
+Sliced Black Pepper,mL,Spice,13.59,74,46,used in stir fry
+Sliced Black Pepper,pcs,Spice,16.83,78,8,used in burgers
+Sliced Black Pepper,mL,Spice,1.19,40,24,used in burgers
+Sliced Brown Rice,g,Grain,13.91,196,39,used in pizza
+Sliced Brown Rice,pcs,Grain,5.39,188,13,used in salads
+Sliced Butter,mL,Dairy,19.44,171,25,used in sauces
+Sliced Butter,g,Dairy,14.11,180,17,used in pizza
+Sliced Butter,g,Dairy,9.33,127,30,used in grilled dishes
+Sliced Cabbage,g,Vegetable,12.83,13,16,used in pasta recipes
+Sliced Cabbage,kg,Vegetable,6.42,156,19,used in biryani
+Sliced Cabbage,g,Vegetable,2.36,99,20,used in stir fry
+Sliced Carrot,kg,Vegetable,19.89,51,46,used in salads
+Sliced Carrot,kg,Vegetable,18.3,95,40,used in burgers
+Sliced Carrot,kg,Vegetable,17.26,126,16,used in grilled dishes
+Sliced Carrot,kg,Vegetable,14.74,188,24,used in sauces
+Sliced Carrot,mL,Vegetable,5.1,119,38,used in desserts
+Sliced Cheddar Cheese,kg,Dairy,8.4,117,22,used in biryani
+Sliced Cheddar Cheese,kg,Dairy,6.76,176,28,used in pizza
+Sliced Cheddar Cheese,kg,Dairy,9.27,77,26,used in biryani
+Sliced Cheddar Cheese,g,Dairy,12.2,178,13,used in stir fry
+Sliced Chicken Breast,L,Poultry,13.73,113,17,used in desserts
+Sliced Chicken Thigh,mL,Poultry,12.7,75,26,used in soups
+Sliced Chicken Thigh,g,Poultry,15.27,165,6,used in desserts
+Sliced Chicken Thigh,pcs,Poultry,3.7,99,45,used in sauces
+Sliced Chicken Thigh,kg,Poultry,5.11,170,24,used in desserts
+Sliced Chicken Thigh,pcs,Poultry,8.71,30,30,used in curry dishes
+Sliced Chickpeas,kg,Legume,14.4,82,9,used in sauces
+Sliced Chickpeas,g,Legume,15.48,144,5,used in grilled dishes
+Sliced Chickpeas,g,Legume,12.9,74,49,used in pizza
+Sliced Chickpeas,g,Legume,10.51,184,11,used in desserts
+Sliced Chili Powder,kg,Spice,11.2,15,22,used in desserts
+Sliced Cilantro,pcs,Herb,12.31,174,23,used in curry dishes
+Sliced Cilantro,kg,Herb,3.28,82,44,used in sauces
+Sliced Cilantro,mL,Herb,4.23,173,17,used in salads
+Sliced Coriander Powder,pcs,Spice,16.23,155,6,used in sauces
+Sliced Coriander Powder,mL,Spice,6.68,155,48,used in biryani
+Sliced Coriander Powder,L,Spice,18.53,163,32,used in stir fry
+Sliced Cumin,g,Spice,7.34,124,44,used in grilled dishes
+Sliced Cumin,g,Spice,4.05,136,19,used in stir fry
+Sliced Cumin,g,Spice,19.05,57,44,used in stir fry
+Sliced Garlic,g,Vegetable,16.35,153,18,used in burgers
+Sliced Garlic,mL,Vegetable,3.27,136,7,used in desserts
+Sliced Garlic,pcs,Vegetable,16.94,43,19,used in pizza
+Sliced Garlic,g,Vegetable,18.2,12,50,used in grilled dishes
+Sliced Ginger,g,Vegetable,10.37,131,35,used in soups
+Sliced Ginger,L,Vegetable,14.59,20,46,used in burgers
+Sliced Ginger,mL,Vegetable,12.75,148,43,used in salads
+Sliced Honey,kg,Sweetener,14.14,174,40,used in stir fry
+Sliced Honey,mL,Sweetener,8.05,97,32,used in soups
+Sliced Honey,L,Sweetener,13.72,60,9,used in biryani
+Sliced Kidney Beans,pcs,Legume,16.21,109,38,used in salads
+Sliced Kidney Beans,g,Legume,15.44,125,42,used in grilled dishes
+Sliced Kidney Beans,L,Legume,6.9,178,46,used in pasta recipes
+Sliced Kidney Beans,L,Legume,3.19,17,7,used in stir fry
+Sliced Lentils,kg,Legume,6.9,74,17,used in stir fry
+Sliced Lentils,kg,Legume,16.98,162,38,used in sauces
+Sliced Mayonnaise,g,Condiment,18.07,61,14,used in sauces
+Sliced Milk,g,Dairy,2.62,148,12,used in stir fry
+Sliced Milk,g,Dairy,15.46,14,43,used in stir fry
+Sliced Mint,mL,Herb,12.48,28,42,used in stir fry
+Sliced Mint,kg,Herb,2.58,95,22,used in salads
+Sliced Mint,g,Herb,5.08,109,11,used in grilled dishes
+Sliced Mozzarella,L,Dairy,15.06,130,32,used in burgers
+Sliced Mozzarella,L,Dairy,0.61,91,17,used in curry dishes
+Sliced Mozzarella,g,Dairy,1.44,153,8,used in pizza
+Sliced Mustard Oil,mL,Oil,4.92,84,40,used in grilled dishes
+Sliced Mustard Oil,g,Oil,5.54,15,37,used in curry dishes
+Sliced Mustard Oil,pcs,Oil,5.89,58,7,used in curry dishes
+Sliced Mustard Oil,kg,Oil,13.56,41,40,used in curry dishes
+Sliced Mustard Oil,pcs,Oil,4.92,49,42,used in burgers
+Sliced Mutton,g,Meat,6.61,67,5,used in pizza
+Sliced Mutton,mL,Meat,3.06,99,36,used in grilled dishes
+Sliced Mutton,g,Meat,8.96,58,29,used in pizza
+Sliced Mutton,mL,Meat,7.2,129,10,used in burgers
+Sliced Mutton,kg,Meat,16.96,190,31,used in sauces
+Sliced Noodles,pcs,Pasta,13.54,176,7,used in desserts
+Sliced Olive Oil,pcs,Oil,5.51,86,7,used in pasta recipes
+Sliced Olive Oil,kg,Oil,18.33,92,5,used in salads
+Sliced Onion,L,Vegetable,10.71,15,8,used in burgers
+Sliced Onion,kg,Vegetable,17.33,48,24,used in curry dishes
+Sliced Onion,mL,Vegetable,6.01,55,10,used in curry dishes
+Sliced Paneer,L,Dairy,5.75,77,45,used in biryani
+Sliced Paneer,mL,Dairy,5.29,160,39,used in burgers
+Sliced Paneer,mL,Dairy,1.86,30,31,used in salads
+Sliced Paneer,g,Dairy,7.11,69,11,used in stir fry
+Sliced Paneer,g,Dairy,10.39,51,26,used in pizza
+Sliced Paneer,g,Dairy,9.98,156,31,used in burgers
+Sliced Pasta,g,Pasta,7.91,65,31,used in sauces
+Sliced Pasta,kg,Pasta,10.21,133,24,used in stir fry
+Sliced Pasta,mL,Pasta,19.42,192,24,used in soups
+Sliced Pork,mL,Meat,10.56,158,7,used in grilled dishes
+Sliced Pork,kg,Meat,5.5,80,20,used in salads
+Sliced Pork,L,Meat,4.48,189,17,used in soups
+Sliced Pork,kg,Meat,15.18,55,27,used in desserts
+Sliced Potato,g,Vegetable,8.57,39,5,used in grilled dishes
+Sliced Potato,mL,Vegetable,4.77,76,24,used in sauces
+Sliced Potato,mL,Vegetable,14.27,54,49,used in burgers
+Sliced Rice,mL,Grain,19.11,121,18,used in soups
+Sliced Rice,g,Grain,0.64,167,37,used in desserts
+Sliced Rice,pcs,Grain,8.14,173,33,used in grilled dishes
+Sliced Rice,g,Grain,16.05,28,17,used in soups
+Sliced Salmon,kg,Seafood,14.19,92,45,used in pizza
+Sliced Salmon,pcs,Seafood,5.35,92,41,used in pizza
+Sliced Salt,kg,Spice,6.05,187,9,used in soups
+Sliced Salt,L,Spice,10.24,145,47,used in sauces
+Sliced Salt,pcs,Spice,10.19,67,11,used in grilled dishes
+Sliced Shrimp,pcs,Seafood,13.04,185,39,used in sauces
+Sliced Shrimp,L,Seafood,7.01,61,48,used in sauces
+Sliced Soy Sauce,g,Condiment,2.84,17,32,used in salads
+Sliced Spaghetti,L,Pasta,17.89,126,9,used in pizza
+Sliced Spinach,pcs,Vegetable,11.04,29,44,used in grilled dishes
+Sliced Spinach,mL,Vegetable,11.78,163,30,used in pizza
+Sliced Sugar,L,Sweetener,2.44,198,40,used in stir fry
+Sliced Sugar,g,Sweetener,12.87,28,34,used in biryani
+Sliced Sunflower Oil,pcs,Oil,2.21,139,43,used in biryani
+Sliced Tomato,g,Vegetable,10.12,195,41,used in salads
+Sliced Tomato,g,Vegetable,6.04,50,29,used in pizza
+Sliced Tomato,pcs,Vegetable,12.92,181,21,used in curry dishes
+Sliced Tomato Ketchup,g,Condiment,3.93,78,28,used in biryani
+Sliced Tomato Ketchup,L,Condiment,12.55,120,39,used in curry dishes
+Sliced Tomato Ketchup,kg,Condiment,19.25,142,7,used in salads
+Sliced Tuna,kg,Seafood,1.78,138,32,used in pizza
+Sliced Tuna,mL,Seafood,16.46,34,48,used in salads
+Sliced Tuna,kg,Seafood,4.69,44,36,used in grilled dishes
+Sliced Tuna,mL,Seafood,5.39,79,41,used in salads
+Sliced Tuna,L,Seafood,19.07,136,8,used in pizza
+Sliced Turmeric,g,Spice,4.97,159,7,used in burgers
+Sliced Vinegar,L,Condiment,4.14,37,31,used in grilled dishes
+Sliced Vinegar,kg,Condiment,18.87,35,10,used in curry dishes
+Sliced Wheat Flour,g,Flour,10.59,46,25,used in biryani
+Sliced Wheat Flour,mL,Flour,18.08,91,6,used in salads
+Sliced Yogurt,L,Dairy,5.73,167,50,used in burgers
+Sliced Yogurt,kg,Dairy,12.71,36,36,used in sauces
+Sliced Yogurt,mL,Dairy,14.62,157,38,used in desserts
+Sliced Yogurt,mL,Dairy,13.77,187,6,used in curry dishes
+Sliced Yogurt,L,Dairy,3.5,181,39,used in curry dishes
+Smoked All-purpose Flour,L,Flour,7.59,194,24,used in soups
+Smoked All-purpose Flour,g,Flour,11.48,68,29,used in stir fry
+Smoked All-purpose Flour,kg,Flour,12.46,98,7,used in salads
+Smoked All-purpose Flour,mL,Flour,9.28,10,7,used in biryani
+Smoked Basil,g,Herb,18.88,36,39,used in desserts
+Smoked Basmati Rice,kg,Grain,9.69,60,40,used in curry dishes
+Smoked Basmati Rice,mL,Grain,2.79,87,13,used in pasta recipes
+Smoked Basmati Rice,L,Grain,17.04,71,5,used in stir fry
+Smoked Beef,g,Meat,4.48,105,49,used in desserts
+Smoked Beef,L,Meat,4.05,52,50,used in biryani
+Smoked Beef,pcs,Meat,7.81,44,16,used in curry dishes
+Smoked Black Pepper,g,Spice,3.18,38,36,used in soups
+Smoked Black Pepper,mL,Spice,18.4,116,11,used in pasta recipes
+Smoked Black Pepper,pcs,Spice,19.96,154,20,used in pizza
+Smoked Black Pepper,L,Spice,6.15,131,33,used in burgers
+Smoked Brown Rice,pcs,Grain,16.93,85,14,used in stir fry
+Smoked Brown Rice,L,Grain,0.62,32,12,used in grilled dishes
+Smoked Brown Rice,kg,Grain,13.84,137,12,used in biryani
+Smoked Butter,g,Dairy,0.9,88,38,used in burgers
+Smoked Butter,mL,Dairy,15.35,149,7,used in salads
+Smoked Butter,mL,Dairy,6.73,188,8,used in soups
+Smoked Cabbage,kg,Vegetable,11.32,195,8,used in grilled dishes
+Smoked Carrot,pcs,Vegetable,7.7,176,6,used in biryani
+Smoked Carrot,pcs,Vegetable,10.11,38,49,used in curry dishes
+Smoked Carrot,L,Vegetable,1.62,118,36,used in curry dishes
+Smoked Cheddar Cheese,g,Dairy,2.47,126,39,used in pasta recipes
+Smoked Chicken Breast,g,Poultry,19.4,18,10,used in grilled dishes
+Smoked Chicken Breast,mL,Poultry,5.07,24,43,used in stir fry
+Smoked Chicken Breast,g,Poultry,11.8,131,35,used in burgers
+Smoked Chicken Thigh,pcs,Poultry,10.72,185,6,used in burgers
+Smoked Chickpeas,kg,Legume,5.5,26,12,used in pasta recipes
+Smoked Chickpeas,g,Legume,13.79,59,27,used in burgers
+Smoked Chili Powder,pcs,Spice,15.01,90,27,used in sauces
+Smoked Chili Powder,pcs,Spice,13.17,44,32,used in curry dishes
+Smoked Chili Powder,g,Spice,15.86,109,38,used in salads
+Smoked Chili Powder,L,Spice,5.88,38,36,used in pasta recipes
+Smoked Chili Powder,kg,Spice,11.09,189,20,used in stir fry
+Smoked Cilantro,g,Herb,19.73,172,19,used in sauces
+Smoked Cilantro,mL,Herb,11.94,115,49,used in biryani
+Smoked Cilantro,kg,Herb,17.31,14,39,used in curry dishes
+Smoked Coriander Powder,kg,Spice,16,147,21,used in sauces
+Smoked Coriander Powder,pcs,Spice,15.18,32,41,used in sauces
+Smoked Coriander Powder,pcs,Spice,1.95,140,22,used in stir fry
+Smoked Coriander Powder,L,Spice,2.13,182,12,used in sauces
+Smoked Coriander Powder,mL,Spice,14.2,37,9,used in desserts
+Smoked Cumin,pcs,Spice,12.26,126,25,used in burgers
+Smoked Cumin,g,Spice,4.03,181,19,used in desserts
+Smoked Garlic,L,Vegetable,8.12,142,18,used in biryani
+Smoked Garlic,L,Vegetable,6.26,198,13,used in sauces
+Smoked Garlic,g,Vegetable,16.99,22,33,used in biryani
+Smoked Garlic,mL,Vegetable,2.7,17,46,used in grilled dishes
+Smoked Ginger,mL,Vegetable,9.63,148,47,used in pasta recipes
+Smoked Ginger,g,Vegetable,19.18,160,36,used in biryani
+Smoked Honey,kg,Sweetener,19.49,70,19,used in biryani
+Smoked Honey,g,Sweetener,13.77,82,46,used in stir fry
+Smoked Kidney Beans,pcs,Legume,10.26,126,26,used in burgers
+Smoked Kidney Beans,kg,Legume,17.33,62,31,used in pasta recipes
+Smoked Kidney Beans,mL,Legume,14.41,64,28,used in burgers
+Smoked Kidney Beans,pcs,Legume,10.13,50,37,used in grilled dishes
+Smoked Lentils,pcs,Legume,5.11,191,8,used in curry dishes
+Smoked Lentils,mL,Legume,14.99,168,49,used in stir fry
+Smoked Lentils,kg,Legume,15.54,137,49,used in pasta recipes
+Smoked Lentils,pcs,Legume,13.22,70,18,used in desserts
+Smoked Mayonnaise,pcs,Condiment,10.28,54,46,used in soups
+Smoked Mayonnaise,g,Condiment,11.63,192,18,used in pasta recipes
+Smoked Mayonnaise,L,Condiment,2.95,157,23,used in stir fry
+Smoked Mayonnaise,pcs,Condiment,1.82,135,42,used in sauces
+Smoked Milk,pcs,Dairy,10.41,142,16,used in grilled dishes
+Smoked Mint,kg,Herb,16.31,33,47,used in pizza
+Smoked Mint,pcs,Herb,15.61,22,27,used in biryani
+Smoked Mint,kg,Herb,18.29,183,21,used in burgers
+Smoked Mint,pcs,Herb,13.13,126,9,used in soups
+Smoked Mint,mL,Herb,6.16,15,36,used in curry dishes
+Smoked Mozzarella,g,Dairy,15.45,117,31,used in burgers
+Smoked Mozzarella,pcs,Dairy,14.95,71,40,used in salads
+Smoked Mozzarella,pcs,Dairy,9.15,63,35,used in desserts
+Smoked Mustard Oil,mL,Oil,8.75,19,5,used in grilled dishes
+Smoked Mustard Oil,pcs,Oil,16.23,186,19,used in curry dishes
+Smoked Mustard Oil,pcs,Oil,7.45,188,20,used in pizza
+Smoked Mutton,g,Meat,0.94,89,39,used in desserts
+Smoked Mutton,mL,Meat,4.76,76,26,used in pizza
+Smoked Mutton,L,Meat,6.73,32,25,used in soups
+Smoked Mutton,pcs,Meat,3.33,47,29,used in curry dishes
+Smoked Noodles,g,Pasta,1.9,57,47,used in salads
+Smoked Noodles,L,Pasta,5.93,62,29,used in biryani
+Smoked Olive Oil,g,Oil,0.9,44,15,used in sauces
+Smoked Olive Oil,g,Oil,4.3,126,29,used in soups
+Smoked Olive Oil,kg,Oil,7.7,72,27,used in burgers
+Smoked Olive Oil,kg,Oil,11.74,155,39,used in burgers
+Smoked Onion,L,Vegetable,7.99,149,29,used in stir fry
+Smoked Onion,kg,Vegetable,12.68,18,8,used in salads
+Smoked Paneer,kg,Dairy,1.37,70,41,used in grilled dishes
+Smoked Paneer,kg,Dairy,1.68,124,23,used in burgers
+Smoked Paneer,g,Dairy,15.81,165,23,used in stir fry
+Smoked Pasta,L,Pasta,14.15,73,6,used in curry dishes
+Smoked Pasta,g,Pasta,0.85,85,27,used in desserts
+Smoked Pasta,g,Pasta,19.22,133,50,used in desserts
+Smoked Pork,kg,Meat,13.67,185,26,used in pizza
+Smoked Pork,kg,Meat,6.73,96,14,used in burgers
+Smoked Pork,L,Meat,7.01,172,8,used in salads
+Smoked Pork,g,Meat,8.59,103,21,used in sauces
+Smoked Potato,pcs,Vegetable,9.36,192,43,used in pizza
+Smoked Potato,g,Vegetable,9.6,64,50,used in stir fry
+Smoked Rice,kg,Grain,18.7,61,6,used in stir fry
+Smoked Rice,kg,Grain,17.91,176,40,used in curry dishes
+Smoked Salmon,kg,Seafood,6.13,29,11,used in soups
+Smoked Salmon,L,Seafood,10.92,134,33,used in biryani
+Smoked Salmon,L,Seafood,16.13,99,44,used in soups
+Smoked Salmon,pcs,Seafood,2.91,162,17,used in burgers
+Smoked Salt,kg,Spice,7.77,76,8,used in stir fry
+Smoked Salt,L,Spice,12.28,147,37,used in grilled dishes
+Smoked Shrimp,L,Seafood,8.49,71,26,used in desserts
+Smoked Shrimp,g,Seafood,14.2,106,42,used in desserts
+Smoked Shrimp,mL,Seafood,9.4,179,39,used in grilled dishes
+Smoked Soy Sauce,L,Condiment,16.42,60,24,used in burgers
+Smoked Soy Sauce,pcs,Condiment,17.25,192,23,used in pasta recipes
+Smoked Soy Sauce,kg,Condiment,1,16,35,used in sauces
+Smoked Spaghetti,pcs,Pasta,7.03,98,40,used in sauces
+Smoked Spinach,kg,Vegetable,7.22,38,7,used in pasta recipes
+Smoked Spinach,mL,Vegetable,18.52,44,47,used in pizza
+Smoked Spinach,L,Vegetable,9.3,17,21,used in pizza
+Smoked Spinach,L,Vegetable,6.83,41,34,used in curry dishes
+Smoked Spinach,g,Vegetable,12.95,43,6,used in sauces
+Smoked Sugar,kg,Sweetener,2.08,51,41,used in pizza
+Smoked Sugar,mL,Sweetener,15.1,154,21,used in curry dishes
+Smoked Sunflower Oil,L,Oil,12.07,10,8,used in pasta recipes
+Smoked Tomato,g,Vegetable,11.96,85,13,used in pizza
+Smoked Tomato,mL,Vegetable,15.76,16,18,used in grilled dishes
+Smoked Tomato Ketchup,pcs,Condiment,17.31,113,36,used in biryani
+Smoked Tuna,g,Seafood,0.76,56,13,used in pizza
+Smoked Tuna,pcs,Seafood,2.32,70,37,used in sauces
+Smoked Tuna,mL,Seafood,1.55,12,26,used in sauces
+Smoked Tuna,pcs,Seafood,1.37,173,31,used in desserts
+Smoked Turmeric,pcs,Spice,13.61,142,43,used in burgers
+Smoked Turmeric,g,Spice,9.69,138,24,used in salads
+Smoked Vinegar,L,Condiment,9.62,39,14,used in desserts
+Smoked Wheat Flour,L,Flour,6.29,32,14,used in sauces
+Smoked Yogurt,g,Dairy,6,169,21,used in stir fry
+Smoked Yogurt,g,Dairy,13.95,161,43,used in grilled dishes
+Smoked Yogurt,mL,Dairy,10.26,186,28,used in desserts
+Smoked Yogurt,kg,Dairy,15.47,130,40,used in biryani
+Smoked Yogurt,L,Dairy,17.06,54,48,used in pizza
+Whole All-purpose Flour,pcs,Flour,17.59,85,39,used in sauces
+Whole Basil,L,Herb,13.52,139,26,used in pizza
+Whole Basil,mL,Herb,9.41,159,24,used in burgers
+Whole Basil,g,Herb,5.18,78,48,used in pasta recipes
+Whole Basil,pcs,Herb,5.56,15,29,used in curry dishes
+Whole Basmati Rice,kg,Grain,14.68,142,33,used in soups
+Whole Basmati Rice,pcs,Grain,10.6,132,50,used in pasta recipes
+Whole Basmati Rice,g,Grain,3.04,110,37,used in stir fry
+Whole Basmati Rice,mL,Grain,7.98,33,25,used in soups
+Whole Basmati Rice,kg,Grain,10.29,21,35,used in biryani
+Whole Beef,g,Meat,3.33,128,17,used in stir fry
+Whole Beef,pcs,Meat,14.7,144,32,used in salads
+Whole Beef,L,Meat,19.46,194,11,used in soups
+Whole Black Pepper,g,Spice,19.81,144,7,used in desserts
+Whole Black Pepper,pcs,Spice,4.7,121,15,used in curry dishes
+Whole Brown Rice,mL,Grain,19.19,147,16,used in stir fry
+Whole Butter,mL,Dairy,8.23,121,24,used in biryani
+Whole Butter,pcs,Dairy,10,21,45,used in curry dishes
+Whole Cabbage,g,Vegetable,14.69,161,20,used in soups
+Whole Cabbage,pcs,Vegetable,14,10,31,used in salads
+Whole Cabbage,pcs,Vegetable,17.55,78,45,used in pizza
+Whole Cabbage,g,Vegetable,14.96,170,43,used in sauces
+Whole Carrot,kg,Vegetable,2.7,81,25,used in burgers
+Whole Carrot,pcs,Vegetable,19.54,158,27,used in grilled dishes
+Whole Cheddar Cheese,pcs,Dairy,11.3,176,31,used in desserts
+Whole Cheddar Cheese,L,Dairy,9.42,121,15,used in soups
+Whole Cheddar Cheese,g,Dairy,14.3,96,45,used in stir fry
+Whole Cheddar Cheese,L,Dairy,13.42,144,22,used in burgers
+Whole Cheddar Cheese,mL,Dairy,3.12,16,42,used in salads
+Whole Chicken Breast,L,Poultry,9.86,123,10,used in soups
+Whole Chicken Breast,L,Poultry,4.76,76,6,used in biryani
+Whole Chicken Thigh,pcs,Poultry,3.44,125,31,used in biryani
+Whole Chicken Thigh,g,Poultry,8.48,193,27,used in stir fry
+Whole Chicken Thigh,L,Poultry,14.5,155,8,used in salads
+Whole Chicken Thigh,mL,Poultry,0.55,111,22,used in salads
+Whole Chickpeas,g,Legume,16.72,104,44,used in grilled dishes
+Whole Chickpeas,mL,Legume,7.44,71,32,used in sauces
+Whole Chickpeas,L,Legume,17.85,170,39,used in soups
+Whole Chickpeas,mL,Legume,16.88,149,9,used in pizza
+Whole Chili Powder,kg,Spice,16.62,193,26,used in salads
+Whole Chili Powder,g,Spice,3.91,40,16,used in biryani
+Whole Cilantro,L,Herb,8.09,108,34,used in grilled dishes
+Whole Cilantro,g,Herb,7.26,99,36,used in curry dishes
+Whole Cilantro,mL,Herb,3.81,192,6,used in pizza
+Whole Cilantro,kg,Herb,2.32,37,39,used in grilled dishes
+Whole Coriander Powder,kg,Spice,18.53,188,16,used in pizza
+Whole Coriander Powder,mL,Spice,17.8,189,7,used in desserts
+Whole Coriander Powder,L,Spice,4.62,30,14,used in grilled dishes
+Whole Coriander Powder,mL,Spice,7.06,75,48,used in grilled dishes
+Whole Cumin,pcs,Spice,14.4,101,32,used in desserts
+Whole Cumin,mL,Spice,3.32,117,40,used in biryani
+Whole Garlic,kg,Vegetable,16.82,41,42,used in soups
+Whole Garlic,pcs,Vegetable,9.89,188,22,used in sauces
+Whole Garlic,L,Vegetable,3.2,168,5,used in pizza
+Whole Ginger,pcs,Vegetable,4.19,176,10,used in pasta recipes
+Whole Ginger,kg,Vegetable,19.49,10,43,used in biryani
+Whole Ginger,kg,Vegetable,11.46,103,37,used in salads
+Whole Honey,L,Sweetener,8.24,27,31,used in salads
+Whole Honey,mL,Sweetener,13.84,90,28,used in burgers
+Whole Honey,L,Sweetener,12.83,175,33,used in curry dishes
+Whole Honey,L,Sweetener,6.94,82,41,used in pasta recipes
+Whole Honey,kg,Sweetener,15.62,19,13,used in salads
+Whole Honey,mL,Sweetener,19.21,66,48,used in soups
+Whole Kidney Beans,kg,Legume,0.96,150,49,used in biryani
+Whole Lentils,mL,Legume,8.85,85,50,used in biryani
+Whole Lentils,kg,Legume,13.44,55,21,used in grilled dishes
+Whole Lentils,kg,Legume,17.79,160,9,used in grilled dishes
+Whole Mayonnaise,pcs,Condiment,11.4,162,19,used in salads
+Whole Mayonnaise,pcs,Condiment,12.09,193,15,used in grilled dishes
+Whole Mayonnaise,L,Condiment,13.19,127,44,used in pasta recipes
+Whole Mayonnaise,g,Condiment,2.3,33,20,used in soups
+Whole Milk,pcs,Dairy,1.96,110,15,used in biryani
+Whole Milk,g,Dairy,9.45,92,25,used in burgers
+Whole Mint,mL,Herb,16.17,49,20,used in biryani
+Whole Mint,pcs,Herb,16.41,42,7,used in biryani
+Whole Mint,kg,Herb,9.21,68,18,used in stir fry
+Whole Mint,mL,Herb,7.81,131,17,used in stir fry
+Whole Mint,kg,Herb,10.42,104,22,used in desserts
+Whole Mint,kg,Herb,19.71,42,28,used in sauces
+Whole Mozzarella,g,Dairy,4.87,13,39,used in biryani
+Whole Mozzarella,L,Dairy,11.49,82,27,used in biryani
+Whole Mustard Oil,mL,Oil,17.94,121,14,used in sauces
+Whole Mustard Oil,kg,Oil,8.15,183,22,used in salads
+Whole Mutton,kg,Meat,19.23,16,29,used in biryani
+Whole Mutton,mL,Meat,11.32,14,47,used in grilled dishes
+Whole Mutton,g,Meat,5.82,156,43,used in grilled dishes
+Whole Mutton,kg,Meat,10.83,116,36,used in stir fry
+Whole Noodles,pcs,Pasta,0.55,109,13,used in salads
+Whole Olive Oil,kg,Oil,11.92,99,44,used in desserts
+Whole Olive Oil,g,Oil,19.11,150,16,used in burgers
+Whole Olive Oil,pcs,Oil,0.72,157,24,used in pasta recipes
+Whole Olive Oil,kg,Oil,3.81,114,14,used in pizza
+Whole Onion,pcs,Vegetable,6.68,74,18,used in salads
+Whole Onion,pcs,Vegetable,15.62,13,42,used in grilled dishes
+Whole Onion,kg,Vegetable,2.12,196,9,used in desserts
+Whole Paneer,kg,Dairy,16.41,47,11,used in soups
+Whole Pasta,g,Pasta,5.51,150,37,used in sauces
+Whole Pasta,L,Pasta,17.84,114,43,used in salads
+Whole Pasta,kg,Pasta,0.56,200,25,used in pasta recipes
+Whole Pasta,mL,Pasta,17.95,186,18,used in grilled dishes
+Whole Pork,L,Meat,4.24,17,20,used in biryani
+Whole Pork,L,Meat,18.63,83,36,used in pasta recipes
+Whole Pork,kg,Meat,7,120,39,used in biryani
+Whole Potato,L,Vegetable,3.65,182,5,used in salads
+Whole Potato,g,Vegetable,11.25,185,19,used in pasta recipes
+Whole Potato,L,Vegetable,15.69,40,45,used in biryani
+Whole Rice,g,Grain,18.81,29,25,used in pizza
+Whole Salmon,g,Seafood,10.95,90,48,used in curry dishes
+Whole Salmon,pcs,Seafood,1.39,33,33,used in burgers
+Whole Salmon,mL,Seafood,5.21,104,17,used in stir fry
+Whole Salmon,kg,Seafood,2.54,30,35,used in biryani
+Whole Salt,g,Spice,19.48,57,41,used in burgers
+Whole Salt,g,Spice,4.73,68,6,used in pasta recipes
+Whole Salt,mL,Spice,1.28,30,18,used in burgers
+Whole Shrimp,L,Seafood,16.13,42,15,used in soups
+Whole Shrimp,pcs,Seafood,8.47,94,16,used in stir fry
+Whole Shrimp,pcs,Seafood,12.48,54,7,used in biryani
+Whole Shrimp,L,Seafood,10.69,54,23,used in pizza
+Whole Shrimp,kg,Seafood,5.21,99,29,used in salads
+Whole Soy Sauce,g,Condiment,6.43,32,31,used in grilled dishes
+Whole Soy Sauce,g,Condiment,5.27,21,29,used in salads
+Whole Spaghetti,kg,Pasta,6.52,29,45,used in burgers
+Whole Spaghetti,L,Pasta,12.4,101,49,used in soups
+Whole Spinach,pcs,Vegetable,13.37,180,27,used in salads
+Whole Spinach,L,Vegetable,6.81,125,45,used in biryani
+Whole Spinach,L,Vegetable,17.97,110,25,used in pizza
+Whole Sugar,mL,Sweetener,6.63,33,31,used in curry dishes
+Whole Sunflower Oil,kg,Oil,16.34,200,5,used in biryani
+Whole Tomato,mL,Vegetable,16.77,184,37,used in soups
+Whole Tomato,L,Vegetable,8.38,128,10,used in pasta recipes
+Whole Tomato Ketchup,g,Condiment,19.76,193,24,used in burgers
+Whole Tuna,g,Seafood,14.48,138,12,used in soups
+Whole Tuna,L,Seafood,14.26,125,42,used in biryani
+Whole Turmeric,g,Spice,17.96,87,37,used in biryani
+Whole Turmeric,g,Spice,2.86,145,43,used in salads
+Whole Turmeric,mL,Spice,13.68,88,50,used in grilled dishes
+Whole Vinegar,mL,Condiment,1.97,162,11,used in soups
+Whole Vinegar,mL,Condiment,19.62,157,6,used in curry dishes
+Whole Vinegar,g,Condiment,12.63,168,29,used in desserts
+Whole Wheat Flour,pcs,Flour,12.7,91,15,used in pizza
+Whole Wheat Flour,mL,Flour,4.48,26,42,used in curry dishes
+Whole Yogurt,pcs,Dairy,19.58,106,10,used in salads
+Whole Yogurt,kg,Dairy,10.35,166,31,used in salads
+Whole Yogurt,g,Dairy,8.92,25,44,used in curry dishes
+Black Tea Leaves,g,Beverage Ingredient,3.45,100,35,used in chai and black tea
+Green Tea Leaves,g,Beverage Ingredient,4.37,50,39,used in green tea
+Oolong Tea Leaves,g,Beverage Ingredient,12.03,62,31,used in oolong tea
+White Tea Leaves,g,Beverage Ingredient,2.11,70,16,used in premium tea
+Matcha Powder,g,Beverage Ingredient,4.88,95,26,used in matcha latte and desserts
+Chamomile Flowers,g,Herb,2.3,88,28,used in herbal tea
+Hibiscus Petals,g,Herb,8.25,102,30,used in hibiscus tea
+Peppermint Leaves,g,Herb,12.32,102,28,used in mint tea
+Lemongrass,g,Herb,0.69,78,28,used in herbal tea and Thai tea
+Cardamom Pods,g,Spice,8.96,67,11,used in masala chai
+Cloves,g,Spice,6.4,41,24,used in spiced tea
+Cinnamon Sticks,g,Spice,11.93,24,14,used in chai and spiced drinks
+Fennel Seeds,g,Spice,14,47,38,used in herbal tea blends
+Ginger Root,kg,Vegetable,11.51,141,21,used in ginger tea
+Tea Masala Mix,g,Spice,8.02,132,22,used in masala chai
+Condensed Milk,L,Dairy,11.57,26,16,used in milk tea
+Evaporated Milk,L,Dairy,1.79,69,38,used in tea and desserts
+Brown Sugar Syrup,mL,Sweetener,14.76,86,29,used in bubble tea
+Tapioca Pearls,kg,Beverage Ingredient,12.15,51,21,used in bubble tea
+Ice Cubes,kg,Misc,9.25,110,22,used in iced tea
