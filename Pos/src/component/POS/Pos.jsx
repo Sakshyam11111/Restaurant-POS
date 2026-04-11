@@ -17,7 +17,6 @@ import HomeContent from './contents/HomeContent';
 import POSContent from './contents/POSContent';
 import ReportsContent from './contents/ReportsContent';
 import POSMenu from './contents/menu/POSMenu';
-
 import Zone from './master/Zone';
 import Table from './master/Table';
 import Employee from './master/Employee';
@@ -34,14 +33,15 @@ import OrderDetailPage from './contents/order/OrderDetailPage';
 import MenuItems from './master/menuitems/MenuItems';
 import { orderAPI, menuAPI } from '../../services/api';
 import IngredientRecommendations from './contents/Ingredientrecommendations';
+import NotificationBell from './NotificationBell';
 
 export const DATE_RANGES = [
-  { key: 'today',       label: 'Today' },
-  { key: 'yesterday',   label: 'Yesterday' },
-  { key: 'this_week',   label: 'This Week' },
-  { key: 'this_month',  label: 'This Month' },
+  { key: 'today', label: 'Today' },
+  { key: 'yesterday', label: 'Yesterday' },
+  { key: 'this_week', label: 'This Week' },
+  { key: 'this_month', label: 'This Month' },
   { key: 'last_6month', label: 'Last 6 Months' },
-  { key: 'last_year',   label: 'Last Year' },
+  { key: 'last_year', label: 'Last Year' },
 ];
 
 export const getDateRange = (rangeKey) => {
@@ -49,10 +49,9 @@ export const getDateRange = (rangeKey) => {
   const toISO = (d) => {
     const year = d.getFullYear();
     const month = String(d.getMonth() + 1).padStart(2, '0');
-    const day   = String(d.getDate()).padStart(2, '0');
+    const day = String(d.getDate()).padStart(2, '0');
     return `${year}-${month}-${day}`;
   };
-
   switch (rangeKey) {
     case 'today': {
       const d = toISO(now);
@@ -96,37 +95,31 @@ export const getDateRange = (rangeKey) => {
 const isOrderInRange = (order, startDate, endDate) => {
   if (!order.createdAt) return false;
   const orderDate = new Date(order.createdAt);
-  const year  = orderDate.getFullYear();
+  const year = orderDate.getFullYear();
   const month = String(orderDate.getMonth() + 1).padStart(2, '0');
-  const day   = String(orderDate.getDate()).padStart(2, '0');
+  const day = String(orderDate.getDate()).padStart(2, '0');
   const orderISO = `${year}-${month}-${day}`;
   return orderISO >= startDate && orderISO <= endDate;
 };
 
 const buildDashboardData = async (rangeKey = 'today') => {
   const { startDate, endDate } = getDateRange(rangeKey);
-
   const [ordersRes, menuRes] = await Promise.allSettled([
     orderAPI.getOrders({ startDate, endDate }),
     menuAPI.getMenuItems(),
   ]);
-
   const allOrders = ordersRes.status === 'fulfilled'
     ? (ordersRes.value.data?.orders || [])
     : [];
-
   const orders = allOrders.filter((o) => isOrderInRange(o, startDate, endDate));
-
   const menuItems = menuRes.status === 'fulfilled'
     ? (menuRes.value.data?.items || [])
     : [];
-
   const menuPriceMap = {};
   menuItems.forEach((m) => {
     const key = (m.name || '').toLowerCase().trim();
     menuPriceMap[key] = { price: m.price || 0, category: m.category || 'Menu' };
   });
-
   const lookupMenu = (rawName) => {
     const key = (rawName || '').toLowerCase().trim();
     if (menuPriceMap[key]) return menuPriceMap[key];
@@ -135,12 +128,10 @@ const buildDashboardData = async (rangeKey = 'today') => {
     );
     return partial ? menuPriceMap[partial] : null;
   };
-
   const completedOrders = orders.filter((o) => o.status === 'Served');
-  const pendingOrders   = orders.filter((o) => ['Pending', 'Preparing', 'Ready'].includes(o.status));
+  const pendingOrders = orders.filter((o) => ['Pending', 'Preparing', 'Ready'].includes(o.status));
   const cancelledOrders = orders.filter((o) => o.status === 'Cancelled');
-  const totalRevenue    = completedOrders.reduce((sum, o) => sum + (o.totalPrice || 0), 0);
-
+  const totalRevenue = completedOrders.reduce((sum, o) => sum + (o.totalPrice || 0), 0);
   const typeCounts = { 'Dine In': 0, 'Take Away': 0, Delivery: 0 };
   orders.forEach((o) => {
     const t = o.type || 'Dine In';
@@ -149,21 +140,19 @@ const buildDashboardData = async (rangeKey = 'today') => {
   });
   const totalOrders = orders.length || 1;
   const categoryData = [
-    { name: 'Dine-In',  value: Math.round((typeCounts['Dine In']  / totalOrders) * 100), color: '#4682B4' },
+    { name: 'Dine-In', value: Math.round((typeCounts['Dine In'] / totalOrders) * 100), color: '#4682B4' },
     { name: 'Takeaway', value: Math.round((typeCounts['Take Away'] / totalOrders) * 100), color: '#8B5CF6' },
-    { name: 'Delivery', value: Math.round((typeCounts['Delivery']  / totalOrders) * 100), color: '#10B981' },
+    { name: 'Delivery', value: Math.round((typeCounts['Delivery'] / totalOrders) * 100), color: '#10B981' },
   ];
   const pctSum = categoryData.reduce((s, c) => s + c.value, 0);
   if (pctSum !== 100 && categoryData[0]) categoryData[0].value += (100 - pctSum);
-
   const itemMap = {};
   orders.forEach((o) => {
     (o.items || []).forEach((item) => {
       const name = typeof item === 'string' ? item.split(' ×')[0].trim() : (item.name || '').trim();
-      const qty  = typeof item === 'string'
+      const qty = typeof item === 'string'
         ? parseInt(item.split(' ×')[1]) || 1
         : item.quantity || 1;
-
       let price = 0;
       if (typeof item === 'object' && item.price > 0) {
         price = item.price;
@@ -171,12 +160,10 @@ const buildDashboardData = async (rangeKey = 'today') => {
         const found = lookupMenu(name);
         if (found) price = found.price;
       }
-
       const menuInfo = lookupMenu(name);
       const category = menuInfo?.category || 'Menu';
-
       if (!itemMap[name]) itemMap[name] = { name, price, qty: 0, revenue: 0, category };
-      itemMap[name].qty     += qty;
+      itemMap[name].qty += qty;
       itemMap[name].revenue += price * qty;
       if (price > 0 && itemMap[name].price === 0) itemMap[name].price = price;
     });
@@ -184,16 +171,15 @@ const buildDashboardData = async (rangeKey = 'today') => {
   const topSellingItems = Object.values(itemMap)
     .sort((a, b) => b.qty - a.qty)
     .slice(0, 5);
-
   const recentTransactions = completedOrders
     .slice(-10)
     .reverse()
     .map((o) => ({
-      name:    o.table ? `Table ${o.table}` : 'Guest',
+      name: o.table ? `Table ${o.table}` : 'Guest',
       orderId: o.kot || o.id,
       payment: 'Cash',
-      amount:  o.totalPrice || 0,
-      time:    o.createdAt
+      amount: o.totalPrice || 0,
+      time: o.createdAt
         ? new Date(o.createdAt).toLocaleString('en-US', {
             month: 'short', day: 'numeric',
             hour: '2-digit', minute: '2-digit',
@@ -201,15 +187,13 @@ const buildDashboardData = async (rangeKey = 'today') => {
         : '—',
       status: 'success',
     }));
-
   const monthlyRevenue = buildRevenueChart(orders, rangeKey);
-
   return {
-    totalSalesToday:   orders.length,
-    completedOrders:   completedOrders.length,
-    cancelledOrders:   cancelledOrders.length,
-    pendingOrders:     pendingOrders.length,
-    todaysRevenue:     totalRevenue,
+    totalSalesToday: orders.length,
+    completedOrders: completedOrders.length,
+    cancelledOrders: cancelledOrders.length,
+    pendingOrders: pendingOrders.length,
+    todaysRevenue: totalRevenue,
     monthlyRevenue,
     topSellingItems,
     recentTransactions,
@@ -222,7 +206,6 @@ const buildDashboardData = async (rangeKey = 'today') => {
 
 const buildRevenueChart = (orders, rangeKey) => {
   const completedOrders = orders.filter((o) => o.status === 'Served');
-
   if (rangeKey === 'today' || rangeKey === 'yesterday') {
     const buckets = Array.from({ length: 24 }, (_, h) => ({
       month: `${h.toString().padStart(2, '0')}:00`,
@@ -236,7 +219,6 @@ const buildRevenueChart = (orders, rangeKey) => {
     });
     return buckets;
   }
-
   if (rangeKey === 'this_week') {
     const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
     const buckets = days.map((d) => ({ month: d, value: 0 }));
@@ -248,7 +230,6 @@ const buildRevenueChart = (orders, rangeKey) => {
     });
     return buckets;
   }
-
   if (rangeKey === 'this_month') {
     const now = new Date();
     const daysInMonth = new Date(now.getFullYear(), now.getMonth() + 1, 0).getDate();
@@ -264,7 +245,6 @@ const buildRevenueChart = (orders, rangeKey) => {
     });
     return buckets;
   }
-
   const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
   const numMonths = rangeKey === 'last_6month' ? 6 : 12;
   const now = new Date();
@@ -272,15 +252,15 @@ const buildRevenueChart = (orders, rangeKey) => {
   for (let i = numMonths - 1; i >= 0; i--) {
     const d = new Date(now.getFullYear(), now.getMonth() - i, 1);
     buckets.push({
-      month:  monthNames[d.getMonth()],
-      value:  0,
-      _year:  d.getFullYear(),
+      month: monthNames[d.getMonth()],
+      value: 0,
+      _year: d.getFullYear(),
       _month: d.getMonth(),
     });
   }
   completedOrders.forEach((o) => {
     if (o.createdAt) {
-      const d      = new Date(o.createdAt);
+      const d = new Date(o.createdAt);
       const bucket = buckets.find((b) => b._year === d.getFullYear() && b._month === d.getMonth());
       if (bucket) bucket.value += o.totalPrice || 0;
     }
@@ -290,13 +270,12 @@ const buildRevenueChart = (orders, rangeKey) => {
 
 export default function Pos() {
   const navigate = useNavigate();
-  const [isExpanded, setIsExpanded]       = useState(true);
-  const [isMasterOpen, setIsMasterOpen]   = useState(true);
-  const [activeStep, setActiveStep]       = useState(1);
-
-  const [dashboardData, setDashboardData]           = useState(null);
+  const [isExpanded, setIsExpanded] = useState(true);
+  const [isMasterOpen, setIsMasterOpen] = useState(true);
+  const [activeStep, setActiveStep] = useState(1);
+  const [dashboardData, setDashboardData] = useState(null);
   const [isLoadingDashboard, setIsLoadingDashboard] = useState(false);
-  const [dashboardRange, setDashboardRange]         = useState('today');
+  const [dashboardRange, setDashboardRange] = useState('today');
 
   const loadDashboard = useCallback(async (rangeKey) => {
     setIsLoadingDashboard(true);
@@ -318,28 +297,28 @@ export default function Pos() {
 
   useEffect(() => {
     if (activeStep === 1) loadDashboard(dashboardRange);
-  }, [activeStep]);
+  }, [activeStep, dashboardRange, loadDashboard]);
 
   const steps = {
-    1:  { id: 'home',                    component: HomeContent },
-    2:  { id: 'pos',                     component: POSContent },
-    3:  { id: 'tablecomponent',          component: TableContent },
-    4:  { id: 'orderdetail',             component: OrderDetailPage },
-    5:  { id: 'reports',                 component: ReportsContent },
-    6:  { id: 'zone',                    component: Zone },
-    7:  { id: 'table',                   component: Table },
-    8:  { id: 'menu-items',              component: MenuItems },
-    9:  { id: 'employee',                component: Employee },
-    10: { id: 'department',              component: Department },
-    11: { id: 'designation',             component: Designation },
-    12: { id: 'employeeshifts',          component: Employeeshifts },
-    13: { id: 'employeeshiftsrotation',  component: Employeeshiftsrotation },
-    14: { id: 'printtype',               component: Printtype },
-    15: { id: 'printsetting',            component: PrintSetting },
-    16: { id: 'settings',                component: Settings },
-    17: { id: 'posmenu',                 component: POSMenu },
-    18: { id: 'ingredient',              component: Ingredient },
-    19: { id: 'ingredient-ai',           component: IngredientRecommendations },
+    1: { id: 'home', component: HomeContent },
+    2: { id: 'pos', component: POSContent },
+    3: { id: 'tablecomponent', component: TableContent },
+    4: { id: 'orderdetail', component: OrderDetailPage },
+    5: { id: 'reports', component: ReportsContent },
+    6: { id: 'zone', component: Zone },
+    7: { id: 'table', component: Table },
+    8: { id: 'menu-items', component: MenuItems },
+    9: { id: 'employee', component: Employee },
+    10: { id: 'department', component: Department },
+    11: { id: 'designation', component: Designation },
+    12: { id: 'employeeshifts', component: Employeeshifts },
+    13: { id: 'employeeshiftsrotation', component: Employeeshiftsrotation },
+    14: { id: 'printtype', component: Printtype },
+    15: { id: 'printsetting', component: PrintSetting },
+    16: { id: 'settings', component: Settings },
+    17: { id: 'posmenu', component: POSMenu },
+    18: { id: 'ingredient', component: Ingredient },
+    19: { id: 'ingredient-ai', component: IngredientRecommendations },
   };
 
   const handleMenuClick = (id) => {
@@ -363,37 +342,37 @@ export default function Pos() {
   const activeId = steps[activeStep]?.id || 'home';
 
   const collapsedMenuItems = [
-    { id: 'home',     icon: Home,         label: 'Home' },
-    { id: 'pos',      icon: Package,      label: 'POS' },
-    { id: 'reports',  icon: BarChart3,    label: 'Reports' },
+    { id: 'home', icon: Home, label: 'Home' },
+    { id: 'pos', icon: Package, label: 'POS' },
+    { id: 'reports', icon: BarChart3, label: 'Reports' },
     { id: 'settings', icon: SettingsIcon, label: 'Settings' },
-    { id: 'logout',   icon: LogOut,       label: 'Logout' },
+    { id: 'logout', icon: LogOut, label: 'Logout' },
   ];
 
   const expandedMenuItems = [
-    { id: 'home',    icon: Home,        label: 'Home' },
-    { id: 'pos',     icon: Package,     label: 'POS' },
+    { id: 'home', icon: Home, label: 'Home' },
+    { id: 'pos', icon: Package, label: 'POS' },
     {
       id: 'master',
       icon: FolderOpen,
       label: 'Master',
       hasSubmenu: true,
       submenu: [
-        { id: 'zone',                   label: 'Zone' },
-        { id: 'table',                  label: 'Table' },
-        { id: 'menu-items',             label: 'Menu Items' },
-        { id: 'ingredient',             label: 'Ingredient' },
-        { id: 'ingredient-ai',          label: 'AI Ingredient Planner' },
-        { id: 'employee',               label: 'Employee' },
-        { id: 'department',             label: 'Department' },
-        { id: 'designation',            label: 'Designation' },
-        { id: 'employeeshifts',         label: 'Employee Shifts' },
+        { id: 'zone', label: 'Zone' },
+        { id: 'table', label: 'Table' },
+        { id: 'menu-items', label: 'Menu Items' },
+        { id: 'ingredient', label: 'Ingredient' },
+        { id: 'ingredient-ai', label: 'AI Ingredient Planner' },
+        { id: 'employee', label: 'Employee' },
+        { id: 'department', label: 'Department' },
+        { id: 'designation', label: 'Designation' },
+        { id: 'employeeshifts', label: 'Employee Shifts' },
         { id: 'employeeshiftsrotation', label: 'Employee Shifts Rotation' },
-        { id: 'printtype',              label: 'Print Type' },
-        { id: 'printsetting',           label: 'Print Setting' },
+        { id: 'printtype', label: 'Print Type' },
+        { id: 'printsetting', label: 'Print Setting' },
       ],
     },
-    { id: 'reports',  icon: BarChart3,    label: 'Reports' },
+    { id: 'reports', icon: BarChart3, label: 'Reports' },
     { id: 'settings', icon: SettingsIcon, label: 'Settings' },
   ];
 
@@ -404,7 +383,6 @@ export default function Pos() {
         <h2>Select an option from the menu</h2>
       </div>
     );
-
     if (step.id === 'home') {
       return (
         <HomeContent
@@ -417,7 +395,6 @@ export default function Pos() {
         />
       );
     }
-
     const SelectedContent = step.component;
     return <SelectedContent navigateToStep={navigateToStep} />;
   };
@@ -440,6 +417,9 @@ export default function Pos() {
           >
             <Menu size={24} strokeWidth={2} />
           </button>
+
+          <NotificationBell />
+
           {collapsedMenuItems.map((item) => {
             const Icon = item.icon;
             const isActive = activeId === item.id;
@@ -467,12 +447,15 @@ export default function Pos() {
         <div className="w-72 bg-white border-r border-gray-200 flex flex-col">
           <div className="p-6 border-b border-gray-100 flex items-center justify-between">
             <img src={Logo} alt="Logo" className="h-16 object-contain" />
-            <button
-              onClick={() => setIsExpanded(false)}
-              className="p-2 rounded-lg text-gray-500 hover:text-gray-700 hover:bg-gray-100 transition-colors"
-            >
-              <Menu size={20} />
-            </button>
+            <div className="flex items-center gap-2">
+              <NotificationBell />
+              <button
+                onClick={() => setIsExpanded(false)}
+                className="p-2 rounded-lg text-gray-500 hover:text-gray-700 hover:bg-gray-100 transition-colors"
+              >
+                <Menu size={20} />
+              </button>
+            </div>
           </div>
           <nav className="flex-1 px-3 py-6 overflow-y-auto">
             {expandedMenuItems.map((item) => {
