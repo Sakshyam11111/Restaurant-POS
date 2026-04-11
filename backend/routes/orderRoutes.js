@@ -4,6 +4,7 @@ const orderController = require('../controllers/orderController');
 const { protect } = require('../middleware/authMiddleware');
 
 router.get('/', orderController.getOrders);
+router.get('/rush-hours', orderController.getRushHourData);
 router.get('/:id', orderController.getOrderById);
 
 router.post('/', protect, orderController.createOrder);

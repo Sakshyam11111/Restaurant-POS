@@ -17,6 +17,8 @@ const designationRoutes  = require("./routes/designationRoutes");
 const employeeRoutes     = require("./routes/employeeRoutes");
 const ingredientRoutes   = require("./routes/Ingredientroutes");
 const aiIngredientRoutes = require('./routes/aiIngredientRoutes');
+const demandForecastRoutes = require("./routes/demandForecastRoutes");
+
 
 dotenv.config();
 
@@ -83,6 +85,7 @@ app.use("/api/designations",    designationRoutes);
 app.use("/api/employees",       employeeRoutes);
 app.use("/api/ingredients",     ingredientRoutes);
 app.use('/api/ai', aiIngredientRoutes);
+app.use("/api/demand-forecast", demandForecastRoutes);
 
 
 console.log("✓ Routes registered:");

@@ -3,7 +3,6 @@ const Order = require('../models/Order');
 const generateKOT = async () => {
   const lastOrder = await Order.findOne().sort({ createdAt: -1 });
   if (!lastOrder) return 'K1001';
-
   const num = parseInt(lastOrder.kot.replace(/[^0-9]/g, ''), 10);
   return `K${num + 1}`;
 };
@@ -36,14 +35,12 @@ const formatOrder = (order) => ({
 exports.createOrder = async (req, res) => {
   try {
     const { table, type, items, waiter } = req.body;
-
     if (!items || !Array.isArray(items) || items.length === 0) {
       return res.status(400).json({
         status: 'error',
         message: 'Order must contain at least one item'
       });
     }
-
     for (const item of items) {
       if (!item.name || item.quantity == null || item.price == null) {
         return res.status(400).json({
@@ -52,9 +49,7 @@ exports.createOrder = async (req, res) => {
         });
       }
     }
-
     const kot = await generateKOT();
-
     const order = await Order.create({
       kot,
       table,
@@ -63,7 +58,6 @@ exports.createOrder = async (req, res) => {
       waiter: waiter || '',
       createdBy: req.user?.userId || null
     });
-
     res.status(201).json({
       status: 'success',
       message: 'Order created successfully',
@@ -81,20 +75,16 @@ exports.createOrder = async (req, res) => {
 exports.getOrders = async (req, res) => {
   try {
     const { date, status } = req.query;
-
     const filter = {};
     if (date) {
       const startOfDay = new Date(date + 'T00:00:00.000Z');
       const endOfDay = new Date(date + 'T23:59:59.999Z');
       filter.createdAt = { $gte: startOfDay, $lte: endOfDay };
     }
-
     if (status) {
       filter.status = status;
     }
-
     const orders = await Order.find(filter).sort({ createdAt: -1 });
-
     res.status(200).json({
       status: 'success',
       results: orders.length,
@@ -112,14 +102,12 @@ exports.getOrders = async (req, res) => {
 exports.getOrderById = async (req, res) => {
   try {
     const order = await Order.findById(req.params.id);
-
     if (!order) {
       return res.status(404).json({
         status: 'error',
         message: 'Order not found'
       });
     }
-
     res.status(200).json({
       status: 'success',
       data: { order: formatOrder(order) }
@@ -137,27 +125,23 @@ exports.updateOrderStatus = async (req, res) => {
   try {
     const { status } = req.body;
     const validStatuses = ['Pending', 'Preparing', 'Ready', 'Served', 'Cancelled'];
-
     if (!status || !validStatuses.includes(status)) {
       return res.status(400).json({
         status: 'error',
         message: `Status must be one of: ${validStatuses.join(', ')}`
       });
     }
-
     const order = await Order.findByIdAndUpdate(
       req.params.id,
       { status, updatedAt: new Date() },
       { new: true, runValidators: true }
     );
-
     if (!order) {
       return res.status(404).json({
         status: 'error',
         message: 'Order not found'
       });
     }
-
     res.status(200).json({
       status: 'success',
       message: 'Order status updated',
@@ -175,14 +159,12 @@ exports.updateOrderStatus = async (req, res) => {
 exports.deleteOrder = async (req, res) => {
   try {
     const order = await Order.findByIdAndDelete(req.params.id);
-
     if (!order) {
       return res.status(404).json({
         status: 'error',
         message: 'Order not found'
       });
     }
-
     res.status(200).json({
       status: 'success',
       message: 'Order deleted successfully'
@@ -193,5 +175,68 @@ exports.deleteOrder = async (req, res) => {
       status: 'error',
       message: 'Failed to delete order'
     });
+  }
+};
+
+// Add this new export at the bottom of orderController.js
+exports.getRushHourData = async (req, res) => {
+  try {
+    const since = new Date();
+    since.setDate(since.getDate() - 30);
+    const orders = await Order.find({
+      status: 'Served',
+      createdAt: { $gte: since },
+    }).lean();
+
+    const hourlyMap = Array(24).fill(0);
+    const hourlyCounts = Array(24).fill(0);
+
+    orders.forEach(o => {
+      const h = new Date(o.createdAt).getHours();
+      hourlyMap[h] += 1;
+      hourlyCounts[h] += 1;
+    });
+
+    const max = Math.max(...hourlyMap, 1);
+    const RUSH_THRESHOLD = 0.6; // 60% of peak = rush hour
+
+    const hourlyPattern = hourlyMap.map((count, hour) => ({
+      hour,
+      label: `${hour.toString().padStart(2, '0')}:00`,
+      count,
+      pct: Math.round((count / max) * 100),
+      isRush: count / max >= RUSH_THRESHOLD,
+      isCritical: count / max >= 0.85,
+    }));
+
+    const currentHour = new Date().getHours();
+    const currentData = hourlyPattern[currentHour];
+
+    const upcomingRush = hourlyPattern
+      .filter(h => h.hour > currentHour && h.isRush)
+      .slice(0, 2);
+
+    const peakHour = hourlyPattern.reduce((a, b) => b.count > a.count ? b : a);
+    const rushHours = hourlyPattern.filter(h => h.isRush);
+
+    return res.status(200).json({
+      status: 'success',
+      data: {
+        hourlyPattern,
+        currentHour: currentData,
+        isCurrentlyRush: currentData.isRush,
+        isCurrentlyCritical: currentData.isCritical,
+        upcomingRush,
+        peakHour,
+        rushHours,
+        totalOrders: orders.length,
+        avgOrdersPerRushHour: rushHours.length
+          ? Math.round(rushHours.reduce((s, h) => s + h.count, 0) / rushHours.length)
+          : 0,
+      },
+    });
+  } catch (err) {
+    console.error('Rush hour error:', err);
+    res.status(500).json({ status: 'error', message: err.message });
   }
 };

@@ -3,7 +3,7 @@ import api from '../../../services/api';
 import {
   TrendingUp, TrendingDown, Minus, RefreshCw, Calendar,
   AlertTriangle, Star, Clock, BarChart2, Activity,
-  ChevronDown, Download, Info, Package, Zap,
+  ChevronDown, Download, Info, Package, Zap, Bell,
 } from 'lucide-react';
 
 const C = {
@@ -85,9 +85,9 @@ const TrendPill = ({ trend, pct }) => {
     down:   { bg: '#FEE2E2', color: '#B91C1C', Icon: TrendingDown, label: `-${Math.abs(pct)}%` },
     stable: { bg: '#F1F5F9', color: C.neutral,  Icon: Minus,       label: 'Stable' },
   }[trend] || { bg: '#F1F5F9', color: C.neutral, Icon: Minus, label: '—' };
-  
+
   const { bg, color, Icon, label } = cfg;
-  
+
   return (
     <span style={{ display: 'inline-flex', alignItems: 'center', gap: 3, fontSize: 11, fontWeight: 600, padding: '2px 8px', borderRadius: 99, background: bg, color }}>
       <Icon size={10} />{label}
@@ -165,6 +165,25 @@ const ReportsContent = () => {
   const [activeTab, setActiveTab] = useState('overview');
   const [animating, setAnimating] = useState(false);
 
+  // ── Rush hour state ──────────────────────────────────────────────────────
+  const [rushData, setRushData] = useState(null);
+
+  const fetchRush = useCallback(async () => {
+    try {
+      const res = await api.get('/orders/rush-hours');
+      setRushData(res.data?.data || null);
+    } catch {
+      // silent fail — alert is non-critical
+    }
+  }, []);
+
+  useEffect(() => {
+    fetchRush();
+    const interval = setInterval(fetchRush, 5 * 60 * 1000);
+    return () => clearInterval(interval);
+  }, [fetchRush]);
+  // ────────────────────────────────────────────────────────────────────────
+
   const fetchForecast = useCallback(async (h = horizon) => {
     setLoading(true);
     setError('');
@@ -204,6 +223,91 @@ const ReportsContent = () => {
 
   return (
     <div style={{ minHeight: '100vh', background: C.bg, padding: 28, fontFamily: 'inherit' }}>
+
+      {/* ── Rush Hour Alert ─────────────────────────────────────────────── */}
+      {rushData && (() => {
+        const { isCurrentlyCritical, isCurrentlyRush, currentHour, upcomingRush, peakHour } = rushData;
+
+        if (isCurrentlyCritical) return (
+          <div style={{
+            background: '#FCEBEB', border: '1px solid #E24B4A',
+            borderRadius: 10, padding: '14px 18px',
+            display: 'flex', alignItems: 'center', gap: 12, marginBottom: 20,
+          }}>
+            <Bell size={18} color="#A32D2D" style={{ flexShrink: 0, animation: 'bellShake 0.5s ease-in-out infinite alternate' }} />
+            <div style={{ flex: 1 }}>
+              <div style={{ fontSize: 14, fontWeight: 600, color: '#A32D2D' }}>
+                Rush hour NOW — {currentHour.label} is at critical capacity!
+              </div>
+              <div style={{ fontSize: 12, color: '#A32D2D', opacity: 0.8, marginTop: 3 }}>
+                {currentHour.pct}% of your peak load. Ensure full staff coverage immediately.
+              </div>
+            </div>
+            <span style={{
+              background: '#F7C1C1', borderRadius: 6, padding: '4px 10px',
+              fontSize: 12, color: '#A32D2D', fontWeight: 600, whiteSpace: 'nowrap',
+            }}>
+              CRITICAL
+            </span>
+            <style>{`@keyframes bellShake{from{transform:rotate(-10deg)}to{transform:rotate(10deg)}}`}</style>
+          </div>
+        );
+
+        if (isCurrentlyRush) return (
+          <div style={{
+            background: '#FAEEDA', border: '1px solid #EF9F27',
+            borderRadius: 10, padding: '14px 18px',
+            display: 'flex', alignItems: 'center', gap: 12, marginBottom: 20,
+          }}>
+            <Bell size={18} color="#854F0B" style={{ flexShrink: 0 }} />
+            <div style={{ flex: 1 }}>
+              <div style={{ fontSize: 14, fontWeight: 600, color: '#854F0B' }}>
+                Rush hour in progress — {currentHour.label}
+              </div>
+              <div style={{ fontSize: 12, color: '#854F0B', opacity: 0.8, marginTop: 3 }}>
+                Higher than average order volume. Check your KOT queue.
+              </div>
+            </div>
+            <span style={{
+              background: '#FAC775', borderRadius: 6, padding: '4px 10px',
+              fontSize: 12, color: '#854F0B', fontWeight: 600,
+            }}>
+              RUSH
+            </span>
+          </div>
+        );
+
+        if (upcomingRush?.length > 0) {
+          const next = upcomingRush[0];
+          const hoursAway = next.hour - new Date().getHours();
+          return (
+            <div style={{
+              background: '#E6F1FB', border: '1px solid #185FA5',
+              borderRadius: 10, padding: '14px 18px',
+              display: 'flex', alignItems: 'center', gap: 12, marginBottom: 20,
+            }}>
+              <Bell size={18} color="#185FA5" style={{ flexShrink: 0 }} />
+              <div style={{ flex: 1 }}>
+                <div style={{ fontSize: 14, fontWeight: 600, color: '#185FA5' }}>
+                  Upcoming rush at {next.label}
+                </div>
+                <div style={{ fontSize: 12, color: '#185FA5', opacity: 0.8, marginTop: 3 }}>
+                  {hoursAway} hour{hoursAway !== 1 ? 's' : ''} away based on 30-day history. Start prepping kitchen now.
+                </div>
+              </div>
+              <span style={{
+                background: '#B5D4F4', borderRadius: 6, padding: '4px 10px',
+                fontSize: 12, color: '#185FA5', fontWeight: 600, whiteSpace: 'nowrap',
+              }}>
+                {hoursAway}h away
+              </span>
+            </div>
+          );
+        }
+
+        return null;
+      })()}
+      {/* ── End Rush Hour Alert ─────────────────────────────────────────── */}
 
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 24 }}>
         <div>
@@ -616,6 +720,7 @@ const ReportsContent = () => {
 
       <style>{`
         @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        @keyframes bellShake { from { transform: rotate(-10deg); } to { transform: rotate(10deg); } }
       `}</style>
     </div>
   );
