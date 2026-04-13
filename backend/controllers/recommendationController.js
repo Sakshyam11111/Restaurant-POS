@@ -1,40 +1,51 @@
 const MenuItem = require('../models/MenuItem');
 const { getReadyCF } = require('../collaborativeFilter');
+const csvData = require('../services/csvDataService');
+
+csvData.load().catch(err => console.warn('CSV pre-load warning:', err.message));
 
 const buildFeatureTokens = (item) => {
-  const parts = [
+  const baseParts = [
     item.name || '',
     item.menuGroup || '',
     item.menuSubGroup || '',
     item.category || '',
     item.addOns || '',
   ];
-  return parts
+
+  const baseTokens = baseParts
     .join(' ')
     .toLowerCase()
     .replace(/[^a-z0-9\s]/g, '')
     .split(/\s+/)
-    .filter((t) => t.length > 1);
+    .filter(t => t.length > 1);
+
+  let csvTokens = [];
+  if (csvData.loaded) {
+    csvTokens = csvData.getFeatureTokens(item.menuGroup || item.category || '', item.name || '');
+  }
+
+  return Array.from(new Set([...baseTokens, ...csvTokens]));
 };
 
 const termFrequency = (tokens) => {
   const tf = {};
-  tokens.forEach((t) => { tf[t] = (tf[t] || 0) + 1; });
   const len = tokens.length || 1;
-  Object.keys(tf).forEach((k) => { tf[k] /= len; });
+  tokens.forEach(t => { tf[t] = (tf[t] || 0) + 1; });
+  Object.keys(tf).forEach(k => { tf[k] /= len; });
   return tf;
 };
 
 const buildTfIdf = (items) => {
-  const tokenSets = items.map((item) => buildFeatureTokens(item));
+  const tokenSets = items.map(item => buildFeatureTokens(item));
   const N = items.length;
 
   const allTerms = new Set();
-  tokenSets.forEach((tokens) => tokens.forEach((t) => allTerms.add(t)));
+  tokenSets.forEach(tokens => tokens.forEach(t => allTerms.add(t)));
 
   const idf = {};
-  allTerms.forEach((term) => {
-    const df = tokenSets.filter((tokens) => tokens.includes(term)).length;
+  allTerms.forEach(term => {
+    const df = tokenSets.filter(tokens => tokens.includes(term)).length;
     idf[term] = Math.log((N + 1) / (df + 1)) + 1;
   });
 
@@ -42,9 +53,7 @@ const buildTfIdf = (items) => {
   items.forEach((item, idx) => {
     const tf = termFrequency(tokenSets[idx]);
     const vector = {};
-    Object.keys(tf).forEach((term) => {
-      vector[term] = tf[term] * (idf[term] || 0);
-    });
+    Object.keys(tf).forEach(term => { vector[term] = tf[term] * (idf[term] || 0); });
     docVectors.set(String(item._id), vector);
   });
 
@@ -55,21 +64,36 @@ const cosineSimilarity = (vecA, vecB) => {
   const termsA = Object.keys(vecA);
   if (!termsA.length) return 0;
 
-  let dot = 0;
-  let magA = 0;
-  let magB = 0;
-
-  termsA.forEach((term) => {
+  let dot = 0, magA = 0, magB = 0;
+  termsA.forEach(term => {
     const a = vecA[term] || 0;
     const b = vecB[term] || 0;
     dot += a * b;
     magA += a * a;
   });
-
-  Object.values(vecB).forEach((b) => { magB += b * b; });
+  Object.values(vecB).forEach(b => { magB += b * b; });
 
   const denom = Math.sqrt(magA) * Math.sqrt(magB);
   return denom === 0 ? 0 : dot / denom;
+};
+
+const COMPLEMENT_MAP = {
+  'Main Course':    ['Beverages', 'Appetizers', 'Desserts'],
+  'Appetizers':     ['Main Course', 'Beverages'],
+  'Desserts':       ['Beverages'],
+  'Beverages':      ['Main Course', 'Appetizers', 'Desserts', 'Snacks'],
+  'Breakfast':      ['Beverages'],
+  'Lunch':          ['Beverages', 'Desserts'],
+  'Snacks':         ['Beverages'],
+  'Specials':       ['Beverages', 'Desserts'],
+  'Vegetarian':     ['Beverages', 'Desserts'],
+  'Non-Vegetarian': ['Beverages', 'Main Course'],
+  'Vegan':          ['Beverages', 'Desserts'],
+  'Momo':           ['Beverages', 'Soups'],
+  'Noodles':        ['Beverages'],
+  'Burgers':        ['Beverages', 'Desserts'],
+  'Pizza':          ['Beverages', 'Salads', 'Desserts'],
+  'Pasta':          ['Beverages', 'Salads', 'Desserts'],
 };
 
 const priceRangeBonus = (targetPrice, candidatePrice) => {
@@ -77,18 +101,17 @@ const priceRangeBonus = (targetPrice, candidatePrice) => {
   return Math.max(0, 1 - ratio * 1.2);
 };
 
-const COMPLEMENT_MAP = {
-  'Main Course': ['Beverages', 'Appetizers', 'Desserts', 'Sides'],
-  'Appetizers':  ['Main Course', 'Beverages'],
-  'Desserts':    ['Beverages', 'Main Course'],
-  'Beverages':   ['Main Course', 'Appetizers', 'Desserts', 'Snacks'],
-  'Breakfast':   ['Beverages'],
-  'Lunch':       ['Beverages', 'Desserts'],
-  'Snacks':      ['Beverages'],
-  'Specials':    ['Beverages', 'Desserts'],
-  'Vegetarian':     ['Beverages', 'Desserts'],
-  'Non-Vegetarian': ['Beverages', 'Main Course'],
-  'Vegan':          ['Beverages', 'Desserts'],
+const ingredientOverlapScore = (cartItems, candidate) => {
+  if (!csvData.loaded) return 0;
+  let total = 0;
+  for (const cartItem of cartItems) {
+    const cartIngs = new Set(csvData.getFeatureTokens(cartItem.menuGroup || '', cartItem.name || ''));
+    const candIngs = csvData.getFeatureTokens(candidate.menuGroup || '', candidate.name || '');
+    if (!cartIngs.size || !candIngs.length) continue;
+    const overlap = candIngs.filter(i => cartIngs.has(i)).length;
+    total += overlap / Math.max(candIngs.length, cartIngs.size, 1);
+  }
+  return total / Math.max(cartItems.length, 1);
 };
 
 exports.getRecommendations = async (req, res) => {
@@ -127,10 +150,8 @@ exports.getRecommendations = async (req, res) => {
     cartGroups.forEach(g => (COMPLEMENT_MAP[g] || []).forEach(cg => complementTargets.add(cg)));
     cartCategories.forEach(c => (COMPLEMENT_MAP[c] || []).forEach(cg => complementTargets.add(cg)));
 
-    // Load collaborative filter (builds lazily, cached 10 min)
     const cf = await getReadyCF();
     const cfAvailable = cf.coverage() >= 3 && cf.totalOrders >= 5;
-    // Blend weight: ramp up CF as order history grows, cap at 0.55
     const alpha = cfAvailable
       ? Math.min(0.55, 0.15 + (cf.totalOrders / 200) * 0.4)
       : 0;
@@ -138,7 +159,6 @@ exports.getRecommendations = async (req, res) => {
     const scored = candidates.map(candidate => {
       const candVec = docVectors.get(String(candidate._id)) || {};
 
-      // Content-based score (existing logic)
       let contentScore = 0;
       cartItems.forEach(cartItem => {
         const cartVec = docVectors.get(String(cartItem._id)) || {};
@@ -146,27 +166,27 @@ exports.getRecommendations = async (req, res) => {
       });
       contentScore /= cartItems.length;
 
-      const priceBonus = priceRangeBonus(avgCartPrice, candidate.price || 0) * 0.2;
+      const ingOverlap = ingredientOverlapScore(cartItems, candidate) * 0.2;
+      const priceBonus = priceRangeBonus(avgCartPrice, candidate.price || 0) * 0.15;
       const isComplement = complementTargets.has(candidate.menuGroup) || complementTargets.has(candidate.category);
-      const complementBonus = isComplement ? 0.35 : 0;
-      const sameGroupPenalty = cartGroups.has(candidate.menuGroup) ? 0.15 : 0;
-
-      // Collaborative filtering score
+      const complementBonus = isComplement ? 0.3 : 0;
+      const sameGroupPenalty = cartGroups.has(candidate.menuGroup) ? 0.1 : 0;
       const cfScore = cfAvailable ? cf.score(candidate.name, cartNames) : 0;
 
-      // Hybrid blend
-      const contentFinalScore =
-        contentScore * 0.45 + complementBonus * 0.35 + priceBonus * 0.2 - sameGroupPenalty;
-      const finalScore = alpha * cfScore + (1 - alpha) * contentFinalScore;
+      const contentFinal = contentScore * 0.4 + ingOverlap + complementBonus * 0.3 + priceBonus - sameGroupPenalty;
+      const finalScore = Math.max(0, Math.min(1, alpha * cfScore + (1 - alpha) * contentFinal));
 
       let matchType, reason;
       if (cfScore > 0.3 && alpha > 0.2) {
         matchType = 'collaborative';
-        reason = 'Frequently ordered with your selection';
-      } else if (complementBonus > 0 && contentScore < 0.3) {
+        reason = 'Frequently ordered together';
+      } else if (ingOverlap > 0.3 && contentScore > 0.2) {
+        matchType = 'similar';
+        reason = 'Shares key ingredients with your cart';
+      } else if (isComplement && contentScore < 0.3) {
         matchType = 'complement';
-        reason = `Pairs well with your order`;
-      } else if (contentScore > 0.3) {
+        reason = 'Pairs well with your order';
+      } else if (contentScore > 0.25) {
         matchType = 'similar';
         reason = 'Similar to items in your cart';
       } else {
@@ -183,16 +203,18 @@ exports.getRecommendations = async (req, res) => {
         menuSubGroup: candidate.menuSubGroup,
         image: candidate.image,
         status: candidate.status,
-        score: Math.max(0, Math.min(1, finalScore)),
+        score: finalScore,
         reason,
         matchType,
-        _debug: { cfScore: Math.round(cfScore * 100) / 100, contentScore: Math.round(contentFinalScore * 100) / 100, alpha: Math.round(alpha * 100) / 100 },
       };
     });
 
-    const recommendations = scored.sort((a, b) => b.score - a.score).slice(0, Number(limit));
+    const recommendations = scored
+      .sort((a, b) => b.score - a.score)
+      .slice(0, Number(limit));
 
     return res.status(200).json({ status: 'success', data: { recommendations } });
+
   } catch (error) {
     console.error('Recommendation error:', error);
     res.status(500).json({ status: 'error', message: 'Failed to generate recommendations: ' + error.message });
@@ -205,7 +227,7 @@ exports.getSimilarItems = async (req, res) => {
     const { limit = 4 } = req.query;
 
     const allItems = await MenuItem.find({ status: 'Active' }).lean();
-    const targetItem = allItems.find((i) => String(i._id) === id);
+    const targetItem = allItems.find(i => String(i._id) === id);
 
     if (!targetItem) {
       return res.status(404).json({ status: 'error', message: 'Item not found' });
@@ -215,19 +237,19 @@ exports.getSimilarItems = async (req, res) => {
     const targetVec = docVectors.get(id) || {};
 
     const similar = allItems
-      .filter((i) => String(i._id) !== id)
-      .map((item) => {
+      .filter(i => String(i._id) !== id)
+      .map(item => {
         const vec = docVectors.get(String(item._id)) || {};
         const score = cosineSimilarity(targetVec, vec);
         return {
-          _id:       item._id,
-          name:      item.name,
-          price:     item.price,
-          category:  item.category,
+          _id: item._id,
+          name: item.name,
+          price: item.price,
+          category: item.category,
           menuGroup: item.menuGroup,
-          image:     item.image,
+          image: item.image,
           score,
-          reason:    `Similar to ${targetItem.name}`,
+          reason: `Similar to ${targetItem.name}`,
           matchType: 'similar',
         };
       })
@@ -235,6 +257,7 @@ exports.getSimilarItems = async (req, res) => {
       .slice(0, Number(limit));
 
     return res.status(200).json({ status: 'success', data: { recommendations: similar } });
+
   } catch (error) {
     console.error('Similar items error:', error);
     res.status(500).json({ status: 'error', message: error.message });
