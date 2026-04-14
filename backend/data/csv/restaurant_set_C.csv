@@ -1,1001 +1,1105 @@
-Dish Name	Ingredients Used	Price	Time Consumed	Menu Group
-FoodC_RN7HQ	garlic, basil, carrot, flour	478.63	15	Dessert
-FoodC_M3QNI	egg, corn, noodles, flour	313.34	26	Veg
-FoodC_6LRCV	egg, yogurt, paneer, flour	124.22	22	Veg
-FoodC_9Y248	paneer, noodles, yogurt, potato	262.88	26	Starter
-FoodC_KE9FS	egg, cheese, oregano, chicken	270.21	44	Veg
-FoodC_A8STF	lentils, basil, noodles, flour	442.57	10	Non-Veg
-FoodC_ZKJKU	onion, corn, paneer, cheese	335.75	26	Veg
-FoodC_YROJH	fish, spinach, broccoli, carrot	675.61	37	Combo
-FoodC_B8I7I	spinach, flour, potato, milk	1056.94	29	Non-Veg
-FoodC_Y8PCU	pepper, carrot, capsicum, cream	187.28	45	Main Course
-FoodC_7WQ1M	broccoli, lentils, yogurt, pepper	1122.73	20	Beverage
-FoodC_UIZ7P	onion, basil, yogurt, beef	944.16	7	Starter
-FoodC_Y1J1V	capsicum, mushroom, paneer, onion	1077.37	14	Main Course
-FoodC_WZRE5	pepper, beef, noodles, yogurt	223.03	43	Dessert
-FoodC_X2WN0	basil, corn, potato, rice	1026.34	20	Starter
-FoodC_W4R6V	potato, chicken, pepper, noodles	497.26	32	Main Course
-FoodC_BBOYV	egg, lentils, chicken, yogurt	335.6	27	Dessert
-FoodC_L3MUN	cream, oregano, corn, onion	715.64	7	Dessert
-FoodC_Q9RN5	pepper, basil, cheese, milk	871.12	38	Dessert
-FoodC_FOQ4J	onion, capsicum, carrot, tomato	508.8	10	Beverage
-FoodC_KZXG4	noodles, capsicum, paneer, potato	591.42	30	Starter
-FoodC_9FUE4	beef, garlic, broccoli, yogurt	1058.61	28	Veg
-FoodC_BMU3Z	butter, oregano, lentils, flour	252.33	44	Main Course
-FoodC_526R7	potato, cream, rice, garlic	326.8	43	Main Course
-FoodC_FMV2D	pepper, mushroom, chicken, beef	738.73	39	Dessert
-FoodC_IEB8X	capsicum, cheese, yogurt, butter	722.31	45	Beverage
-FoodC_X84CF	potato, onion, noodles, fish	982.53	39	Non-Veg
-FoodC_QWNQB	milk, basil, capsicum, oregano	111.49	24	Dessert
-FoodC_UZFLZ	mushroom, flour, chicken, milk	209.09	42	Main Course
-FoodC_XM7XH	broccoli, flour, pepper, tomato	330.34	44	Dessert
-FoodC_FKDS1	carrot, beef, cream, potato	967.11	27	Veg
-FoodC_P6JJG	yogurt, paneer, capsicum, beef	482.03	15	Combo
-FoodC_UA7JM	flour, beef, garlic, capsicum	817.11	19	Main Course
-FoodC_JVAM1	spinach, paneer, tomato, garlic	622.8	41	Veg
-FoodC_VGQKS	lentils, tomato, cream, rice	1043.69	30	Dessert
-FoodC_MBCG9	flour, cream, broccoli, egg	573.6	26	Non-Veg
-FoodC_E78R7	egg, fish, mushroom, cream	130.01	36	Combo
-FoodC_QUT46	corn, broccoli, chicken, noodles	383.16	44	Main Course
-FoodC_W3FRE	mushroom, flour, fish, capsicum	623.91	23	Beverage
-FoodC_38KTK	fish, rice, paneer, milk	968.93	39	Combo
-FoodC_45774	noodles, fish, tomato, cream	952.94	8	Veg
-FoodC_39RBE	pepper, butter, fish, chicken	1148.19	9	Non-Veg
-FoodC_YJ66J	butter, milk, basil, egg	103.9	8	Main Course
-FoodC_7PJHI	flour, mushroom, corn, egg	705.87	37	Non-Veg
-FoodC_A7PUV	beef, yogurt, onion, corn	544.48	39	Veg
-FoodC_K5T2S	fish, noodles, mushroom, onion	629.17	9	Non-Veg
-FoodC_WR1CN	yogurt, egg, beef, basil	769.68	14	Dessert
-FoodC_GO976	oregano, onion, corn, pepper	715.13	13	Beverage
-FoodC_S7JW5	paneer, onion, cheese, basil	558.91	34	Main Course
-FoodC_K7KHO	corn, paneer, tomato, chicken	851.06	33	Dessert
-FoodC_WSV14	lentils, noodles, corn, beef	515.97	19	Combo
-FoodC_LOLJ6	mushroom, cheese, basil, milk	730.99	45	Dessert
-FoodC_IMVQ8	rice, garlic, oregano, butter	893.29	14	Starter
-FoodC_UWLEL	chicken, tomato, flour, capsicum	680.16	35	Beverage
-FoodC_SCMFS	onion, beef, milk, paneer	295.31	21	Starter
-FoodC_RCDUC	oregano, pepper, mushroom, onion	1036.07	38	Veg
-FoodC_7FDB7	corn, paneer, chicken, lentils	879.17	25	Starter
-FoodC_P2MRN	pepper, noodles, broccoli, rice	1183.79	18	Veg
-FoodC_60PYC	garlic, rice, fish, carrot	740.87	35	Dessert
-FoodC_1WPTY	oregano, cheese, yogurt, noodles	593.39	19	Starter
-FoodC_93661	mushroom, cheese, beef, onion	450.92	36	Dessert
-FoodC_8TE6M	corn, cream, chicken, mushroom	640.59	9	Combo
-FoodC_PR9P1	fish, paneer, cream, egg	208.22	30	Starter
-FoodC_KS8MV	capsicum, cheese, mushroom, noodles	305.03	17	Dessert
-FoodC_JGWE3	potato, milk, garlic, corn	140.29	21	Main Course
-FoodC_OUWVQ	spinach, lentils, carrot, cream	1144.67	26	Starter
-FoodC_FVSKV	beef, spinach, chicken, noodles	487.93	9	Beverage
-FoodC_LMGUX	lentils, chicken, egg, cheese	1183.02	39	Beverage
-FoodC_CGVMQ	rice, yogurt, paneer, tomato	944.63	24	Veg
-FoodC_OY4VT	potato, beef, lentils, mushroom	777.74	42	Beverage
-FoodC_EHDVE	broccoli, fish, spinach, garlic	734.45	39	Non-Veg
-FoodC_F9JZU	noodles, spinach, milk, tomato	428.2	41	Beverage
-FoodC_DC4F8	potato, cream, capsicum, broccoli	439.86	10	Beverage
-FoodC_NWK7B	yogurt, spinach, paneer, broccoli	270.51	19	Dessert
-FoodC_89A17	noodles, basil, carrot, mushroom	217.96	26	Starter
-FoodC_JW504	carrot, mushroom, pepper, spinach	522.38	18	Starter
-FoodC_V8VDY	basil, potato, fish, cheese	1001.99	10	Veg
-FoodC_VOL38	milk, potato, spinach, butter	974.41	25	Combo
-FoodC_8R545	rice, basil, noodles, carrot	726.45	19	Combo
-FoodC_GQEJW	chicken, basil, milk, pepper	1115.58	40	Dessert
-FoodC_D5OLC	tomato, oregano, broccoli, onion	640.78	20	Veg
-FoodC_PY6PV	yogurt, cheese, oregano, noodles	1059.23	45	Non-Veg
-FoodC_PK4CH	capsicum, onion, flour, spinach	430.59	22	Main Course
-FoodC_OB0YV	yogurt, paneer, beef, milk	941.71	19	Veg
-FoodC_PJQ9N	oregano, pepper, potato, butter	111.19	12	Non-Veg
-FoodC_W74G6	butter, oregano, chicken, yogurt	372.5	37	Veg
-FoodC_8945V	basil, carrot, cream, yogurt	489.8	10	Combo
-FoodC_KDLBO	egg, mushroom, noodles, basil	1030.64	10	Starter
-FoodC_PZA8O	mushroom, beef, corn, potato	677.17	32	Beverage
-FoodC_JUZ05	paneer, garlic, beef, spinach	352.3	32	Main Course
-FoodC_MVCAV	potato, tomato, egg, corn	652	20	Veg
-FoodC_1L2O2	fish, onion, yogurt, oregano	157.4	26	Non-Veg
-FoodC_PR5XP	spinach, onion, pepper, mushroom	850.94	11	Dessert
-FoodC_P9R39	mushroom, chicken, butter, beef	201.5	39	Dessert
-FoodC_OMUHG	cream, garlic, basil, tomato	950.51	5	Combo
-FoodC_R341V	onion, flour, carrot, basil	517.05	19	Dessert
-FoodC_ONJNJ	butter, chicken, pepper, tomato	679.17	32	Non-Veg
-FoodC_UXYIY	basil, milk, garlic, pepper	711.25	30	Combo
-FoodC_6D2RC	potato, yogurt, butter, capsicum	383.4	22	Combo
-FoodC_SL7IY	butter, beef, corn, noodles	402.6	10	Non-Veg
-FoodC_YI095	mushroom, egg, carrot, tomato	934.74	14	Starter
-FoodC_5WHN3	oregano, pepper, mushroom, noodles	645.17	20	Non-Veg
-FoodC_H1WNN	beef, egg, onion, corn	999.34	32	Main Course
-FoodC_T0521	tomato, milk, cream, paneer	226.55	21	Dessert
-FoodC_AO7HT	onion, potato, garlic, basil	690.93	37	Starter
-FoodC_V5G8Q	spinach, yogurt, broccoli, onion	181.22	26	Veg
-FoodC_816FC	cream, garlic, cheese, onion	804.53	19	Combo
-FoodC_TRA63	noodles, carrot, mushroom, garlic	137.76	18	Veg
-FoodC_D23EG	milk, pepper, corn, capsicum	1052.3	41	Veg
-FoodC_BOO6E	mushroom, chicken, milk, carrot	594.82	29	Combo
-FoodC_CDKFT	butter, pepper, mushroom, milk	1085.6	18	Veg
-FoodC_HISLR	carrot, yogurt, oregano, flour	1023.86	6	Veg
-FoodC_GNS9R	cream, chicken, flour, basil	135.5	36	Main Course
-FoodC_0XC8R	lentils, yogurt, tomato, capsicum	723.72	32	Veg
-FoodC_ZAA3K	basil, corn, lentils, oregano	333.24	24	Main Course
-FoodC_9XX5X	basil, cream, tomato, butter	807.32	36	Combo
-FoodC_4BE8U	cream, basil, butter, egg	241.18	37	Combo
-FoodC_D3LPB	butter, milk, lentils, cream	879.07	35	Combo
-FoodC_82C0Z	fish, mushroom, egg, butter	724.01	11	Dessert
-FoodC_X3OCM	basil, cream, fish, egg	118.42	36	Main Course
-FoodC_4ANYA	yogurt, tomato, butter, beef	384.28	6	Combo
-FoodC_7FPQH	noodles, potato, chicken, carrot	751.1	41	Beverage
-FoodC_71MYD	carrot, cheese, oregano, butter	630.65	28	Dessert
-FoodC_M8WXD	cream, yogurt, potato, garlic	679.1	10	Starter
-FoodC_WQP51	basil, rice, onion, capsicum	249.25	41	Veg
-FoodC_TYKA4	noodles, mushroom, egg, oregano	342.75	5	Non-Veg
-FoodC_75S3G	spinach, paneer, butter, capsicum	949.86	29	Beverage
-FoodC_HUKBR	potato, milk, basil, garlic	798.37	11	Starter
-FoodC_FZHME	mushroom, potato, cream, egg	528.46	23	Veg
-FoodC_JLSAS	cream, onion, beef, basil	1052.02	42	Non-Veg
-FoodC_9CT6P	onion, corn, noodles, potato	492.19	14	Dessert
-FoodC_66CCA	corn, chicken, noodles, flour	229.99	15	Beverage
-FoodC_2YA86	broccoli, mushroom, beef, cheese	833.2	44	Dessert
-FoodC_HGOYS	pepper, butter, spinach, basil	1157.34	13	Combo
-FoodC_XQBGT	yogurt, fish, milk, tomato	868.79	42	Starter
-FoodC_ECDSO	butter, pepper, mushroom, basil	736.88	38	Dessert
-FoodC_81OQW	carrot, lentils, paneer, onion	276.58	19	Main Course
-FoodC_FA5TD	basil, tomato, paneer, milk	919.01	40	Starter
-FoodC_ZU9EP	tomato, milk, mushroom, potato	320.97	27	Veg
-FoodC_NQHCO	fish, beef, egg, broccoli	525.95	6	Dessert
-FoodC_0JP4G	beef, lentils, egg, capsicum	641.4	31	Main Course
-FoodC_REI2G	fish, oregano, egg, broccoli	777.23	33	Non-Veg
-FoodC_YWT0X	carrot, tomato, beef, capsicum	317.44	35	Combo
-FoodC_CY4W1	cream, carrot, spinach, corn	593.91	24	Non-Veg
-FoodC_ALZYC	mushroom, broccoli, paneer, yogurt	246.33	10	Starter
-FoodC_GRCXJ	capsicum, noodles, chicken, garlic	759.97	8	Combo
-FoodC_1B6OL	chicken, cream, milk, onion	661.4	41	Main Course
-FoodC_95E65	flour, butter, egg, broccoli	1105.17	42	Combo
-FoodC_Z0TMU	fish, butter, onion, beef	379.62	18	Dessert
-FoodC_DBH62	egg, yogurt, noodles, broccoli	754.26	29	Main Course
-FoodC_DGI7R	flour, lentils, cheese, yogurt	311.64	13	Combo
-FoodC_LVKHT	potato, cheese, noodles, lentils	288.6	45	Combo
-FoodC_QM9C0	egg, flour, oregano, potato	1030.83	29	Veg
-FoodC_942FL	paneer, milk, egg, beef	743.27	11	Starter
-FoodC_JVOKT	garlic, noodles, lentils, corn	1046.81	10	Main Course
-FoodC_UPSU2	spinach, noodles, flour, garlic	337.13	32	Combo
-FoodC_A3RAT	chicken, noodles, broccoli, butter	498.1	19	Starter
-FoodC_VZVEE	corn, butter, carrot, garlic	626.22	39	Veg
-FoodC_3HJ7S	flour, yogurt, mushroom, corn	979.07	42	Beverage
-FoodC_8MEC2	paneer, corn, potato, egg	850.79	16	Beverage
-FoodC_DZ04U	egg, milk, cream, pepper	1128.9	21	Starter
-FoodC_M4JXT	corn, oregano, carrot, chicken	1046.42	38	Non-Veg
-FoodC_GKEJN	chicken, corn, paneer, spinach	633.28	29	Main Course
-FoodC_DMVR9	cream, flour, oregano, butter	200.01	32	Combo
-FoodC_N8WTA	spinach, tomato, broccoli, pepper	1173.85	29	Combo
-FoodC_UETEU	pepper, mushroom, cream, butter	1131.78	35	Non-Veg
-FoodC_KW3ZY	egg, beef, fish, butter	604.37	27	Dessert
-FoodC_1A2NU	broccoli, chicken, potato, corn	798.55	35	Main Course
-FoodC_1KQZY	beef, potato, lentils, onion	269.54	18	Veg
-FoodC_A7SL3	beef, mushroom, pepper, garlic	1069.13	45	Beverage
-FoodC_0BFJE	broccoli, capsicum, corn, flour	270.9	8	Combo
-FoodC_5B8NJ	egg, tomato, cheese, broccoli	101.57	27	Starter
-FoodC_OFC9J	cream, broccoli, lentils, tomato	449.98	38	Beverage
-FoodC_RP77U	noodles, egg, beef, capsicum	722.38	44	Main Course
-FoodC_97LBV	onion, fish, noodles, egg	959.61	22	Veg
-FoodC_KQJZO	fish, rice, pepper, cream	241.58	7	Non-Veg
-FoodC_BO9H9	milk, yogurt, flour, butter	998.7	45	Starter
-FoodC_1S29H	egg, capsicum, carrot, paneer	332.45	10	Veg
-FoodC_XST0W	cream, mushroom, spinach, pepper	974.68	36	Combo
-FoodC_OOPWT	chicken, rice, basil, milk	832.43	23	Non-Veg
-FoodC_DJPVY	broccoli, onion, yogurt, fish	135.6	25	Dessert
-FoodC_LWCOD	onion, capsicum, tomato, beef	606.32	17	Main Course
-FoodC_ZZJ3L	pepper, capsicum, cheese, spinach	456.99	40	Beverage
-FoodC_PBN6K	carrot, flour, oregano, corn	909.04	10	Starter
-FoodC_1JF44	cheese, milk, rice, pepper	755.88	40	Veg
-FoodC_5587F	lentils, noodles, butter, carrot	182.96	6	Non-Veg
-FoodC_QRYLD	cheese, basil, capsicum, beef	1063.64	33	Dessert
-FoodC_FI5O6	potato, fish, beef, spinach	640	12	Beverage
-FoodC_RMQ4L	potato, tomato, noodles, fish	1105.95	32	Main Course
-FoodC_TOE9T	oregano, cheese, corn, carrot	672.22	40	Beverage
-FoodC_QA56S	cream, potato, paneer, oregano	724.44	27	Veg
-FoodC_79GWO	onion, fish, cream, rice	105.26	33	Veg
-FoodC_G1CC7	spinach, corn, capsicum, cream	162.54	35	Beverage
-FoodC_TKGUZ	milk, potato, corn, lentils	988.17	28	Main Course
-FoodC_648L3	butter, corn, spinach, flour	1059.84	44	Starter
-FoodC_BB2RY	garlic, flour, mushroom, lentils	1032.49	37	Main Course
-FoodC_6FC2X	rice, cream, lentils, spinach	366.22	9	Veg
-FoodC_XGNFG	capsicum, cream, cheese, garlic	130.06	20	Starter
-FoodC_69J5J	pepper, mushroom, broccoli, cheese	795.2	28	Non-Veg
-FoodC_KPH5Y	rice, basil, spinach, capsicum	624.46	24	Veg
-FoodC_Q7DJM	broccoli, carrot, milk, oregano	1110.75	21	Veg
-FoodC_6P6Q0	carrot, chicken, cheese, paneer	811.7	32	Beverage
-FoodC_YF454	potato, paneer, carrot, onion	178.3	38	Dessert
-FoodC_OXXNB	cream, tomato, chicken, butter	250.47	7	Beverage
-FoodC_ANQN6	egg, fish, lentils, potato	243.18	26	Beverage
-FoodC_K8Q4X	spinach, paneer, pepper, tomato	509.08	31	Starter
-FoodC_XQ4YY	potato, milk, tomato, garlic	955.79	18	Veg
-FoodC_R5DEN	onion, cheese, cream, pepper	120.46	11	Main Course
-FoodC_J247Q	garlic, chicken, paneer, mushroom	340.37	40	Combo
-FoodC_B2KCD	butter, pepper, tomato, cheese	1018.53	31	Veg
-FoodC_K4WDV	flour, cheese, spinach, butter	892.11	41	Beverage
-FoodC_5BR0F	capsicum, cream, corn, milk	490.59	12	Dessert
-FoodC_QEHJR	beef, carrot, milk, cheese	684.34	23	Starter
-FoodC_8IIZK	lentils, carrot, egg, capsicum	337.44	30	Dessert
-FoodC_0MPWH	noodles, chicken, tomato, capsicum	848.32	17	Beverage
-FoodC_D23QQ	pepper, flour, tomato, carrot	1114.92	22	Dessert
-FoodC_RDR1R	beef, garlic, broccoli, egg	366.65	18	Main Course
-FoodC_HMLCX	noodles, butter, lentils, yogurt	521.98	29	Beverage
-FoodC_MHFPK	onion, garlic, chicken, mushroom	254.55	8	Non-Veg
-FoodC_ZVED2	yogurt, capsicum, flour, corn	869.9	28	Beverage
-FoodC_GFJ7A	pepper, milk, rice, spinach	217.88	38	Main Course
-FoodC_01FC9	capsicum, carrot, tomato, lentils	177.3	37	Veg
-FoodC_ANME1	oregano, capsicum, beef, basil	809.38	7	Beverage
-FoodC_AIYWD	lentils, spinach, corn, oregano	1140.36	16	Non-Veg
-FoodC_94FXW	rice, milk, carrot, spinach	1063.6	12	Non-Veg
-FoodC_TLWWZ	egg, oregano, broccoli, yogurt	767.06	5	Non-Veg
-FoodC_VE2N0	flour, milk, noodles, basil	959.6	25	Dessert
-FoodC_KX5LT	chicken, carrot, cheese, onion	403.99	35	Main Course
-FoodC_ZRD2A	potato, carrot, tomato, garlic	304.41	30	Non-Veg
-FoodC_2O9C0	pepper, onion, broccoli, basil	834.06	16	Main Course
-FoodC_4A5DN	lentils, onion, capsicum, chicken	182.93	5	Dessert
-FoodC_MWAVG	noodles, broccoli, capsicum, garlic	872.05	41	Combo
-FoodC_KQX3I	noodles, broccoli, lentils, milk	456.34	27	Starter
-FoodC_F8ZP0	yogurt, tomato, garlic, potato	370.53	42	Main Course
-FoodC_H0SAW	corn, basil, egg, broccoli	151.38	25	Combo
-FoodC_TPCVC	rice, garlic, egg, capsicum	343.11	26	Veg
-FoodC_HQA68	cream, beef, onion, carrot	1032.09	36	Starter
-FoodC_SLCGW	carrot, broccoli, potato, onion	141.62	14	Main Course
-FoodC_FQMCY	beef, spinach, chicken, noodles	567.79	43	Non-Veg
-FoodC_9D6JM	beef, garlic, spinach, butter	922.76	12	Non-Veg
-FoodC_GC2F3	noodles, spinach, egg, carrot	261.45	8	Starter
-FoodC_0PLSN	oregano, chicken, pepper, spinach	1178.1	42	Beverage
-FoodC_U761G	cheese, tomato, garlic, carrot	180.89	22	Starter
-FoodC_GYYFJ	potato, yogurt, onion, paneer	806.26	28	Beverage
-FoodC_H2X42	egg, carrot, beef, rice	688.38	44	Starter
-FoodC_GL3X5	egg, basil, cheese, broccoli	1038.02	39	Beverage
-FoodC_5BO41	tomato, basil, fish, chicken	373.89	45	Combo
-FoodC_AFON6	broccoli, flour, mushroom, cream	1100.5	14	Starter
-FoodC_D3F13	egg, onion, lentils, corn	277.95	7	Starter
-FoodC_4RLK6	potato, flour, butter, beef	293.54	5	Non-Veg
-FoodC_954HS	yogurt, paneer, lentils, pepper	1135.27	36	Combo
-FoodC_48Y58	yogurt, cheese, milk, onion	460.17	44	Beverage
-FoodC_RVN12	potato, flour, noodles, yogurt	642.85	19	Non-Veg
-FoodC_NW93G	mushroom, onion, rice, paneer	439.21	10	Dessert
-FoodC_YC7ES	broccoli, yogurt, cheese, potato	275.24	29	Dessert
-FoodC_9N6JU	chicken, onion, paneer, spinach	181.9	34	Veg
-FoodC_YNYAD	cream, egg, lentils, flour	1042.09	6	Main Course
-FoodC_7JNF6	fish, carrot, noodles, potato	515.6	8	Main Course
-FoodC_BGYX9	paneer, mushroom, egg, fish	253.23	6	Combo
-FoodC_VD2BK	onion, milk, oregano, spinach	787.67	45	Starter
-FoodC_Y3U43	beef, paneer, cheese, egg	929.18	42	Veg
-FoodC_O02ZA	oregano, flour, cheese, rice	108.44	11	Starter
-FoodC_FZE00	butter, mushroom, corn, spinach	973.31	11	Combo
-FoodC_2VP7T	tomato, pepper, cream, carrot	375.75	32	Main Course
-FoodC_DM5ED	basil, chicken, cream, mushroom	532.94	15	Beverage
-FoodC_ZGBLC	corn, potato, tomato, fish	854.69	21	Veg
-FoodC_3HW62	corn, potato, egg, flour	860.71	37	Dessert
-FoodC_45GYQ	corn, fish, yogurt, beef	774.64	16	Starter
-FoodC_0PNIY	potato, paneer, onion, yogurt	1081.26	29	Veg
-FoodC_YCQHQ	beef, oregano, tomato, noodles	743.1	39	Beverage
-FoodC_UK1DI	cream, noodles, flour, broccoli	137.52	34	Main Course
-FoodC_9S0ZV	garlic, tomato, butter, lentils	243.08	17	Main Course
-FoodC_QWLDA	capsicum, cream, flour, fish	736.85	20	Veg
-FoodC_TR5TE	capsicum, spinach, potato, cheese	1005.16	43	Combo
-FoodC_K0JV7	basil, rice, broccoli, paneer	733.33	40	Main Course
-FoodC_0T3XF	basil, pepper, butter, capsicum	753.34	35	Veg
-FoodC_3CONM	capsicum, egg, yogurt, oregano	775.1	32	Non-Veg
-FoodC_AEYWE	cheese, paneer, tomato, corn	169.83	41	Dessert
-FoodC_D7RWO	yogurt, carrot, milk, basil	559.99	18	Main Course
-FoodC_D6OFH	pepper, oregano, butter, beef	920.65	34	Main Course
-FoodC_0KUGR	spinach, yogurt, broccoli, mushroom	622.92	34	Combo
-FoodC_NDATK	milk, chicken, paneer, beef	513.68	13	Beverage
-FoodC_8K2IW	lentils, noodles, tomato, potato	494.17	35	Beverage
-FoodC_819VP	noodles, pepper, corn, broccoli	954.44	38	Combo
-FoodC_6NGCU	oregano, flour, cream, chicken	911.19	45	Main Course
-FoodC_XXIFF	tomato, egg, chicken, corn	1136.55	31	Beverage
-FoodC_IUCWJ	carrot, pepper, chicken, rice	630.21	18	Dessert
-FoodC_ZAYQK	basil, corn, yogurt, pepper	476.79	10	Non-Veg
-FoodC_PEEUJ	tomato, milk, broccoli, butter	522.52	45	Beverage
-FoodC_3MD9O	rice, corn, mushroom, spinach	423.05	39	Starter
-FoodC_9J5IA	noodles, oregano, broccoli, pepper	329.42	17	Non-Veg
-FoodC_1XS99	capsicum, carrot, flour, pepper	197.73	27	Dessert
-FoodC_46LRI	pepper, potato, lentils, milk	743.24	12	Combo
-FoodC_P0EMG	potato, broccoli, cheese, garlic	1046.79	7	Veg
-FoodC_QKAND	paneer, spinach, chicken, pepper	684	15	Main Course
-FoodC_RKDJ8	carrot, cheese, pepper, milk	230.43	38	Combo
-FoodC_0EQG0	basil, fish, milk, onion	959.25	11	Beverage
-FoodC_1YSYG	yogurt, pepper, tomato, garlic	722.17	32	Non-Veg
-FoodC_ZL7WF	potato, paneer, corn, spinach	644.35	27	Veg
-FoodC_W5WQ9	milk, spinach, cheese, garlic	133.55	36	Dessert
-FoodC_1ZOQ6	capsicum, oregano, potato, milk	1008.84	38	Veg
-FoodC_17MDG	cream, paneer, milk, mushroom	1041.72	37	Non-Veg
-FoodC_S39XK	milk, cream, rice, egg	598.76	41	Combo
-FoodC_BGF5D	basil, mushroom, onion, paneer	1002.69	26	Non-Veg
-FoodC_IO57V	cheese, tomato, fish, paneer	119.51	31	Combo
-FoodC_5BE7T	cream, mushroom, pepper, spinach	163.98	42	Beverage
-FoodC_A4TZP	mushroom, fish, oregano, capsicum	939.85	14	Starter
-FoodC_OQ6DX	noodles, carrot, cream, milk	358.41	33	Starter
-FoodC_4X0AC	potato, mushroom, beef, garlic	563.19	41	Main Course
-FoodC_PGDWY	broccoli, carrot, oregano, milk	1178.62	10	Starter
-FoodC_5IT3R	flour, onion, cheese, spinach	767.92	44	Dessert
-FoodC_DPVHJ	potato, butter, corn, chicken	634.38	37	Beverage
-FoodC_8GNGP	oregano, yogurt, potato, onion	699.45	31	Beverage
-FoodC_19JLK	rice, corn, beef, lentils	351.03	34	Veg
-FoodC_XYXSG	chicken, rice, fish, pepper	839.16	23	Main Course
-FoodC_G5KIY	tomato, garlic, carrot, cream	122.94	22	Veg
-FoodC_8DKSL	noodles, broccoli, lentils, chicken	891.62	38	Starter
-FoodC_UJJC9	noodles, garlic, beef, egg	336.87	20	Dessert
-FoodC_NK1NF	rice, beef, egg, broccoli	1159.23	42	Beverage
-FoodC_ZAJXN	broccoli, flour, onion, basil	1024.24	23	Non-Veg
-FoodC_GHF7L	chicken, pepper, mushroom, oregano	1124.71	6	Dessert
-FoodC_YLFI9	onion, oregano, broccoli, spinach	900.23	17	Veg
-FoodC_24NQ5	flour, carrot, broccoli, paneer	1174.56	26	Combo
-FoodC_SWQAX	carrot, rice, butter, onion	191.79	36	Combo
-FoodC_CTDCB	flour, cream, basil, fish	801.72	26	Combo
-FoodC_G2GO0	butter, potato, garlic, paneer	339.58	38	Dessert
-FoodC_HXBFZ	mushroom, egg, chicken, garlic	336.25	11	Starter
-FoodC_54GJF	butter, paneer, broccoli, oregano	356.21	5	Non-Veg
-FoodC_3XI74	lentils, potato, carrot, milk	130.7	20	Veg
-FoodC_9Q93W	fish, oregano, basil, mushroom	1157.62	5	Veg
-FoodC_MZ482	oregano, tomato, cream, lentils	335.5	40	Dessert
-FoodC_7U9NT	capsicum, spinach, egg, cream	938.27	19	Veg
-FoodC_S7I5T	cream, potato, tomato, paneer	1177.01	37	Starter
-FoodC_QD6NB	pepper, beef, cream, capsicum	276.51	43	Veg
-FoodC_Q4UZ6	capsicum, broccoli, carrot, cream	347.37	20	Non-Veg
-FoodC_Z7SSQ	cheese, onion, chicken, milk	1078.25	33	Main Course
-FoodC_V9IQY	fish, capsicum, corn, basil	437.42	22	Main Course
-FoodC_QODC3	cheese, spinach, fish, pepper	1175.27	27	Starter
-FoodC_RC5CE	garlic, flour, noodles, carrot	318.66	43	Main Course
-FoodC_1TJU3	chicken, flour, carrot, pepper	126.75	29	Dessert
-FoodC_FT3CY	basil, oregano, mushroom, beef	671.25	18	Non-Veg
-FoodC_5KUNG	basil, flour, mushroom, tomato	715.69	24	Dessert
-FoodC_EK0DZ	corn, cheese, pepper, carrot	628.92	12	Starter
-FoodC_XCJ25	pepper, cream, tomato, noodles	414.53	7	Non-Veg
-FoodC_NOSHF	cheese, noodles, yogurt, oregano	681.69	30	Starter
-FoodC_3BHI3	onion, mushroom, oregano, lentils	539.74	34	Main Course
-FoodC_M7A71	spinach, cheese, fish, cream	974.55	8	Non-Veg
-FoodC_UIH37	carrot, fish, rice, flour	788.8	18	Dessert
-FoodC_8ET3I	beef, garlic, cream, corn	480.48	12	Veg
-FoodC_FTLJQ	spinach, butter, potato, cheese	619.17	34	Dessert
-FoodC_Q3EL5	rice, yogurt, cream, carrot	160.94	36	Veg
-FoodC_13FTQ	spinach, rice, paneer, milk	1055.97	45	Main Course
-FoodC_K1JTL	flour, broccoli, chicken, corn	257.83	43	Starter
-FoodC_XBMXX	flour, tomato, garlic, potato	1001.67	33	Non-Veg
-FoodC_PEDL8	carrot, pepper, lentils, chicken	600.86	12	Beverage
-FoodC_ORV2C	cheese, flour, noodles, fish	1154.02	30	Dessert
-FoodC_RVFXT	capsicum, basil, paneer, rice	455.58	30	Beverage
-FoodC_GS4M3	cream, carrot, corn, chicken	362.44	28	Non-Veg
-FoodC_1X94T	paneer, broccoli, butter, cream	615.61	45	Main Course
-FoodC_LYXD2	cream, oregano, fish, flour	264.73	14	Starter
-FoodC_XTE78	fish, spinach, beef, capsicum	917.85	13	Dessert
-FoodC_Q845G	cream, corn, garlic, oregano	764.39	32	Beverage
-FoodC_2C01Z	paneer, spinach, corn, yogurt	1010.28	7	Veg
-FoodC_W4I51	corn, fish, paneer, yogurt	415.03	7	Starter
-FoodC_P9ZAJ	egg, yogurt, milk, cream	103.05	14	Non-Veg
-FoodC_K8RCJ	oregano, egg, beef, spinach	975.8	25	Dessert
-FoodC_GADJE	cheese, oregano, rice, flour	507.74	20	Beverage
-FoodC_PL7KJ	cheese, egg, spinach, pepper	1013.92	30	Main Course
-FoodC_96XRJ	oregano, milk, mushroom, potato	357.34	17	Non-Veg
-FoodC_ODXO0	rice, basil, garlic, mushroom	1199.46	21	Main Course
-FoodC_T0XY5	fish, capsicum, flour, cheese	433.48	28	Non-Veg
-FoodC_F9T02	onion, flour, rice, garlic	515.16	32	Beverage
-FoodC_ST0MQ	carrot, flour, spinach, cream	724.57	31	Dessert
-FoodC_F74P0	noodles, mushroom, onion, spinach	305.6	10	Veg
-FoodC_7XTMQ	broccoli, onion, carrot, beef	894.57	33	Combo
-FoodC_KP6NT	oregano, paneer, capsicum, spinach	1077.68	8	Dessert
-FoodC_0H8QG	onion, flour, corn, milk	665.81	21	Starter
-FoodC_LW0B5	rice, butter, mushroom, cream	730.57	42	Beverage
-FoodC_BDAM7	milk, mushroom, capsicum, yogurt	237.5	36	Main Course
-FoodC_QRJ4T	beef, cheese, potato, milk	549.75	16	Beverage
-FoodC_PHWUX	pepper, fish, rice, basil	619.7	32	Dessert
-FoodC_82Q1J	cream, tomato, garlic, egg	968.38	33	Dessert
-FoodC_GUI5N	fish, spinach, beef, basil	383.98	11	Dessert
-FoodC_HXE23	rice, potato, yogurt, garlic	764.17	5	Non-Veg
-FoodC_QC5GY	spinach, potato, yogurt, fish	1139.41	43	Beverage
-FoodC_3Y0L3	fish, butter, pepper, basil	653.98	15	Main Course
-FoodC_2U8RG	oregano, milk, egg, lentils	580.51	28	Main Course
-FoodC_YGOS7	yogurt, broccoli, potato, pepper	591.22	41	Dessert
-FoodC_VOCHX	cheese, corn, paneer, potato	505.19	16	Combo
-FoodC_7PE27	corn, pepper, spinach, garlic	435.02	25	Non-Veg
-FoodC_I3N7W	cream, broccoli, lentils, mushroom	195.93	22	Non-Veg
-FoodC_VI3XW	cream, corn, flour, capsicum	685.44	29	Main Course
-FoodC_PK1VD	cheese, yogurt, spinach, rice	820.76	19	Combo
-FoodC_DRVFG	broccoli, basil, flour, beef	1190.58	35	Combo
-FoodC_O9X08	pepper, paneer, cream, mushroom	330.97	36	Veg
-FoodC_KYPY6	paneer, lentils, onion, pepper	271.33	25	Dessert
-FoodC_AXS4Z	potato, onion, spinach, carrot	776.2	25	Veg
-FoodC_BRJFY	tomato, lentils, mushroom, fish	1199.66	34	Starter
-FoodC_RRHPC	spinach, beef, fish, onion	1179.9	36	Veg
-FoodC_Q4U6T	mushroom, capsicum, flour, broccoli	881.89	16	Veg
-FoodC_1NC2I	mushroom, carrot, noodles, milk	123.78	6	Dessert
-FoodC_2KG2L	pepper, flour, egg, basil	153.35	19	Non-Veg
-FoodC_05WJ3	corn, yogurt, mushroom, oregano	669.11	20	Dessert
-FoodC_EHV6S	pepper, tomato, cream, chicken	328.62	27	Main Course
-FoodC_NR2CZ	tomato, beef, butter, rice	1154.64	43	Beverage
-FoodC_Z2GPL	lentils, garlic, paneer, pepper	703.8	41	Non-Veg
-FoodC_9FSDT	spinach, onion, paneer, tomato	1085.77	6	Combo
-FoodC_O7FW3	basil, chicken, flour, egg	516.93	8	Dessert
-FoodC_PQS2V	potato, basil, pepper, capsicum	1146.94	19	Combo
-FoodC_5KT73	broccoli, chicken, pepper, noodles	1093.71	6	Beverage
-FoodC_7NBD9	capsicum, tomato, cheese, corn	415.57	20	Dessert
-FoodC_PD5BK	basil, flour, butter, mushroom	565.46	25	Non-Veg
-FoodC_QEP7B	chicken, carrot, onion, egg	268.45	38	Combo
-FoodC_YBQ6J	broccoli, lentils, carrot, onion	685.98	12	Beverage
-FoodC_UIDL3	basil, fish, carrot, corn	968.74	7	Veg
-FoodC_Q4FZR	beef, garlic, flour, cream	1159.96	36	Starter
-FoodC_7WR7B	spinach, tomato, cheese, capsicum	288.46	15	Non-Veg
-FoodC_147U9	lentils, pepper, corn, fish	492.96	43	Main Course
-FoodC_RG50P	beef, milk, potato, rice	1022.41	25	Starter
-FoodC_GE1J6	spinach, yogurt, carrot, paneer	428.06	12	Main Course
-FoodC_UG1AD	tomato, pepper, yogurt, basil	970.21	14	Starter
-FoodC_XF87E	potato, butter, onion, pepper	791.62	26	Combo
-FoodC_BNBB9	carrot, chicken, potato, broccoli	281.67	28	Combo
-FoodC_AZYSM	yogurt, cream, oregano, onion	870.63	36	Main Course
-FoodC_D3WIF	oregano, flour, pepper, garlic	215.25	11	Non-Veg
-FoodC_3VWDD	broccoli, butter, fish, milk	302.84	41	Dessert
-FoodC_D1M03	yogurt, flour, pepper, potato	904.28	18	Combo
-FoodC_MP4R9	oregano, noodles, butter, chicken	163.34	24	Main Course
-FoodC_BLJH2	mushroom, milk, corn, flour	689.17	11	Main Course
-FoodC_DC2I0	spinach, garlic, lentils, butter	252.76	32	Veg
-FoodC_OBX5G	garlic, oregano, flour, milk	206.35	30	Combo
-FoodC_UI2HN	yogurt, garlic, broccoli, fish	394.44	14	Veg
-FoodC_TF97Y	flour, garlic, capsicum, cheese	894.2	24	Dessert
-FoodC_PF97G	cream, chicken, potato, noodles	792.14	38	Veg
-FoodC_OEAF3	flour, yogurt, fish, butter	504.52	40	Main Course
-FoodC_4GCTL	rice, corn, cheese, spinach	927.25	33	Combo
-FoodC_CCFXG	flour, capsicum, oregano, mushroom	1010.23	24	Non-Veg
-FoodC_C3ZAS	potato, paneer, corn, garlic	756.5	9	Main Course
-FoodC_V4CU5	broccoli, mushroom, flour, fish	478.02	23	Starter
-FoodC_WOVEZ	cheese, broccoli, yogurt, chicken	1078.67	26	Starter
-FoodC_KKQQP	mushroom, egg, pepper, butter	986.13	37	Non-Veg
-FoodC_3XN1F	tomato, potato, onion, cheese	716.82	36	Main Course
-FoodC_U046I	broccoli, carrot, beef, corn	257.36	45	Main Course
-FoodC_7I08Y	yogurt, capsicum, onion, fish	120.46	19	Dessert
-FoodC_T71IE	cheese, lentils, yogurt, mushroom	969.25	11	Starter
-FoodC_OT1VB	egg, cream, paneer, garlic	953.48	41	Combo
-FoodC_FWWP7	potato, capsicum, onion, beef	442.49	5	Beverage
-FoodC_M7YY2	spinach, butter, potato, capsicum	826.91	21	Non-Veg
-FoodC_8N4N7	garlic, fish, milk, potato	942.29	19	Main Course
-FoodC_CQP91	flour, broccoli, onion, egg	1009.68	43	Beverage
-FoodC_OGKEN	onion, broccoli, milk, pepper	863.34	37	Non-Veg
-FoodC_LE0P5	noodles, spinach, corn, butter	617.34	33	Starter
-FoodC_LKA3J	milk, capsicum, potato, cheese	894.92	33	Non-Veg
-FoodC_GB6XT	basil, egg, oregano, tomato	588.95	9	Main Course
-FoodC_W2UT8	butter, onion, basil, pepper	375.1	13	Starter
-FoodC_LBIJF	noodles, chicken, yogurt, corn	686.12	10	Starter
-FoodC_EG3GW	onion, carrot, corn, milk	1149.49	38	Beverage
-FoodC_VHUU4	garlic, egg, paneer, pepper	531.69	27	Non-Veg
-FoodC_A92P3	paneer, garlic, capsicum, cream	494.31	24	Non-Veg
-FoodC_VEQ16	garlic, egg, tomato, milk	880.9	27	Starter
-FoodC_JS7O3	oregano, paneer, cream, chicken	949.5	42	Main Course
-FoodC_XAY6Q	garlic, cream, lentils, cheese	785.03	26	Main Course
-FoodC_RV9UF	lentils, flour, rice, oregano	507.43	37	Non-Veg
-FoodC_C5Z24	paneer, beef, mushroom, carrot	424.15	44	Combo
-FoodC_U2AXR	cream, fish, pepper, chicken	946.69	20	Dessert
-FoodC_BX2HK	lentils, flour, beef, mushroom	337.24	28	Combo
-FoodC_9CME7	mushroom, beef, pepper, basil	580.72	23	Main Course
-FoodC_EPYQ0	rice, garlic, noodles, oregano	220.76	29	Non-Veg
-FoodC_P5JHN	yogurt, butter, cream, capsicum	634.71	45	Starter
-FoodC_YZ7NP	chicken, mushroom, capsicum, flour	481.68	6	Non-Veg
-FoodC_X46NZ	yogurt, egg, flour, beef	772.27	37	Starter
-FoodC_Z5L8P	carrot, capsicum, noodles, chicken	639.9	22	Starter
-FoodC_TRIGH	potato, noodles, lentils, rice	879.54	7	Non-Veg
-FoodC_3VQ3O	carrot, broccoli, corn, lentils	649.1	43	Veg
-FoodC_415LR	corn, lentils, spinach, capsicum	836.87	45	Beverage
-FoodC_FDIR0	beef, noodles, carrot, onion	425.52	16	Non-Veg
-FoodC_Y2BKE	milk, mushroom, potato, capsicum	175.43	35	Veg
-FoodC_2YNHB	garlic, milk, tomato, flour	911.77	38	Non-Veg
-FoodC_WIIJJ	chicken, garlic, tomato, butter	1099.84	17	Beverage
-FoodC_O5GYD	capsicum, oregano, potato, rice	453.45	11	Dessert
-FoodC_3GAOF	egg, flour, chicken, paneer	398.61	16	Beverage
-FoodC_79L6Q	butter, corn, oregano, beef	1022.63	42	Starter
-FoodC_ISS26	yogurt, corn, tomato, cheese	874.21	19	Main Course
-FoodC_RUADK	tomato, egg, oregano, mushroom	101.2	6	Non-Veg
-FoodC_DPBIQ	capsicum, butter, milk, yogurt	357.78	29	Dessert
-FoodC_R2G08	cream, tomato, broccoli, yogurt	942.55	28	Veg
-FoodC_0XTBX	capsicum, garlic, cheese, beef	116.95	17	Combo
-FoodC_VXYYU	onion, carrot, broccoli, pepper	186	9	Starter
-FoodC_UVRFP	pepper, basil, yogurt, egg	1050.56	24	Main Course
-FoodC_G4ALK	lentils, basil, carrot, fish	1043.5	20	Main Course
-FoodC_1N21E	capsicum, corn, pepper, onion	463.12	27	Combo
-FoodC_MEXL9	yogurt, milk, oregano, tomato	396.25	14	Dessert
-FoodC_0QDH1	butter, milk, chicken, cream	439.9	26	Combo
-FoodC_K4WKO	cheese, cream, corn, garlic	1082.98	21	Combo
-FoodC_Y594A	flour, rice, fish, egg	230.11	41	Non-Veg
-FoodC_4P5C4	basil, capsicum, egg, potato	356.69	35	Beverage
-FoodC_1N0QR	broccoli, oregano, garlic, beef	1136.72	32	Non-Veg
-FoodC_7BQYZ	pepper, capsicum, broccoli, paneer	366.32	5	Starter
-FoodC_GVFW9	flour, yogurt, butter, paneer	465.66	36	Non-Veg
-FoodC_V78WL	paneer, mushroom, capsicum, basil	151.17	8	Combo
-FoodC_5JEVH	flour, butter, tomato, basil	198.34	14	Dessert
-FoodC_2JBFO	spinach, basil, corn, mushroom	854.17	32	Beverage
-FoodC_KK4GU	chicken, flour, carrot, milk	123.69	21	Starter
-FoodC_DRQCB	fish, noodles, potato, basil	434.6	35	Beverage
-FoodC_3MLXL	rice, carrot, cheese, potato	385.59	30	Dessert
-FoodC_UC7OM	lentils, paneer, carrot, pepper	468.93	19	Dessert
-FoodC_93RI1	chicken, rice, yogurt, garlic	1101.67	9	Starter
-FoodC_ZNYWC	spinach, mushroom, noodles, rice	227.57	23	Dessert
-FoodC_Q7BGC	basil, butter, lentils, spinach	1194.82	30	Starter
-FoodC_2U7S8	butter, carrot, pepper, mushroom	449.74	5	Starter
-FoodC_95NA3	spinach, pepper, chicken, garlic	685.65	20	Main Course
-FoodC_MNXHE	rice, flour, carrot, paneer	245.4	43	Dessert
-FoodC_FWRZ0	milk, butter, egg, fish	1055.78	16	Main Course
-FoodC_4S6L7	pepper, garlic, capsicum, beef	482.84	25	Veg
-FoodC_VWV6P	pepper, capsicum, egg, carrot	434.36	16	Veg
-FoodC_FK4PN	corn, yogurt, paneer, carrot	308.74	19	Non-Veg
-FoodC_2EJ4M	lentils, basil, oregano, capsicum	746.77	31	Combo
-FoodC_RDTEO	noodles, cream, oregano, broccoli	378.06	6	Combo
-FoodC_V29DA	corn, lentils, onion, cream	916.17	24	Main Course
-FoodC_3EAAT	corn, fish, basil, butter	309.18	27	Starter
-FoodC_0SY44	rice, yogurt, beef, onion	903.25	13	Main Course
-FoodC_SW5LW	carrot, mushroom, milk, chicken	737.77	45	Starter
-FoodC_7GGYR	basil, garlic, corn, mushroom	575.05	37	Dessert
-FoodC_XDUB6	rice, garlic, beef, potato	895.84	31	Dessert
-FoodC_4KHSX	oregano, onion, yogurt, rice	1149.02	22	Starter
-FoodC_AKGQI	lentils, basil, beef, mushroom	740.49	37	Dessert
-FoodC_15E4Y	egg, beef, capsicum, spinach	127.36	5	Beverage
-FoodC_1WC52	paneer, capsicum, noodles, oregano	711.39	20	Combo
-FoodC_CG0ID	broccoli, butter, pepper, noodles	732.81	38	Combo
-FoodC_A10LF	lentils, broccoli, noodles, beef	597.82	17	Main Course
-FoodC_SSJYI	garlic, milk, spinach, carrot	394.31	24	Dessert
-FoodC_2LKPW	milk, basil, chicken, butter	503.48	16	Veg
-FoodC_EJMEE	spinach, oregano, carrot, chicken	771.98	22	Non-Veg
-FoodC_7URCZ	noodles, garlic, capsicum, egg	154.68	5	Starter
-FoodC_X6WXJ	flour, noodles, egg, tomato	969.37	11	Starter
-FoodC_9D80N	oregano, pepper, butter, noodles	449.09	27	Non-Veg
-FoodC_ZWK7P	rice, fish, lentils, garlic	831.38	18	Beverage
-FoodC_Y6NDU	cheese, oregano, flour, carrot	1014.87	44	Combo
-FoodC_RHBV4	egg, lentils, rice, corn	777.83	19	Starter
-FoodC_M414H	pepper, potato, butter, garlic	787.52	30	Non-Veg
-FoodC_VR55X	pepper, fish, oregano, cheese	440.45	35	Beverage
-FoodC_2MSF1	beef, lentils, cheese, potato	418.63	21	Veg
-FoodC_TMNXN	pepper, flour, fish, yogurt	1147.69	18	Main Course
-FoodC_EA72S	cream, basil, butter, lentils	183.28	6	Non-Veg
-FoodC_7XM26	lentils, cheese, fish, potato	342.17	40	Dessert
-FoodC_EDCAT	paneer, cream, cheese, onion	557.01	33	Dessert
-FoodC_F6O2I	tomato, capsicum, oregano, basil	604.62	40	Veg
-FoodC_E1CL5	milk, cream, spinach, tomato	396.25	12	Dessert
-FoodC_L8PUL	chicken, potato, butter, broccoli	534.66	37	Dessert
-FoodC_X2WNK	paneer, noodles, spinach, cheese	292.06	18	Combo
-FoodC_3T4DA	oregano, yogurt, potato, cheese	253.25	29	Combo
-FoodC_TZRKC	cheese, capsicum, rice, egg	452.15	6	Veg
-FoodC_DTWE0	chicken, corn, milk, lentils	103.1	39	Main Course
-FoodC_073O4	corn, onion, beef, oregano	755.22	36	Veg
-FoodC_48958	cheese, basil, pepper, rice	210.68	12	Main Course
-FoodC_VPHCG	oregano, garlic, mushroom, flour	698.39	21	Non-Veg
-FoodC_EJT34	beef, lentils, capsicum, mushroom	851.95	18	Dessert
-FoodC_KW9ZD	pepper, fish, flour, lentils	424.41	22	Starter
-FoodC_4ML6B	broccoli, flour, onion, potato	507.01	21	Dessert
-FoodC_ILB6Y	noodles, milk, capsicum, potato	1174.96	17	Main Course
-FoodC_WUDVF	rice, onion, carrot, noodles	785.3	23	Main Course
-FoodC_QXCPV	flour, onion, pepper, milk	290.37	45	Beverage
-FoodC_GLZ5P	yogurt, garlic, onion, basil	285.23	42	Beverage
-FoodC_7B2CB	milk, potato, lentils, egg	903.97	5	Dessert
-FoodC_AUZ3O	yogurt, broccoli, pepper, spinach	294.02	26	Main Course
-FoodC_YLQJ3	potato, yogurt, beef, fish	508.17	30	Veg
-FoodC_SNHT0	cream, spinach, rice, mushroom	973.45	13	Dessert
-FoodC_LBA3D	mushroom, potato, cheese, egg	1102.04	33	Starter
-FoodC_KGTOU	tomato, garlic, rice, chicken	1020.25	44	Dessert
-FoodC_BE1OX	pepper, tomato, butter, yogurt	623.35	9	Non-Veg
-FoodC_EXY5D	rice, chicken, paneer, tomato	719.85	13	Non-Veg
-FoodC_COJYU	butter, cream, onion, oregano	718.16	31	Main Course
-FoodC_Y3KAT	beef, pepper, chicken, capsicum	296.32	10	Dessert
-FoodC_QIR55	fish, capsicum, egg, mushroom	316.55	20	Starter
-FoodC_WDHDJ	egg, noodles, chicken, capsicum	490.13	44	Main Course
-FoodC_M5915	pepper, spinach, yogurt, egg	1188.59	13	Dessert
-FoodC_ZK21J	onion, beef, potato, noodles	445.25	17	Combo
-FoodC_3H4VI	beef, broccoli, tomato, butter	444.83	33	Main Course
-FoodC_CJDKM	onion, chicken, tomato, pepper	397.27	19	Veg
-FoodC_OKHU6	chicken, flour, cheese, tomato	947.39	11	Starter
-FoodC_TR9MV	paneer, rice, broccoli, tomato	844.73	36	Main Course
-FoodC_VHPEK	noodles, basil, fish, beef	378.12	8	Beverage
-FoodC_DW341	noodles, chicken, mushroom, oregano	1131.53	42	Starter
-FoodC_E0UF4	rice, carrot, egg, basil	896.69	45	Combo
-FoodC_N65RR	fish, egg, pepper, noodles	711.54	34	Combo
-FoodC_1J36H	cream, carrot, paneer, butter	536.11	20	Starter
-FoodC_FL3YT	mushroom, beef, flour, lentils	1061.34	40	Starter
-FoodC_FLDJ6	yogurt, paneer, mushroom, milk	905.8	10	Veg
-FoodC_U97CQ	beef, garlic, rice, cheese	374.91	25	Combo
-FoodC_9SY8Y	beef, yogurt, broccoli, chicken	1126.14	15	Non-Veg
-FoodC_CH11D	tomato, garlic, butter, mushroom	648.4	43	Starter
-FoodC_I4QRK	milk, cheese, basil, broccoli	1025.22	33	Main Course
-FoodC_PJVGJ	egg, cream, milk, flour	418.08	19	Beverage
-FoodC_KWM62	capsicum, potato, rice, pepper	243.37	45	Non-Veg
-FoodC_N49MT	lentils, cheese, capsicum, mushroom	745.66	24	Beverage
-FoodC_8CD9X	egg, chicken, fish, flour	137.07	40	Main Course
-FoodC_LWOKF	onion, carrot, butter, milk	997.41	43	Non-Veg
-FoodC_SIPFG	cream, milk, chicken, onion	631.79	35	Dessert
-FoodC_17U6G	flour, onion, cream, tomato	853.75	18	Veg
-FoodC_15L44	butter, noodles, carrot, yogurt	1105.53	31	Veg
-FoodC_6CD9D	beef, carrot, capsicum, onion	143.82	38	Veg
-FoodC_QFKX3	basil, fish, broccoli, yogurt	1120.91	7	Main Course
-FoodC_IKRIE	oregano, yogurt, capsicum, egg	921.8	39	Non-Veg
-FoodC_NZWOA	garlic, potato, chicken, paneer	724.34	30	Non-Veg
-FoodC_0TD6A	basil, rice, beef, broccoli	685.2	24	Beverage
-FoodC_W83MM	lentils, tomato, carrot, yogurt	904.61	32	Non-Veg
-FoodC_GZ9W2	cream, yogurt, butter, noodles	144.49	30	Non-Veg
-FoodC_DWOAF	noodles, spinach, lentils, corn	622.73	34	Main Course
-FoodC_XBBES	broccoli, basil, corn, potato	1069.05	22	Dessert
-FoodC_MMJ4T	fish, corn, chicken, yogurt	1148.87	7	Starter
-FoodC_E1LHX	mushroom, basil, corn, fish	628.36	40	Combo
-FoodC_2AV1W	potato, yogurt, chicken, rice	904.81	40	Main Course
-FoodC_CQQGV	carrot, onion, fish, beef	601.08	8	Combo
-FoodC_DKO5O	oregano, spinach, cheese, potato	318.6	44	Combo
-FoodC_J5GEY	basil, yogurt, garlic, noodles	1184.74	21	Beverage
-FoodC_N419I	egg, butter, basil, spinach	459.27	39	Beverage
-FoodC_I4NFB	basil, oregano, yogurt, fish	589.35	20	Veg
-FoodC_65KC1	onion, rice, carrot, fish	126.1	33	Starter
-FoodC_5U66P	lentils, tomato, corn, butter	1124.53	30	Main Course
-FoodC_H4OXF	butter, flour, onion, tomato	132.34	45	Veg
-FoodC_WD97D	egg, paneer, potato, chicken	103.5	33	Starter
-FoodC_FXV49	cheese, spinach, capsicum, garlic	1101.74	34	Veg
-FoodC_B9TS2	fish, beef, cheese, mushroom	1018.37	36	Dessert
-FoodC_RGGN5	milk, yogurt, noodles, cheese	975.5	41	Starter
-FoodC_9Q2GM	garlic, tomato, fish, cheese	736.42	31	Beverage
-FoodC_TH5FG	beef, pepper, rice, basil	356.83	20	Combo
-FoodC_CK8BS	milk, egg, spinach, chicken	1186	30	Beverage
-FoodC_GF29B	broccoli, basil, oregano, cheese	632.9	28	Starter
-FoodC_4SVX8	basil, flour, rice, butter	983.2	6	Dessert
-FoodC_C2075	flour, rice, butter, yogurt	714.54	37	Beverage
-FoodC_SFDO7	broccoli, capsicum, egg, tomato	371.96	24	Beverage
-FoodC_J6LIB	onion, flour, egg, beef	351.96	31	Veg
-FoodC_AEYON	flour, butter, basil, fish	533.99	30	Main Course
-FoodC_XISVJ	tomato, rice, broccoli, paneer	408.1	28	Main Course
-FoodC_VY9TA	noodles, potato, egg, milk	134.06	8	Combo
-FoodC_RBXZ1	milk, broccoli, fish, basil	1052.44	38	Beverage
-FoodC_G4A25	oregano, onion, spinach, broccoli	682.69	5	Combo
-FoodC_T3GQR	capsicum, milk, yogurt, pepper	152.92	11	Starter
-FoodC_3AGF4	milk, oregano, butter, chicken	573.69	37	Dessert
-FoodC_N6DII	onion, fish, egg, butter	1130.02	28	Veg
-FoodC_THDKO	garlic, spinach, yogurt, butter	831.6	18	Beverage
-FoodC_HSXM2	yogurt, carrot, beef, cheese	446.68	27	Combo
-FoodC_786TI	basil, noodles, rice, oregano	980.24	6	Non-Veg
-FoodC_R2NUM	lentils, flour, tomato, cream	703.38	9	Veg
-FoodC_8Y185	paneer, cheese, basil, fish	158.24	5	Non-Veg
-FoodC_Z121C	carrot, corn, cheese, cream	1125.6	43	Non-Veg
-FoodC_338ZP	pepper, capsicum, corn, mushroom	411.15	9	Veg
-FoodC_G3T2R	fish, paneer, yogurt, noodles	465.63	30	Dessert
-FoodC_PL31M	onion, corn, cream, carrot	1013.15	34	Beverage
-FoodC_48M6V	lentils, mushroom, chicken, yogurt	787.91	19	Beverage
-FoodC_3LQI1	egg, onion, chicken, butter	735.99	26	Combo
-FoodC_KMSYW	flour, rice, potato, chicken	450.46	8	Non-Veg
-FoodC_QO5YG	corn, lentils, carrot, milk	1104.28	5	Non-Veg
-FoodC_JW2R8	tomato, corn, carrot, chicken	888.34	13	Starter
-FoodC_EUC6R	milk, carrot, garlic, potato	231.65	13	Non-Veg
-FoodC_9U21M	lentils, noodles, cream, cheese	1024.51	19	Combo
-FoodC_1JJKU	garlic, pepper, cheese, noodles	1118.29	30	Dessert
-FoodC_HTILK	mushroom, noodles, corn, rice	835.33	5	Starter
-FoodC_PI7O7	butter, spinach, fish, cheese	490.2	33	Veg
-FoodC_ZG4WO	mushroom, capsicum, lentils, paneer	315.43	28	Beverage
-FoodC_XAZGR	carrot, oregano, pepper, lentils	254.83	33	Combo
-FoodC_Q137F	milk, basil, pepper, lentils	774.7	14	Beverage
-FoodC_SL8E5	cream, broccoli, noodles, basil	1094.9	21	Beverage
-FoodC_O2XYP	paneer, garlic, tomato, corn	263.83	15	Starter
-FoodC_CZN2H	noodles, broccoli, paneer, corn	846.04	20	Combo
-FoodC_J9HVY	egg, rice, cream, garlic	472.64	41	Dessert
-FoodC_AVDHF	noodles, cream, yogurt, lentils	725.19	9	Combo
-FoodC_W3B1G	flour, butter, pepper, potato	424.33	21	Starter
-FoodC_U3A3H	basil, oregano, milk, cheese	341.43	41	Dessert
-FoodC_4BG3Y	rice, basil, capsicum, paneer	387.4	28	Non-Veg
-FoodC_BNBGJ	beef, rice, spinach, oregano	579.89	20	Starter
-FoodC_A2K0H	corn, mushroom, cream, tomato	320.53	5	Veg
-FoodC_06Q2F	spinach, cheese, pepper, chicken	1137.89	6	Veg
-FoodC_YQPPW	lentils, broccoli, egg, rice	1125.75	14	Starter
-FoodC_2BUZS	garlic, basil, chicken, carrot	1187.47	18	Non-Veg
-FoodC_9VQ0W	basil, pepper, chicken, oregano	657.94	24	Starter
-FoodC_UB57L	butter, milk, noodles, oregano	794.99	31	Veg
-FoodC_ODB9F	rice, corn, pepper, flour	420.86	9	Non-Veg
-FoodC_KXDEW	butter, paneer, potato, spinach	783.22	42	Dessert
-FoodC_TX021	lentils, beef, chicken, noodles	234.73	10	Veg
-FoodC_ITWLW	capsicum, egg, cream, cheese	609.44	40	Combo
-FoodC_JFJFK	capsicum, cream, spinach, carrot	461.32	20	Main Course
-FoodC_ATBE7	capsicum, spinach, milk, potato	1028.1	42	Dessert
-FoodC_OEO18	noodles, broccoli, pepper, chicken	872.08	8	Non-Veg
-FoodC_UW934	pepper, lentils, butter, potato	1148.29	19	Dessert
-FoodC_TNRVV	flour, noodles, milk, paneer	511.46	43	Dessert
-FoodC_NB7BO	pepper, rice, oregano, corn	1100.7	33	Beverage
-FoodC_W4AM5	milk, rice, pepper, chicken	235.76	40	Dessert
-FoodC_HV1GP	spinach, tomato, milk, carrot	913.36	19	Veg
-FoodC_KRM3G	butter, milk, garlic, cheese	841.89	9	Dessert
-FoodC_JM2UV	rice, spinach, carrot, cheese	783.34	5	Main Course
-FoodC_DL0BL	oregano, fish, paneer, butter	982.19	32	Dessert
-FoodC_GT13Z	mushroom, pepper, tomato, flour	528.91	5	Starter
-FoodC_U7ISC	milk, garlic, broccoli, carrot	896.69	12	Starter
-FoodC_E0OFK	capsicum, cheese, mushroom, oregano	1182.54	16	Main Course
-FoodC_L1NUK	garlic, capsicum, spinach, flour	1149.53	23	Veg
-FoodC_3LL0I	milk, noodles, fish, cream	1004.08	18	Dessert
-FoodC_5YQ5G	garlic, noodles, flour, egg	1180.93	17	Combo
-FoodC_F8S0M	egg, tomato, milk, corn	805.43	9	Main Course
-FoodC_LXDGT	basil, chicken, mushroom, butter	181.25	33	Veg
-FoodC_AW2FJ	noodles, basil, cheese, carrot	836.22	9	Dessert
-FoodC_5WB0G	milk, pepper, onion, basil	281.27	17	Non-Veg
-FoodC_N7YYT	milk, basil, pepper, yogurt	805.1	16	Combo
-FoodC_91KJF	fish, tomato, onion, beef	1040.56	42	Starter
-FoodC_NZ9EC	noodles, basil, spinach, yogurt	1134.44	41	Veg
-FoodC_9UMRC	cheese, noodles, capsicum, butter	478.66	42	Beverage
-FoodC_78NML	cream, paneer, pepper, beef	1049.55	38	Beverage
-FoodC_GLOEA	beef, potato, tomato, chicken	1076.14	26	Main Course
-FoodC_F7PF7	butter, beef, noodles, milk	1108.99	20	Main Course
-FoodC_2HDXJ	fish, rice, potato, milk	1119.16	35	Dessert
-FoodC_MN6O0	garlic, onion, milk, rice	383.8	22	Veg
-FoodC_1CYK3	spinach, butter, egg, oregano	115.44	23	Veg
-FoodC_3PAM9	spinach, rice, paneer, milk	858.27	18	Combo
-FoodC_N7YXH	corn, beef, oregano, capsicum	427.03	11	Starter
-FoodC_WXPKR	capsicum, oregano, rice, mushroom	1188.95	13	Combo
-FoodC_BGAWL	broccoli, oregano, noodles, chicken	968.7	42	Beverage
-FoodC_U41B3	basil, capsicum, pepper, garlic	1073.51	41	Beverage
-FoodC_JRKGY	onion, oregano, mushroom, capsicum	688.6	7	Combo
-FoodC_U8XOR	milk, garlic, carrot, onion	142.1	33	Combo
-FoodC_TZA3K	corn, chicken, paneer, fish	618.93	38	Main Course
-FoodC_5R7XL	cheese, mushroom, lentils, beef	166.17	45	Starter
-FoodC_N7YBG	tomato, spinach, cheese, noodles	1189.27	10	Combo
-FoodC_R88C9	capsicum, broccoli, oregano, cream	655.33	16	Veg
-FoodC_UVHTU	egg, rice, paneer, beef	141.57	34	Main Course
-FoodC_7J47D	fish, capsicum, spinach, rice	567.62	15	Main Course
-FoodC_110IX	chicken, cheese, butter, corn	166.15	7	Veg
-FoodC_MU83B	corn, carrot, rice, paneer	700.64	45	Dessert
-FoodC_GKU9W	paneer, garlic, fish, rice	901.95	15	Dessert
-FoodC_MBRGI	fish, pepper, spinach, cream	225.18	38	Main Course
-FoodC_LZ9VK	chicken, pepper, egg, fish	160.51	31	Main Course
-FoodC_734S6	butter, chicken, garlic, noodles	244.68	23	Starter
-FoodC_F4T63	milk, chicken, paneer, carrot	415.47	34	Non-Veg
-FoodC_C0A7G	potato, fish, butter, garlic	672.83	18	Non-Veg
-FoodC_SCVGN	yogurt, egg, capsicum, fish	129.75	29	Beverage
-FoodC_YON6U	potato, paneer, garlic, milk	1047.84	15	Beverage
-FoodC_9PIXU	cheese, rice, mushroom, tomato	1157.41	39	Dessert
-FoodC_BKAZO	carrot, fish, butter, tomato	608.27	16	Main Course
-FoodC_QBZCC	basil, egg, yogurt, noodles	546.24	42	Non-Veg
-FoodC_JWJWK	beef, potato, basil, garlic	828.49	9	Dessert
-FoodC_8WKBK	yogurt, lentils, basil, onion	970.84	22	Starter
-FoodC_MH37T	tomato, broccoli, lentils, milk	406.76	6	Main Course
-FoodC_7XBNN	garlic, chicken, fish, capsicum	478.34	33	Starter
-FoodC_6T91B	broccoli, chicken, potato, tomato	187.56	31	Veg
-FoodC_WVW8M	broccoli, yogurt, onion, cream	959.16	5	Veg
-FoodC_9YXHK	cheese, yogurt, broccoli, noodles	375.42	11	Dessert
-FoodC_LE5OY	capsicum, cream, egg, mushroom	929.11	18	Starter
-FoodC_1IC1Q	paneer, yogurt, tomato, lentils	1064.38	35	Beverage
-FoodC_94IZV	cheese, onion, butter, milk	104.88	17	Main Course
-FoodC_JTPBK	mushroom, cheese, paneer, tomato	690.46	33	Main Course
-FoodC_22300	corn, lentils, broccoli, rice	953.77	23	Dessert
-FoodC_ZL5YY	tomato, noodles, potato, yogurt	444.45	31	Dessert
-FoodC_6K80G	yogurt, oregano, butter, noodles	1162.97	40	Dessert
-FoodC_R54RE	pepper, mushroom, broccoli, potato	702.26	37	Starter
-FoodC_IEPSN	broccoli, carrot, capsicum, mushroom	950.89	40	Beverage
-FoodC_ACCHM	basil, tomato, yogurt, oregano	706.69	15	Beverage
-FoodC_8QLD8	potato, broccoli, oregano, fish	1063.82	16	Main Course
-FoodC_6RYZV	fish, carrot, cream, potato	271.21	11	Beverage
-FoodC_LRHTY	yogurt, pepper, capsicum, chicken	312.41	18	Dessert
-FoodC_GNCTO	milk, basil, garlic, paneer	260.9	8	Starter
-FoodC_LV38N	noodles, butter, rice, cream	821.57	13	Non-Veg
-FoodC_HGLFD	fish, potato, oregano, mushroom	184.92	35	Starter
-FoodC_Q6JZP	rice, capsicum, yogurt, lentils	746.7	37	Beverage
-FoodC_39ZOI	egg, oregano, milk, onion	881.14	25	Main Course
-FoodC_CCS3I	potato, chicken, tomato, noodles	263.03	11	Main Course
-FoodC_VMLBW	cheese, garlic, chicken, spinach	634.91	24	Main Course
-FoodC_RF6B9	oregano, potato, capsicum, chicken	179.87	33	Combo
-FoodC_9IOUN	cream, spinach, basil, egg	1149.89	16	Veg
-FoodC_6J485	rice, cheese, flour, fish	841.23	16	Beverage
-FoodC_A19ZZ	butter, oregano, basil, onion	601.61	18	Non-Veg
-FoodC_NQ4JW	corn, fish, broccoli, capsicum	402.92	45	Main Course
-FoodC_8VK8W	potato, chicken, fish, tomato	917.09	5	Dessert
-FoodC_H08IP	fish, yogurt, cheese, cream	633.62	13	Main Course
-FoodC_FYICA	noodles, mushroom, broccoli, basil	114.13	40	Dessert
-FoodC_GESTU	egg, butter, paneer, capsicum	686.31	44	Beverage
-FoodC_4AFXV	milk, yogurt, carrot, chicken	735.21	13	Starter
-FoodC_8I8XY	paneer, garlic, chicken, egg	536.53	23	Veg
-FoodC_WFXH7	butter, potato, mushroom, pepper	643.38	29	Non-Veg
-FoodC_2MWH1	beef, garlic, potato, carrot	394.78	7	Starter
-FoodC_CWTEJ	lentils, flour, corn, milk	405.51	24	Main Course
-FoodC_DK7WY	potato, flour, cheese, paneer	476.76	34	Dessert
-FoodC_4TUG9	egg, butter, potato, beef	305.18	25	Dessert
-FoodC_IOJXD	tomato, butter, spinach, fish	1057.65	30	Main Course
-FoodC_KZK6U	oregano, paneer, lentils, broccoli	1081.06	44	Main Course
-FoodC_FYNTS	pepper, paneer, potato, mushroom	377.18	8	Dessert
-FoodC_RANVA	cream, capsicum, pepper, onion	159.49	44	Non-Veg
-FoodC_632C7	paneer, cheese, fish, lentils	906.6	41	Dessert
-FoodC_Z7DIE	mushroom, corn, basil, broccoli	783.7	39	Veg
-FoodC_YL2XW	butter, rice, noodles, egg	1066.99	25	Main Course
-FoodC_TANJF	spinach, cream, onion, paneer	935.06	10	Non-Veg
-FoodC_XH2HS	noodles, egg, pepper, rice	225.21	14	Veg
-FoodC_9F9CF	oregano, fish, mushroom, broccoli	298.08	22	Beverage
-FoodC_2RM9Q	beef, butter, egg, onion	757.6	37	Non-Veg
-FoodC_TES2W	yogurt, tomato, lentils, paneer	1144.03	28	Non-Veg
-FoodC_L19WM	beef, basil, cheese, yogurt	532.54	25	Veg
-FoodC_NT4UK	onion, broccoli, beef, oregano	885.86	45	Combo
-FoodC_7H7KP	chicken, corn, flour, pepper	157.02	7	Dessert
-FoodC_G6GST	tomato, flour, noodles, milk	771.08	16	Starter
-FoodC_F6DYM	butter, cream, carrot, tomato	671.56	27	Veg
-FoodC_RAENV	basil, broccoli, cream, beef	699.25	37	Veg
-FoodC_FKKNJ	broccoli, noodles, yogurt, oregano	823.46	14	Combo
-FoodC_4D71F	yogurt, noodles, fish, flour	916.49	38	Veg
-FoodC_0UF76	mushroom, potato, fish, rice	144.27	13	Combo
-FoodC_M16LL	noodles, fish, spinach, butter	545.92	11	Beverage
-FoodC_Y9IN6	butter, fish, cheese, mushroom	247.45	26	Beverage
-FoodC_CCMMH	beef, basil, butter, lentils	1112.96	30	Beverage
-FoodC_150S5	yogurt, fish, chicken, cream	549.32	36	Combo
-FoodC_NKPXL	yogurt, butter, capsicum, spinach	138.34	25	Dessert
-FoodC_KP7M8	potato, garlic, mushroom, noodles	572.46	15	Main Course
-FoodC_334Y9	mushroom, noodles, carrot, fish	1104.07	27	Veg
-FoodC_E1PYY	paneer, chicken, basil, carrot	203.26	15	Combo
-FoodC_BKZ96	potato, corn, beef, cream	109.37	35	Beverage
-FoodC_KVP7C	fish, tomato, cheese, capsicum	1147.54	16	Beverage
-FoodC_EWAZ3	rice, onion, capsicum, lentils	276.45	5	Combo
-FoodC_F49UP	potato, garlic, broccoli, mushroom	762.44	20	Starter
-FoodC_C05KF	yogurt, garlic, onion, corn	923.02	27	Veg
-FoodC_NEDXQ	garlic, pepper, beef, flour	1151.68	34	Beverage
-FoodC_ZAI0J	rice, flour, milk, tomato	968.49	23	Dessert
-FoodC_7Z7S2	milk, cheese, mushroom, onion	845.62	34	Dessert
-FoodC_29U3J	cream, yogurt, onion, flour	444.85	14	Starter
-FoodC_QSR0B	lentils, onion, egg, paneer	170.17	23	Non-Veg
-FoodC_6NNDL	cheese, egg, potato, oregano	281.61	24	Starter
-FoodC_OLH53	butter, rice, chicken, garlic	358.93	42	Veg
-FoodC_JQUJA	potato, tomato, mushroom, noodles	218.97	13	Veg
-FoodC_UAYQ2	spinach, potato, chicken, carrot	338.76	42	Veg
-FoodC_Q7PW8	noodles, milk, tomato, carrot	1071.07	24	Combo
-FoodC_R7QDV	oregano, rice, fish, yogurt	353.13	43	Non-Veg
-FoodC_K75LJ	basil, yogurt, milk, pepper	1114.73	5	Main Course
-FoodC_TV08P	paneer, capsicum, garlic, egg	992.7	22	Non-Veg
-FoodC_3PX5B	lentils, garlic, flour, potato	177.35	16	Combo
-FoodC_IER7A	capsicum, lentils, cream, broccoli	932.33	11	Starter
-FoodC_AXD1U	lentils, pepper, cream, fish	832.62	5	Main Course
-FoodC_4L9ZP	onion, garlic, basil, potato	719.12	9	Non-Veg
-FoodC_SEJ0G	potato, milk, mushroom, butter	437.07	35	Veg
-FoodC_YURPU	spinach, cream, corn, fish	476.07	25	Starter
-FoodC_7XR1D	butter, pepper, garlic, noodles	388.94	8	Main Course
-FoodC_5ZBRG	pepper, onion, mushroom, milk	675.13	8	Veg
-FoodC_D1TKV	chicken, mushroom, yogurt, tomato	203.75	42	Veg
-FoodC_BKRFB	beef, yogurt, carrot, garlic	797.27	43	Combo
-FoodC_YUXH6	pepper, spinach, yogurt, garlic	486.22	38	Combo
-FoodC_XN5LB	paneer, rice, tomato, flour	1056.28	15	Main Course
-FoodC_B2TSA	paneer, capsicum, broccoli, yogurt	1094.05	19	Combo
-FoodC_5U72W	egg, paneer, rice, corn	568.94	32	Veg
-FoodC_3B8HE	rice, mushroom, chicken, cream	841.56	27	Combo
-FoodC_L4LP9	lentils, mushroom, milk, spinach	451.22	21	Combo
-FoodC_5VADE	broccoli, butter, paneer, spinach	140.63	15	Combo
-FoodC_3G6UZ	yogurt, milk, butter, basil	859.63	29	Beverage
-FoodC_9NMA3	carrot, butter, cheese, corn	193.69	17	Non-Veg
-FoodC_6TL4W	yogurt, onion, basil, oregano	732.36	34	Non-Veg
-FoodC_OCH50	rice, egg, pepper, milk	488.96	15	Combo
-FoodC_PZHF6	milk, pepper, mushroom, beef	925.73	37	Dessert
-FoodC_ZS60I	yogurt, egg, cheese, pepper	525.99	36	Main Course
-FoodC_0AMU1	pepper, yogurt, paneer, garlic	1111.74	5	Main Course
-FoodC_1OV0S	rice, butter, cheese, oregano	176.95	19	Starter
-FoodC_7KEA2	paneer, cream, corn, chicken	1033.62	23	Dessert
-FoodC_HNIOH	chicken, tomato, yogurt, potato	398.8	43	Non-Veg
-FoodC_V2V0L	egg, spinach, cheese, milk	882.24	28	Non-Veg
-FoodC_K9C37	spinach, mushroom, oregano, yogurt	776.7	13	Beverage
-FoodC_R6RI7	flour, capsicum, chicken, basil	386.34	38	Starter
-FoodC_0KDFG	chicken, flour, noodles, yogurt	245.35	30	Combo
-FoodC_PAX7P	oregano, cheese, cream, mushroom	1020.2	40	Starter
-FoodC_WG0PU	mushroom, pepper, onion, carrot	549.94	9	Non-Veg
-FoodC_K8CIH	broccoli, yogurt, egg, carrot	281.23	31	Veg
-FoodC_2A93U	fish, oregano, tomato, broccoli	1139.31	42	Beverage
-FoodC_QC52E	spinach, egg, fish, tomato	954.02	34	Combo
-FoodC_PM7FW	broccoli, egg, corn, lentils	399.95	29	Beverage
-FoodC_3G09U	oregano, lentils, flour, spinach	544.35	8	Main Course
-FoodC_PFQ2D	fish, chicken, oregano, pepper	1059.51	14	Non-Veg
-FoodC_CRPJ5	capsicum, chicken, garlic, flour	744.34	39	Non-Veg
-FoodC_LP4B3	oregano, potato, cheese, mushroom	242.67	39	Dessert
-FoodC_GI1YY	onion, yogurt, cheese, oregano	569.18	11	Veg
-FoodC_BQDJX	fish, carrot, lentils, beef	979.52	27	Combo
-FoodC_THEB0	onion, corn, carrot, chicken	944.85	9	Combo
-FoodC_9V1KJ	garlic, butter, lentils, cream	596.88	43	Non-Veg
-FoodC_B3I0O	carrot, beef, garlic, noodles	406.72	22	Beverage
-FoodC_6OTH2	chicken, garlic, spinach, basil	1091.5	10	Veg
-FoodC_S7NLV	lentils, onion, butter, cheese	894.8	39	Beverage
-FoodC_O8C1T	garlic, beef, noodles, potato	868.45	17	Veg
-FoodC_G83Z1	corn, garlic, mushroom, tomato	336.89	24	Main Course
-FoodC_EWO8P	tomato, chicken, paneer, capsicum	196.51	24	Main Course
-FoodC_HZST1	cream, beef, paneer, basil	810.44	17	Veg
-FoodC_LMF1B	paneer, corn, tomato, chicken	106.79	9	Dessert
-FoodC_TH5AG	garlic, lentils, potato, beef	507.61	28	Veg
-FoodC_5HVPX	rice, oregano, chicken, fish	121.19	42	Combo
-FoodC_K84HK	spinach, fish, butter, rice	630.66	41	Main Course
-FoodC_PGPOY	carrot, egg, corn, basil	386.46	40	Beverage
-FoodC_X6ALC	yogurt, lentils, paneer, potato	497.36	6	Non-Veg
-FoodC_WCLBM	butter, paneer, capsicum, noodles	1009.26	45	Dessert
-FoodC_MSWIE	rice, spinach, garlic, flour	177.02	5	Main Course
-FoodC_JXARS	noodles, basil, paneer, beef	474.91	45	Dessert
-FoodC_W2P8E	spinach, lentils, broccoli, milk	178.16	45	Non-Veg
-FoodC_1H4ZB	oregano, mushroom, tomato, garlic	1028.11	6	Dessert
-FoodC_ZQISN	cream, mushroom, pepper, lentils	911.78	7	Veg
-FoodC_21BXB	garlic, egg, basil, cheese	611.21	32	Dessert
-FoodC_1SJOK	egg, carrot, lentils, broccoli	583.29	41	Dessert
-FoodC_2NP8T	cheese, lentils, chicken, corn	901.59	10	Dessert
-FoodC_5CETL	garlic, chicken, spinach, tomato	268.11	28	Combo
-FoodC_MM78B	tomato, spinach, oregano, broccoli	547.21	6	Main Course
-FoodC_C1CIL	capsicum, potato, spinach, yogurt	270.81	7	Main Course
-FoodC_JDSB1	carrot, fish, spinach, cheese	1108.84	10	Non-Veg
-FoodC_EY8OT	tomato, lentils, potato, rice	902.55	36	Non-Veg
-FoodC_FNVWD	capsicum, tomato, onion, egg	884.62	15	Beverage
-FoodC_TI8OH	paneer, garlic, rice, broccoli	503.31	16	Main Course
-FoodC_1QGIM	milk, fish, basil, rice	128.87	7	Main Course
-FoodC_G5PG0	yogurt, spinach, corn, garlic	422.71	5	Beverage
-FoodC_D9662	lentils, chicken, onion, garlic	1120.05	16	Beverage
-FoodC_1MC1B	carrot, garlic, oregano, butter	336.09	37	Main Course
-FoodC_RYD06	beef, paneer, potato, onion	702.19	17	Dessert
-FoodC_03W8O	tomato, spinach, beef, paneer	1139.09	6	Dessert
-FoodC_TC91V	milk, chicken, garlic, basil	863.55	36	Veg
-FoodC_T9HNG	spinach, cheese, mushroom, carrot	116.49	34	Dessert
-FoodC_JLSCS	beef, flour, potato, rice	447.87	9	Non-Veg
-FoodC_VOWOA	broccoli, yogurt, chicken, mushroom	973.33	37	Combo
-FoodC_HSW9G	fish, beef, egg, lentils	771.79	15	Non-Veg
-FoodC_C1XFQ	fish, yogurt, corn, carrot	793.94	10	Veg
-FoodC_58JPW	chicken, lentils, paneer, fish	164.07	39	Main Course
-FoodC_LLH97	carrot, beef, flour, capsicum	344.43	31	Starter
-FoodC_FZS2P	garlic, butter, spinach, broccoli	565.02	38	Starter
-FoodC_VD19F	pepper, potato, broccoli, oregano	347.54	10	Starter
-FoodC_DYQ3W	spinach, lentils, cream, yogurt	1076.55	27	Veg
-FoodC_RE8AT	spinach, egg, basil, butter	622.44	14	Dessert
-FoodC_Q1940	paneer, butter, potato, flour	486.29	39	Combo
-FoodC_LSKKX	flour, chicken, corn, pepper	1015.77	16	Veg
-FoodC_7HQ2C	corn, oregano, carrot, broccoli	465.7	18	Main Course
-FoodC_PI0NK	yogurt, beef, basil, flour	168.74	13	Dessert
-FoodC_3PUB6	butter, paneer, cream, potato	343.11	20	Veg
-FoodC_75H02	carrot, lentils, onion, garlic	231.41	18	Veg
-FoodC_H3O7G	noodles, garlic, mushroom, butter	851.8	19	Beverage
-FoodC_VJXCI	beef, egg, chicken, basil	668.4	15	Dessert
-FoodC_BOWI1	garlic, mushroom, noodles, lentils	569.1	33	Starter
-FoodC_WSAIX	noodles, rice, pepper, chicken	1098.85	7	Beverage
-FoodC_UCAX6	capsicum, noodles, potato, paneer	145.22	8	Main Course
-FoodC_33ELJ	corn, potato, cream, egg	1172.55	7	Non-Veg
-FoodC_9YAYL	fish, basil, carrot, pepper	685.76	29	Dessert
-FoodC_GVP57	basil, spinach, potato, flour	367.08	38	Main Course
-FoodC_XMOT3	lentils, egg, paneer, beef	864.19	14	Beverage
-FoodC_BG7W4	spinach, milk, paneer, yogurt	768.18	25	Beverage
-FoodC_VXSFV	cream, potato, egg, paneer	559.65	41	Starter
-FoodC_9XN5T	potato, milk, onion, cheese	955.95	31	Main Course
-FoodC_6TFZN	oregano, onion, potato, paneer	266.32	33	Main Course
-FoodC_V4BLM	paneer, mushroom, cream, cheese	754.91	29	Main Course
-FoodC_IIT48	carrot, potato, chicken, spinach	1141.06	38	Beverage
-FoodC_BAKX9	broccoli, chicken, onion, potato	115.93	28	Starter
-FoodC_DK5VG	oregano, spinach, lentils, garlic	217.89	38	Combo
-FoodC_5KL8K	fish, potato, beef, corn	1157.48	11	Combo
-FoodC_XNXEE	butter, garlic, tomato, yogurt	457.61	31	Beverage
-FoodC_UPEX1	capsicum, pepper, fish, cheese	695.72	7	Combo
-FoodC_DBCXS	cream, spinach, potato, tomato	1184.27	33	Non-Veg
-FoodC_R7SRL	egg, broccoli, garlic, flour	227.72	14	Dessert
-FoodC_WB85X	basil, potato, butter, corn	652.68	32	Dessert
-FoodC_6U0BG	oregano, egg, fish, carrot	986.02	36	Veg
-FoodC_PZRMY	basil, milk, yogurt, cream	606.14	40	Dessert
-FoodC_D5MC8	beef, capsicum, onion, noodles	748.1	15	Combo
-FoodC_P3T2H	butter, noodles, paneer, chicken	807.96	44	Main Course
-FoodC_5V2ZZ	pepper, onion, beef, egg	1172.58	16	Combo
-FoodC_MA5OX	cheese, chicken, carrot, mushroom	627.67	31	Veg
-FoodC_WPGXI	lentils, rice, fish, flour	273.03	5	Starter
-FoodC_UQMB0	rice, lentils, cheese, egg	1099.06	31	Veg
-FoodC_F4CFY	mushroom, carrot, garlic, cheese	792.37	41	Veg
-FoodC_9PPGE	cream, lentils, yogurt, capsicum	235.09	43	Beverage
-FoodC_PCJIU	tomato, egg, mushroom, beef	953.97	22	Beverage
-FoodC_JJPGN	rice, potato, cheese, noodles	731.77	27	Main Course
-FoodC_H0X2W	pepper, onion, paneer, cream	1183.03	25	Combo
-FoodC_55KHQ	noodles, fish, cream, rice	883.03	26	Beverage
-FoodC_IJ5TS	beef, butter, oregano, yogurt	372.46	44	Veg
-FoodC_DX5UF	garlic, butter, carrot, spinach	1182.72	34	Combo
-FoodC_XRS7F	cheese, chicken, noodles, butter	1196.03	44	Beverage
-FoodC_HWB26	garlic, rice, butter, fish	1110.66	32	Dessert
-FoodC_QHDHS	yogurt, cheese, carrot, oregano	338.13	39	Main Course
-FoodC_WNJQZ	beef, chicken, noodles, spinach	567.6	39	Veg
-FoodC_L873D	egg, lentils, butter, broccoli	648.04	38	Starter
-FoodC_VHTP2	noodles, cream, fish, carrot	1112.68	21	Veg
-FoodC_661CC	tomato, spinach, cream, oregano	642.3	11	Dessert
-FoodC_WG2PR	potato, mushroom, cheese, garlic	1182.77	19	Combo
-FoodC_11Z45	broccoli, spinach, paneer, yogurt	232.91	40	Main Course
-FoodC_0HB4Y	chicken, basil, butter, broccoli	169.4	27	Starter
-FoodC_1VXNU	onion, beef, carrot, flour	233.69	44	Non-Veg
-FoodC_95NVM	garlic, milk, broccoli, potato	244.15	24	Main Course
-FoodC_BAYM6	egg, spinach, yogurt, potato	1115.5	31	Starter
-FoodC_HI0D9	tomato, butter, beef, yogurt	170.55	29	Dessert
-FoodC_0ZLTB	chicken, butter, fish, milk	602.15	30	Veg
-FoodC_A23PW	potato, fish, paneer, capsicum	1098.49	22	Beverage
-FoodC_9FLYT	rice, broccoli, pepper, beef	345.68	21	Veg
-FoodC_525YQ	chicken, garlic, beef, butter	788.63	16	Dessert
-FoodC_VVZK8	egg, beef, cream, milk	1122.83	29	Combo
-FoodC_I91UM	cheese, broccoli, fish, mushroom	432.11	24	Combo
-FoodC_MC1X5	tomato, basil, butter, yogurt	722.03	24	Non-Veg
-FoodC_8LQ7Z	oregano, tomato, chicken, paneer	1132.09	31	Dessert
-FoodC_LCCT4	garlic, rice, onion, corn	222.64	20	Starter
-FoodC_2X0HX	broccoli, flour, yogurt, butter	487.19	19	Beverage
-FoodC_IKKDL	oregano, carrot, lentils, paneer	568.93	31	Starter
-FoodC_FYSMB	basil, noodles, broccoli, yogurt	622.63	9	Combo
-FoodC_4KXZY	yogurt, basil, spinach, onion	443.82	36	Non-Veg
-FoodC_A0IXM	broccoli, milk, onion, butter	321.51	8	Main Course
-FoodC_CVNFZ	yogurt, butter, corn, flour	779.67	36	Non-Veg
-FoodC_V7SOH	broccoli, rice, yogurt, onion	686.67	5	Starter
-FoodC_6S67Z	rice, mushroom, spinach, milk	752.33	44	Starter
-FoodC_FRJRQ	mushroom, lentils, yogurt, butter	286.6	36	Non-Veg
-FoodC_P0Q9R	cream, pepper, chicken, butter	1065.69	23	Dessert
-FoodC_ICU8K	basil, fish, egg, garlic	1083.91	31	Combo
-FoodC_RQPWH	mushroom, egg, paneer, beef	390.83	30	Main Course
+Spicy Cheese Corn Balls,"spinach, paneer, cream, garlic",100.04,35,Main Course
+Classic Chicken Korma,"chicken, butter, cream, tomato, spices",631.98,44,Non-Veg
+Veg Samosa,"fish, tomato, onion, spices",148.64,42,Main Course
+Creamy Chicken Korma,"okra, onion, tomato, garlic",341.52,14,Beverage
+Tandoori Paneer Tikka,"paneer, butter, cream, tomato, onion",160.06,34,Combo
+Spicy Veg Pulao,"noodles, vegetables, soy sauce",253.51,40,Veg
+Classic Hara Bhara Kebab,"chicken, butter, cream, tomato, spices",430.07,19,Starter
+Chicken Tikka,"okra, onion, tomato, garlic",616.91,6,Non-Veg
+Classic Veg Samosa,"rice, yogurt, spices, saffron",316.01,21,Combo
+Spicy Dal Makhani,"paneer, butter, cream, tomato, onion",384.64,42,Starter
+Special Hara Bhara Kebab,"egg, onion, tomato, spices",410.74,7,Combo
+Tandoori Hara Bhara Kebab,"chicken, rice, yogurt, spices",312.48,6,Starter
+Special Gajar Halwa,"lentils, butter, cream, tomato",637.71,27,Dessert
+Creamy Veg Samosa,"chicken, butter, cream, tomato, spices",293.45,40,Beverage
+Creamy Aloo Gobi,"flour, garlic, butter",285.54,14,Beverage
+Tandoori Veg Thali,"fish, tomato, onion, spices",383.09,20,Combo
+Gulab Jamun,"chicken, butter, cream, tomato, spices",603.1,15,Dessert
+Onion Bhaji,"flour, garlic, butter",603.0,22,Combo
+Tandoori Papdi Chaat,"mango, yogurt, sugar",374.16,13,Veg
+Creamy Gajar Halwa,"mushroom, capsicum, onion, garlic",454.34,34,Dessert
+Special Palak Paneer,"rice, yogurt, spices, saffron",555.12,34,Combo
+Special Non-Veg Thali,"mushroom, capsicum, onion, garlic",133.57,45,Combo
+Tandoori Veg Pulao,"mango, yogurt, sugar",186.07,34,Main Course
+Special Veg Thali,"flour, garlic, butter",617.13,14,Combo
+Tandoori Chicken Vindaloo,"milk, sugar, rose water",463.51,11,Non-Veg
+Mushroom 65,"chicken, rice, yogurt, spices",230.42,20,Beverage
+Spicy Fresh Lime Water,"okra, onion, tomato, garlic",634.98,23,Non-Veg
+Spicy Lemon Soda,"noodles, vegetables, soy sauce",285.33,14,Beverage
+Veg Thali,"rice, yogurt, spices, saffron",387.67,23,Combo
+Chicken Malai Tikka,"potato, cauliflower, spices",258.68,17,Starter
+Special Chicken Tikka Masala,"chicken, butter, cream, tomato, spices",515.18,8,Non-Veg
+Classic Mushroom 65,"okra, onion, tomato, garlic",608.26,8,Combo
+Tandoori Masala Chai,"mushroom, capsicum, onion, garlic",235.46,15,Beverage
+Special Hara Bhara Kebab,"rice, yogurt, spices, saffron",325.5,23,Beverage
+Classic Green Tea,"potato, cauliflower, spices",472.4,19,Beverage
+Tandoori Egg Curry,"potato, cauliflower, spices",490.03,33,Non-Veg
+Classic Tandoori Platter,"noodles, vegetables, soy sauce",338.91,13,Combo
+Special Mix Veg,"mushroom, capsicum, onion, garlic",401.72,32,Non-Veg
+Tandoori Mini Thali,"rice, yogurt, spices, saffron",105.05,23,Combo
+Special Dal Makhani,"rice, yogurt, spices, saffron",360.34,5,Non-Veg
+Hara Bhara Kebab,"chicken, rice, yogurt, spices",279.99,5,Veg
+Tandoori Gajar Halwa,"okra, onion, tomato, garlic",625.5,35,Dessert
+Tandoori Kadai Paneer,"paneer, butter, cream, tomato, onion",114.23,26,Dessert
+Special Aloo Jeera,"noodles, vegetables, soy sauce",288.22,7,Main Course
+Special Green Tea,"chicken, butter, cream, tomato, spices",304.44,7,Beverage
+Special Chicken Vindaloo,"mango, yogurt, sugar",263.04,25,Beverage
+Rose Milk,"chicken, butter, cream, tomato, spices",363.76,42,Beverage
+Tandoori Palak Paneer,"noodles, vegetables, soy sauce",362.21,22,Beverage
+Tandoori Jalebi,"egg, onion, tomato, spices",232.23,21,Dessert
+Special Aloo Jeera,"chicken, butter, cream, tomato, spices",558.55,19,Beverage
+Classic Fruit Custard,"chicken, rice, yogurt, spices",399.34,12,Main Course
+Spicy Mutton Rogan Josh,"chicken, rice, yogurt, spices",318.33,41,Main Course
+Spicy Cheese Corn Balls,"spinach, paneer, cream, garlic",100.04,35,Main Course
+Classic Chicken Korma,"chicken, butter, cream, tomato, spices",631.98,44,Non-Veg
+Veg Samosa,"fish, tomato, onion, spices",148.64,42,Main Course
+Creamy Chicken Korma,"okra, onion, tomato, garlic",341.52,14,Beverage
+Tandoori Paneer Tikka,"paneer, butter, cream, tomato, onion",160.06,34,Combo
+Spicy Veg Pulao,"noodles, vegetables, soy sauce",253.51,40,Veg
+Classic Hara Bhara Kebab,"chicken, butter, cream, tomato, spices",430.07,19,Starter
+Chicken Tikka,"okra, onion, tomato, garlic",616.91,6,Non-Veg
+Classic Veg Samosa,"rice, yogurt, spices, saffron",316.01,21,Combo
+Spicy Dal Makhani,"paneer, butter, cream, tomato, onion",384  .64,42,Starter
+Special Hara Bhara Kebab,"egg, onion, tomato, spices",410.74,7,Combo
+Tandoori Hara Bhara Kebab,"chicken, rice, yogurt, spices",  312.48,6,Starter                    
+Special Gajar Halwa,"lentils, butter, cream, tomato",637.71,27,Dessert
+Creamy Veg Samosa,"chicken, butter, cream, tomato, spices",293.45,40,Beverage
+Creamy Aloo Gobi,"flour, garlic, butter",285.54,14,Beverage
+Tandoori Veg Thali,"fish, tomato, onion, spices",383.09,20,Combo
+Gulab Jamun,"chicken, butter, cream, tomato, spices",603.1,15,Dessert
+Onion Bhaji,"flour, garlic, butter",603.0,22,Combo   
+Tandoori Papdi Chaat,"mango, yogurt, sugar",374.16,13,Veg
+Creamy Gajar Halwa,"mushroom, capsicum, onion, garlic",454  .34,34,Dessert
+Special Palak Paneer,"rice, yogurt, spices, saffron",555.12,34,Combo
+Special Non-Veg Thali,"mushroom, capsicum, onion, garlic",133.57,45,Combo
+Tandoori Veg Pulao,"mango, yogurt, sugar",186.07,34,Main Course
+Special Veg Thali,"flour, garlic, butter",617.13,14,Combo
+Tandoori Chicken Vindaloo,"milk, sugar, rose water",463.51,11,Non-Veg
+Mushroom 65,"chicken, rice, yogurt, spices",230.42,20,Beverage
+Spicy Fresh Lime Water,"okra, onion, tomato, garlic",634.98,23,Non-Veg
+Spicy Lemon Soda,"noodles, vegetables, soy sauce",285.33,14,Beverage
+Veg Thali,"rice, yogurt, spices, saffron",387.67,23,Combo
+Chicken Malai Tikka,"potato, cauliflower, spices",258.68,17,Starter
+Special Chicken Tikka Masala,"chicken, butter, cream, tomato, spices",515.18,8,Non-Veg
+Classic Mushroom 65,"okra, onion, tomato, garlic",608.26,8,Combo
+Tandoori Masala Chai,"mushroom, capsicum, onion, garlic",235.46,15,Beverage
+Special Hara Bhara Kebab,"rice, yogurt, spices, saffron",325.5,23,Beverage
+Classic Green Tea,"potato, cauliflower, spices",472.4,19,Beverage
+Tandoori Egg Curry,"potato, cauliflower, spices",490.03,33,Non-Veg
+Classic Tandoori Platter,"noodles, vegetables, soy sauce",338.91,13,Combo
+Special Mix Veg,"mushroom, capsicum, onion, garlic",401.72,32,Non-Veg
+Tandoori Mini Thali,"rice, yogurt, spices, saffron",105.05,23,Combo
+Special Dal Makhani,"rice, yogurt, spices, saffron",360.34,5,Non-Veg
+Hara Bhara Kebab,"chicken, rice, yogurt, spices",279.99,5,Veg
+Tandoori Gajar Halwa,"okra, onion, tomato, garlic",625.5,35,Dessert
+Tandoori Kadai Paneer,"paneer, butter, cream, tomato, onion",114.23,26,Dessert
+Special Aloo Jeera,"noodles, vegetables, soy sauce",288.22,7,Main Course
+Special Green Tea,"chicken, butter, cream, tomato, spices",304.44,7,Beverage
+Special Chicken Vindaloo,"mango, yogurt, sugar",263.04,25,Beverage
+Rose Milk,"chicken, butter, cream, tomato, spices",363.76,42,Beverage
+Tandoori Palak Paneer,"noodles, vegetables, soy sauce",362.21,22,Beverage
+Tandoori Jalebi,"egg, onion, tomato, spices",232.23,21,Dessert
+Special Aloo Jeera,"chicken, butter, cream, tomato, spices",558.55,19,Beverage
+Classic Fruit Custard,"chicken, rice, yogurt, spices",399.34,12,Main Course
+Spicy Mutton Rogan Josh,"chicken, rice, yogurt, spices",318.33,41,Main Course
+Butter Milk,"egg, spices, rice",191.31,17,Beverage
+Chana Masala,"egg, paneer, garlic, noodles, spinach",621.03,9,Veg
+Dal Tadka,"cashew, yogurt, lentils",442.92,20,Veg
+Badam Halwa,"okra, rice, tomato, mango, sugar",448.38,38,Dessert
+Aloo Gobi,"potato, mango, cashew, butter, paneer, noodles",348.11,19,Veg
+Aloo Gobi,"sugar, yogurt, paneer, rice",204.13,17,Veg
+Fruit Custard,"cashew, rose water, noodles, paneer, garlic, chicken",527.71,42,Dessert
+Lemon Soda,"cream, garlic, rose water",358.55,5,Beverage
+Dinner Special,"milk, onion",151.29,22,Combo
+Fish Amritsari,"paneer, spinach, cashew",379.67,5,Non-Veg
+Lemon Soda,"egg, chicken, spices, okra, onion, lentils",289.73,17,Beverage
+Paneer Tikka,"rose water, butter, fish, capsicum, garlic, onion",442.19,44,Starter
+Ras Malai,"milk, spices, lentils",114.7,31,Dessert
+Mutton Rogan Josh,"capsicum, garlic, potato",218.26,30,Non-Veg
+Badam Halwa,"spices, mushroom, garlic, rice",351.58,15,Dessert
+Cold Coffee,"paneer, egg, milk, noodles, mushroom, potato",631.15,33,Beverage
+Fish Amritsari,"butter, lentils, sugar",88.77,7,Non-Veg
+Jalebi,"paneer, cauliflower, chicken, yogurt",412.99,23,Dessert
+Ras Malai,"chicken, cream",87.49,16,Dessert
+Badam Milk,"mushroom, butter, yogurt, cream, sugar",197.71,18,Beverage
+Family Combo,"noodles, flour, rice, capsicum",479.86,35,Combo
+Butter Milk,"garlic, onion, sugar, butter",142.36,34,Beverage
+Tandoori Platter,"fish, okra, rice",314.17,15,Combo
+Vegetable Korma,"paneer, spinach, noodles, mango, cauliflower",346.42,25,Veg
+Green Tea,"yogurt, rice, capsicum, garlic, rose water",535.62,20,Beverage
+Mushroom Masala,"cashew, milk, garlic, capsicum",648.93,25,Veg
+Fresh Lime Water,"noodles, paneer",546.24,27,Beverage
+Mushroom Masala,"cashew, cream, spices, mushroom, lentils",253.52,22,Veg
+Mushroom Masala,"egg, noodles, rose water, mushroom",499.32,19,Veg
+Papdi Chaat,"cream, sugar",174.48,42,Main Course
+Butter Chicken,"okra, paneer",617.0,37,Non-Veg
+Onion Bhaji,"garlic, mushroom, flour",466.71,40,Main Course
+Butter Chicken,"fish, milk, garlic, butter, cream",146.66,17,Non-Veg
+Methi Malai Paneer,"butter, potato, lentils, yogurt, cashew",435.96,31,Veg
+Aloo Jeera,"cauliflower, flour, spices, tomato",341.53,20,Veg
+Chicken Biryani,"mushroom, sugar",423.66,12,Non-Veg
+Veg Thali,"tomato, cauliflower",413.96,42,Veg
+Gulab Jamun,"butter, sugar, lentils, potato, onion, chicken",469.75,18,Dessert
+Papdi Chaat,"butter, egg, rose water, cauliflower, cream, onion",372.04,14,Main Course
+Prawn Masala,"paneer, mango, garlic",512.06,9,Non-Veg
+Mango Kulfi,"mango, spinach, onion, noodles, cashew",519.08,17,Dessert
+Jeera Rice,"sugar, okra, paneer, mango, flour, capsicum",231.31,17,Main Course
+Egg Curry,"capsicum, cream, fish, garlic, tomato, mushroom",106.77,30,Non-Veg
+Fresh Lime Water,"capsicum, flour, tomato",86.56,16,Beverage
+Mix Veg,"flour, rose water",117.44,37,Veg
+Mutton Rogan Josh,"chicken, onion",585.25,15,Non-Veg
+Fresh Lime Water,"flour, lentils, yogurt",386.35,28,Beverage
+Kadai Paneer,"onion, noodles, capsicum",181.67,22,Veg
+Dal Tadka,"sugar, noodles, milk, yogurt, chicken, butter",591.56,26,Veg
+Chicken Tikka,"potato, rice, garlic, capsicum",268.47,13,Non-Veg
+Mango Kulfi,"yogurt, spices",289.25,9,Dessert
+Egg Curry,"okra, cream, mushroom, tomato",639.48,34,Non-Veg
+Ras Malai,"rice, capsicum, paneer, spices",331.05,34,Dessert
+Jeera Rice,"onion, fish",186.61,44,Main Course
+Veg Samosa,"sugar, milk, cashew, spinach, paneer, yogurt",230.75,5,Veg
+Chicken 65,"egg, tomato, spinach, milk, sugar, cauliflower",594.92,29,Non-Veg
+Paneer Pakora,"okra, yogurt, mushroom, garlic, rice, chicken",406.74,33,Veg
+Paneer Do Pyaza,"egg, fish, capsicum, potato, garlic",255.37,15,Veg
+Hara Bhara Kebab,"tomato, capsicum",510.03,14,Main Course
+Fresh Lime Water,"capsicum, sugar",197.51,42,Beverage
+Mango Kulfi,"rice, cashew",296.3,11,Dessert
+Dal Tadka,"fish, noodles, rice, egg, spices, flour",357.32,21,Veg
+Chicken Biryani,"fish, okra",314.35,9,Non-Veg
+Chicken Tikka Masala,"egg, rice, lentils, tomato, mushroom, paneer",503.95,35,Non-Veg
+Dal Makhani,"cashew, rice, tomato, fish, sugar",485.13,38,Veg
+Aloo Jeera,"fish, cashew",223.58,16,Veg
+Paneer Do Pyaza,"noodles, sugar",247.6,16,Veg
+Cheese Corn Balls,"butter, mushroom, chicken, rice",322.31,31,Main Course
+Fresh Lime Water,"rice, onion",460.33,41,Beverage
+Mini Thali,"spices, cauliflower, tomato, capsicum, yogurt",410.47,26,Combo
+Mix Veg,"chicken, cauliflower, rice",494.89,32,Veg
+Chana Masala,"egg, chicken, spices, rice, mango, cashew",617.34,24,Veg
+Hot Coffee,"yogurt, egg, lentils, cauliflower, okra, garlic",323.88,11,Beverage
+Methi Malai Paneer,"butter, garlic",637.74,18,Veg
+Papdi Chaat,"milk, mango",567.93,35,Main Course
+Jeera Rice,"spices, garlic, okra, potato, spinach, butter",329.15,26,Main Course
+Paneer Tikka,"egg, fish, cream, yogurt",494.31,24,Starter
+Non-Veg Thali,"capsicum, rice, fish, butter, cashew, chicken",248.93,12,Veg
+Cold Coffee,"cream, egg, rose water",613.1,34,Beverage
+Fish Curry,"okra, capsicum",133.04,17,Non-Veg
+Chana Masala,"mushroom, yogurt, spices, potato, milk",347.33,22,Veg
+Rice Pudding,"okra, cashew, spinach, mango",513.3,16,Main Course
+Mini Thali,"spices, fish, noodles, sugar, egg",374.66,20,Combo
+Prawn Masala,"mango, noodles",582.35,8,Non-Veg
+Chocolate Brownie,"spices, garlic, lentils",401.98,29,Dessert
+Butter Chicken,"okra, capsicum",649.78,44,Non-Veg
+Malai Kofta,"okra, cashew, rose water, lentils",522.94,23,Main Course
+Jeera Rice,"mango, spices, garlic, egg, mushroom, cashew",446.8,15,Main Course
+Chicken Biryani,"chicken, rose water, onion, yogurt, paneer, rice",309.03,32,Non-Veg
+Chicken 65,"okra, chicken, paneer, capsicum",558.53,26,Non-Veg
+Palak Paneer,"capsicum, cauliflower, egg, fish",194.83,6,Veg
+Kheer,"spinach, sugar",210.45,23,Dessert
+Veg Samosa,"spinach, okra, yogurt, mango",241.89,18,Veg
+Ras Malai,"chicken, yogurt",196.3,34,Dessert
+Tandoori Chicken,"noodles, milk, flour, onion, capsicum, rice",127.51,25,Non-Veg
+Papdi Chaat,"sugar, spinach, potato, flour, mushroom, cream",594.66,38,Main Course
+Chilli Paneer,"cashew, mango, okra, potato, mushroom, butter",448.79,26,Veg
+Mushroom 65,"fish, okra, spices, lentils, onion",556.96,25,Veg
+Malai Kofta,"milk, onion, butter, potato, cashew, egg",430.45,7,Main Course
+Green Tea,"cream, flour, rose water",579.73,6,Beverage
+Mutton Rogan Josh,"mango, cauliflower, yogurt, spinach, potato",181.12,20,Non-Veg
+Fruit Custard,"cauliflower, chicken, cream, spices, paneer",633.48,12,Dessert
+Mango Kulfi,"cashew, flour, okra, milk, rice, paneer",398.72,12,Dessert
+Aloo Jeera,"mushroom, onion, capsicum, paneer",516.17,27,Veg
+Chana Masala,"noodles, tomato, okra, chicken, paneer",405.56,12,Veg
+Fish Amritsari,"spices, potato, fish, rice, tomato",522.99,6,Non-Veg
+Dinner Special,"cauliflower, rice, garlic, fish, mango",603.93,27,Combo
+Mini Thali,"rice, rose water",396.88,8,Combo
+Palak Paneer,"butter, cauliflower, potato",131.55,22,Veg
+Tandoori Platter,"mushroom, spices, spinach, butter",529.15,24,Combo
+Chana Masala,"rose water, spinach, yogurt, mushroom",114.26,31,Veg
+Veg Thali,"spinach, milk",630.89,29,Veg
+Cheese Corn Balls,"cauliflower, cashew, lentils",303.89,5,Main Course
+Chicken Tikka,"rice, chicken",459.3,32,Non-Veg
+Cheese Corn Balls,"mushroom, spinach, fish, yogurt, rice",336.49,37,Main Course
+Methi Malai Paneer,"egg, paneer, fish, mushroom",647.37,42,Veg
+Chicken Tikka,"sugar, potato, chicken",328.66,20,Non-Veg
+Chicken Vindaloo,"mushroom, cream, chicken, capsicum, mango",486.89,29,Non-Veg
+Fish Curry,"mushroom, paneer, spinach, rose water, egg",640.85,9,Non-Veg
+Masala Chai,"sugar, paneer, noodles, mushroom, potato, chicken",399.0,10,Beverage
+Jalebi,"noodles, spices, onion, fish, tomato",173.1,42,Dessert
+Palak Paneer,"lentils, paneer, cauliflower, potato",364.96,12,Veg
+Chicken 65,"rice, capsicum, flour",459.03,28,Non-Veg
+Vegetable Korma,"egg, spices, spinach, okra",182.09,9,Veg
+Paneer Tikka,"cream, mushroom, butter, flour, egg",457.55,21,Starter
+Fruit Custard,"butter, tomato, mango, mushroom",521.47,38,Dessert
+Tandoori Chicken,"cauliflower, sugar, mushroom, cream",135.97,29,Non-Veg
+Dal Makhani,"tomato, flour, mushroom, spinach, capsicum",352.0,16,Veg
+Dinner Special,"cream, fish, rice, noodles",250.01,29,Combo
+Gulab Jamun,"milk, spinach, cashew, okra",638.21,10,Dessert
+Veg Thali,"mango, lentils, onion",377.29,29,Veg
+Palak Paneer,"mushroom, rose water",323.36,20,Veg
+Papdi Chaat,"chicken, paneer, mango, yogurt",106.0,35,Main Course
+Rose Milk,"flour, garlic, okra",391.57,17,Beverage
+Bhindi Masala,"rice, onion, spices",112.36,11,Veg
+Fish Amritsari,"tomato, capsicum, garlic",287.7,6,Non-Veg
+Mini Thali,"spices, chicken",238.92,28,Combo
+Fish Amritsari,"butter, spices, cashew, fish, potato, lentils",579.7,21,Non-Veg
+Kheer,"potato, lentils, chicken, mango",625.03,6,Dessert
+Kadai Paneer,"rice, paneer, cashew",580.43,15,Veg
+Onion Bhaji,"mushroom, mango, capsicum",201.76,11,Main Course
+Fresh Lime Water,"sugar, butter",561.71,19,Beverage
+Veg Samosa,"butter, mango, yogurt, onion",463.13,28,Veg
+Fish Amritsari,"egg, cauliflower, rice, tomato, garlic, rose water",374.92,8,Non-Veg
+Shahi Paneer,"tomato, butter",329.33,18,Veg
+Tandoori Chicken,"butter, mushroom, spinach, milk",612.26,10,Non-Veg
+Egg Curry,"paneer, spices",532.22,40,Non-Veg
+Butter Chicken,"mango, paneer",445.02,13,Non-Veg
+Rose Milk,"spices, onion, egg, okra",575.32,34,Beverage
+Malai Kofta,"potato, okra, garlic",280.25,21,Main Course
+Ras Malai,"rice, mushroom, cashew, okra, chicken",117.07,12,Dessert
+Veg Samosa,"rice, cashew, potato",120.04,11,Veg
+Cheese Corn Balls,"yogurt, okra, rose water, mushroom",121.52,21,Main Course
+Gajar Halwa,"rice, cauliflower, fish, flour, mushroom",223.11,34,Dessert
+Prawn Masala,"mushroom, potato",322.73,39,Non-Veg
+Chicken 65,"garlic, spices, cream, fish, lentils, spinach",173.0,26,Non-Veg
+Rice Pudding,"cashew, noodles, tomato, yogurt",100.0,31,Main Course
+Hara Bhara Kebab,"rose water, egg, cauliflower, tomato, capsicum, okra",349.95,13,Main Course
+Fish Amritsari,"rice, lentils, flour, paneer, milk",519.05,39,Non-Veg
+Bhindi Masala,"spices, noodles",253.82,33,Veg
+Dal Tadka,"garlic, flour, egg, sugar, rose water, paneer",182.83,28,Veg
+Family Combo,"spices, cashew",133.18,35,Combo
+Mutton Rogan Josh,"cauliflower, lentils, cream",250.91,13,Non-Veg
+Dal Makhani,"tomato, noodles",365.57,27,Veg
+Mango Kulfi,"egg, noodles, chicken, butter, mushroom",295.33,17,Dessert
+Mutton Rogan Josh,"noodles, okra, rice",85.32,23,Non-Veg
+Lemon Soda,"yogurt, spinach, paneer, cashew, fish",335.8,9,Beverage
+Mushroom 65,"yogurt, lentils",632.06,28,Veg
+Executive Lunch,"cream, milk, butter, sugar, garlic",642.0,45,Combo
+Jalebi,"paneer, rose water, sugar",503.47,14,Dessert
+Butter Milk,"cauliflower, sugar",514.96,45,Beverage
+Cheese Corn Balls,"cauliflower, cashew, lentils",303.89,5,Main Course
+Chocolate Brownie,"mushroom, spinach, flour",440.58,5,Dessert
+Hara Bhara Kebab,"milk, butter, chicken",284.05,40,Main Course
+Paneer Butter Masala,"lentils, spices, mango",512.72,29,Veg
+Ras Malai,"sugar, rice",613.86,18,Dessert
+Lemon Soda,"spices, fish, noodles, mango, rose water",440.21,9,Beverage
+Aloo Jeera,"onion, cream, egg, fish",489.02,28,Veg
+Onion Bhaji,"okra, noodles, paneer, tomato",140.29,43,Main Course
+Butter Chicken,"okra, capsicum, sugar",380.55,41,Non-Veg
+Paneer Do Pyaza,"flour, tomato",109.36,20,Veg
+Mango Lassi,"rice, flour, chicken, fish",138.82,25,Beverage
+Tandoori Chicken,"potato, milk",428.06,36,Non-Veg
+Veg Samosa,"noodles, sugar, butter, capsicum, yogurt",218.18,14,Veg
+Aloo Gobi,"capsicum, cream, onion, egg, rice",624.83,17,Veg
+Palak Paneer,"yogurt, lentils, cashew, onion",250.76,10,Veg
+Kheer,"potato, fish, sugar, rose water",293.71,38,Dessert
+Hara Bhara Kebab,"butter, milk, lentils, spices, cashew, sugar",522.29,29,Main Course
+Mutton Rogan Josh,"noodles, okra, rice",85.32,23,Non-Veg
+Lemon Soda,"yogurt, spinach, paneer, cashew, fish",335.8,9,Beverage
+Mushroom 65,"yogurt, lentils",632.06,28,Veg
+Executive Lunch,"cream, milk, butter, sugar, garlic",642.0,45,Combo
+Jalebi,"paneer, rose water, sugar",503.47,14,Dessert
+Butter Milk,"cauliflower, sugar",514.96,45,Beverage
+Cheese Corn Balls,"cauliflower, cashew, lentils",303.89,5,Main Course
+Chocolate Brownie,"mushroom, spinach, flour",440.58,5,Dessert
+Hara Bhara Kebab,"milk, butter, chicken",284.05,40,Main Course
+Paneer Butter Masala,"lentils, spices, mango",512.72,29,Veg
+Ras Malai,"sugar, rice",613.86,18,Dessert
+Lemon Soda,"spices, fish, noodles, mango, rose water",440.21,9,Beverage
+Aloo Jeera,"onion, cream, egg, fish",489.02,28,Veg
+Onion Bhaji,"okra, noodles, paneer, tomato",140.29,43,Main Course
+Butter Chicken,"okra, capsicum, sugar",380.55,41,Non-Veg
+Paneer Do Pyaza,"flour, tomato",109.36,20,Veg
+Mango Lassi,"rice, flour, chicken, fish",138.82,25,Beverage
+Tandoori Chicken,"potato, milk",428.06,36,Non-Veg
+Veg Samosa,"noodles, sugar, butter, capsicum, yogurt",218.18,14,Veg
+Aloo Gobi,"capsicum, cream, onion, egg, rice",624.83,17,Veg
+Palak Paneer,"yogurt, lentils, cashew, onion",250.76,10,Veg
+Kheer,"potato, fish, sugar, rose water",293.71,38,Dessert
+Hara Bhara Kebab,"butter, milk, lentils, spices, cashew, sugar",522.29,29,Main Course
+Mutton Rogan Josh,"noodles, okra, rice",85.32,23,Non-Veg
+Lemon Soda,"yogurt, spinach, paneer, cashew, fish",335.8,9,Beverage
+Mushroom 65,"yogurt, lentils",632.06,28,Veg
+Executive Lunch,"cream, milk, butter, sugar, garlic",642.0,45,Combo
+Jalebi,"paneer, rose water, sugar",503.47,14,Dessert
+Butter Milk,"cauliflower, sugar",514.96,45,Beverage
+Cheese Corn Balls,"cauliflower, cashew, lentils",303.89,5,Main Course
+Chocolate Brownie,"mushroom, spinach, flour",440.58,5,Dessert
+Hara Bhara Kebab,"milk, butter, chicken",284.05,40,Main Course
+Paneer Butter Masala,"lentils, spices, mango",512.72,29,Veg
+Ras Malai,"sugar, rice",613.86,18,Dessert
+Lemon Soda,"spices, fish, noodles, mango, rose water",440.21,9,Beverage
+Aloo Jeera,"onion, cream, egg, fish",489.02,28,Veg
+Onion Bhaji,"okra, noodles, paneer, tomato",140.29,43,Main Course
+Butter Chicken,"okra, capsicum, sugar",380.55,41,Non-Veg
+Paneer Do Pyaza,"flour, tomato",109.36,20,Veg
+Mango Lassi,"rice, flour, chicken, fish",138.82,25,Beverage
+Tandoori Chicken,"potato, milk",428.06,36,Non-Veg
+Veg Samosa,"noodles, sugar, butter, capsicum, yogurt",218.18,14,Veg
+Aloo Gobi,"capsicum, cream, onion, egg, rice",624.83,17,Veg
+Palak Paneer,"yogurt, lentils, cashew, onion",250.76,10,Veg
+Kheer,"potato, fish, sugar, rose water",293.71,38,Dessert
+Hara Bhara Kebab,"butter, milk, lentils, spices, cashew, sugar",522.29,29,Main Course
+Fresh Lime Water,"qubani ka meetha, star anise, strawberry, paneer bhurji, besan",123.8,12,Veg
+Pongal,"lucknowi biryani, lemon, syrup, semolina",301.62,13,Veg
+Goan Achari Tikka,"oats, turmeric, dum biryani, coriander leaves, pomegranate",353.73,32,Veg
+Aromatic Non-Veg Thali,"star anise, paratha, pachadi, cashew",375.54,38,Veg
+Uttapam,"asafoetida, naan, cheddar, elaichi, paratha, milk",420.06,23,Veg
+Gobi Paratha,"tehari, pasta, strawberry",286.36,15,Veg
+Lunch Special,"broccoli, rasam, ragi idli, milk, double ka meetha",544.63,45,Veg
+Mango Lassi,"balushahi, orange blossom water, corn, qubani ka meetha",516.3,28,Veg
+Paneer Korma,"ghee rice, veg biryani, khoya",583.77,47,Veg
+Paneer Butter Masala,"flour, vermicelli, kaalan, tomato rice, orange blossom water, black pepper",156.6,15,Veg
+Fragrant Hariyali Paneer,"malai, kidney beans, sugar, chakli, noodles",685.82,10,Veg
+Green Tea,"mutton biryani, broccoli, bisi bele bath, moru curry, asafoetida, okra",355.96,42,Veg
+Badam Halwa,"poornam, imarti, kichadi, dindigul biryani",358.82,32,Veg
+Daily Ice Cream,"kewra water, cornflour, green gram",67.15,32,Veg
+Chaas,"chicken biryani, custard powder, coconut rice, noodles, sheera",373.02,23,Veg
+Claypot Seekh Kebab,"patisa, flour, coconut rice, cinnamon, meat masala",316.33,38,Veg
+Gulab Jamun with Ice Cream,"lentil, cashew, malai, curd rice, cabbage, garlic, sambar powder",495.3,36,Veg
+Pista Kulfi,"patisa, oil, sheera, puttu, tamarind, rice",55.76,42,Veg
+Gujarati Tangri Kebab,"chole masala, custard powder, lemon, dindigul biryani, chickpea",569.19,7,Veg
+Amritsari Kachori,"byadgi chilli, coconut milk, white pepper, oats, pulissery, pineapple",466.55,50,Veg
+Kofta Chicken Vindaloo,"tahari, sambar, green gram, sesame seeds",695.88,15,Veg
+Thali,"rabri, onion, mezhukkupuratti, chole masala",666.97,16,Veg
+Golden Aloo Tikki,"modak, soy sauce, pasta, biryani masala, almond, pumpkin, neer dosa",266.17,45,Veg
+Lababdar Malai Kulfi,"bottle gourd, lotus seeds, naan, spring onion, biryani rice, green chilli, tea",368.66,26,Veg
+Makhani Dal Tadka,"pulissery, fenugreek, murukku, grapes",260.54,33,Veg
+Paneer Pasanda,"cardamom, arrowroot, seitan, murukku, meat masala, khoya, paneer",372.12,7,Veg
+Fish Tikka,"soy chunks, tahari, chakli, mozzarella, kashmiri pulao, white pepper",532.82,49,Non-Veg
+Crispy Dal Tadka,"puran poli, pasta, agar agar, tamarind, lime, biryani rice, capsicum",300.25,41,Veg
+Shami Kebab,"lemon rice, mughlai biryani, ambur biryani, tomato, memoni biryani",650.5,24,Veg
+Kulfi,"coriander leaves, puran poli, green chilli, murukku, cheese, barfi, ragi idli",396.31,40,Veg
+Fresh Lime Water,"paratha, ambur biryani, mughlai biryani, avial",666.5,29,Veg
+Aloo Tikki,"payasam, capsicum, prawn, chhena, thatte idli",294.88,21,Veg
+Classic Falooda,"puliyogare, cauliflower, eggplant",367.62,44,Veg
+Chicken Manchurian,"poriyal, hyderabadi biryani, patisa, bhatkali biryani, imarti",454.75,35,Non-Veg
+Garlic Paneer Pasanda,"quinoa, mushroom, jaggery, tomato, mustard seeds, arrowroot, sheera",80.71,43,Veg
+Bhuna Veg Pulao,"rice, celery, lime, soya granules, coriander leaves, pumpkin, vangi bath",336.78,6,Veg
+Chicken Vindaloo,"garlic, cornflour, double ka meetha, imarti, bombay biryani, payasam, carrot",288.51,49,Veg
+Aloo Palak,"kichadi, tomato, egg",174.62,12,Veg
+Peshawari Prawn Masala,"lime, vinegar, grapes",240.12,33,Non-Veg
+Coffee,"chicken masala, rabri, custard powder, cardamom, kichadi, cheese, sona masoori rice",225.26,22,Veg
+Coffee,"ragi idli, yogurt, celery, avial, mango, seeraga samba rice",90.07,24,Veg
+Madras Ras Malai,"raisin, tomato, basundi, appam, neer dosa, tofu, sambar powder",184.9,11,Veg
+Achari Fruit Custard,"sona masoori rice, mosaru anna, yogurt, arrowroot, spinach, tapioca, egg",236.07,32,Veg
+Party Pack,"flour, cream, tapioca, ladoo, awadhi biryani, yogurt",133.87,33,Veg
+Egg Curry,"cabbage, soy chunks, broccoli",125.7,26,Non-Veg
+Rajasthani Ras Malai,"cucumber, pachadi, sambar powder, halwa, vangi bath, coriander, chettinad biryani",560.06,29,Veg
+Kerala Fish Fry,"soy chunks, balushahi, sugar, sambar powder, curd rice",465.38,35,Non-Veg
+Gobi Manchurian,"red chilli, halwa, shankarpali, olan, black pepper",408.35,21,Veg
+Dal Bukhara,"tehari, red chilli powder, theeyal, byadgi chilli, javitri",133.95,35,Veg
+Fry Paneer Paratha,"bombay biryani, gelatin, onion, soan papdi, rabri, pineapple, cumin seeds",386.46,35,Veg
+Chicken Tikka Masala,"meat masala, paneer bhurji, kichadi, cream, red chilli, butter",250.38,29,Non-Veg
+Dahi Puri,"mushroom, lime, sona masoori rice, tea, kashmiri pulao, paneer, spring onion",308.72,42,Dessert
+Lucknowi Veg Handi,"bread, cabbage, beetroot",549.58,5,Veg
+Falooda,"sona masoori rice, sugar, almond, sea salt, balushahi",416.11,9,Veg
+Malai Kebab,"olan, ghee, jaiphal, chocolate, mosaru anna, dindigul biryani, sambar",513.23,11,Veg
+Aloo Gobi,"jeerakasala rice, balushahi, coconut milk, cashew, yogurt, soy sauce, rice",338.81,32,Veg
+Steamed Rice,"pomegranate, lemon, cream, sago",73.25,16,Veg
+Jeera Rice,"chicken, fish biryani, cucumber",443.73,16,Veg
+Rooh Afza,"pineapple, garlic, veg biryani, oil, cheddar",192.03,25,Starter
+Paneer Paratha,"malai, rasam powder, oats, red chilli, sesame seeds, awadhi biryani",415.02,8,Veg
+Roomali Roti,"soya granules, mezhukkupuratti, pomegranate, grapes, tamarind, lime, seitan",118.34,33,Veg
+Tandoori Platter,"carrot, chakli, tapioca, bobbatlu, soya granules, shankarpali",500.01,39,Veg
+Mumbai Pongal,"tehari, pink salt, mysore pak, ladoo",341.89,19,Veg
+Rasam,"tahari, eggplant, cauliflower, red chilli powder, sona masoori rice, poornam",698.37,44,Dessert
+Malai Kulfi,"javitri, basmati rice, hyderabadi biryani, flour, tapioca",436.28,41,Veg
+Chana Masala,"memoni biryani, prawn, meat masala, chettinad biryani, thayir sadam, egg, sambar powder",482.85,22,Main Course
+Soya Tikka,"banana, murukku, kitchen king masala, mustard seeds, soy chunks",453.65,10,Veg
+Chaas,"mutton, tehari, basmati rice",560.58,39,Veg
+Paneer Do Pyaza,"payasam, sea salt, pasta, byadgi chilli, oil",338.23,14,Veg
+Lababdar Dal Tadka,"jaggery, sambar powder, obbattu, vangi bath, fish masala",291.4,19,Veg
+Makhani Steamed Rice,"egg, ginger, almond",506.99,13,Veg
+Angara Palak Paneer,"sambar powder, balushahi, lemon rice, tomato",256.63,36,Veg
+Veg Handi,"black gram, rabri, curry leaves, paratha",448.85,32,Veg
+Paneer Korma,"poriyal, bombay biryani, sindhi biryani, milk",98.68,49,Veg
+Kashmiri Mango Lassi,"peda, ragi idli, mushroom, vangi bath, broccoli, grapes, oats",545.49,20,Veg
+Spicy Fruit Custard,"coconut rice, fenugreek, obbattu, basundi, chettinad biryani, murukku, malpua",59.2,23,Veg
+Fish Fry,"chhena, biryani rice, tea, curd rice, semolina",466.36,6,Non-Veg
+Fresh Fruit Custard,"saffron, soya granules, green chilli, olan",264.41,30,Veg
+Chilli Paneer,"meat masala, thoran, shrikhand",237.05,6,Veg
+Mango Kulfi,"pomegranate, seeraga samba rice, pulissery, halwa, curry leaves, besan",354.33,27,Veg
+Roti,"cheese, theeyal, kewra water, mustard oil, soy chunks",247.78,40,Veg
+Fruit Custard,"cumin, vermicelli, pasta, dum biryani, paratha, dry mango powder, almond",85.81,33,Veg
+Tangri Kebab,"mint leaves, custard powder, poppy seeds",68.59,33,Veg
+Vada Pav,"appam, beans, chettinad biryani, ghee rice, cumin seeds, sago, bay leaf",112.74,7,Veg
+Party Pack,"curry leaves, egg biryani, salt",428.67,19,Veg
+Falooda,"soya granules, yogurt, shrikhand, chole masala, lemon rice, orange, jaiphal",166.14,45,Veg
+Lunch Special,"mosaru anna, dindigul biryani, rice, shahi tukda, semolina, tomato",605.1,35,Veg
+Chana Masala,"khoya, peas, lettuce, melon seeds",420.51,40,Bread
+Angara Paratha,"green gram, theeyal, kidney beans, basmati rice",391.71,26,Veg
+Reshmi Kebab,"gujiya, khoya, basmati rice, puliyogare, kewra water, gelatin, cumin seeds",54.41,13,Veg
+Paneer Bhurji,"curd rice, chicken, pav bhaji masala, fenugreek, kewra water",669.12,8,Veg
+Chana Masala,"cinnamon, okra, malai",339.37,50,Non-Veg
+Rabri,"grapes, agar agar, eggplant, star anise",99.14,32,Veg
+Mutton Keema,"curry leaves, cornflour, kadala curry, black gram",516.17,43,Non-Veg
+Kashmiri Chicken Lababdar,"oats, dum biryani, chocolate, mustard seeds",472.9,42,Non-Veg
+Chilli Chicken,"mushroom, banana, pink salt, sea salt, kadala curry, ragi idli, cream",101.13,12,Non-Veg
+Prawn Curry,"mustard oil, tofu, ragi idli",308.01,18,Non-Veg
+Pongal,"olan, yogurt, milk",279.61,13,Veg
+Aloo Tikki,"kashmiri pulao, cardamom, pachadi, gelatin, cornflour, radish",122.21,46,Veg
+Sweet Lassi,"oats, meat masala, veg biryani, murukku, syrup",490.72,6,Veg
+Sambar,"tea, melon seeds, agar agar, egg biryani",258.91,49,Beverage
+Papdi Chaat,"cardamom, sambar, pomegranate, murukku, potato, kichadi",323.95,17,Veg
+Veg Jalfrezi,"yogurt, jeerakasala rice, mughlai biryani, dry mango powder",235.91,19,Veg
+Fresh Mini Thali,"chicken biryani, tofu, strawberry, rasam powder",469.66,23,Veg
+Tikka Lunch Special,"potato, cumin seeds, paneer, eggplant, tea",84.04,30,Veg
+Delhi Egg Bhurji,"javitri, payasam, agar agar, carrot, puliyogare, coffee",302.4,30,Non-Veg
+Sweet Dosa,"dum biryani, mushroom, peas pulao, ladoo, salt, fish biryani",207.58,40,Veg
+Classic Paneer Do Pyaza,"modak, karanji, ambur biryani, coriander leaves, yogurt, rose water, cumin seeds",300.48,14,Veg
+Veg Thali,"pomegranate, vangi bath, lime, naan, shahi tukda, broccoli",689.91,48,Veg
+Classic Aloo Tikki,"beans, star anise, paneer bhurji, lime, tomato rice, mustard oil",185.13,13,Veg
+Chicken 65,"carrot, pulissery, barfi, gelatin",644.1,27,Non-Veg
+Dhaba Egg Curry,"honey, double ka meetha, pav bhaji masala, zucchini, chocolate",510.05,43,Non-Veg
+Tandoori Roti,"modak, thoran, coriander, zucchini, avial, pink salt",376.24,27,Veg
+Crispy Butter Naan,"wheat, chickpea, gujiya, coriander leaves, onion, star anise, tempeh",569.36,38,Veg
+Idli,"puran poli, cashew, paneer bhurji, celery, modak, fish masala",260.51,43,Veg
+Sev Puri,"pineapple, lemon, holige, coconut milk, pachadi, thoran",581.98,39,Veg
+Desi Palak Paneer,"apple, kewra water, orange blossom water, sambar",221.21,14,Veg
+Tikka Sweet Lassi,"peas, soya granules, cashew, cumin seeds, paratha",576.46,38,Veg
+Mutton Korma,"pomegranate, karanji, coconut milk",215.91,48,Non-Veg
+Salted Lassi,"potato, flour, malpua, bottle gourd, lemon rice, kitchen king masala",197.16,11,Veg
+Special Thali,"carrot, qubani ka meetha, banana, chole masala",421.88,24,Veg
+Sweet Lassi,"pav bhaji masala, double ka meetha, cashew, zucchini, kashmiri chilli",271.23,36,Veg
+Kashmiri Prawn Curry,"rock salt, pulissery, roti, basundi",403.42,5,Non-Veg
+Prawn Curry,"rock salt, chocolate, sambar powder, vangi bath, theeyal, saffron",142.58,19,Non-Veg
+Galouti Kebab,"tea, ginger, jeerakasala rice, chaat masala, cucumber, mawa, egg biryani",386.91,50,Veg
+Dal Panchmel,"tea, chicken masala, jaiphal, mosaru anna, corn, bay leaf",131.74,38,Veg
+Paneer Korma,"ghee, pasta, prawn",517.52,41,Veg
+Plain Naan,"ghee rice, memoni biryani, peas, coconut rice, ragi idli, garlic, coconut oil",101.58,31,Veg
+Roti,"chitranna, quinoa, tomato",651.92,35,Veg
+Lassi,"malabar biryani, orange blossom water, chettinad biryani, kitchen king masala",365.14,29,Veg
+Veg Thali,"lemon, thoran, ambur biryani",673.93,40,Veg
+Masala Chai,"carrot, beans, curd rice, turmeric, coconut oil",525.41,8,Veg
+Masala Chai,"kadala curry, banana, fish biryani",667.01,47,Veg
+Lassi,"sindhi biryani, rice, sago, poppy seeds, lime, malai, chicken",489.76,36,Veg
+Roti,"black salt, modak, egg biryani, pomegranate, arrowroot, cumin",597.58,49,Veg
+Chicken Bhuna,"jaggery, vinegar, basmati rice, poornam, theeyal, sea salt, rasam",404.15,35,Non-Veg
+Kadhai Hara Bhara Kebab,"sugar, honey, memoni biryani, biryani masala",174.53,32,Veg
+Aloo Palak,"lime, kashmiri chilli, tea, lettuce",98.84,22,Veg
+Lassi,"malabar biryani, celery, awadhi biryani, mozzarella, sago, rose water",495.76,26,Veg
+Thandai,"bobbatlu, rock salt, quinoa, guntur chilli, star anise, sindhi biryani, cucumber",488.01,24,Veg
+Dum Mango Lassi,"carrot, curd rice, malpua, pink salt, oats, mutton",215.41,27,Veg
+Sindhi Chicken Lollipop,"tamarind, chicken, pasta, lemon rice, lemon, paneer, lucknowi biryani",89.87,48,Non-Veg
+Green Tea,"rasam powder, ragi idli, mawa, white pepper, tea, rabri, arrowroot",368.7,30,Veg
+Achari Tikka,"fish biryani, halwa, radish",527.23,39,Veg
+Kofta Mixed Vegetables,"strawberry, garam masala, jaiphal, mawa, seitan",481.23,16,Veg
+Veg Biryani,"karanji, chicken masala, sona masoori rice, tempeh",418.35,15,Veg
+Shahi Paneer,"pasta, thayir sadam, radish",215.43,7,Veg
+Chatpata Chicken Tikka,"potato, semolina, gelatin, soy chunks",141.44,33,Non-Veg
+Prawn Curry,"lemon rice, kichadi, grapes, cream, shrikhand, chhena",549.03,36,Non-Veg
+Veg Handi,"butter, raisin, peas",565.98,5,Veg
+Zesty Pongal,"curry leaves, capsicum, cornflour, veg biryani, spinach, green chilli, mawa",236.69,18,Veg
+Paneer Paratha,"mango, paneer, ghee, biryani masala",469.3,37,Veg
+Madras Uttapam,"sesame seeds, double ka meetha, saffron",230.39,17,Veg
+Achari Paneer,"cabbage, egg, butter",56.4,48,Veg
+Rajma Masala,"tempeh, appam, byadgi chilli, cucumber, fish, broccoli, custard powder",619.82,32,Bread
+Kachori,"cheddar, puliyogare, khoya, banana, zucchini, modak",466.75,7,Veg
+Angara Badam Halwa,"black salt, dindigul biryani, carrot, awadhi biryani, rice, malabar biryani",208.87,37,Veg
+Zesty Chilli Paneer,"garlic, soya granules, hyderabadi biryani",117.4,11,Veg
+Galouti Kebab,"beetroot, orange blossom water, modak, banana, khoya, curd rice",202.4,31,Veg
+Paneer Makhani,"tea, prawn, cucumber, black pepper",524.05,43,Veg
+Claypot Mixed Vegetables,"chhena, mutton biryani, chitranna, kashmiri pulao, pomegranate, mawa",453.22,43,Veg
+Family Combo,"appam, coconut rice, star anise",565.09,25,Veg
+Maharashtrian Mutton Keema,"dry mango powder, sago, okra, malabar biryani, sugar, cornflour",369.24,33,Non-Veg
+Chicken Tikka,"agar agar, erissery, asafoetida",102.6,13,Non-Veg
+Shami Kebab,"soya granules, black pepper, mezhukkupuratti",252.2,27,Veg
+Tandoori Roti,"fish masala, paneer bhurji, cardamom, kolkata biryani, dum biryani",539.81,21,Veg
+Angara Dahi Bhalla,"honey, theeyal, sea salt",398.88,30,Veg
+Butter Chicken,"rice, mustard seeds, sheera, radish, obbattu, pulissery, kadala curry",434.33,9,Non-Veg
+Ultimate Paneer Makhani,"erissery, chhena, tofu",348.28,46,Veg
+Chicken Do Pyaza,"mint leaves, white pepper, spinach, shankarpali, chicken",474.14,46,Non-Veg
+Tandoori Starter Platter,"pav bhaji masala, mustard oil, chicken, melon seeds, prawn biryani",584.21,17,Veg
+Shami Kebab,"modak, fenugreek, lettuce, thalassery biryani, cabbage, coriander leaves",301.32,39,Veg
+Chilli Paneer,"rasam powder, malai, broccoli, qubani ka meetha, pomegranate, black salt",428.17,17,Veg
+Executive Thali,"sago, thalassery biryani, sindhi biryani, soya granules",391.37,43,Veg
+Peshawari Dal Tadka,"arrowroot, mawa, dum biryani, moru curry, bhatkali biryani, banana",209.63,40,Veg
+Prawn Masala,"agar agar, guntur chilli, olan, green chilli",81.34,29,Non-Veg
+Baby Corn Manchurian,"ladoo, wheat, malabar biryani, eggplant, pumpkin",516.61,33,Veg
+Roti,"qubani ka meetha, kichadi, spring onion, vanilla, thalassery biryani, malpua, byadgi chilli",221.85,48,Veg
+Jaljeera,"tamarind rice, lentil, chaat masala, mint leaves, honey",390.89,13,Veg
+Handi Hariyali Paneer,"double ka meetha, cinnamon, olan, lotus seeds, bottle gourd",140.38,29,Veg
+Mumbai Paneer Makhani,"quinoa, fish masala, corn",503.88,25,Veg
+Chilli Chicken,"tofu, rock salt, tomato rice, besan, orange blossom water, kitchen king masala",610.18,43,Non-Veg
+Hara Bhara Kebab,"kaalan, coriander leaves, cauliflower, pasta, sheera",328.64,37,Veg
+Aromatic Achari Paneer,"shrikhand, cucumber, mutton biryani, moru curry, lemon rice",584.45,39,Veg
+Rasmalai,"jeerakasala rice, tomato rice, almond, ghee rice, thatte idli, shankarpali, orange blossom water",573.51,21,Bread
+Pav Bhaji,"sambar powder, neer dosa, sago, saffron",159.17,31,Veg
+Soya Chaap,"bombay biryani, malai, capsicum",645.66,11,Veg
+Roti,"biryani rice, ginger, mezhukkupuratti, basmati rice",126.26,41,Veg
+Idli,"mutton, spring onion, paratha, bread",162.27,41,Veg
+Masala Chai,"basundi, malpua, soy sauce, paneer, bobbatlu",592.03,41,Veg
+Starter Platter,"biryani rice, radish, oil, pink salt",391.57,14,Veg
+Butter Pongal,"lime, mustard seeds, beans, cinnamon",329.39,22,Veg
+Mutton Korma,"seitan, okra, fish biryani, white pepper",600.46,12,Non-Veg
+Veg Thali,"kashmiri pulao, sugar, bombay biryani",571.35,44,Veg
+Chilli Chicken,"broccoli, double ka meetha, coriander leaves",605.26,15,Non-Veg
+Veg Jalfrezi,"vangi bath, radish, mawa, avial, pulissery, cinnamon",597.76,22,Veg
+Tandoori Roti,"strawberry, maida, broccoli, cornflour",156.05,41,Veg
+Gulab Jamun,"fish, holige, imarti, almond, tempeh",531.31,44,Veg
+Sweet Lassi,"rasam powder, almond, broccoli, tehari, lettuce",329.37,39,Veg
+Hariyali Paneer,"sambar powder, chicken biryani, coconut rice",290.71,27,Veg
+Celebration Rooh Afza,"arrowroot, chicken masala, mustard seeds, mushroom, thoran, double ka meetha",515.37,48,Non-Veg
+Pakora,"khoya, murukku, besan, turmeric, puttu",487.78,34,Veg
+Aloo Matar,"shrikhand, cinnamon, syrup",450.84,32,Veg
+Bhel Puri,"biryani rice, flour, orange blossom water, imarti",406.98,41,Veg
+Mini Thali,"arrowroot, kadala curry, seitan, sesame seeds",578.72,49,Veg
+Veg Thali,"bobbatlu, bay leaf, red chilli, chettinad biryani, oil, erissery",436.78,44,Veg
+Chatpata Shami Kebab,"lime, thalassery biryani, modak, mysore pak, gelatin, almond",594.45,28,Veg
+Ice Cream,"butter, kaalan, strawberry, chitranna, soya granules, green chilli, coconut rice",644.29,25,Veg
+Gulab Jamun,"avial, custard powder, maida, sambar powder, white pepper",414.85,31,Veg
+Malai Kebab,"garlic, flour, ragi idli, malai, mint leaves, carrot",65.3,26,Veg
+Paneer Makhani,"sindhi biryani, jeerakasala rice, ladoo, paratha",499.43,46,Veg
+Awadhi Veg Kolhapuri,"lentil, clove, kaalan, grapes, vangi bath",205.89,8,Veg
+Mutton Korma,"oats, bay leaf, chhena, coconut oil, malai, capsicum",638.78,7,Non-Veg
+Shami Kebab,"curd rice, pav bhaji masala, tomato rice, gelatin, rasam powder, malpua",557.27,19,Veg
+Kofta Galouti Kebab,"pasta, basundi, pomegranate seeds, besan, sheera",384.43,16,Veg
+Non-Veg Thali,"hyderabadi biryani, kaalan, payasam, pulissery",602.39,27,Veg
+Zesty Plain Naan,"shrikhand, sambar powder, white pepper, olan, soy chunks, chole masala, lucknowi biryani",289.8,26,Veg
+Falooda,"carrot, basundi, poriyal",621.46,48,Veg
+Curry Ras Malai,"bhatkali biryani, bay leaf, obbattu, green gram, black pepper",53.09,24,Veg
+Badam Milk,"cardamom, erissery, ginger, celery, soya granules, coconut",436.65,30,Veg
+Malai Soya Tikka,"ragi idli, thatte idli, mustard seeds, carrot",670.61,43,Veg
+Chocolate Brownie,"almond, oil, rasam, meat masala, memoni biryani, kashmiri pulao",223.03,27,Veg
+Chaas,"mysore pak, lucknowi biryani, dum biryani",490.34,16,Veg
+Zesty Fresh Lime Soda,"kaalan, biryani masala, agar agar, curd rice, dum biryani, chettinad biryani",496.1,36,Veg
+Paneer Paratha,"tapioca, sago, spring onion",370.9,32,Veg
+Dinner Special,"turmeric, black pepper, byadgi chilli, lettuce, sago",296.09,18,Veg
+Masala Gajar Halwa,"banana, lucknowi biryani, cornflour, kidney beans, garlic",290.31,23,Veg
+Mini Thali,"tofu, lentil, broccoli",392.75,30,Veg
+Classic Thandai,"pasta, broccoli, capsicum, lucknowi biryani",144.36,14,Veg
+Lassi,"wheat, chocolate, mozzarella, soan papdi, arrowroot, prawn, cashew",349.5,46,Veg
+Lassi,"spring onion, shrikhand, mint leaves, seitan, dum biryani, peas pulao",274.18,31,Veg
+Pav Bhaji,"khoya, potato, cauliflower, sindhi biryani, pumpkin, guntur chilli, lotus seeds",108.13,14,Veg
+Veg Biryani,"ghee, mustard seeds, thalassery biryani, obbattu, bisi bele bath, quinoa",228.61,7,Veg
+Fish Tikka,"cucumber, pomegranate seeds, yogurt, beetroot, qubani ka meetha",650.72,12,Non-Veg
+Non-Veg Thali,"mysore pak, awadhi biryani, coconut oil, rasam",203.03,37,Veg
+Tangy Rose Milk,"khoya, peas pulao, javitri, theeyal",532.52,22,Veg
+Roomali Roti,"mutton, chicken biryani, black gram, paneer",339.69,17,Veg
+Hot Paneer Butter Masala,"bay leaf, cauliflower, olan, chocolate, cabbage",664.4,7,Veg
+Charcoal Pani Puri,"puttu, pomegranate, shahi tukda, balushahi, kewra water, poppy seeds, fish",593.46,41,Veg
+Ice Cream,"bobbatlu, mysore pak, roti, byadgi chilli, noodles, beetroot",454.36,26,Veg
+Kadhai Sweet Lassi,"chocolate, jaiphal, thayir sadam, karanji, khoya",62.21,31,Veg
+Chicken Chettinad,"dry mango powder, peas pulao, agar agar",246.55,25,Non-Veg
+Veg Kolhapuri,"tehari, kashmiri pulao, thalassery biryani",195.38,35,Veg
+Fish Curry,"thayir sadam, basmati rice, tofu, zucchini, double ka meetha, amrakhand, cinnamon",529.7,21,Non-Veg
+Vada,"avial, banana, chole masala",695.5,31,Veg
+Paneer Pasanda,"custard powder, peda, malabar biryani, bisi bele bath, quinoa, rasam, sheera",87.86,22,Veg
+North Indian Paneer Bhurji,"mughlai biryani, coriander leaves, lime",619.03,38,Veg
+Fresh Veg Handi,"garam masala, chhena, vangi bath, capsicum, paratha, prawn biryani",589.77,22,Veg
+Pani Puri,"coriander, mozzarella, pomegranate",602.91,29,Veg
+Punjabi Kulfi,"rasam, melon seeds, lemon, memoni biryani, saffron, tempeh",397.01,22,Veg
+Bhuna Papdi Chaat,"mysore pak, apple, syrup",165.72,17,Veg
+Kadai Paneer,"javitri, rose water, spring onion, mosaru anna, green gram",107.57,33,Veg
+Achari Paneer,"kaalan, peda, barfi, black pepper, vermicelli",312.97,49,Veg
+Achari Dal Tadka,"milk, star anise, paratha, cardamom, malabar biryani, chickpea",191.36,18,Veg
+Hara Bhara Kebab,"prawn, coffee, patisa, curd rice, cauliflower",125.67,35,Veg
+Pongal,"lemon, shankarpali, poppy seeds",256.33,34,Veg
+Charcoal Gobi Manchurian,"agar agar, peas pulao, rock salt, red chilli, malabar biryani",344.67,36,Veg
+Veg Korma,"chaat masala, radish, ghee, shankarpali, peas pulao, chakli",448.99,50,Veg
+Chicken Lababdar,"ghee rice, amrakhand, elaichi, cucumber",626.65,5,Non-Veg
+Gujarati Hara Bhara Kebab,"zucchini, egg, celery, vinegar, orange blossom water, mysore pak",688.83,50,Veg
+Kebab Egg Biryani,"poornam, paneer, cream, puttu",466.91,30,Non-Veg
+Divine Aloo Palak,"fish masala, bisi bele bath, arrowroot",214.06,9,Veg
+Fresh Seekh Kebab,"salt, honey, rose water, okra, chitranna, byadgi chilli, butter",158.69,28,Veg
+Uttapam,"rasam powder, biryani masala, vinegar, noodles, kichadi, naan, holige",261.8,25,Veg
+Curry Paneer Makhani,"holige, custard powder, black pepper, prawn biryani, egg biryani, memoni biryani, chicken",101.09,36,Veg
+Reshmi Kebab,"hyderabadi biryani, veg biryani, mozzarella, radish, poriyal, beans, dum biryani",454.93,34,Veg
+Chicken 65,"peas pulao, coconut oil, kitchen king masala, yogurt, imarti",231.44,9,Non-Veg
+Dosa,"appam, holige, ragi idli, dry mango powder",115.77,28,Veg
+Mixed Vegetables,"green gram, strawberry, thoran",663.11,33,Veg
+Upma,"mosaru anna, coffee, puliyogare, thatte idli, biryani rice, coriander, sona masoori rice",314.79,15,Veg
+Gobi Paratha,"wheat, vinegar, biryani masala, black salt, malai, naan, oil",435.54,41,Veg
+Paratha,"seeraga samba rice, shahi tukda, byadgi chilli",468.65,9,Veg
+Laccha Paratha,"soan papdi, butter, prawn biryani, rose water, beetroot",141.49,18,Veg
+Baingan Bharta,"prawn biryani, poornam, vermicelli, mango",587.17,5,Veg
+Dessert Platter,"cardamom, pav bhaji masala, meat masala, moru curry",440.17,28,Veg
+Mixed Vegetables,"bombay biryani, veg biryani, qubani ka meetha, semolina",660.13,38,Veg
+Fresh Dinner Special,"mustard oil, puran poli, raisin, roti, avial",490.49,5,Veg
+Chocolate Brownie,"coffee, zucchini, kolkata biryani, basmati rice, green chilli",143.57,11,Veg
+Papdi Chaat,"curd rice, mezhukkupuratti, bombay biryani, mustard seeds, vermicelli",134.9,10,Veg
+Gulab Jamun with Ice Cream,"besan, oil, malai, kadala curry, halwa, vermicelli",180.18,34,Veg
+Buttermilk,"barfi, beans, sona masoori rice, roti, pav bhaji masala, spring onion",355.31,33,Veg
+Veg Pulao,"murukku, gujiya, lemon rice, soy sauce",291.88,11,Veg
+Tandoori Prawn Curry,"basundi, asafoetida, tofu, appam, strawberry, qubani ka meetha",338.78,43,Non-Veg
+Gulab Jamun,"mutton, mysore pak, tempeh",235.59,39,Veg
+Mixed Vegetables,"salt, thalassery biryani, wheat, mezhukkupuratti, bobbatlu",295.39,31,Veg
+Kolhapuri Paneer Tikka,"fish, puttu, star anise, mustard seeds, noodles, egg biryani, red chilli",225.27,40,Veg
+Chicken Bhuna,"turmeric, tehari, salt, biryani masala",87.73,26,Non-Veg
+Kachori,"mughlai biryani, turmeric, gelatin, bottle gourd, chole masala, seitan",365.06,24,Veg
+Mutton Rogan Josh,"olan, coffee, sago, bay leaf, malpua, broccoli, avial",448.04,36,Non-Veg
+Sweet Mutton Biryani,"potato, pumpkin, bhatkali biryani, tea, cauliflower, kidney beans, pineapple",425.59,45,Non-Veg
+Pongal,"fish masala, chicken biryani, asafoetida",466.15,48,Veg
+Rajasthani Palak Paneer,"pasta, zucchini, kolkata biryani, fish",296.35,44,Veg
+Sharbat,"pachadi, bobbatlu, shankarpali, bisi bele bath, syrup, balushahi, garlic",529.21,35,Veg
+Lababdar Prawn Curry,"bisi bele bath, sesame seeds, rabri, pomegranate, quinoa, bhatkali biryani, elaichi",217.86,10,Non-Veg
+Chatpata Aloo Tikki,"chole masala, rice, puliyogare",199.61,9,Veg
+Achari Tikka,"bay leaf, rasam powder, green gram, seeraga samba rice, veg biryani, amrakhand, sindhi biryani",285.57,38,Veg
+Tandoori Roti,"guntur chilli, kitchen king masala, red chilli powder, mawa, poppy seeds, jeerakasala rice, syrup",183.88,38,Veg
+Handi Kachori,"thalassery biryani, kaalan, lentil, chicken masala, sheera, pomegranate seeds",142.65,13,Veg
+Biryani Reshmi Kebab,"lime, sambar, guntur chilli, cabbage, turmeric, elaichi, melon seeds",374.37,19,Veg
+Paneer Butter Masala,"pineapple, chakli, malai",158.42,42,Veg
+Madras Sharbat,"biryani masala, byadgi chilli, obbattu, veg biryani, qubani ka meetha, mysore pak, spring onion",113.71,28,Veg
+Divine Kulfi,"oats, white pepper, melon seeds, lotus seeds, radish, semolina, vangi bath",496.92,7,Veg
+Dal Bukhara,"salt, peas pulao, thatte idli, prawn biryani",207.07,25,Veg
+Mughlai Laccha Paratha,"mozzarella, dry mango powder, green chilli, quinoa",203.93,12,Veg
+Hariyali Special Thali,"mysore pak, kashmiri chilli, corn, semolina, oil, garlic",633.41,9,Veg
+Fish Tikka,"malpua, olan, ghee, milk, onion",93.34,31,Non-Veg
+Lahori Special Thali,"jaiphal, peas, thoran, jeerakasala rice",328.48,19,Veg
+Dahi Bhalla,"fish masala, chitranna, tamarind, javitri",154.97,26,Veg
+Paneer Tikka,"kashmiri pulao, javitri, naan, bay leaf, melon seeds",607.58,8,Veg
+Kebab Dal Bukhara,"mysore pak, mezhukkupuratti, murukku",120.74,31,Veg
+Aloo Matar,"orange, lucknowi biryani, mustard oil",97.97,32,Veg
+Paneer Tikka,"shankarpali, coconut oil, honey, banana, balushahi, biryani masala",541.67,38,Veg
+Claypot Achari Tikka,"tomato, coriander, seitan, patisa, veg biryani, balushahi, beans",686.94,6,Veg
+Laccha Paratha,"jeerakasala rice, zucchini, mozzarella, sindhi biryani, biryani masala, rasam powder",199.83,24,Veg
+Bengali Aloo Jeera,"pasta, agar agar, melon seeds, naan",91.82,9,Veg
+Mild Aloo Jeera,"malabar biryani, pachadi, pasta, custard powder, cashew, coffee",581.87,37,Veg
+Pav Bhaji,"jeerakasala rice, rasam, red chilli, cheese, bread, obbattu, pineapple",534.87,14,Veg
+Chicken Tikka,"cumin, peda, payasam, maida, khoya, dry mango powder",366.96,25,Non-Veg
+Punjabi Egg Curry,"agar agar, jaiphal, seitan, hyderabadi biryani, black salt",398.8,34,Non-Veg
+Wedding Ras Malai,"sambar, kootu, ghee, lucknowi biryani, rice",198.57,11,Veg
+Fish Curry,"qubani ka meetha, maida, chicken masala, ghee rice, broccoli, obbattu, pachadi",327.12,47,Non-Veg
+Hariyali Paneer,"basmati rice, kashmiri chilli, egg, eggplant, potato",139.44,46,Veg
+Chicken Lollipop,"flour, mughlai biryani, broccoli, fish masala, memoni biryani, thayir sadam, cashew",696.31,39,Non-Veg
+Starter Platter,"naan, veg biryani, karanji, cumin seeds, white pepper, spring onion, capsicum",291.76,28,Veg
+Chilli Chicken,"seeraga samba rice, mawa, bread",533.13,9,Non-Veg
+Aloo Jeera,"roti, patisa, peas pulao, pachadi",88.29,36,Veg
+Chicken Chettinad,"karanji, cornflour, thalassery biryani, soya granules, ghee, qubani ka meetha, almond",63.97,19,Non-Veg
+Seekh Kebab,"almond, poriyal, quinoa",479.49,6,Veg
+Idli,"gelatin, mozzarella, basundi, coconut rice",233.2,9,Veg
+Gulab Jamun,"javitri, chicken biryani, modak",56.06,41,Veg
+Buttermilk,"basundi, chettinad biryani, noodles, cornflour, cucumber, custard powder, pav bhaji masala",554.82,22,Veg
+Supreme Rose Milk,"biryani masala, kidney beans, memoni biryani, poriyal, soya granules, erissery, byadgi chilli",438.67,11,Veg
+Veg Handi,"jaiphal, butter, mozzarella, lettuce",253.51,29,Veg
+Roast Starter Platter,"bisi bele bath, erissery, fish biryani, chaat masala",502.8,16,Veg
+Dessert Platter,"curry leaves, dry mango powder, theeyal, gelatin, soan papdi, dindigul biryani, kadala curry",190.72,39,Veg
+Laccha Paratha,"pachadi, kewra water, cheese, radish, black salt, coriander, tofu",668.41,7,Veg
+Chicken Manchurian,"mustard seeds, rasam powder, babycorn, soan papdi, hyderabadi biryani, coffee",587.74,17,Non-Veg
+Gulab Jamun,"soy chunks, dindigul biryani, bobbatlu, beans",189.9,26,Veg
+Grand Palak Paneer,"mosaru anna, mustard seeds, okra, beans, clove",205.69,20,Veg
+Creamy Thali,"vinegar, coffee, tamarind rice, malai",328.79,50,Veg
+Vada,"qubani ka meetha, curd rice, malpua, barfi, imarti, chickpea",73.84,13,Veg
+Jeera Rice,"paratha, zucchini, milk",164.92,34,Veg
+Aloo Tikki,"sesame seeds, malpua, tofu",175.72,5,Veg
+Soya Chaap,"coriander, quinoa, turmeric, veg biryani, curry leaves, saffron",212.05,44,Veg
+Chicken Lababdar,"soy chunks, chocolate, butter, appam",349.9,18,Non-Veg
+Badam Milk,"vanilla, jaggery, arrowroot, meat masala, malai, memoni biryani, sea salt",364.69,23,Veg
+Mumbai Aloo Jeera,"bombay biryani, orange, poriyal, kolkata biryani, orange blossom water, chhena, tea",215.61,37,Veg
+Sharbat,"cornflour, wheat, mustard seeds, curry leaves, lettuce",286.08,45,Veg
+Upma,"curry leaves, kitchen king masala, puttu",566.0,11,Veg
+Pongal,"byadgi chilli, puran poli, curd rice, sesame seeds, black gram, kewra water, raisin",382.76,31,Veg
+Thandai,"curry leaves, honey, sea salt, kadala curry, halwa, moru curry, patisa",210.86,7,Veg
+Pani Puri,"asafoetida, green chilli, carrot",87.35,9,Veg
+Peshawari Paneer Korma,"pomegranate seeds, kashmiri chilli, poornam, chettinad biryani, halwa, almond",299.13,31,Veg
+Vada,"tomato rice, lime, veg biryani, coconut oil, thalassery biryani, wheat, appam",170.54,23,Veg
+Kadhai Fresh Lime Soda,"vinegar, grapes, guntur chilli, fish, elaichi, tamarind, chole masala",647.62,48,Veg
+Dhaba Chicken Chettinad,"fish, sambar powder, amrakhand, salt",350.59,38,Non-Veg
+Celebration Dahi Bhalla,"prawn biryani, tomato rice, lettuce, malpua, beans",191.35,22,Veg
+Awadhi Dahi Bhalla,"cumin seeds, bread, sambar, red chilli powder",207.57,39,Veg
+Bhindi Masala,"shahi tukda, cabbage, agar agar, sambar, khoya",265.48,48,Veg
+Green Tea,"lettuce, pomegranate seeds, cashew, celery, coriander leaves, curd rice",182.01,40,Veg
+Malai Veg Thali,"beans, holige, pulissery",262.61,48,Veg
+Egg Curry,"mint leaves, fish, maida, kootu",574.32,18,Non-Veg
+Rasam,"malabar biryani, pomegranate, vangi bath, shrikhand",553.8,21,Dessert
+Aloo Gobi,"coconut, soya granules, imarti, sona masoori rice, ginger, dry mango powder, thoran",416.92,31,Veg
+Dahi Puri,"tofu, peda, lotus seeds, agar agar, ghee rice, okra, malpua",292.62,21,Dessert
+Falooda,"chitranna, arrowroot, sea salt, grapes, egg biryani",247.85,40,Veg
+Festive Mango Lassi,"soy chunks, turmeric, obbattu, quinoa, asafoetida",293.79,10,Veg
+Aloo Palak,"byadgi chilli, cashew, onion, bombay biryani, mushroom",140.85,12,Veg
+Gobi Paratha,"sindhi biryani, bottle gourd, thatte idli, coconut rice, almond, dindigul biryani, eggplant",230.74,18,Veg
+Mutton Keema,"arrowroot, lemon rice, malabar biryani, cucumber, fish masala",59.98,40,Non-Veg
+Garlic Naan,"mughlai biryani, shrikhand, modak, biryani rice",161.15,14,Veg
+Grilled Masala Chai,"hyderabadi biryani, murukku, oil, ghee rice, poriyal, rock salt, meat masala",552.93,18,Veg
+Salted Lassi,"butter, coriander leaves, potato, tapioca",489.01,32,Veg
+Dosa,"meat masala, kichadi, rabri, sona masoori rice, jeerakasala rice, asafoetida, seeraga samba rice",685.47,16,Veg
+Jeera Rice,"gelatin, prawn, lettuce, raisin, coconut oil, puran poli, cornflour",70.74,22,Veg
+Malai Kulfi,"thatte idli, vanilla, puliyogare, kewra water, chaat masala",519.2,17,Veg
+Chicken Tikka Masala,"pomegranate seeds, pav bhaji masala, malpua, capsicum, spinach, gelatin",608.24,35,Non-Veg
+Rose Milk,"soy sauce, biryani masala, dry mango powder",666.9,7,Veg
+Aloo Paratha,"puttu, cheddar, tea, spring onion, capsicum, gujiya, cucumber",112.08,33,Veg
+Thali,"orange, fish biryani, malai, roti",242.7,45,Veg
+Roti,"chole masala, tomato rice, paneer, capsicum, spring onion, garam masala",96.96,40,Veg
+Dal Tadka,"thayir sadam, shrikhand, noodles, chole masala, dindigul biryani, spinach",297.39,11,Veg
+Egg Bhurji,"capsicum, guntur chilli, lettuce, double ka meetha",224.91,32,Non-Veg
+Tandoori Roti,"star anise, lemon, pomegranate seeds, noodles, veg biryani, peas pulao",524.96,14,Veg
+Butter Kheer,"prawn, coconut, coriander, olan",532.48,34,Veg
+Paratha,"malabar biryani, mutton, black pepper, balushahi, agar agar",143.24,46,Veg
+Thali,"onion, qubani ka meetha, cumin seeds, pink salt, jeerakasala rice",476.3,44,Veg
+Rajasthani Sweet Lassi,"rice, prawn, sea salt, neer dosa, thalassery biryani",481.24,13,Veg
+Fragrant Gulab Jamun,"curd rice, kootu, capsicum, orange blossom water, mint leaves, mosaru anna",57.36,30,Veg
+Thandai,"almond, murukku, kashmiri chilli, jeerakasala rice, bay leaf, garlic",553.68,5,Veg
+Paneer Paratha,"gujiya, mutton, biryani masala, bhatkali biryani",267.97,46,Veg
+Party Pack,"lentil, tehari, turmeric, cucumber, guntur chilli, gujiya",435.63,49,Veg
+Dosa,"payasam, beetroot, fish",686.79,18,Veg
+Jaljeera,"mint leaves, avial, naan, almond, celery, orange",404.14,9,Veg
+Palak Paneer,"raisin, kashmiri chilli, custard powder",472.57,46,Veg
+Green Tea,"mutton, soan papdi, chole masala, rose water",538.41,10,Veg
+Badam Milk,"modak, ginger, prawn, eggplant, sambar powder, sona masoori rice",649.37,34,Veg
+Kolhapuri Rooh Afza,"sugar, shankarpali, neer dosa, jaggery, soy chunks",233.25,21,Bread
+Dal Makhani,"kidney beans, pink salt, lime, garam masala, olan, cardamom",283.55,12,Veg
+Daily Chicken Madras,"thoran, erissery, thalassery biryani, butter, puran poli, almond",443.68,28,Non-Veg
+Punjabi Mini Thali,"sambar, semolina, star anise, onion, celery, cumin",492.86,28,Veg
+Rajma Masala,"cardamom, rock salt, banana, byadgi chilli",608.27,16,Starter
+Chocolate Brownie,"seitan, honey, vangi bath",314.48,25,Veg
+Aromatic Mutton Rogan Josh,"sheera, ginger, malpua, yogurt, rice",341.44,14,Non-Veg
+Garlic Paneer Lababdar,"mezhukkupuratti, malpua, coconut, olan, biryani rice",354.06,13,Veg
+Hot Coffee,"capsicum, bhatkali biryani, black salt, seeraga samba rice",677.18,10,Veg
+Chicken 65,"shahi tukda, chickpea, curd rice, almond, seitan, soya granules, chicken biryani",322.25,11,Non-Veg
+Desi Chicken Lollipop,"bombay biryani, cabbage, asafoetida, wheat, zucchini",341.29,23,Non-Veg
+Gajar Halwa,"chakli, coriander, byadgi chilli, soya granules",61.98,18,Veg
+Chatpata Veg Kolhapuri,"asafoetida, garlic, dum biryani, sago, basmati rice",135.44,10,Veg
+Veg Korma,"noodles, shahi tukda, lemon rice, flour, malabar biryani",578.83,37,Veg
+Makhani Green Tea,"milk, cinnamon, mustard oil, obbattu",108.91,44,Veg
+Jalebi,"cinnamon, soan papdi, shankarpali, tamarind",87.39,31,Veg
+Upma,"grapes, moru curry, obbattu, rasam powder, malpua, kidney beans, rasam",163.14,22,Veg
+Goan Starter Platter,"ragi idli, sheera, bombay biryani",266.63,46,Veg
+Zesty Rose Milk,"mughlai biryani, basundi, syrup, cheddar, guntur chilli, chocolate",521.5,21,Veg
+Fresh Paneer Pasanda,"shahi tukda, dum biryani, coconut oil, coriander, theeyal, thoran",431.17,41,Veg
+Rooh Afza,"ghee rice, coconut milk, mozzarella, murukku, qubani ka meetha",150.5,7,Non-Veg
+Gujarati Laccha Paratha,"theeyal, bobbatlu, cardamom, oats",182.4,6,Veg
+Special Paneer Lababdar,"soya granules, chakli, aviyal, ambur biryani",215.14,28,Veg
+Green Tea,"peas pulao, appam, grapes, lettuce, cauliflower",240.22,28,Veg
+Jeera Rice,"barfi, bobbatlu, hyderabadi biryani",389.89,20,Veg
+Mutton Biryani,"clove, red chilli powder, sea salt, kidney beans, fish, rock salt",222.96,26,Non-Veg
+Fresh Lime Water,"cinnamon, byadgi chilli, mysore pak, pachadi",283.61,28,Veg
+Jaljeera,"fish biryani, beans, pomegranate seeds",587.67,20,Veg
+Fish Tikka,"beetroot, chickpea, butter",175.41,43,Non-Veg
+Dal Tadka,"sambar, awadhi biryani, sindhi biryani, tahari, chakli, broccoli, ambur biryani",127.72,49,Veg
+Chicken Manchurian,"biryani masala, ghee rice, orange blossom water, bobbatlu, bay leaf, garlic",131.02,42,Non-Veg
+Kachori,"malabar biryani, balushahi, red chilli powder, patisa, naan",291.05,38,Veg
+Aloo Tikki,"seeraga samba rice, broccoli, appam, roti, murukku, chocolate",276.28,24,Veg
+Zesty Baingan Bharta,"seeraga samba rice, chitranna, bread, puttu, tahari",87.86,5,Veg
+Egg Curry,"oil, shrikhand, bread",656.51,42,Non-Veg
+Shami Kebab,"oats, black gram, patisa, celery, fish biryani",530.28,5,Veg
+Fry Party Pack,"lemon rice, yogurt, pav bhaji masala, rose water, lotus seeds, asafoetida, cauliflower",157.58,49,Veg
+North Indian Roti,"chitranna, mint leaves, kewra water, mango, lotus seeds, spinach",431.97,15,Veg
+Sour Hariyali Paneer,"vanilla, balushahi, black salt",325.36,8,Veg
+Pulao Chicken Tikka Masala,"basmati rice, chaat masala, jeerakasala rice, pink salt, naan, babycorn, vermicelli",540.16,41,Veg
+Tandoori Platter,"patisa, amrakhand, biryani rice, basmati rice, milk, melon seeds",396.07,14,Veg
+Golden Rajma Masala,"corn, theeyal, thatte idli, chole masala, quinoa",405.46,30,Starter
+Samosa,"chaat masala, eggplant, cumin, byadgi chilli, pumpkin, puttu, grapes",203.86,11,Veg
+Mini Thali,"mutton, poppy seeds, tamarind, wheat, obbattu, babycorn, almond",645.74,15,Veg
+Lahori Sambar,"qubani ka meetha, poriyal, rock salt, tofu",613.23,33,Non-Veg
+Fresh Lime Water,"ladoo, malabar biryani, coriander leaves, meat masala",615.86,32,Veg
+Aloo Tamatar,"guntur chilli, lemon, kichadi, poppy seeds, prawn biryani",288.0,39,Veg
+Ras Malai,"apple, eggplant, rabri, jaiphal, pineapple, jaggery, chettinad biryani",121.1,17,Veg
+Sizzling Badam Milk,"chocolate, green gram, neer dosa, coriander leaves, barfi, fenugreek",232.95,25,Veg
+Hyderabadi Chicken Manchurian,"beans, bombay biryani, tomato",364.1,29,Non-Veg
+Kheer,"sago, elaichi, green chilli, ragi idli, turmeric, erissery, moru curry",109.56,19,Veg
+Shami Kebab,"fenugreek, semolina, chicken, thayir sadam, amrakhand, poornam, vermicelli",566.73,40,Veg
+Dal Tadka,"karanji, fenugreek, cashew, okra, radish, memoni biryani",106.12,45,Veg
+Rooh Afza,"dum biryani, shankarpali, sea salt, cinnamon, tomato rice, arrowroot",490.45,20,Bread
+Paneer Makhani,"quinoa, green gram, cashew, meat masala, cheese, guntur chilli",170.01,30,Veg
+Garlic Naan,"patisa, mozzarella, tapioca, chhena, seeraga samba rice",156.65,31,Veg
+Classic Masala Chai,"mustard seeds, thatte idli, avial, fish masala, kootu, memoni biryani",440.34,32,Veg
+Tandoori Platter,"veg biryani, red chilli powder, kewra water",221.8,18,Veg
+Chicken Vindaloo,"lettuce, dry mango powder, bread, malai",542.5,42,Veg
+Crispy Matar Paneer,"kidney beans, bisi bele bath, white pepper, moru curry, sheera, tomato, garam masala",498.87,20,Veg
+Divine Chaas,"kewra water, prawn, pineapple, garlic",590.21,35,Veg
+Saag Thali,"vanilla, bombay biryani, sago",193.45,17,Veg
+Jaljeera,"ladoo, cornflour, garlic, chicken biryani, zucchini",626.35,16,Veg
+Fresh Lime Soda,"chicken, bay leaf, semolina, biryani masala",489.61,30,Veg
+Zesty Tandoori Roti,"kolkata biryani, red chilli powder, sambar, agar agar, cinnamon",312.02,28,Veg
+Chicken Do Pyaza,"malabar biryani, tofu, tamarind, melon seeds, vanilla, dry mango powder, clove",73.53,43,Non-Veg
+Mixed Vegetables,"amrakhand, kashmiri pulao, coconut milk, curd rice",274.23,7,Veg
+Chocolate Brownie,"babycorn, arrowroot, shahi tukda, beans, eggplant, thatte idli",583.58,19,Veg
+Mughlai Jalebi,"sambar powder, naan, veg biryani",626.08,33,Veg
+Thandai,"garlic, veg biryani, peas pulao",318.42,31,Veg
+Mango Lassi,"kashmiri chilli, chole masala, puttu, asafoetida",145.4,6,Veg
+Spicy Paneer Do Pyaza,"cashew, puliyogare, vangi bath, rabri",585.92,28,Veg
+Shami Kebab,"basmati rice, cabbage, thatte idli",113.78,48,Veg
+Egg Bhurji,"sheera, pachadi, pasta, agar agar, honey, cabbage, chitranna",65.5,25,Non-Veg
+Jalebi,"sheera, broccoli, bottle gourd, payasam, okra",619.07,32,Veg
+Jalebi,"sheera, murukku, chhena, dum biryani, milk, double ka meetha, mozzarella",136.98,37,Veg
+Veg Pulao,"cinnamon, chickpea, theeyal, black gram",73.09,46,Veg
+Executive Thali,"holige, bobbatlu, bottle gourd, sesame seeds, bread, murukku",162.24,33,Veg
+Mumbai Veg Jalfrezi,"kidney beans, basmati rice, puran poli, broccoli",583.06,5,Veg
+Uttapam,"tahari, pumpkin, arrowroot, prawn biryani, neer dosa, melon seeds, beans",246.32,48,Veg
+Egg Curry,"poornam, amrakhand, biryani masala, broccoli",103.95,6,Non-Veg
+Falooda,"cinnamon, lime, carrot, fish biryani",561.74,47,Veg
+Prawn Curry,"roti, spinach, poppy seeds, gelatin",553.06,20,Non-Veg
+Papdi Chaat,"semolina, pink salt, lentil, soya granules, green chilli, cashew",266.9,25,Veg
+Prawn Masala,"celery, bottle gourd, eggplant",513.39,25,Non-Veg
+Royal Seekh Kebab,"thatte idli, lentil, bay leaf, red chilli",464.58,11,Veg
+Thandai,"sago, malabar biryani, kadala curry, banana",357.68,30,Veg
+Fresh Lime Soda,"puran poli, barfi, pineapple",162.13,5,Veg
+Achari Tikka,"asafoetida, rabri, moru curry, rose water, kashmiri chilli, bobbatlu",106.08,8,Veg
+Tandoori Platter,"pineapple, prawn, arrowroot, meat masala, coriander, jaggery",392.37,45,Veg
+Tandoori Chaas,"soan papdi, holige, oil, lotus seeds, clove, paratha",644.46,16,Veg
+Crispy Soya Tikka,"radish, dum biryani, eggplant, cumin seeds",180.59,15,Veg
+Chana Masala,"potato, cauliflower, qubani ka meetha, coconut milk, grapes, roti, cucumber",50.66,6,Bread
+Mixed Vegetables,"kashmiri pulao, apple, gujiya",697.13,14,Veg
+Golden Egg Bhurji,"garam masala, gujiya, curry leaves",176.47,16,Non-Veg
+Claypot Sharbat,"poriyal, mutton biryani, asafoetida",493.35,20,Veg
+Mild Mango Lassi,"biryani rice, paneer bhurji, paneer, rose water, tamarind",599.05,15,Veg
+Masala Chai,"maida, sesame seeds, sambar, banana, fenugreek, star anise, basundi",697.58,19,Veg
+Curry Moong Dal Halwa,"avial, star anise, seitan, sesame seeds",383.59,15,Veg
+Fruit Custard,"coconut rice, thatte idli, malabar biryani, amrakhand",649.37,41,Veg
+Curry Pani Puri,"mustard seeds, halwa, mozzarella, coriander",354.93,32,Veg
+Maharashtrian Non-Veg Thali,"chitranna, vermicelli, pomegranate, custard powder, coffee, rasam powder, fish",464.57,42,Veg
+Hariyali Rajma Masala,"bay leaf, gelatin, beans, neer dosa, ginger",646.21,16,Dessert
+Prawn Curry,"cornflour, tofu, chickpea",137.51,48,Non-Veg
+Paneer Manchurian,"black pepper, shahi tukda, sour cream, bombay biryani, pomegranate, chocolate, seeraga samba rice",482.97,12,Veg
+Paneer Tikka,"celery, alfredo sauce, tehari, fish masala",138.71,6,Veg
+Fresh Lime Soda,"sona masoori rice, arrowroot, lucknowi biryani, kashmiri chilli, mint leaves, fenugreek",339.39,26,Veg
+Aloo Paratha,"mutton biryani, ginger, lucknowi biryani, radish",348.25,41,Veg
+Veg Frankie,"orange, cumin seeds, bread, aviyal, broccoli",554.79,25,Veg
+Nani Ki Special Thali,"seeraga samba rice, coconut oil, malai",362.91,50,Veg
+Soya Chaap,"sambar, mint leaves, flour, obbattu, mayonnaise, corn",406.73,36,Veg
+Achari Paneer,"sambar, oats, fish biryani, kidney beans, curd rice, ghee rice, naan",229.1,27,Veg
+Paneer Makhani,"shahi tukda, vangi bath, puliyogare, pomegranate, maida, lentil",580.92,26,Veg
+Butter Samosa,"egg, lettuce, mezhukkupuratti, payasam",399.87,8,Veg
+Rooh Afza,"pav bhaji masala, chole masala, hummus, sambar, tomato, maida, eggplant",371.9,32,Fast Food
+Plain Naan,"coconut oil, black pepper, tempeh, jaiphal, patisa",373.17,11,Veg
+Laccha Paratha,"quinoa, mutton biryani, noodles, turmeric, yogurt",97.88,48,Veg
+Paneer Frankie,"lettuce, orange blossom water, sour cream, cinnamon, sago",567.12,35,Veg
+Tangri Kebab,"cashew, semolina, peas pulao, basundi",154.55,29,Veg
+Pav Bhaji,"patisa, ladoo, seeraga samba rice, chhena, soy chunks",74.89,7,Veg
+Dal Bukhara,"moru curry, green gram, aviyal, green chutney, chocolate",109.88,31,Veg
+Veg Frankie,"egg biryani, mysore pak, rabri, orange, black pepper",686.58,17,Veg
+Dal Makhani,"celery, poppy seeds, chitranna, cornflour, peda, rose water",580.38,15,Veg
+Ice Cream,"thoran, beans, tomato, patisa, sheera, rice",64.86,19,Veg
+Chilli Chicken,"rasam, kewra water, pomegranate seeds, javitri",369.98,36,Non-Veg
+Mughlai Rabri,"rasam powder, mango, beans, tamarind rice, mutton biryani, semolina",364.5,6,Veg
+Mixed Vegetables,"onion, patisa, mysore pak, beans",426.89,46,Veg
+Goan Chicken Soup,"seitan, radish, peas, patisa, shrikhand, clove, peda",178.42,22,Non-Veg
+Celebration Chicken Lababdar,"capsicum, bombay biryani, mezhukkupuratti, paratha",396.76,31,Non-Veg
+Minestrone Soup,"chicken masala, coconut rice, onion, puttu, mutton biryani, theeyal, sambar",627.85,30,Veg
+Garlic Bread,"sesame seeds, bay leaf, karanji, pumpkin, byadgi chilli",121.16,13,Veg
+Rajma Masala,"fenugreek, quinoa, chhena, cucumber, mutton biryani, biryani masala, bottle gourd",66.56,50,Main Course
+Kerala Veg Crispy,"gelatin, balushahi, pasta, curry leaves, chakli",407.71,25,Veg
+Golden Pongal,"ghee, bhatkali biryani, bisi bele bath, awadhi biryani",164.11,30,Veg
+Sizzling Malai Kebab,"lucknowi biryani, coriander leaves, beans, barfi",637.14,26,Veg
+Soya Tikka,"kashmiri pulao, chicken masala, pav bhaji masala, erissery, beans, mint chutney, oil",153.08,41,Veg
+Chicken Momos,"kaalan, veg biryani, shankarpali, besan, milk",211.63,38,Non-Veg
+Charcoal Roomali Roti,"soya granules, black pepper, chaat masala",471.54,14,Veg
+Traditional Chicken Frankie,"peda, soy sauce, mayonnaise, honey",295.18,9,Non-Veg
+Sweet Chicken Soup,"tofu, tamarind chutney, seitan, salsa",210.44,16,Non-Veg
+Chicken Curry,"arrowroot, star anise, celery, roti, paneer",584.43,39,Non-Veg
+Executive Thali,"prawn, cheddar, mosaru anna, puttu, poornam, lettuce, jaiphal",550.47,10,Veg
+Badam Halwa,"bread, spinach, coffee",279.55,16,Veg
+Galouti Kebab,"ambur biryani, vermicelli, white pepper, thoran, arrowroot, mustard oil",305.9,44,Veg
+Mughlai Masala Fries,"chicken masala, naan, jaiphal, milk, meat masala",265.85,41,Veg
+Veg Burger,"mint leaves, mezhukkupuratti, jeerakasala rice",650.68,6,Veg
+Crispy Mushroom Manchurian,"coconut milk, curry leaves, paneer bhurji, chaat masala, moru curry",511.59,15,Veg
+Paneer Bhurji,"khoya, schezwan sauce, kashmiri pulao, soy chunks, mayonnaise, elaichi",214.36,18,Veg
+Fresh Lime Soda,"pasta, jaiphal, fish, soya granules, olan, tamarind chutney, moru curry",658.55,32,Veg
+Rasmalai,"soy sauce, arrowroot, potato",483.69,14,Soup
+Pav Bhaji,"qubani ka meetha, naan, pachadi, malai, garlic, amrakhand, chicken masala",569.3,8,Veg
+Awadhi Pani Puri,"ghee, black salt, mutton biryani, tofu, rasam, butter, thoran",89.91,17,Veg
+Pani Puri,"malpua, chickpea, tamarind, peas pulao, elaichi, sago, fish",240.86,38,Veg
+Mushroom Tikka,"sambar powder, yogurt dip, tamarind rice, alfredo sauce, rice, sea salt",570.64,7,Veg
+Paneer Manchurian,"cardamom, tamarind rice, semolina, lime, oil, puran poli",510.86,37,Veg
+Ice Cream,"modak, jaiphal, rasam, kidney beans, avial, black gram",256.91,13,Veg
+Veg Burger,"dry mango powder, bay leaf, double ka meetha, ladoo, black salt, bisi bele bath, mayonnaise",459.24,17,Veg
+Crispy Fruit Custard,"black salt, syrup, amrakhand, fenugreek, schezwan sauce, bottle gourd",617.92,35,Veg
+Wedding Egg Biryani,"guntur chilli, soy sauce, kewra water, besan",499.33,21,Non-Veg
+Aromatic Sharbat,"mango, marinara sauce, quinoa, mezhukkupuratti, besan",573.96,17,Veg
+Tandoori Momos,"thayir sadam, basmati rice, theeyal",84.88,21,Veg
+Paneer Tikka,"mughlai biryani, javitri, theeyal",649.05,38,Veg
+Chicken Curry,"noodles, appam, chicken masala, barfi",498.3,31,Non-Veg
+Steamed Rice,"egg, wheat, seeraga samba rice, peas pulao, babycorn, awadhi biryani, tahari",257.12,46,Veg
+Chicken Tikka,"ginger, broccoli, ghee",219.71,33,Non-Veg
+Dhaba Veg Kolhapuri,"coconut rice, shrikhand, garam masala, lentil",325.54,48,Veg
+Punjabi Shahi Paneer,"cucumber, rice, celery",195.79,17,Veg
+Cheese Frankie,"green chutney, halwa, poornam, almond",158.79,50,Veg
+Garlic Naan,"tamarind, cabbage, meat masala, mosaru anna, maida, kashmiri pulao, olan",304.18,24,Veg
+Dum Mixed Vegetables,"eggplant, pav bhaji masala, banana, pasta, celery, syrup, grapes",422.42,40,Veg
+Street Style Rose Milk,"oats, pulissery, chettinad biryani, khoya, mustard seeds, cream, orange blossom water",503.08,44,Veg
+Tikka Mushroom Manchurian,"kashmiri chilli, rasam, pesto, capsicum, patisa, gujiya, paneer",450.94,12,Veg
+Margherita,"basundi, mozzarella, sour cream, malai, peas pulao, syrup",125.0,33,Soup
+Biryani Veg Frankie,"halwa, tofu, peas, jaiphal, roti, soy sauce, spinach",363.72,16,Veg
+Rajma Masala,"curry leaves, imarti, besan",235.09,7,Main Course
+Veg Roll,"qubani ka meetha, jeerakasala rice, soan papdi, yogurt dip",198.11,28,Veg
+Claypot Paneer Tikka,"malai, tamarind chutney, gujiya, pink salt, wheat, honey",675.69,33,Veg
+Chilli Paneer,"black salt, peas pulao, red chilli powder",103.05,46,Veg
+Paneer Momos,"cabbage, grapes, ghee rice, bhatkali biryani, tempeh",220.01,23,Veg
+Hyderabadi Veg Burger,"javitri, peas, alfredo sauce, bay leaf, thayir sadam, cucumber",376.6,26,Veg
+Maa Ki Thali,"sambar powder, oil, dindigul biryani",223.92,48,Veg
+Veg Kolhapuri,"soy chunks, spring onion, bhatkali biryani, semolina",482.15,37,Veg
+Dosa,"eggplant, arrowroot, fish biryani, garlic",415.06,21,Veg
+Baby Corn Manchurian,"cornflour, neer dosa, tomato rice, chicken, mayonnaise, mustard sauce",110.18,34,Veg
+Hot Chicken Curry,"tomato, mysore pak, meat masala, cream, tehari, raisin",523.78,9,Non-Veg
+Dhaba Style Mini Thali,"butter, fenugreek, modak, avial, chakli",669.38,25,Veg
+Fresh Pakora,"grapes, avial, cream, coconut rice, sour cream, puttu, cumin",604.97,15,Veg
+Dal Tadka,"malai, soya granules, kewra water, coconut rice, avial, neer dosa, peas pulao",492.2,6,Veg
+Mild Chocolate Brownie,"soy sauce, kewra water, fenugreek, avial, tempeh, olan, rose water",264.21,48,Veg
+Egg Bhurji,"mutton biryani, mushroom, sour cream, prawn",361.67,15,Non-Veg
+Honey Chilli Potato,"pasta, agar agar, hyderabadi biryani, cream, sugar",418.04,30,Veg
+Paneer Manchurian,"pineapple, honey, hyderabadi biryani, lime, kaalan, sindhi biryani",487.13,35,Veg
+Manchow Soup,"sour cream, bisi bele bath, tea, poppy seeds",235.12,48,Veg
+Dahi Bhalla,"white pepper, cream, red chilli powder, mango, green gram, biryani masala",695.14,41,Veg
+Aloo Tikki,"mustard seeds, imarti, salt, tofu, avial",307.13,15,Veg
+Tandoori Steamed Rice,"strawberry, gujiya, honey, coriander leaves, pineapple, dindigul biryani, lemon",231.16,41,Veg
+Gobi Paratha,"orange, kidney beans, chhena, holige, basmati rice, chicken, maida",398.32,12,Veg
+Margherita,"syrup, tamarind, dry mango powder, salsa, wheat",109.23,13,Dessert
+Thali,"mint leaves, ragi idli, jaiphal, cardamom, tamarind chutney, shrikhand, rasam",188.09,39,Veg
+Kulfi,"puran poli, dum biryani, curd rice, chaat masala",302.13,7,Veg
+Rajasthani Sweet Corn Soup,"sugar, tofu, holige, mint chutney, coconut oil, tahari, bisi bele bath",246.77,33,Veg
+Zesty Veg Frankie,"garlic, green gram, black salt, barfi",455.52,43,Veg
+Grand Cheese Momos,"lime, kadala curry, chhena",153.56,21,Veg
+Chicken Soup,"cucumber, carrot, bhatkali biryani, chicken masala, lemon, poornam, cashew",328.51,11,Non-Veg
+South Indian Upma,"star anise, banana, gujiya, milk, malai, peas pulao, basundi",294.8,31,Veg
+Paneer Momos,"malabar biryani, roti, celery",413.39,39,Veg
+Curry Upma,"soya granules, prawn biryani, seitan, coriander chutney",221.43,50,Veg
+Heavenly Papdi Chaat,"cucumber, tea, mosaru anna",354.43,38,Veg
+Chicken Soup,"sour cream, seitan, cucumber, tamarind rice, tamarind chutney, salt",605.65,36,Non-Veg
+Upma,"orange, peas, bombay biryani, soy sauce, coconut milk, modak",207.18,19,Veg
+Gobi Paratha,"dry mango powder, thoran, thatte idli, apple, orange, puttu",341.37,14,Veg
+Authentic Chicken Roll,"kaalan, soan papdi, payasam, chickpea",57.19,30,Non-Veg
+Paneer Manchurian,"bhatkali biryani, kadala curry, bread, kidney beans, oats",463.04,11,Veg
+Maharashtrian Paneer Korma,"wheat, basmati rice, coffee, mustard sauce",395.72,13,Veg
+Mughlai Special Thali,"black pepper, lemon, tehari, dindigul biryani, sambar powder",469.51,36,Veg
+Schezwan Noodles,"malai, salt, tamarind rice, sambar, kadala curry, pomegranate",659.63,44,Veg
+Aloo Gobi,"coconut milk, seitan, quinoa, yogurt dip, sambar powder, egg biryani, honey",407.51,37,Veg
+Tandoori Platter,"pav bhaji masala, ragi idli, cumin, sambar powder, besan",562.66,30,Veg
+Paneer Pasanda,"imarti, chocolate, shrikhand, orange, pachadi",123.55,16,Veg
+Veggie Delight Pizza,"coconut rice, sambar, wheat, yogurt dip, pomegranate, besan, honey",584.62,35,Veg
+Chicken Roll,"cinnamon, pachadi, arrowroot, yogurt dip, puttu",233.64,16,Non-Veg
+Madras Vada Pav,"sambar powder, pachadi, payasam, besan",290.88,47,Veg
+Prawn Masala,"malabar biryani, mustard oil, mosaru anna, biryani masala, bread",291.14,38,Non-Veg
+Chicken Tikka,"pomegranate, kadala curry, sambar, besan, orange blossom water",312.52,17,Non-Veg
+Chicken Manchurian,"ragi idli, pachadi, mosaru anna, honey, cumin, cumin seeds",623.35,43,Non-Veg
+Hyderabadi Biryani,"ragi idli, pachadi, sambar, cumin",524.92,46,Veg
+Rajasthani Veg Crispy,"sambar powder, payasam, cumin, besan",294.09,46,Veg
+Tangy Pav Bhaji,"pachadi, mosaru anna, honey, cumin, besan",160.9,13,Veg
+Kashmiri Pulao,"pachadi, sambar, cumin, besan, honey",289.64,35,Veg
+Mutton Rogan Josh,"sambar powder, payasam, cumin, besan",443.52,22,Non-Veg
+Fish Curry,"pachadi, mosaru anna, honey, cumin, besan",386.18,33,Non-Veg
+Egg Curry,"sambar, cumin, besan, honey",220.47,15,Non-Veg
+Paneer Butter Masala,"mosaru anna, cumin, besan, honey",580.92,26,Veg
+Dal Makhani,"cumin, besan, honey",384.64,42,Veg
+Chana Masala,"besan, honey",621.03,9,Veg
+Aloo Jeera,"honey",288.22,7,Main Course
+Veg Samosa,"sugar, milk, cashew, spinach, paneer, yogurt",230.75,5,Veg
+Chicken 65,"egg, tomato, spinach, milk, sugar, cauliflower",594.92,29,Non-Veg
+Paneer Pakora,"okra, yogurt, mushroom, garlic, rice, chicken",406.74,33,Veg
+Paneer Do Pyaza,"egg, fish, capsicum, potato, garlic",255.37,15,Veg
+Hara Bhara Kebab,"tomato, capsicum",510.03,14,Main Course
+Fresh Lime Water,"capsicum, sugar",197.51,42,Beverage
+Mango Kulfi,"rice, cashew",296.3,11,Dessert
+Dal Tadka,"fish, noodles, rice, egg, spices, flour",357.32,21,Veg
+Chicken Biryani,"fish, okra",314.35,9,Non-Veg
+Chicken Tikka Masala,"egg, rice, lentils, tomato, mushroom, paneer",503.95,35,Non-Veg
+Dal Makhani,"cashew, rice, tomato, fish, sugar",485.13,38,Veg
+Aloo Jeera,"fish, cashew",223.58,16,Veg
+Paneer Do Pyaza,"noodles, sugar",247.6,16,Veg
+Cheese Corn Balls,"butter, mushroom, chicken, rice",322.31,31,Main Course
+Fresh Lime Water,"rice, onion",460.33,41,Beverage
+Mini Thali,"spices, cauliflower, tomato, capsicum, yogurt",410.47,26,Combo
+Mix Veg,"chicken, cauliflower, rice",494.89,32,Veg
+Chana Masala,"egg, chicken, spices, rice, mango, cashew",617.34,24,Veg
+Hot Coffee,"yogurt, egg, lentils, cauliflower, okra, garlic",323.88,11,Beverage
+Methi Malai Paneer,"butter, garlic",637.74,18,Veg
+Papdi Chaat,"milk, mango",567.93,35,Main Course
+Jeera Rice,"spices, garlic, okra, potato, spinach, butter",329.15,26,Main Course
+Paneer Tikka,"egg, fish, cream, yogurt",494.31,24,Starter
+Non-Veg Thali,"capsicum, rice, fish, butter, cashew, chicken",248.93,12,Veg
+Cold Coffee,"cream, egg, rose water",613.1,34,Beverage
+Fish Curry,"okra, capsicum",133.04,17,Non-Veg
+Chana Masala,"mushroom, yogurt, spices, potato, milk",347.33,22,Veg
+Rice Pudding,"okra, cashew, spinach, mango",513.3,16,Main Course
+Mini Thali,"spices, fish, noodles, sugar, egg",374.66,20,Combo
+Prawn Masala,"mango, noodles",582.35,8,Non-Veg
+Chocolate Brownie,"spices, garlic, lentils",401.98,29,Dessert
+Butter Chicken,"okra, capsicum",649.78,44,Non-Veg
+Malai Kofta,"okra, cashew, rose water, lentils",522.94,23,Main Course
+Jeera Rice,"mango, spices, garlic, egg, mushroom, cashew",446.8,15,Main Course
+Chicken Biryani,"chicken, rose water, onion, yogurt, paneer, rice",309.03,32,Non-Veg
+Chicken 65,"okra, chicken, paneer, capsicum",558.53,26,Non-Veg
+Palak Paneer,"capsicum, cauliflower, egg, fish",194.83,6,Veg
+Kheer,"spinach, sugar",210.45,23,Dessert
+Veg Samosa,"spinach, okra, yogurt, mango",241.89,18,Veg
+Ras Malai,"chicken, yogurt",196.3,34,Dessert
+Tandoori Chicken,"noodles, milk, flour, onion, capsicum, rice",127.51,25,Non-Veg
+Papdi Chaat,"sugar, spinach, potato, flour, mushroom, cream",594.66,38,Main Course
+Chilli Paneer,"cashew, mango, okra, potato, mushroom, butter",448.79,26,Veg
+Mushroom 65,"fish, okra, spices, lentils, onion",556.96,25,Veg
+Malai Kofta,"milk, onion, butter, potato, cashew, egg",430.45,7,Main Course
+Green Tea,"cream, flour, rose water",579.73,6,Beverage
+Mutton Rogan Josh,"mango, cauliflower, yogurt, spinach, potato",181.12,20,Non-Veg
+Fruit Custard,"cauliflower, chicken, cream, spices, paneer",633.48,12,Dessert
+Mango Kulfi,"cashew, flour, okra, milk, rice, paneer",398.72,12,Dessert
+Aloo Jeera,"mushroom, onion, capsicum, paneer",516.17,27,Veg
+Chana Masala,"noodles, tomato, okra, chicken, paneer",405.56,12,Veg
+Fish Amritsari,"spices, potato, fish, rice, tomato",522.99,6,Non-Veg
+Dinner Special,"cauliflower, rice, garlic, fish, mango",603.93,27,Combo
+Mini Thali,"rice, rose water",396.88,8,Combo
+Palak Paneer,"butter, cauliflower, potato",131.55,22,Veg
+Tandoori Platter,"mushroom, spices, spinach, butter",529.15,24,Combo
+Chana Masala,"rose water, spinach, yogurt, mushroom",114.26,31,Veg
+Veg Thali,"spinach, milk",630.89,29,Veg
+Cheese Corn Balls,"cauliflower, cashew, lentils",303.89,5,Main Course
+Chicken Tikka,"rice, chicken",459.3,32,Non-Veg
+Cheese Corn Balls,"mushroom, spinach, fish, yogurt, rice",336.49,37,Main Course
+Methi Malai Paneer,"egg, paneer, fish, mushroom",647.37,42,Veg
+Chicken Tikka,"sugar, potato, chicken",328.66,20,Non-Veg
+Chicken Vindaloo,"mushroom, cream, chicken, capsicum, mango",486.89,29,Non-Veg
+Fish Curry,"mushroom, paneer, spinach, rose water, egg",640.85,9,Non-Veg
+Masala Chai,"sugar, paneer, noodles, mushroom, potato, chicken",399.0,10,Beverage
+Jalebi,"noodles, spices, onion, fish, tomato",173.1,42,Dessert
+Palak Paneer,"lentils, paneer, cauliflower, potato",364.96,12,Veg
+Chicken 65,"rice, capsicum, flour",459.03,28,Non-Veg
+Vegetable Korma,"egg, spices, spinach, okra",182.09,9,Veg
+Paneer Tikka,"cream, mushroom, butter, flour, egg",457.55,21,Starter
+Fruit Custard,"butter, tomato, mango, mushroom",521.47,38,Dessert
+Tandoori Chicken,"cauliflower, sugar, mushroom, cream",135.97,29,Non-Veg
+Dal Makhani,"tomato, flour, mushroom, spinach, capsicum",352.0,16,Veg
+Dinner Special,"cream, fish, rice, noodles",250.01,29,Combo
+Gulab Jamun,"milk, spinach, cashew, okra",638.21,10,Dessert
+Veg Thali,"mango, lentils, onion",377.29,29,Veg
+Palak Paneer,"mushroom, rose water",323.36,20,Veg
+Papdi Chaat,"chicken, paneer, mango, yogurt",106.0,35,Main Course
+Rose Milk,"flour, garlic, okra",391.57,17,Beverage
+Bhindi Masala,"rice, onion, spices",112.36,11,Veg
+Fish Amritsari,"tomato, capsicum, garlic",287.7,6,Non-Veg
+Mini Thali,"spices, chicken",238.92,28,Combo
+Fish Amritsari,"butter, spices, cashew, fish, potato, lentils",579.7,21,Non-Veg
+Kheer,"potato, lentils, chicken, mango",625.03,6,Dessert
+Kadai Paneer,"rice, paneer, cashew",580.43,15,Veg
+Onion Bhaji,"mushroom, mango, capsicum",201.76,11,Main Course
+Fresh Lime Water,"sugar, butter",561.71,19,Beverage
+Veg Samosa,"butter, mango, yogurt, onion",463.13,28,Veg
+Fish Amritsari,"egg, cauliflower, rice, tomato, garlic, rose water",374.92,8,Non-Veg
+Shahi Paneer,"tomato, butter",329.33,18,Veg
+Tandoori Chicken,"butter, mushroom, spinach, milk",612.26,10,Non-Veg
+Egg Curry,"paneer, spices",532.22,40,Non-Veg
+Butter Chicken,"mango, paneer",445.02,13,Non-Veg
+Rose Milk,"spices, onion, egg, okra",575.32,34,Beverage
+Malai Kofta,"potato, okra, garlic",280.25,21,Main Course
+Ras Malai,"rice, mushroom, cashew, okra, chicken",117.07,12,Dessert
+Veg Samosa,"rice, cashew, potato",120.04,11,Veg
+Cheese Corn Balls,"yogurt, okra, rose water, mushroom",121.52,21,Main Course
+Gajar Halwa,"rice, cauliflower, fish, flour, mushroom",223.11,34,Dessert
+Prawn Masala,"mushroom, potato",322.73,39,Non-Veg
+Chicken 65,"garlic, spices, cream, fish, lentils, spinach",173.0,26,Non-Veg
+Rice Pudding,"cashew, noodles, tomato, yogurt",100.0,31,Main Course
+Hara Bhara Kebab,"rose water, egg, cauliflower, tomato, capsicum, okra",349.95,13,Main Course
+Fish Amritsari,"rice, lentils, flour, paneer, milk",519.05,39,Non-Veg
+Bhindi Masala,"spices, noodles",253.82,33,Veg
+Dal Tadka,"garlic, flour, egg, sugar, rose water, paneer",182.83,28,Veg
+Family Combo,"spices, cashew",133.18,35,Combo
+Mutton Rogan Josh,"cauliflower, lentils, cream",250.91,13,Non-Veg
+Dal Makhani,"tomato, noodles",365.57,27,Veg
+Mango Kulfi,"egg, noodles, chicken, butter, mushroom",295.33,17,Dessert
+Mutton Rogan Josh,"noodles, okra, rice",85.32,23,Non-Veg
+Lemon Soda,"yogurt, spinach, paneer, cashew, fish",335.8,9,Beverage
+Mushroom 65,"yogurt, lentils",632.06,28,Veg
+Executive Lunch,"cream, milk, butter, sugar, garlic",642.0,45,Combo
+Jalebi,"paneer, rose water, sugar",503.47,14,Dessert
+Butter Milk,"cauliflower, sugar",514.96,45,Beverage
+Cheese Corn Balls,"cauliflower, cashew, lentils",303.89,5,Main Course
+Chocolate Brownie,"mushroom, spinach, flour",440.58,5,Dessert
+Hara Bhara Kebab,"milk, butter, chicken",284.05,40,Main Course
+Paneer Butter Masala,"lentils, spices, mango",512.72,29,Veg
+Ras Malai,"sugar, rice",613.86,18,Dessert
+Lemon Soda,"spices, fish, noodles, mango, rose water",440.21,9,Beverage
+Aloo Jeera,"onion, cream, egg, fish",489.02,28,Veg
+Onion Bhaji,"okra, noodles, paneer, tomato",140.29,43,Main Course
+Butter Chicken,"okra, capsicum, sugar",380.55,41,Non-Veg
+Paneer Do Pyaza,"flour, tomato",109.36,20,Veg
+Mango Lassi,"rice, flour, chicken, fish",138.82,25,Beverage
+Tandoori Chicken,"potato, milk",428.06,36,Non-Veg
+Veg Samosa,"noodles, sugar, butter, capsicum, yogurt",218.18,14,Veg
+Aloo Gobi,"capsicum, cream, onion, egg, rice",624.83,17,Veg
+Palak Paneer,"yogurt, lentils, cashew, onion",250.76,10,Veg
+Kheer,"potato, fish, sugar, rose water",293.71,38,Dessert
+Hara Bhara Kebab,"butter, milk, lentils, spices, cashew, sugar",522.29,29,Main Course
